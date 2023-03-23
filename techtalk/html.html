@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>HTML Fragments | APCSP</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="HTML Fragments" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="HTML fragments are portions of code used in a greater coding system that enable functionality specific to the current page. Fragments in HTML are a way to abstract complexity. The greater coding system we use is GitHub Pages which uses Jekyll and Liquid to build and programmatically construct fragments into the larger web site." />
+<meta property="og:description" content="HTML fragments are portions of code used in a greater coding system that enable functionality specific to the current page. Fragments in HTML are a way to abstract complexity. The greater coding system we use is GitHub Pages which uses Jekyll and Liquid to build and programmatically construct fragments into the larger web site." />
+<link rel="canonical" href="https://nighthawkcoders.github.io/APCSP/techtalk/html" />
+<meta property="og:url" content="https://nighthawkcoders.github.io/APCSP/techtalk/html" />
+<meta property="og:site_name" content="APCSP" />
+<meta property="og:image" content="https://nighthawkcoders.github.io/APCSP/images/html-css-js.jpeg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-08-29T00:00:00-05:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://nighthawkcoders.github.io/APCSP/images/html-css-js.jpeg" />
+<meta property="twitter:title" content="HTML Fragments" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-08-29T00:00:00-05:00","datePublished":"2022-08-29T00:00:00-05:00","description":"HTML fragments are portions of code used in a greater coding system that enable functionality specific to the current page. Fragments in HTML are a way to abstract complexity. The greater coding system we use is GitHub Pages which uses Jekyll and Liquid to build and programmatically construct fragments into the larger web site.","headline":"HTML Fragments","image":"https://nighthawkcoders.github.io/APCSP/images/html-css-js.jpeg","mainEntityOfPage":{"@type":"WebPage","@id":"https://nighthawkcoders.github.io/APCSP/techtalk/html"},"url":"https://nighthawkcoders.github.io/APCSP/techtalk/html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/APCSP/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nighthawkcoders.github.io/APCSP/feed.xml" title="APCSP" /><link rel="shortcut icon" type="image/x-icon" href="/APCSP/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/APCSP/">APCSP</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/APCSP/schedule">Schedule</a><a class="page-link" href="/APCSP/frontend/overview">Frontend</a><a class="page-link" href="/APCSP/api/overview">API</a><a class="page-link" href="/APCSP/search/">Search</a><a class="page-link" href="/APCSP/categories/ap">AP Standards</a><a class="page-link" href="/APCSP/categories/cte">CTE Standards</a><a class="page-link" href="/APCSP/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">HTML Fragments</h1><p class="page-description">HTML fragments are portions of code used in a greater coding system that enable functionality specific to the current page.  Fragments in HTML are a way to abstract complexity.  The greater coding system we use is GitHub Pages which uses Jekyll and Liquid to build and programmatically construct fragments into the larger web site.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-08-29T00:00:00-05:00" itemprop="datePublished">
+        Aug 29, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/APCSP/categories/ap#1.B">1.B</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/APCSP/categories/cte#C7.0">C7.0</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#html-fragments-and-markdown">HTML Fragments and Markdown</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#review-these-fragments">Review these Fragments</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#table-fragments">Table Fragments</a></li>
+<li class="toc-entry toc-h4"><a href="#images">Images</a></li>
+<li class="toc-entry toc-h4"><a href="#links">Links</a></li>
+<li class="toc-entry toc-h4"><a href="#tagging">Tagging</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#web-page-layout">Web Page Layout</a></li>
+<li class="toc-entry toc-h3"><a href="#dark-mode">Dark Mode</a></li>
+<li class="toc-entry toc-h3"><a href="#alert-to-students">Alert to Students</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#hacks">Hacks</a></li>
+</ul><h2 id="html-fragments-and-markdown">
+<a class="anchor" href="#html-fragments-and-markdown" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML Fragments and Markdown</h2>
+<p>Building an entire Web Application frontend requires HTML, CSS and JavaScript.  In our Fastpages/GitHub Pages a lot of the frontend design work has been done by using Fastpages and Minima theme.   Jekyll takes our choice of layouts in our _config.yml file (theme: minima), along with our HTML and Markdown fragments and build a complete static website.</p>
+
+<h3 id="review-these-fragments">
+<a class="anchor" href="#review-these-fragments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Review these Fragments</h3>
+<h4 id="table-fragments">
+<a class="anchor" href="#table-fragments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Table Fragments</h4>
+<p>In Fastpages you can build a table in HTML or Markdown.  Building in markdown allows you to take advantage of Jekyll.</p>
+<ul>
+  <li>The index.html does markdown conversion and builds a table with blogs</li>
+  <li>The _posts/**pseudo_code.md file builds a table with Markdown</li>
+</ul>
+
+<h4 id="images">
+<a class="anchor" href="#images" aria-hidden="true"><span class="octicon octicon-link"></span></a>Images</h4>
+<p>In Fastpages you can insert images in HTML or Markdown.  The Teacher finds &lt;img&gt; easier to work with for embedding links when trying to control size.</p>
+<ul>
+  <li>See index.html for “img” usage</li>
+  <li>Lookup ![]() syntax for images in markdown guides</li>
+</ul>
+
+<h4 id="links">
+<a class="anchor" href="#links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Links</h4>
+<p>Look up &lt;href&gt; and []() syntax in both HTML and Markdown.  These should become easy and familiar.</p>
+
+<h4 id="tagging">
+<a class="anchor" href="#tagging" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tagging</h4>
+<p>Make sure to use tagging and make it provide a nice index into your information under “Tags” menu.  If you have a page Week1, Week2, Week3, in a post, perhaps</p>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+toc: true
+layout: post
+description: HTML fragments are portions of code used in a greater coding system that enable functionality specific to the current page.  Fragments in HTML are a way to abstract complexity.  The greater coding system we use is GitHub Pages which uses Jekyll and Liquid to build and programmatically construct fragments into the larger web site.
+categories: [weeks]
+title:  Week 2 - HTML Fragments
+---
+</code></pre></div></div>
+
+<h3 id="web-page-layout">
+<a class="anchor" href="#web-page-layout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Web Page Layout</h3>
+<p>A complete HTML Web Application is typically made off of a Layout and a series of Fragments (sometimes called templates).</p>
+<ul>
+  <li>
+<a href="https://padlet.com/jmortensen7/weblayout">Web Page Layout</a>.  This illustration becomes important when you make your own layout and fragments using frameworks like Jinja2 (for Python)  or Thymeleaf (for Java).</li>
+  <li>The design of GitHub pages allows us to change themes with the _config.yml file (theme: minima) key/value, change the value to a <a href="https://pages.github.com/themes/">supported theme</a>. But, on my tries it does not work because fastpages has added many features specific to minima. However, you can temporarily change to different look by changing the remote theme to the following location in your _config.yml
+<img src="/APCSP/images/remote_theme.png" alt="">
+</li>
+  <li>
+<a href="https://github.com/jekyll/minima/blob/master/_layouts/default.html">Minima theme</a>, click on link for accurate syntax.  Everywhere you see an “include” this layout is including a fragment to complement the page, things like CSS, JavaScript, headers and footers are included into the layout.  Where you see “content”, this is the statement that includes page specific fragments we have designed added within the layout.  You should associate all of this to “Procedural Abstraction”.</li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cp">&lt;!DOCTYPE html&gt;</span>
+    <span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+
+    "include head.html"
+
+    <span class="nt">&lt;body&gt;</span>
+
+        "include header.html"
+
+        <span class="nt">&lt;main</span> <span class="na">class=</span><span class="s">"page-content"</span> <span class="na">aria-label=</span><span class="s">"Content"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"wrapper"</span><span class="nt">&gt;</span>
+            "content"
+        <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/main&gt;</span>
+
+        "include footer.html"
+
+    <span class="nt">&lt;/body&gt;</span>
+
+    <span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h3 id="dark-mode">
+<a class="anchor" href="#dark-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dark Mode</h3>
+<blockquote>
+  <p>I have seen several student customize CSS on their front page.  This enables them to add color.  In our fastpages project, there is a special way to customize.  Look for the direct _sass, it has a minima folder.  Inside this directory you will see many sccs files, this is the Sassy of customize your project.</p>
+  <ul>
+    <li>Article and findings by Vunsh in CSA to customize to <a href="https://vunsh.github.io/blogging/fastpages/jupyter/darkmode/2022/08/30/22-Darkmode.html">Darkmode</a>
+</li>
+    <li>People have customized the dark-mode.scss file to alternate color schemes for different colors, for instance instead of black, I saw Saathvicka change to dark green</li>
+  </ul>
+</blockquote>
+
+<h3 id="alert-to-students">
+<a class="anchor" href="#alert-to-students" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alert to Students</h3>
+<p>Students <mark>spending majority or large portions of time writing custom CSS will be counter productive</mark> to College Board goals and CTE goals for this class.  Be aware that HTML style is important, but we are trying to focus more on utilizing framework (GitHub Pages) to maximize our success in the style area.   Developers, particularly new Developers, need to ensure they are spending majority of time in the key technical of instruction.  <mark>Pair Programming and Team Programming are aids in speeding up learning</mark>, these collaborative techniques are not intended to be used to defer key technical learnings to others!!!  In our first week, <mark>I saw code that was not understood by the person asking questions<mark>. In 2021-2022 several students lost a grade (A down to B) at the end of the trimester because they were out of balance and were solely focused on CSS/style.</mark></mark></p>
+
+<p>As an illustration, look at the <a href="https://github.com/jekyll/minima">minima them</a>.  Look at the analytics and work that went into it.  Leverage off it, don’t recreate it!</p>
+
+<h2 id="hacks">
+<a class="anchor" href="#hacks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hacks</h2>
+<p>At the end of this week you should have your theme complements (try altering dark-mode), index.html alterations, a table, multiple external links, and multiple images in your site.</p>
+<ul>
+  <li>Take a screen shot of temporarily changing remote theme, analyze problems in sight after doing so.  Blog your findings.</li>
+  <li>Time Box fragments are very important to show what you have done each week.  I want to see cumulative personal history for the Trimester and for the Year.</li>
+  <li>You should be able to show how you have considered naming an Tagging to help you find materials under categories.</li>
+  <li>You should be able to show how you have considered search and how you are able to find key elements in your site.</li>
+  <li>Advanced and part of what would be considered Coding….   Look at how blog or tags is displayed, look at adding data to _config.yml.  Look at liquid, put all this together to make a table or time box the lazy programmer way.</li>
+</ul>
+
+  </div><a class="u-url" href="/APCSP/techtalk/html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/APCSP/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="https://nighthawkcoders.github.io/APCSP/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/APCSP/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>AP Computer Science Principles course materials.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/nighthawkcoders" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/NighthawkCoding" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://www.youtube.com/channel/UClIKOsDS5dsfzFA3zveDT3Q" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

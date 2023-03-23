@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>API/Control, Backend, OOP, Python | APCSP</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="API/Control, Backend, OOP, Python" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Between Model and View is Control. In this Web application it will be handled by APIs. Data will be input and displayed through View and stored in Model. Control will broker information between projects." />
+<meta property="og:description" content="Between Model and View is Control. In this Web application it will be handled by APIs. Data will be input and displayed through View and stored in Model. Control will broker information between projects." />
+<link rel="canonical" href="https://nighthawkcoders.github.io/APCSP/2023/01/19/PBL-control.html" />
+<meta property="og:url" content="https://nighthawkcoders.github.io/APCSP/2023/01/19/PBL-control.html" />
+<meta property="og:site_name" content="APCSP" />
+<meta property="og:image" content="https://nighthawkcoders.github.io/APCSP/images/python.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-19T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://nighthawkcoders.github.io/APCSP/images/python.png" />
+<meta property="twitter:title" content="API/Control, Backend, OOP, Python" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-01-19T00:00:00-06:00","datePublished":"2023-01-19T00:00:00-06:00","description":"Between Model and View is Control. In this Web application it will be handled by APIs. Data will be input and displayed through View and stored in Model. Control will broker information between projects.","headline":"API/Control, Backend, OOP, Python","image":"https://nighthawkcoders.github.io/APCSP/images/python.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://nighthawkcoders.github.io/APCSP/2023/01/19/PBL-control.html"},"url":"https://nighthawkcoders.github.io/APCSP/2023/01/19/PBL-control.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/APCSP/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nighthawkcoders.github.io/APCSP/feed.xml" title="APCSP" /><link rel="shortcut icon" type="image/x-icon" href="/APCSP/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/APCSP/">APCSP</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/APCSP/schedule">Schedule</a><a class="page-link" href="/APCSP/frontend/overview">Frontend</a><a class="page-link" href="/APCSP/api/overview">API</a><a class="page-link" href="/APCSP/search/">Search</a><a class="page-link" href="/APCSP/categories/ap">AP Standards</a><a class="page-link" href="/APCSP/categories/cte">CTE Standards</a><a class="page-link" href="/APCSP/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">API/Control, Backend, OOP, Python</h1><p class="page-description">Between Model and View is Control.  In this Web application it will be handled by APIs.  Data will be input and displayed through View and stored in Model.  Control will broker information between projects.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-01-19T00:00:00-06:00" itemprop="datePublished">
+        Jan 19, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/nighthawkcoders/APCSP/tree/master/_notebooks/2023-01-19-PBL-control.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/APCSP/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/nighthawkcoders/APCSP/master?filepath=_notebooks%2F2023-01-19-PBL-control.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/APCSP/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/nighthawkcoders/APCSP/blob/master/_notebooks/2023-01-19-PBL-control.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/APCSP/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+          <div class="px-2">
+  <a href="https://deepnote.com/launch?url=https%3A%2F%2Fgithub.com%2Fnighthawkcoders%2FAPCSP%2Fblob%2Fmaster%2F_notebooks%2F2023-01-19-PBL-control.ipynb" target="_blank">
+      <img class="notebook-badge-image" src="/APCSP/assets/badges/deepnote.svg" alt="Launch in Deepnote"/>
+  </a>
+</div>
+
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#API/Control-Terms">API/Control Terms </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Resource">Resource </a></li>
+<li class="toc-entry toc-h3"><a href="#Control/API-code">Control/API code </a></li>
+<li class="toc-entry toc-h3"><a href="#Testing-APIs">Testing APIs </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Hacks">Hacks </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2023-01-19-PBL-control.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="API/Control-Terms">
+<a class="anchor" href="#API/Control-Terms" aria-hidden="true"><span class="octicon octicon-link"></span></a>API/Control Terms<a class="anchor-link" href="#API/Control-Terms"> </a>
+</h2>
+<blockquote>
+<p>APIs work with methods to GET, POST, PUT, and UPDATE data.  Control helps with Requests, Response, and handling JSON.  Control is glue layer, thus the term Model-View-Control (or MVC).</p>
+<ul>
+<li>POST APIs interact with CREATE methods in Model.</li>
+<li>GET with READ</li>
+<li>PUT with UPDATE.</li>
+<li>DELETE with DELETE.</li>
+</ul>
+<p>During development it is best to work with Model and Control without involving View initially.   To support this type of development ...</p>
+<ul>
+<li>Become familiar with <a href="https://www.postman.com/downloads/">Postman</a>- FYI, as an alternative you can become familiar with working with APIs through <strong><em>curl</em></strong>
+</li>
+</ul>
+</blockquote>
+<h3 id="Resource">
+<a class="anchor" href="#Resource" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resource<a class="anchor-link" href="#Resource"> </a>
+</h3>
+<p><a href="https://flask-restful.readthedocs.io/en/latest/api.html">API Docs</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Control/API-code">
+<a class="anchor" href="#Control/API-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Control/API code<a class="anchor-link" href="#Control/API-code"> </a>
+</h3>
+<blockquote>
+<p><strong><em>Control/API concepts</em></strong> are receiving and API request and returning a response.</p>
+</blockquote>
+<ol>
+<li>
+<a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/api/user.py#L7-L11">Define API flask objects (api/user.py)</a>.  Flask contains object that help in API definition.2. <a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/main.py#L11-L23">Register API objects (main.py)</a>.  Every Flask object in the project needs to be registered with the "main" objects.</li>
+<li>
+<a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/api/user.py#L14-L54">Create/POST method</a>.  Post method contains a lot of checking code, but ultimately it creates a database row in the Model and returns that row to the View.</li>
+<li>
+<a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/api/user.py#L14-L54">Read/GET method</a>.  This shows off Object Relational Manager performing a User (class operation) to extract all records from the table and putting them into User objects.</li>
+<li>
+<a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/api/user.py#L62-L64">Define API endpoints</a>.  Endpoints are somewhat patterns to be matched.  Note, url_prefix at top of file supplies "/api/users" prefix for each pattern.  Each pattern when matched invokes the correspond class.  Methods are defined in class to correspond to expectations (POST, GET, UPDATE, DELETE).</li>
+</ol>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Api</span><span class="p">,</span> <span class="n">Resource</span> <span class="c1"># used for REST API building</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">model.users</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="c1"># blueprint, which is registered to app in main.py</span>
+<span class="n">user_api</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s1">'user_api'</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">,</span>
+                   <span class="n">url_prefix</span><span class="o">=</span><span class="s1">'/api/users'</span><span class="p">)</span>
+
+<span class="c1"># API docs https://flask-restful.readthedocs.io/en/latest/api.html#id1</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">user_api</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">UserAPI</span><span class="p">:</span>        
+    <span class="k">class</span> <span class="nc">_Create</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="sd">''' Read data for json body '''</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+            
+            <span class="sd">''' Avoid garbage in, error checking '''</span>
+            <span class="c1"># validate name</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'name'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s1">'message'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Name is missing, or is less than 2 characters'</span><span class="p">},</span> <span class="mi">210</span>
+            <span class="c1"># validate uid</span>
+            <span class="n">uid</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'uid'</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">uid</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">{</span><span class="s1">'message'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'User ID is missing, or is less than 2 characters'</span><span class="p">},</span> <span class="mi">210</span>
+            <span class="c1"># look for password and dob</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'password'</span><span class="p">)</span>
+            <span class="n">dob</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'dob'</span><span class="p">)</span>
+
+            <span class="sd">''' #1: Key code block, setup USER OBJECT '''</span>
+            <span class="n">uo</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> 
+                      <span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">)</span>
+            
+            <span class="sd">''' Additional garbage error checking '''</span>
+            <span class="c1"># set password if provided</span>
+            <span class="k">if</span> <span class="n">password</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">uo</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+            <span class="c1"># convert to date type</span>
+            <span class="k">if</span> <span class="n">dob</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">uo</span><span class="o">.</span><span class="n">dob</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dob</span><span class="p">,</span> <span class="s1">'%m-</span><span class="si">%d</span><span class="s1">-%Y'</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="p">{</span><span class="s1">'message'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Date of birth format error </span><span class="si">{</span><span class="n">dob</span><span class="si">}</span><span class="s1">, must be mm-dd-yyyy'</span><span class="p">},</span> <span class="mi">210</span>
+            
+            <span class="sd">''' #2: Key Code block to add user to database '''</span>
+            <span class="c1"># create user in database</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">uo</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+            <span class="c1"># success returns json of user</span>
+            <span class="k">if</span> <span class="n">user</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+            <span class="c1"># failure returns error</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">'message'</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'Processed </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">, either a format error or User ID </span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s1"> is duplicate'</span><span class="p">},</span> <span class="mi">210</span>
+
+    <span class="k">class</span> <span class="nc">_Read</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">users</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>    <span class="c1"># read/extract all users from database</span>
+            <span class="n">json_ready</span> <span class="o">=</span> <span class="p">[</span><span class="n">user</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">]</span>  <span class="c1"># prepare output in json</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">json_ready</span><span class="p">)</span>  <span class="c1"># jsonify creates Flask response object, more specific to APIs than json.dumps</span>
+
+    <span class="c1"># building RESTapi endpoint</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">_Create</span><span class="p">,</span> <span class="s1">'/create'</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">_Read</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Testing-APIs">
+<a class="anchor" href="#Testing-APIs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing APIs<a class="anchor-link" href="#Testing-APIs"> </a>
+</h3>
+<blockquote>
+<p><strong><em>Backend Testing</em></strong> of APIs is best done through Browser for simple GET APIs, but other API methods (POST, UPDATE, DELETE) will require a tool like PostMan.</p>
+</blockquote>
+<ol>
+<li>
+<a href="https://www.postman.com/downloads/">Download Postman</a>.  This tool test APIs effectively on localhost and is great aid for debugging.</li>
+<li>
+<a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/main.py#L44-L47">Main.py runtime configuration</a>.  This configuration is setup to produce same port and localhost as deployment.</li>
+</ol>
+<p><strong><em><code>Run</code> locally as you develop</em></strong> Select main.py file in VSCode and press Play button, or press down arrow next to Play button to activate Debug testing.  The below dialog will appear in Terminal, though IP address will match you machines.</p>
+<div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span> machine:flask_portfolio user$  <span class="nb">cd</span> /Users/user/vscode/flask_portfolio <span class="p">;</span> /usr/bin/env /Users/user/opt/anaconda3/bin/python /Users/user/.vscode/extensions/ms-python.python-2022.20.2/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher <span class="m">61127</span> -- /Users/user/vscode/flask_portfolio/main.py 
+ * Serving Flask app <span class="s2">"__init__"</span> <span class="o">(</span>lazy loading<span class="o">)</span>
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://192.168.1.75:8086/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+ * Restarting with watchdog <span class="o">(</span>fsevents<span class="o">)</span>
+ * Debugger is active!
+ * Debugger PIN: <span class="m">403</span>-552-045
+</pre></div>
+<p><strong><em><code>Test</code> API GET locally with Postman</em></strong>.  Observe that tests may be saved.<br>
+<img src="/APCSP/images/copied_from_nb/images/postmain_read_get_users.png" alt=""></p>
+<p><strong><em><code>Test</code> API POST locally with Postman</em></strong>.  In this case, Postman can be used to add new records to the table.  Observe options to pass data using Body raw-json.
+<img src="/APCSP/images/copied_from_nb/images/postman_create_post_users.png" alt=""></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hacks">
+<a class="anchor" href="#Hacks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hacks<a class="anchor-link" href="#Hacks"> </a>
+</h2>
+<p>Objective of these hacks is to complete full stack.  This include Model (flask database), View (github pages markdown), and Control (flask API endpoint).</p>
+<ol>
+<li>Make Create and Read API endpoints for your project</li>
+<li>Test API endpoints by creating test cases in Postman</li>
+<li>Build a Frontend for Create and Read endpoints</li>
+<li>Make a 30-60 second video showing this work</li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/APCSP/2023/01/19/PBL-control.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/APCSP/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="https://nighthawkcoders.github.io/APCSP/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/APCSP/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>AP Computer Science Principles course materials.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/nighthawkcoders" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/NighthawkCoding" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://www.youtube.com/channel/UClIKOsDS5dsfzFA3zveDT3Q" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

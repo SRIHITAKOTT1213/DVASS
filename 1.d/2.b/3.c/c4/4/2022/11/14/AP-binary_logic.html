@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Binary Logic and Abstraction | APCSP</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Binary Logic and Abstraction" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Taking a look at binary abstractions (ASCII, Unicode, Images),logic gates, etc" />
+<meta property="og:description" content="Taking a look at binary abstractions (ASCII, Unicode, Images),logic gates, etc" />
+<link rel="canonical" href="https://nighthawkcoders.github.io/APCSP/1.d/2.b/3.c/c4/4/2022/11/14/AP-binary_logic.html" />
+<meta property="og:url" content="https://nighthawkcoders.github.io/APCSP/1.d/2.b/3.c/c4/4/2022/11/14/AP-binary_logic.html" />
+<meta property="og:site_name" content="APCSP" />
+<meta property="og:image" content="https://nighthawkcoders.github.io/APCSP/images/apcsp.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-14T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://nighthawkcoders.github.io/APCSP/images/apcsp.png" />
+<meta property="twitter:title" content="Binary Logic and Abstraction" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-11-14T00:00:00-06:00","datePublished":"2022-11-14T00:00:00-06:00","description":"Taking a look at binary abstractions (ASCII, Unicode, Images),logic gates, etc","headline":"Binary Logic and Abstraction","image":"https://nighthawkcoders.github.io/APCSP/images/apcsp.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://nighthawkcoders.github.io/APCSP/1.d/2.b/3.c/c4/4/2022/11/14/AP-binary_logic.html"},"url":"https://nighthawkcoders.github.io/APCSP/1.d/2.b/3.c/c4/4/2022/11/14/AP-binary_logic.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/APCSP/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nighthawkcoders.github.io/APCSP/feed.xml" title="APCSP" /><link rel="shortcut icon" type="image/x-icon" href="/APCSP/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/APCSP/">APCSP</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/APCSP/schedule">Schedule</a><a class="page-link" href="/APCSP/frontend/overview">Frontend</a><a class="page-link" href="/APCSP/api/overview">API</a><a class="page-link" href="/APCSP/search/">Search</a><a class="page-link" href="/APCSP/categories/ap">AP Standards</a><a class="page-link" href="/APCSP/categories/cte">CTE Standards</a><a class="page-link" href="/APCSP/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Binary Logic and Abstraction</h1><p class="page-description">Taking a look at binary abstractions (ASCII, Unicode, Images),logic gates, etc</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-11-14T00:00:00-06:00" itemprop="datePublished">
+        Nov 14, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/APCSP/categories/ap#1.D">1.D</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/APCSP/categories/ap#2.B">2.B</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/APCSP/categories/ap#3.C">3.C</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/APCSP/categories/cte#C4/4">C4/4</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#binary-data-data-structures-data-abstraction-ascii-unicode-color-codes">Binary, Data, Data Structures, Data Abstraction (ASCII, Unicode, Color Codes),</a></li>
+<li class="toc-entry toc-h2"><a href="#math-in-binary">Math in Binary</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#logic-of-shift">Logic of Shift</a></li>
+<li class="toc-entry toc-h3"><a href="#understand-binary-numbers-by-elaboration-of-shift-20-21-22">Understand binary Numbers by elaboration of Shift (2^^0, 2^^1, 2^^2)</a></li>
+<li class="toc-entry toc-h3"><a href="#ui-conceptdesign">UI Concept/Design</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ascii-and-unicode">ASCII and Unicode</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#character-data-abstraction">Character Data Abstraction</a></li>
+<li class="toc-entry toc-h3"><a href="#ui-conceptdesign-1">UI Concept/Design</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#color-codes">Color Codes</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#a-color-code-is-a-24-bit-abstraction">A Color code is a 24 bit abstraction.</a></li>
+<li class="toc-entry toc-h3"><a href="#ui-design">UI Design</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#logic-gates">Logic Gates</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#logic-gates-can-be-simulated-with-2-bits">Logic Gates can be simulated with 2 bits</a></li>
+<li class="toc-entry toc-h3"><a href="#ui-concept">UI Concept</a></li>
+<li class="toc-entry toc-h3"><a href="#ui-design-1">UI Design</a></li>
+<li class="toc-entry toc-h3"><a href="#logic-of-logic-gates">Logic of Logic Gates</a></li>
+<li class="toc-entry toc-h3"><a href="#practical-application">Practical Application</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#unsigned-addition">Unsigned Addition</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#initial-ui-implementation">Initial UI Implementation</a></li>
+<li class="toc-entry toc-h3"><a href="#unsigned-addition-1">Unsigned Addition</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#signed-addition">Signed Addition</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#common-concept-for-integer-math">Common concept for Integer Math</a></li>
+<li class="toc-entry toc-h3"><a href="#basic-concept-but-not-typically-used">Basic concept, but not typically used</a></li>
+<li class="toc-entry toc-h3"><a href="#inverting-numbers-twos-complement">Inverting numbers, twos complement</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#technical-helpers">Technical helpers</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#harvard-cs50-minute-0-to-minute-50-to-provide-background-on-some-of-the-information-below">Harvard CS50 minute 0 to minute 50 to provide background on some of the information below.</a></li>
+<li class="toc-entry toc-h3"><a href="#algorithm-in-jinja2-to-limit-bits-per-row">Algorithm in Jinja2 to limit Bits per row</a></li>
+<li class="toc-entry toc-h3"><a href="#research-helpers">Research Helpers</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#hacks">Hacks</a></li>
+</ul><h2 id="binary-data-data-structures-data-abstraction-ascii-unicode-color-codes">
+<a class="anchor" href="#binary-data-data-structures-data-abstraction-ascii-unicode-color-codes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Binary, Data, Data Structures, Data Abstraction (ASCII, Unicode, Color Codes),</h2>
+<blockquote>
+  <p>Algorithms, Data and Data Structures go together.  It is <strong><em>required</em></strong> to have a data topic as you venture into Algorithms and Lessons.  This blog is a collection of binary, data and data structures that should be <strong><em>your data topic</em></strong>!!! Use <strong><em>a data topic</em></strong> as you learn algorithms and programming.</p>
+  <ul>
+    <li>
+<strong><em>Explore that topic in Computer Science manner</em></strong> (research, jupyter notebooks, frontend / backend coding)</li>
+    <li>Build a lesson that is more interesting, by explaining an algorithm and logic using a data topic.</li>
+    <li>Teach with examples… <strong><em>Segment from <a href="https://youtu.be/1tnj3UCkuxU?t=336">CS50</a> and go to minute 13:15.</em></strong>
+</li>
+    <li>Tour the Code.  <strong><em>Use <a href="https://nighthawkcoders.github.io/APCSP/frontend/binary">Binary Frontend Code</a></em></strong> to get you started. <mark>Better clone APCSP project drag and drop _posts/2022-07-07-PBL-binary.md to your project and Debug</mark>
+</li>
+    <li>This Tech Talk will finish by <strong><em>reviewing hacks</em></strong>, the remainder of this blog and Binary Frontend Code is part of your research.</li>
+  </ul>
+</blockquote>
+
+<h2 id="math-in-binary">
+<a class="anchor" href="#math-in-binary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Math in Binary</h2>
+<blockquote>
+  <p>Learn binary by bitwise operators and more.  Shifting bits is a common computer operation and does wonderful things in math like multiply and divide.  Last bit always determines odd or even.
+Look for shift on <a href="https://www.w3schools.com/js/js_bitwise.asp">w3schools</a></p>
+</blockquote>
+
+<h3 id="logic-of-shift">
+<a class="anchor" href="#logic-of-shift" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logic of Shift</h3>
+<blockquote>
+  <p>Explore right and left shifts with binary numbers.</p>
+  <ul>
+    <li>In an arithmetic shift, the bits that are shifted out of either end are discarded.</li>
+    <li>In a left arithmetic shift, zeros are shifted in on the right.
+<img src="/APCSP/images/logic_of_shift.png" alt="">
+</li>
+  </ul>
+</blockquote>
+
+<h3 id="understand-binary-numbers-by-elaboration-of-shift-20-21-22">
+<a class="anchor" href="#understand-binary-numbers-by-elaboration-of-shift-20-21-22" aria-hidden="true"><span class="octicon octicon-link"></span></a>Understand binary Numbers by elaboration of Shift (2^^0, 2^^1, 2^^2)</h3>
+<blockquote>
+  <p>How does the Power of 2 work?  What is a binary number?  What is Base2, Base10, Base16.</p>
+  <ul>
+    <li>This example uses an 8-bit register.  Math can be represented in much in many more bits, 32 bits or 2 bytes is common for integer in modern computer languages.</li>
+    <li>Most Significant Bit (MSB), least (LSB)</li>
+    <li>This example shows negative and positive numbers, using technique called Twos Complement.</li>
+    <li>In the first case, the leftmost digit was shifted past the end of the register, and a new 0 was shifted into the rightmost position. Positive Multiply.</li>
+    <li>In the second case, the rightmost 1 was shifted out, and a new 1 was copied into the leftmost position, preserving the sign of the number. Negative Divide, this example obviously needs more study.
+<img src="/APCSP/images/elaboration_of_shift.png" alt="">
+</li>
+  </ul>
+</blockquote>
+
+<h3 id="ui-conceptdesign">
+<a class="anchor" href="#ui-conceptdesign" aria-hidden="true"><span class="octicon octicon-link"></span></a>UI Concept/Design</h3>
+<blockquote>
+  <p>Conceptualize on a UI that will illustrate binary and decimal.  In learning these concepts, it is best to code and example to illustrate what is happening.</p>
+  <ul>
+    <li><em>n Right Shifts (divides by 2^n); n Left Shifts (multiplies by 2^n)</em></li>
+    <li>Add buttons for  “«”   and  “ »”
+<img src="/APCSP/images/binary_shift.png" alt="">
+</li>
+  </ul>
+</blockquote>
+
+<h2 id="ascii-and-unicode">
+<a class="anchor" href="#ascii-and-unicode" aria-hidden="true"><span class="octicon octicon-link"></span></a>ASCII and Unicode</h2>
+<blockquote>
+  <p>Computers represent more than Math.  Mostly everyone is familiar with the characters on a keyboard and Emojis.  These are all represented in binary, the data abstraction being the characters we visualize. 😂</p>
+</blockquote>
+
+<h3 id="character-data-abstraction">
+<a class="anchor" href="#character-data-abstraction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Character Data Abstraction</h3>
+<blockquote>
+  <p>How are characters stored?  How many bits do they take?</p>
+  <ul>
+    <li>ASCII is 8 bits, it generally represent keys on keyboard.  Look up ASCII Table.</li>
+    <li>Unicode can be UTF-8, 16 or 32, each representing bits.  ASCII is preserved in Unicode.</li>
+    <li>ASCII - 7 bits, extended to 8 bits with Unicode</li>
+    <li>UTF-8</li>
+    <li>UTF-16</li>
+    <li>UTF-32
+<img src="/APCSP/images/sample_unicode.png" alt="">
+<em>Sample of Unicode characters.</em>
+</li>
+  </ul>
+</blockquote>
+
+<h3 id="ui-conceptdesign-1">
+<a class="anchor" href="#ui-conceptdesign-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>UI Concept/Design</h3>
+<blockquote>
+  <p>The ASCII value in picture should be change based off of the bits in evaluation you are doing.  Bits displayed, label, and evaluation would be specific to evaluation type:
+<img src="/APCSP/images/ascii_label.png" alt="">
+<em>Original ASCII</em></p>
+</blockquote>
+
+<h2 id="color-codes">
+<a class="anchor" href="#color-codes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Color Codes</h2>
+<blockquote>
+  <p>Pixels are little dots on Monitors and TVs that make up the display. Each pixel has an Red Green and Blue value (RGB).   All pictures we see or take are composed of RGB using a density measurement.  These are stored and then represented by digitally or in print.</p>
+  <ul>
+    <li>Monitors
+      <ul>
+        <li>1280 x 1024 Super-eXtended Graphics Array (SXGA)</li>
+        <li>1366 x 768 High Definition (HD)</li>
+        <li>1600 x 900 High Definition Plus (HD+)</li>
+        <li>1920 x 1080 Full High Definition (FHD)</li>
+        <li>1920 x 1200 Wide Ultra Extended Graphics Array (WUXGA)</li>
+      </ul>
+    </li>
+    <li>TVs
+      <ul>
+        <li>4K Ultra HD: The term 4K means the screen is about 4,000 pixels wide. …</li>
+        <li>1080p (Full HD): This resolution is 1,920 x 1,080 pixels. …</li>
+        <li>720p (HD Ready): This is mostly found on smaller TVs, and it has a resolution of 1,280 x 720.</li>
+      </ul>
+    </li>
+    <li>Camera
+|Sensor Resolution (megapixels)|Typical Image Resolution (pixels)|
+|2.16|1800 x 1200|
+|3.9|2272 x 1704|	
+|5.0|2592 x 1944|	
+|7.1|3072 x 2304|	
+|8.0|3264 x 2448|
+|10.0|3648 x 2736|	
+|12.1|4000 x 3000|	
+|14.7|4416 x 3312|	
+|21.0|5616 x 3744|</li>
+  </ul>
+</blockquote>
+
+<h3 id="a-color-code-is-a-24-bit-abstraction">
+<a class="anchor" href="#a-color-code-is-a-24-bit-abstraction" aria-hidden="true"><span class="octicon octicon-link"></span></a>A Color code is a 24 bit abstraction.</h3>
+<blockquote>
+  <p>There are 8 bits for Red, 8 bits for Blue, and 8 bits for Green.</p>
+</blockquote>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>Hex Code</td>
+      <td>RGB Code</td>
+    </tr>
+    <tr>
+      <td>Black</td>
+      <td>#000000</td>
+      <td>rgb(0, 0, 0)</td>
+    </tr>
+    <tr>
+      <td>Red</td>
+      <td>#FF0000</td>
+      <td>rgb(255, 0, 0)</td>
+    </tr>
+    <tr>
+      <td>Maroon</td>
+      <td>#800000</td>
+      <td>rgb(128, 0, 0)</td>
+    </tr>
+    <tr>
+      <td>Yellow</td>
+      <td>#FFFF00</td>
+      <td>rgb(255, 255, 0)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="/APCSP/images/color_code.png" alt="">
+<em>255 * 255 * 255 combinations of R, G, B</em></p>
+
+<h3 id="ui-design">
+<a class="anchor" href="#ui-design" aria-hidden="true"><span class="octicon octicon-link"></span></a>UI Design</h3>
+<blockquote>
+  <p>Here is a sample program a student used to visualize color by turning buttons on and off.
+<img src="/APCSP/images/color_block.png" alt="">
+<em>by Anthony Vo</em>
+3 rows representing R, G, B 
+Resulting color displayed in block</p>
+</blockquote>
+
+<h2 id="logic-gates">
+<a class="anchor" href="#logic-gates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logic Gates</h2>
+<blockquote>
+  <p>The fundamentals of all decisions in computers is made by logic gates.  These gates are visualized by permuting 1 and 0 across many different types of decisions.  The result is an expression that evaluated to 1 or 0.   These are called Truth Tables.</p>
+</blockquote>
+
+<h3 id="logic-gates-can-be-simulated-with-2-bits">
+<a class="anchor" href="#logic-gates-can-be-simulated-with-2-bits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logic Gates can be simulated with 2 bits</h3>
+<p>Look for bitwise operators on <a href="https://www.w3schools.com/js/js_bitwise.asp">w3schools</a></p>
+
+<h3 id="ui-concept">
+<a class="anchor" href="#ui-concept" aria-hidden="true"><span class="octicon octicon-link"></span></a>UI Concept</h3>
+<blockquote>
+  <p>Visual concept of logic gates</p>
+  <ul>
+    <li>Establish check boxes for A / B on and off</li>
+    <li>Show result of Boolean Expression using Gate visual
+<img src="/APCSP/images/logic_gates.png" alt="">
+<em>Logic Gates</em>
+</li>
+  </ul>
+</blockquote>
+
+<h3 id="ui-design-1">
+<a class="anchor" href="#ui-design-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>UI Design</h3>
+<blockquote>
+  <p>Logic gate lab in JavaScript
+<img src="/APCSP/images/logic_gate_lab.png" alt="">
+<em>by Kylie Scharf</em>
+AB checkboxes with Submit button
+Table with Symbol, Description, and Result</p>
+</blockquote>
+
+<h3 id="logic-of-logic-gates">
+<a class="anchor" href="#logic-of-logic-gates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logic of Logic Gates</h3>
+<blockquote>
+  <p>A logic gate can have two inputs (a,b) and by how changing these inputs it impacts the output(c).</p>
+  <ul>
+    <li>There are four possible inputs:
+      <ul>
+        <li>0 0</li>
+        <li>0 1</li>
+        <li>1 0</li>
+        <li>1 1</li>
+      </ul>
+    </li>
+    <li>Understanding the output enables us to understand a logical expressions.  All outputs are routed in Logic Gates (similar to how a language is routed in Latin).
+      <ul>
+        <li>AND is true for 1 1; NAND is true opposite of AND 0 0, 0 1, 1 0</li>
+        <li>OR is true for 1 1, 0 1, 1 0, NOR is true opposite of OR 0 0</li>
+        <li>XOR is true for 0 1, 1 0</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<h3 id="practical-application">
+<a class="anchor" href="#practical-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Practical Application</h3>
+<blockquote>
+  <p>Logic gates are used everywhere
+<img src="/APCSP/images/logic_gate_application.png" alt=""></p>
+</blockquote>
+
+<h2 id="unsigned-addition">
+<a class="anchor" href="#unsigned-addition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unsigned Addition</h2>
+<p>Here we are requesting 3 rows of bits to simulate Math. This could be done with 4, 8, or 16 bits.</p>
+
+<h3 id="initial-ui-implementation">
+<a class="anchor" href="#initial-ui-implementation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initial UI Implementation</h3>
+<p><img src="/APCSP/images/binary_math_conversion.png" alt="">
+Action buttons for +1 and -1
+Additional actions for Turn On and Turn Off</p>
+
+<h3 id="unsigned-addition-1">
+<a class="anchor" href="#unsigned-addition-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unsigned Addition</h3>
+<p><img src="/APCSP/images/unsigned_addition.png" alt=""></p>
+
+<h2 id="signed-addition">
+<a class="anchor" href="#signed-addition" aria-hidden="true"><span class="octicon octicon-link"></span></a>Signed Addition</h2>
+<p>Integers in most languages are int8, int16, int32, or int64. They typically reserve left most bit for sign.</p>
+
+<h3 id="common-concept-for-integer-math">
+<a class="anchor" href="#common-concept-for-integer-math" aria-hidden="true"><span class="octicon octicon-link"></span></a>Common concept for Integer Math</h3>
+<p><img src="/APCSP/images/integer_math_pos.png" alt="">
+<em>Positive number</em></p>
+
+<h3 id="basic-concept-but-not-typically-used">
+<a class="anchor" href="#basic-concept-but-not-typically-used" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic concept, but not typically used</h3>
+<p><img src="/APCSP/images/integer_math_neg.png" alt="">
+<em>Negative number</em></p>
+
+<h3 id="inverting-numbers-twos-complement">
+<a class="anchor" href="#inverting-numbers-twos-complement" aria-hidden="true"><span class="octicon octicon-link"></span></a>Inverting numbers, twos complement</h3>
+<p><img src="/APCSP/images/twos_complement.png" alt="">
+<em>Two’s complement allows adding for signed and unsigned numbers</em></p>
+
+<p>Basic concept is to invert/negate bits to produce negative. This allows numbers to be added together for expected results. » and »&gt; have been adapted to handle signed and zero filled shifting.</p>
+
+<h2 id="technical-helpers">
+<a class="anchor" href="#technical-helpers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technical helpers</h2>
+
+<h3 id="harvard-cs50-minute-0-to-minute-50-to-provide-background-on-some-of-the-information-below">
+<a class="anchor" href="#harvard-cs50-minute-0-to-minute-50-to-provide-background-on-some-of-the-information-below" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://cs50.harvard.edu/x/2022/weeks/0/">Harvard CS50</a> minute 0 to minute 50 to provide background on some of the information below.</h3>
+
+<h3 id="algorithm-in-jinja2-to-limit-bits-per-row">
+<a class="anchor" href="#algorithm-in-jinja2-to-limit-bits-per-row" aria-hidden="true"><span class="octicon octicon-link"></span></a>Algorithm in Jinja2 to limit Bits per row</h3>
+<p><img src="/APCSP/images/binary_math_conversion_example.png" alt="">
+<em>8 images per row by Kylie Scharf</em>
+Modulo 8 algorithm add &lt;tr&gt; for every eight bits (code).</p>
+
+<h3 id="research-helpers">
+<a class="anchor" href="#research-helpers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Research Helpers</h3>
+<p><a href="https://chortle.ccsu.edu/AssemblyTutorial/Chapter-08/ass08_1.html">CHAPTER 8 - Binary Addition and Two’s Complement</a>
+<em>Overview find by Val Wilson</em></p>
+
+<h2 id="hacks">
+<a class="anchor" href="#hacks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hacks</h2>
+<blockquote>
+  <p>Data, Data Structures, and Algorithms work together.  Data helps supply an interests/topic to an algorithm.  It will be expected that you have a topic as you go through various algorithms.</p>
+  <ul>
+    <li>Use data abstraction (ie data structures) in your lesson</li>
+    <li><strong><em>Make sure you teach/learn elements from this blog as you learn algorithms</em></strong></li>
+    <li>
+<strong><em>Add “Science” into your process</em></strong> (research, jupyter notebook, and ultimately running application)</li>
+    <li>
+<strong><em>Topics used in teaching, not listed in lesson/labs/homework need to be approved by Teacher.</em></strong>  The topics above focus on data ideas from Unit 2 of AP Classroom.</li>
+  </ul>
+</blockquote>
+
+  </div><a class="u-url" href="/APCSP/1.d/2.b/3.c/c4/4/2022/11/14/AP-binary_logic.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/APCSP/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="https://nighthawkcoders.github.io/APCSP/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/APCSP/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>AP Computer Science Principles course materials.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/nighthawkcoders" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/NighthawkCoding" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://www.youtube.com/channel/UClIKOsDS5dsfzFA3zveDT3Q" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

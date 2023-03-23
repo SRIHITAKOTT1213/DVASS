@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Flask/Python Deployment Guide | APCSP</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Flask/Python Deployment Guide" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Description of key methods process used to deploy a Flask/Python website; AWS EC2, Docker, docker-compose, and Nginx" />
+<meta property="og:description" content="Description of key methods process used to deploy a Flask/Python website; AWS EC2, Docker, docker-compose, and Nginx" />
+<link rel="canonical" href="https://nighthawkcoders.github.io/APCSP/techtalk/deploy" />
+<meta property="og:url" content="https://nighthawkcoders.github.io/APCSP/techtalk/deploy" />
+<meta property="og:site_name" content="APCSP" />
+<meta property="og:image" content="https://nighthawkcoders.github.io/APCSP/images/aws.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://nighthawkcoders.github.io/APCSP/images/aws.png" />
+<meta property="twitter:title" content="Flask/Python Deployment Guide" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-09-26T00:00:00-05:00","datePublished":"2022-09-26T00:00:00-05:00","description":"Description of key methods process used to deploy a Flask/Python website; AWS EC2, Docker, docker-compose, and Nginx","headline":"Flask/Python Deployment Guide","image":"https://nighthawkcoders.github.io/APCSP/images/aws.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://nighthawkcoders.github.io/APCSP/techtalk/deploy"},"url":"https://nighthawkcoders.github.io/APCSP/techtalk/deploy"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/APCSP/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nighthawkcoders.github.io/APCSP/feed.xml" title="APCSP" /><link rel="shortcut icon" type="image/x-icon" href="/APCSP/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/APCSP/">APCSP</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/APCSP/schedule">Schedule</a><a class="page-link" href="/APCSP/frontend/overview">Frontend</a><a class="page-link" href="/APCSP/api/overview">API</a><a class="page-link" href="/APCSP/search/">Search</a><a class="page-link" href="/APCSP/categories/ap">AP Standards</a><a class="page-link" href="/APCSP/categories/cte">CTE Standards</a><a class="page-link" href="/APCSP/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Flask/Python Deployment Guide</h1><p class="page-description">Description of key methods process used to deploy a Flask/Python website; AWS EC2, Docker, docker-compose, and Nginx</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-09-26T00:00:00-05:00" itemprop="datePublished">
+        Sep 26, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      26 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/APCSP/categories/ap#6.B">6.B</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/APCSP/categories/cte#C7.0">C7.0</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/APCSP/categories/cte#C7.1">C7.1</a>
+        
+        &nbsp;
+      
+          <a class="category-tags-link" href="/APCSP/categories/cte#C7.2">C7.2</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#deployment-overview">Deployment Overview</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#keyvalues-required-as-you-go-through-these-procedures">Key/Values required as you go through these procedures</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#server-setup-and-initial-deployment">Server Setup and Initial Deployment</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#amazon-web-services-aws-electric-cloud-compute-ec2-setup">Amazon Web Services (AWS): Electric Cloud Compute (EC2) Setup</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#deployment-process">Deployment Process</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#connect-to-ec2-through-cloud">Connect to EC2 through cloud</a></li>
+<li class="toc-entry toc-h3"><a href="#update-upgrade-and-install-packages">Update, Upgrade, and Install packages</a></li>
+<li class="toc-entry toc-h3"><a href="#clone-and-change-directory-to-project-location">Clone and Change Directory to project location</a></li>
+<li class="toc-entry toc-h3"><a href="#test-web-service">Test Web Service</a></li>
+<li class="toc-entry toc-h3"><a href="#create-dockerfile-to-run-web-service">Create Dockerfile to run Web Service</a></li>
+<li class="toc-entry toc-h3"><a href="#create-docker-compose-file-share-web-service">Create docker-compose file share Web Service</a></li>
+<li class="toc-entry toc-h3"><a href="#running-docker-using-docker-composeyml">Running Docker using docker-compose.yml</a></li>
+<li class="toc-entry toc-h3"><a href="#verifying-web-application-via-docker-commands">Verifying Web Application via Docker commands</a></li>
+<li class="toc-entry toc-h3"><a href="#testing-localhost-endpoint">Testing localhost endpoint</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#test-preparation-for-docker-web-application-using-ip-for-internet-access">Test preparation for Docker Web Application using IP for Internet Access</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#activating-nginx-configuration">Activating Nginx configuration</a></li>
+<li class="toc-entry toc-h3"><a href="#testing-http-endpoint">Testing HTTP endpoint</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#final-preparation-the-docker-web-application-using-dns-for-internet-access">Final preparation the Docker Web Application using DNS for Internet Access</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dns-provider-and-setup">DNS provider and setup</a></li>
+<li class="toc-entry toc-h3"><a href="#testing-http-endpoint-1">Testing HTTP endpoint</a></li>
+<li class="toc-entry toc-h3"><a href="#certbot-install-and-configuration">Certbot install and configuration</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#update-deployment-this-process-is-after-you-change-code">Update Deployment, this process is after you change code</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#goto-project-directory">Goto Project directory</a></li>
+<li class="toc-entry toc-h3"><a href="#shutdown-process-and-update-source">Shutdown process and update source</a></li>
+<li class="toc-entry toc-h3"><a href="#rebuild-and-restart-web-application">Rebuild and Restart Web Application</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#good-examples">Good Examples</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#docker-composeyml-sudo-docker-compose-up--d">docker-compose.yml (sudo docker-compose up -d)</a></li>
+<li class="toc-entry toc-h3"><a href="#docker-ps">Docker PS</a></li>
+<li class="toc-entry toc-h3"><a href="#nginx-ip-test-file-sudo-systemctl-nginx-restart">Nginx IP test file (sudo systemctl nginx restart)</a></li>
+<li class="toc-entry toc-h3"><a href="#nginx-sites-available-cd-etcnginxsites-available">Nginx sites-available (cd /etc/nginx/sites-available)</a></li>
+<li class="toc-entry toc-h3"><a href="#nginx-file-published-to-work-with-a-domain-nano-ava_nighthawk">Nginx file published to work with a domain (nano ava_nighthawk)</a></li>
+<li class="toc-entry toc-h3"><a href="#nginx-sites-enable-cd-etcnginxsites-enabled">Nginx sites-enable (cd /etc/nginx/sites-enabled)</a></li>
+</ul>
+</li>
+</ul><h2 id="deployment-overview">
+<a class="anchor" href="#deployment-overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deployment Overview</h2>
+<p>Deploying a Web Application enables a Server and Web Application to be available to users on the Internet. Development Operations (DevOps) is understanding the tools and service used to enable the Web Application on the Internet.  This process can use many different cloud services, as well as choice of many different tools.  Here is an overview of what is covered in this procedure.</p>
+
+<ul>
+  <li>EC2: Amazon Web Services is a cloud computing platform that the PUSD district has provided for their students to serve our Web Application.</li>
+  <li>GitHub: The leading open platform to share a code across the Internet.</li>
+  <li>Docker and docker-compose: Used to host a Web Application.  A Docker container prepares an environment that contains the Web Application code and all the dependencies (requirements.txt for Python)  Docker is an open platform for developing, shipping, and running applications.</li>
+  <li>Nginx: In order to find a Web Application on a server, there needs to be a process that listens for the Web Application request and directs it to the Web Application service.  Nginx is an open source software for web serving, reverse proxy, caching, load balancing, media streaming, and more.</li>
+  <li>Certbot: Web traffic on internet is reliably served over Secure Hyper Text Transfer Protocol (https).  Certbot is a free, open source software tool for automatically using Let’s Encrypt certifications.</li>
+  <li>DNS: Natively, the web works off of IP addresses.  Domain Name Services (DNS) allows the assignment of a friendly name to a Web Server.  This name is built into Nginx/Certbot configuration files.  Freenom is the cloud service described in this blog and has been used to register the nighthawkcodingsociety.com domain.</li>
+</ul>
+
+<h3 id="keyvalues-required-as-you-go-through-these-procedures">
+<a class="anchor" href="#keyvalues-required-as-you-go-through-these-procedures" aria-hidden="true"><span class="octicon octicon-link"></span></a>Key/Values required as you go through these procedures</h3>
+<p>Listed are Keys, you need to obtain “values” specific to your Web Application setup.  It is important that you recognize the sample “values” as you work through these procedures, then replace them with the “values” that are specific to your Web Application use case.</p>
+
+<ul>
+  <li>GitHub HTTPS link:</li>
+  <li>IAM user:</li>
+  <li>EC2 name:</li>
+  <li>EC2 Public IPs:</li>
+  <li>DNS Name:</li>
+  <li>DNS Subdomain name(s)</li>
+  <li>Docker Port:</li>
+  <li>docker-compose, proxy pass Port:</li>
+  <li>docker-compose, docker Image name:</li>
+  <li>Nginx server file(s):</li>
+</ul>
+
+<h2 id="server-setup-and-initial-deployment">
+<a class="anchor" href="#server-setup-and-initial-deployment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Server Setup and Initial Deployment</h2>
+<blockquote>
+  <p>Development Operations (DevOps) begins with server setup.</p>
+  <h3 id="amazon-web-services-aws-electric-cloud-compute-ec2-setup">
+<a class="anchor" href="#amazon-web-services-aws-electric-cloud-compute-ec2-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Amazon Web Services (AWS): Electric Cloud Compute (EC2) Setup</h3>
+  <p>Preparing and AWS EC2 instance is the process of creating a cloud computer.  This process starts by logging into your AWS IAM user, searching for EC2.</p>
+  <ul>
+    <li>To get started, launch a new AWS EC2 instance to learn process and understand how to work with Linux. here are some key considerations.
+      <ul>
+        <li>Choose an Amazon Machine Image (AMI), the class will be using Ubuntu you should check on last verified version with a Teacher before proceeding</li>
+        <li>When it comes to picking memory or disk it is VERY important to pick Free Tier.  As stated, this will only be used for testing and then it will be disposed for cost efficiency.</li>
+        <li>When presented with access dialog for http and https, make sure you check these boxes.  Remember you are making a Web application that will run over http and https.</li>
+        <li>Name the security group (.pem) file after your self or team.  It may be necessary to use SSH to access your EC2 instance.</li>
+        <li>The remainder of the steps you can use the defaults, refer to AWS documentation for guidance: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html</li>
+        <li>At the end of this process you need to “Connect to Instance”. This will provide you a terminal like experience.</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<h2 id="deployment-process">
+<a class="anchor" href="#deployment-process" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deployment Process</h2>
+<blockquote>
+  <p>Deployment begins with terminal connections.   It is necessary to run commands to setup files to enable your Web Application to run on the Internet.</p>
+</blockquote>
+
+<h3 id="connect-to-ec2-through-cloud">
+<a class="anchor" href="#connect-to-ec2-through-cloud" aria-hidden="true"><span class="octicon octicon-link"></span></a>Connect to EC2 through cloud</h3>
+<blockquote>
+  <p>Connect to an Ubuntu EC2 instance on AWS and then begin the system and software setup.</p>
+  <ul>
+    <li>Select your machine and press “Connect” at top middle.
+<img src="/APCSP/images/aws_connect.png" alt="AWS Connect">
+</li>
+    <li>On next screen ensure things are lined “EC2 Instance Connect” and press “Connect” at bottom.
+<img src="/APCSP/images/aws_connect2.png" alt="AWS2 Connect">
+</li>
+    <li>Only if this fails you will need to connect from our Anaconda terminal, we need pem file so place it in your home directory.
+<img src="/APCSP/images/aws_ssh.png" alt="AWS SSH">
+</li>
+    <li>Either connection should work at home, school WIFI may be blocking, I have been trying to get this open.  A Hot spot or <a href="/APCSP/tutorial/vpn">VPN</a> will solve connection errors.</li>
+  </ul>
+</blockquote>
+
+<h3 id="update-upgrade-and-install-packages">
+<a class="anchor" href="#update-upgrade-and-install-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update, Upgrade, and Install packages</h3>
+<p>Terminal commands are shown, these commands will be run from Terminal after you connect to your EC2 instance.  It is advised that you try to comprehend and learn these commands as you go through these procedures.  Understanding steps is how you become a DevOps Engineer.</p>
+
+<blockquote>
+  <p>These commands update and then upgrade packages in your system.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt update<span class="p">;</span> <span class="nb">sudo </span>apt upgrade
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>docker
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>docker-compose <span class="nt">-y</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>html2text
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>python3-pip nginx
+<span class="nv">$ </span><span class="nb">sudo </span>pip3 <span class="nb">install </span>virtualenv
+</code></pre></div></div>
+
+<h3 id="clone-and-change-directory-to-project-location">
+<a class="anchor" href="#clone-and-change-directory-to-project-location" aria-hidden="true"><span class="octicon octicon-link"></span></a>Clone and Change Directory to project location</h3>
+<blockquote>
+  <p>This command moves your Web Application code onto you EC2 cloud computer. The example GithUb HTTPs Link is demonstration is: https://github.com/nighthawkcoders/flask_portfolio.git.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span>
+<span class="nv">$ </span>git clone https://github.com/nighthawkcoders/flask_portfolio.git
+<span class="nv">$ </span><span class="nb">cd </span>flask_portfolio
+</code></pre></div></div>
+
+<ul>
+  <li>Clone needs to be repeated for each Web application on the EC2 instance (Team repository and each individual repository).  If repo is named the same use option parameter at the end of clone command <code class="language-plaintext highlighter-rouge">git clone https://github.com/nighthawkcoders/flask_portfolio.git flask_portfolio_john</code>, then <code class="language-plaintext highlighter-rouge">cd flask_portfolio_john</code>
+</li>
+</ul>
+
+<h3 id="test-web-service">
+<a class="anchor" href="#test-web-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test Web Service</h3>
+<blockquote>
+  <p>These steps will require you to understand a few new commands that will not be part of final deployment process.  However, these commands will help you understand machine dependencies and validate your requirements.txt for completeness.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/flask_portfolio
+<span class="nv">$ </span>virtualenv <span class="nt">-p</span> /usr/bin/python3 webapp
+<span class="nv">$ </span><span class="nb">source </span>webapp/bin/activate
+<span class="nv">$ </span>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+<span class="nv">$ </span>python main.py
+</code></pre></div></div>
+
+<ul>
+  <li>Failed result.  If you get a result that looks like the below, your requirements.txt needs work.  In this instance, I would need to add flask to the requirements.txt.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>webapp<span class="o">)</span> ubuntu@ip-172-31-1-138:~/flask_portfolio<span class="nv">$ </span>python main.py
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"main.py"</span>, line 2, <span class="k">in</span> &lt;module&gt;
+    from flask import Flask, render_template
+ModuleNotFoundError: No module named <span class="s1">'flask'</span>
+<span class="o">(</span>webapp<span class="o">)</span> ubuntu@ip-172-31-1-138:~/flask_portfolio<span class="nv">$ </span>
+</code></pre></div></div>
+
+<ul>
+  <li>Correct result. A successful result will look like the following.  At this point we will type “ctrl+c” and then at prompt “deactivate”, as we will now build and run a Docker File to deploy in more automated fashion.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>webapp<span class="o">)</span> ubuntu@ip-172-31-1-138:~/flask_portfolio<span class="nv">$ </span>python main.py
+ <span class="k">*</span> Serving Flask app <span class="s1">'main'</span> <span class="o">(</span>lazy loading<span class="o">)</span>
+ <span class="k">*</span> Environment: production
+   WARNING: This is a development server. Do not use it <span class="k">in </span>a production deployment.
+   Use a production WSGI server instead.
+ <span class="k">*</span> Debug mode: on
+ <span class="k">*</span> Running on http://127.0.0.1:5000 <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+ <span class="k">*</span> Restarting with <span class="nb">stat</span>
+ <span class="k">*</span> Debugger is active!
+ <span class="k">*</span> Debugger PIN: 710-199-540
+</code></pre></div></div>
+
+<h3 id="create-dockerfile-to-run-web-service">
+<a class="anchor" href="#create-dockerfile-to-run-web-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create Dockerfile to run Web Service</h3>
+<blockquote>
+  <p>A Dockerfile is a configuration used to run the Web Service.  This is placed in a file called Dockerfile.  It is best to add this to VS Code and pull it, or you can update in place with nano, vi, or vim editor and use command line commands to push it into your repository.  The Dockerfile should be considered Code!</p>
+</blockquote>
+
+<ul>
+  <li>Edit the Dockerfile
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>nano Dockerfile
+</code></pre></div>    </div>
+  </li>
+  <li>Insert the Dockerfile commands, note that they are similar to Bash commands performed earlier.  Follow prompts on screen to save file when complete, look for Key/Value (GitHub HTTPS link) that requires change for your project.
+    <div class="language-dockerfile highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> docker.io/python:3.9</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="c"># --- Update environment and install python and pip ---</span>
+<span class="k">RUN </span>apt-get update <span class="o">&amp;&amp;</span> apt-get upgrade <span class="nt">-y</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span>  apt-get <span class="nb">install</span> <span class="nt">-y</span> python3 python3-pip git
+<span class="c"># --- Copy repo you updated with clone or pull ---</span>
+<span class="k">COPY</span><span class="s"> . /app</span>
+<span class="c"># --- Install project specific dependencies ---</span>
+<span class="k">RUN </span>pip3 <span class="nb">install</span> <span class="nt">--no-cache-dir</span> <span class="nt">-r</span> requirements.txt
+<span class="k">RUN </span>pip3 <span class="nb">install </span>gunicorn
+<span class="c"># --- Setup args to run 3 workers and run on port 8080 ---</span>
+<span class="k">ENV</span><span class="s"> GUNICORN_CMD_ARGS="--workers=3 --bind=0.0.0.0:8080"</span>
+<span class="c"># --- Allow port 8080 to be accessed by system ---</span>
+<span class="k">EXPOSE</span><span class="s"> 8080</span>
+<span class="c"># --- Run Web Application in production style ---</span>
+<span class="k">CMD</span><span class="s"> [ "gunicorn", "main:app" ]</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="create-docker-compose-file-share-web-service">
+<a class="anchor" href="#create-docker-compose-file-share-web-service" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create docker-compose file share Web Service</h3>
+<blockquote>
+  <p>A docker-compose file is a configuration used to share your Docker Web Service and resources with the Linux system.  This file enable Linux to have access to the container and the persistent data application via the /volumes location.</p>
+  <ul>
+    <li>Once again it is best to add the docker-compose.yml in VS Code and pull it.  You can edit it on the machine itself using vi, vim, or nano.</li>
+    <li>The <code class="language-plaintext highlighter-rouge">image:</code> needs to have unique name for each application on server (ie flask_john_v1)</li>
+    <li>The <code class="language-plaintext highlighter-rouge">ports:</code> left value 8086 needs to be unique for each application on server (ie 8087:8080, 8088:8080, etc)</li>
+    <li>Change <code class="language-plaintext highlighter-rouge">device:</code> to match path to volumes directory of your project.  Verify this location is correct typing <code class="language-plaintext highlighter-rouge">ls /home/ubuntu/flask_portfolio/volumes</code>  this should list files <code class="language-plaintext highlighter-rouge">sqlite.db  uploads</code>
+</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>Edit docker-compose.yml
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>nano docker-compose.yml
+</code></pre></div>    </div>
+  </li>
+  <li>Insert the docker-compose.yml Keys/Values.
+    <div class="language-yml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">3'</span>
+<span class="na">services</span><span class="pi">:</span>
+      <span class="na">web</span><span class="pi">:</span>
+              <span class="na">image</span><span class="pi">:</span> <span class="s">flask_port_v1</span>
+              <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
+              <span class="na">ports</span><span class="pi">:</span>
+                      <span class="pi">-</span> <span class="s2">"</span><span class="s">8086:8080"</span>
+              <span class="na">volumes</span><span class="pi">:</span>
+                      <span class="pi">-</span> <span class="s">persistent_volume:/app/volumes</span>
+<span class="na">volumes</span><span class="pi">:</span>
+<span class="na">persistent_volume</span><span class="pi">:</span>
+  <span class="na">driver</span><span class="pi">:</span> <span class="s">local</span>
+  <span class="na">driver_opts</span><span class="pi">:</span>
+    <span class="na">o</span><span class="pi">:</span> <span class="s">bind</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">none</span>
+    <span class="na">device</span><span class="pi">:</span> <span class="s">/home/ubuntu/flask_portfolio/volumes</span>
+    <span class="c1"># replace just flask_portfolio</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="running-docker-using-docker-composeyml">
+<a class="anchor" href="#running-docker-using-docker-composeyml" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running Docker using docker-compose.yml</h3>
+<blockquote>
+  <p>At this point, it is best to review complete files on GitHub and for Docker and docker-compose: https://github.com/nighthawkcoders/flask_portfolio.   Review the Key/Values mentioned in this document.  Make sure your Docker and docker-compose files a personalized to your project.</p>
+</blockquote>
+
+<ul>
+  <li>Ensure install of docker, docker-compose installed from earlier procedures
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>docker
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>docker-compose <span class="nt">-y</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Make sure you are in project directory
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/flask_portfolio/
+</code></pre></div>    </div>
+  </li>
+  <li>Run docker-compose
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker-compose up <span class="nt">-d</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Output from docker-compose.  When running this command, docker-compose will run all the Docker steps and build a Web Application running in a Docker container, a virtual environment.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>Creating network <span class="s2">"flask_portfolio_default"</span> with the default driver
+Building web
+Step 1/9 : FROM docker.io/python:3.9
+ <span class="nt">---</span><span class="o">&gt;</span> d0ce03c9330c
+Step 2/9 : WORKDIR /app
+.... LOTS of STEPs and OUTPUT ...
+Successfully built 68d68ad9699b
+Successfully tagged flask_port_v1:latest
+WARNING: Image <span class="k">for </span>service web was built because it did not already exist. To rebuild this image you must use <span class="sb">`</span>docker-compose build<span class="sb">`</span> or <span class="sb">`</span>docker-compose up <span class="nt">--build</span><span class="sb">`</span><span class="nb">.</span>
+Creating flask_portfolio_web_1 ... <span class="k">done</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="verifying-web-application-via-docker-commands">
+<a class="anchor" href="#verifying-web-application-via-docker-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Verifying Web Application via Docker commands</h3>
+<blockquote>
+  <p>Here is a look at some of the commands behind the scenes.  None of these are required to get things working, but show the results of the Docker and docker-compose.yml files and commands.</p>
+</blockquote>
+
+<ul>
+  <li>docker-compose ps  View the running Web process, “ps” is a linux command or option that provides information related to the processes on a system.  Look at name and ports in relation to outputs of the docker-compose process and settings in docker-compose.yml file.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker-compose ps
+      Name                 Command        State                    Ports                  
+<span class="nt">--------------------------------------------------------------------------------------------</span>
+flask_portfolio_web_1   gunicorn main:app   Up      0.0.0.0:8086-&gt;8080/tcp,:::8086-&gt;8080/tcp
+</code></pre></div>    </div>
+  </li>
+  <li>docker ps  View a more comprehensive list of all the docker processes on the system.  In this process reports, many of the alternate projects running on this AWS server are show (ie your Team Members).  You should be able to identify your IMAGE and PORTS, as they should be unique according to your docker-compose.yml file.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker ps
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+749a93bc11ce   flask_port_v1   <span class="s2">"gunicorn main:app"</span>      45 minutes ago   Up 45 minutes   0.0.0.0:8086-&gt;8080/tcp, :::8086-&gt;8080/tcp   flask_portfolio_web_1
+89155782b853   java_springv1   <span class="s2">"java -jar target/sp…"</span>   6 days ago       Up 6 days       0.0.0.0:8085-&gt;8080/tcp, :::8085-&gt;8080/tcp   spring_portfolio_web_1
+9415d6397d2e   python_cspv1    <span class="s2">"gunicorn main:app"</span>      2 weeks ago      Up 2 weeks      0.0.0.0:8082-&gt;8080/tcp, :::8082-&gt;8080/tcp   nighthawk_csp_web_1
+4bf324458bf6   python_laxv1    <span class="s2">"gunicorn main:app"</span>      5 weeks ago      Up 5 weeks      0.0.0.0:8084-&gt;8080/tcp, :::8084-&gt;8080/tcp   lax_web_1
+7a6dff6425e9   python_ctev1    <span class="s2">"gunicorn main:app"</span>      5 weeks ago      Up 5 weeks      0.0.0.0:8083-&gt;8080/tcp, :::8083-&gt;8080/tcp   cte_web_1
+abd77b8e77af   java_csav2      <span class="s2">"java -jar target/cs…"</span>   5 weeks ago      Up 5 weeks      0.0.0.0:8081-&gt;8080/tcp, :::8081-&gt;8080/tcp   nighthawk_csa_web_1
+</code></pre></div>    </div>
+  </li>
+  <li>docker images   This lists all of the docker images, or containers, that are used to serve the process shown above.  The flask_port_v1 is the REPOSITORY is named in docker-compose.yml.  The IMAGE ID is container for the running Web application.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker images
+REPOSITORY      TAG             IMAGE ID       CREATED          SIZE
+flask_port_v1   latest          68d68ad9699b   51 minutes ago   1.01GB
+java_springv1   latest          e85a584b1836   6 days ago       523MB
+python_laxv1    latest          713c84a30d3b   5 weeks ago      1.16GB
+python_ctev1    latest          1608eaee06c7   5 weeks ago      1.18GB
+python_cspv1    latest          b9bb27be863b   5 weeks ago      1.12GB
+java_csav2      latest          4055a9fd5ea7   5 weeks ago      570MB
+python          3.9             d0ce03c9330c   7 weeks ago      915MB
+alpine          latest          e66264b98777   8 weeks ago      5.53MB
+openjdk         16-alpine3.13   2aa8569968b8   17 months ago    324MB
+</code></pre></div>    </div>
+  </li>
+  <li>docker volume ls   This list volume names are the locations where application stores files that that the developer wants to keep.  The volume name is specified in the docker-compose.yml file.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker volume <span class="nb">ls
+</span>DRIVER    VOLUME NAME
+<span class="nb">local     </span>flask_portfolio_persistent_volume
+<span class="nb">local     </span>nighthawk_csa_persistent_volume
+<span class="nb">local     </span>nighthawk_csp_persistent_volume
+<span class="nb">local     </span>spring_portfolio_persistent_volume
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="testing-localhost-endpoint">
+<a class="anchor" href="#testing-localhost-endpoint" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing localhost endpoint</h3>
+<p>Verify everything is working with your docker configurations.</p>
+
+<ul>
+  <li>Local Test of Web Application Endpoint.  This should return HTML related to the home page of your Web site.  If this fails, you need to review Docker and docker-compose configurations.  <code class="language-plaintext highlighter-rouge">Failed to connect</code> means you need to review your port assignments in docker-compose.yml and the <code class="language-plaintext highlighter-rouge">docker-compose ps</code> outputs above.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://localhost:8086
+</code></pre></div>    </div>
+  </li>
+  <li>More readable view of Web Application Endpoint. This requires <code class="language-plaintext highlighter-rouge">sudo apt install html2text</code>.  This output is a form of Web Scrapping, as it pull text out of the HTML and makes it easier for us to read and identify the content.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://localhost:8086 | html2text
+</code></pre></div>    </div>
+  </li>
+  <li>Congrats.  If you are to this point you are successfully running your Web Application with Docker and verifying that it is running with Curl.</li>
+</ul>
+
+<h2 id="test-preparation-for-docker-web-application-using-ip-for-internet-access">
+<a class="anchor" href="#test-preparation-for-docker-web-application-using-ip-for-internet-access" aria-hidden="true"><span class="octicon octicon-link"></span></a>Test preparation for Docker Web Application using IP for Internet Access</h2>
+<p>Each student scrum team will perform Nginx test and verify Group Web Project is working on EC2 instance.  This step is can only support a single Web Application at a time.</p>
+
+<p>This Step is dependent on…</p>
+<ul>
+  <li>EC2 Public IPs: 3.233.212.71</li>
+  <li>Docker Port: 8086</li>
+</ul>
+
+<p>Enable Nginx to retrieve default Web Application using IP Address from internet request (Reverse Proxy)!</p>
+
+<ul>
+  <li>Install Nginx on Ubuntu servers
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>nginx
+</code></pre></div>    </div>
+  </li>
+  <li>Go to location of Nginx server configuration files
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /etc/nginx/sites-available
+</code></pre></div>    </div>
+  </li>
+  <li>Open editor to Create your own “Nginx test configuration”.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>nano <span class="nb">test</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Edit your own Nginx server configuration making modifications to:
+    <ul>
+      <li>IP Address: 3.233.212.71</li>
+      <li>docker-compose, proxy pass Port: 8086</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">listen</span> <span class="s">[::]:80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="mi">3</span><span class="s">.233.212.71</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:8086</span><span class="p">;</span>
+        <span class="c1"># Simple requests</span>
+        <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="p">~</span><span class="sr">*</span> <span class="s">"(GET|POST)")</span> <span class="p">{</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Origin"</span>  <span class="s">*</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Preflight requests</span>
+        <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="p">=</span> <span class="s">OPTIONS</span> <span class="s">)</span> <span class="p">{</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Origin"</span>  <span class="s">*</span><span class="p">;</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Methods"</span> <span class="s">"GET,</span> <span class="s">POST,</span> <span class="s">OPTIONS,</span> <span class="s">HEAD"</span><span class="p">;</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Headers"</span> <span class="s">"Authorization,</span> <span class="s">Origin,</span> <span class="s">X-Requested-With,</span> <span class="s">Content-Type,</span> <span class="s">Accept"</span><span class="p">;</span>
+                <span class="kn">return</span> <span class="mi">200</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="activating-nginx-configuration">
+<a class="anchor" href="#activating-nginx-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Activating Nginx configuration</h3>
+<ul>
+  <li>Activate/enabled Nginx server configuration:
+    <ul>
+      <li>nginx configuration file can be called what you want it to be.
+        <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo ln</span> <span class="nt">-s</span> /etc/nginx/sites-available/[your config file] /etc/nginx/sites-enabled[your config file]
+<span class="nv">$ </span><span class="nb">sudo </span>nginx <span class="nt">-t</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>If there are errors, something is wrong…
+    <ul>
+      <li>Perhaps you are missing semicolon at the end of server)name or proxy_pass lines.</li>
+      <li>Perhaps link to file in sites-enabled is bad as a result of bad syntax in <code class="language-plaintext highlighter-rouge">ln -a</code> command.
+        <ul>
+          <li>There are two directories <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-available</code> and <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-enabled</code>.</li>
+          <li>The 1st is for preliminary editing, the second is for activation.  Perform <code class="language-plaintext highlighter-rouge">ls</code> in <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-enabled</code> and make sure all the names look correct.</li>
+          <li>Correct by <code class="language-plaintext highlighter-rouge">rm</code> of mistake in <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-enabled</code> without deleting original file in <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-available</code>.  Then repeat <code class="language-plaintext highlighter-rouge">ln -s</code> command.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>If there are no errors, restart NGINX so the server to activate <code class="language-plaintext highlighter-rouge">/etc/nginx/sites-enabled</code> files:
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl restart nginx
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="testing-http-endpoint">
+<a class="anchor" href="#testing-http-endpoint" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing HTTP endpoint</h3>
+<blockquote>
+  <p>When completing this section, you will show that the Internet is resolving your Web application and port from an IP address (aka reverse proxy).</p>
+</blockquote>
+
+<ul>
+  <li>Verify AWS Web application again.  Make sure curl is still working on local machine.  Make sure endpoint you placed in Nginx test file match.
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://localhost:8086
+</code></pre></div>    </div>
+  </li>
+  <li>Now test public IP on the internet.  Go to a browser anywhere in the world and type your IP address:
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>http://3.233.212.71
+</code></pre></div>    </div>
+    <ul>
+      <li>Note.  Address is Unsecure and you are using IP address versus Domain.</li>
+      <li>Timeout problem.  This means something is wrong with EC2 Public IP.</li>
+      <li>Nginx Default page.  This means Nginx is working, but something is wrong with you Nginx test configuration.</li>
+      <li>Broken Gateway.  This means Nginx is working, but something is wrong with Web Application endpoint on machine. This requires you to look at port configuration OR restart Docker.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Congratulations.  If you have arrived at this point you now have capability to access your team Web Application from the Internet.  Hurray!!!</p>
+</blockquote>
+
+<h2 id="final-preparation-the-docker-web-application-using-dns-for-internet-access">
+<a class="anchor" href="#final-preparation-the-docker-web-application-using-dns-for-internet-access" aria-hidden="true"><span class="octicon octicon-link"></span></a>Final preparation the Docker Web Application using DNS for Internet Access</h2>
+<p>There are additional steps to this preparation. We need to direct the internet to the AWS server running the Web Application, this is done using Domain Name Service (DNS).   After being directed to the Web Server, the server needs to respond to the HTTP (Hyper Text Transfer Protocol) request.  The proxy of HTTP to your Web Application is manged by Nginx.   Finally, we will Secure HTTP (HTTPS), with a utility called Certbot.</p>
+<h3 id="dns-provider-and-setup">
+<a class="anchor" href="#dns-provider-and-setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>DNS provider and setup</h3>
+<p>Each student scrum team is required to learn how to obtain a DNS provider and setup an independent domain.</p>
+
+<p>A picture is included to show key elements in setting up a domain with a DNS provider.  The nighthawkcodingsociety.com is using Freenom as its service provider.  As you build your own DNS endpoint, you will need to obtain your own IP address mapped to a Domain.</p>
+
+<p>This Freenom illustration is dependent on…</p>
+<ul>
+  <li>DNS Name: nighthawkcodingsociety.com</li>
+  <li>DNS Subdomain name(s): battleship.nighthawkcodingsociety.com. cowboys.nighthawkcodingsociety.com</li>
+</ul>
+
+<p>A minimum configuration will have the two “A” type definitions using you Public IP address.  These two are resolved with a single Web Application.  The “CNAME” type is used for subdomains, these will resolve to a different Web Application.</p>
+
+<p>Setup DNS mapping to your Public IP address now!!!  This is needed to complete Nginx and Certbot configurations below.  You will not be able to proceed until you have setup ‘A’ record.</p>
+
+<p><img alt="Setup a Domain" src="/APCSP/images/freenom.png" title="DNS Provider"></p>
+
+<ul>
+  <li>Open editor to Create your own “Nginx Web Application configuration” for your group project.  This looks very similar to test configurations, but the change is the Domain names.   These Domain names must be created through DNS provider and you must setup ‘A’ entries in DNS for them to work.   For clarity, the name <code class="language-plaintext highlighter-rouge">nighthawk</code> should reflect your application name, domain or subdomain.  The name needs to be unique for each web application (ie john_nighthawk for john.nighthawk.com).
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>nano nighthawk
+</code></pre></div>    </div>
+  </li>
+  <li>Edit your own Nginx server configuration making modifications:
+    <ul>
+      <li>DNS Name(s): nighthawkcodingsociety.com www.nighthawkcodingsociety.com</li>
+      <li>docker-compose, proxy pass Port: 8086</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">listen</span> <span class="s">[::]:80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">nighthawkcodingsociety.com</span> <span class="s">www.nighthawkcodingsociety.com</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:8086</span><span class="p">;</span>
+        <span class="c1"># Simple requests</span>
+        <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="p">~</span><span class="sr">*</span> <span class="s">"(GET|POST)")</span> <span class="p">{</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Origin"</span>  <span class="s">*</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Preflight requests</span>
+        <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="p">=</span> <span class="s">OPTIONS</span> <span class="s">)</span> <span class="p">{</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Origin"</span>  <span class="s">*</span><span class="p">;</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Methods"</span> <span class="s">"GET,</span> <span class="s">POST,</span> <span class="s">OPTIONS,</span> <span class="s">HEAD"</span><span class="p">;</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Headers"</span> <span class="s">"Authorization,</span> <span class="s">Origin,</span> <span class="s">X-Requested-With,</span> <span class="s">Content-Type,</span> <span class="s">Accept"</span><span class="p">;</span>
+                <span class="kn">return</span> <span class="mi">200</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Or, or in addition, edit your own Nginx server configuration making modifications to <mark>subdomain</mark> file (0 to many).  These Domain names must be created through DNS provider and you must setup ‘A’ or ‘CNAME’ entries in DNS for them to work:
+    <ul>
+      <li>DNS Name(s): flask.nighthawkcodingsociety.com</li>
+      <li>docker-compose, proxy pass Port: 8087</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">server</span> <span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">listen</span> <span class="s">[::]:80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">flask.nighthawkcodingsociety.com</span><span class="p">;</span>
+
+    <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:8087</span><span class="p">;</span>
+        <span class="c1"># Simple requests</span>
+        <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="p">~</span><span class="sr">*</span> <span class="s">"(GET|POST)")</span> <span class="p">{</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Origin"</span>  <span class="s">*</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Preflight requests</span>
+        <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="p">=</span> <span class="s">OPTIONS</span> <span class="s">)</span> <span class="p">{</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Origin"</span>  <span class="s">*</span><span class="p">;</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Methods"</span> <span class="s">"GET,</span> <span class="s">POST,</span> <span class="s">OPTIONS,</span> <span class="s">HEAD"</span><span class="p">;</span>
+                <span class="kn">add_header</span> <span class="s">"Access-Control-Allow-Headers"</span> <span class="s">"Authorization,</span> <span class="s">Origin,</span> <span class="s">X-Requested-With,</span> <span class="s">Content-Type,</span> <span class="s">Accept"</span><span class="p">;</span>
+                <span class="kn">return</span> <span class="mi">200</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Activate/enabled Nginx server configuration:
+    <ul>
+      <li>nginx configuration file: nighthawk
+        <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo ln</span> <span class="nt">-s</span> /etc/nginx/sites-available/nighthawk /etc/nginx/sites-enabled
+<span class="nv">$ </span><span class="nb">sudo </span>nginx <span class="nt">-t</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>If there are no errors, restart NGINX so the server is an endpoint to the internet:
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl restart nginx
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="testing-http-endpoint-1">
+<a class="anchor" href="#testing-http-endpoint-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing HTTP endpoint</h3>
+<p>Before finishing, this is a good opportunity to review everything you have done.</p>
+
+<ul>
+  <li>Make sure curl is still working on local machine.</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl http://localhost:8086
+<span class="nv">$ </span>curl http://localhost:8087
+etc
+</code></pre></div></div>
+
+<ul>
+  <li>Now test unsecure HTTP endpoint on the internet.  Go to a browser anywhere and type your DNS domain: <code class="language-plaintext highlighter-rouge">http://nighthawkcodingsociety.com</code> or <code class="language-plaintext highlighter-rouge">http://flask.nighthawkcodingsociety.com</code>.
+    <ul>
+      <li>Timeout.  This means something is wrong with EC2 Public IP.</li>
+      <li>Nginx Default page.  This means DNS is working, but something is wrong with you Nginx configuration.</li>
+      <li>Broken Gateway.  This means Nginx is working, but something is wrong with Web Application endpoint on machine, if this fails something is wrong with Web Application.  This requires you to look at Docker and docker-compose configuration.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="certbot-install-and-configuration">
+<a class="anchor" href="#certbot-install-and-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Certbot install and configuration</h3>
+<p>Each student scrum team will learn Certbot on on AWS EC2 test server, establish working https web application.  The final configuration will be on AWS server managed by Teachers or Student DevOps Engineers.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>snap <span class="nb">install </span>core<span class="p">;</span> <span class="nb">sudo </span>snap refresh core
+<span class="nv">$ </span><span class="nb">sudo </span>snap <span class="nb">install</span> <span class="nt">--classic</span> certbot
+<span class="nv">$ </span><span class="nb">sudo ln</span> <span class="nt">-s</span> /snap/bin/certbot /usr/bin/certbot
+<span class="nv">$ </span><span class="nb">sudo </span>certbot <span class="nt">--nginx</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Saving debug log to /var/log/letsencrypt/letsencrypt.log
+Plugins selected: Authenticator nginx, Installer nginx
+
+Which names would you like to activate HTTPS for?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: nighthawkcodingsociety.com
+2: csa.nighthawkcodingsociety.com
+3: csp.nighthawkcodingsociety.com
+4: flm.nighthawkcodingsociety.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate numbers separated by commas and/or spaces, or leave input
+blank to select all options shown (Enter 'c' to cancel):    
+Cert not yet due for renewal
+
+You have an existing certificate that has exactly the same domains or certificate name you requested and isn't close to expiry.
+(ref: /etc/letsencrypt/renewal/nighthawkcodingsociety.com-0001.conf)
+
+What would you like to do?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: Attempt to reinstall this existing certificate
+2: Renew &amp; replace the cert (limit ~5 per 7 days)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-2] then [enter] (press 'c' to cancel): 2
+Renewing an existing certificate
+Performing the following challenges:
+http-01 challenge for nighthawkcodingsociety.com
+http-01 challenge for csa.nighthawkcodingsociety.com
+http-01 challenge for cso.nighthawkcodingsociety.com
+http-01 challenge for flm.nighthawkcodingsociety.com
+Waiting for verification...
+Cleaning up challenges
+Deploying Certificate to VirtualHost /etc/nginx/sites-enabled/nighthawk_society
+Deploying Certificate to VirtualHost /etc/nginx/sites-enabled/nighthawk_csa
+Deploying Certificate to VirtualHost /etc/nginx/sites-enabled/nighthawk_csp
+Deploying Certificate to VirtualHost /etc/nginx/sites-enabled/nighthawk_flm
+
+Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+1: No redirect - Make no further changes to the webserver configuration.
+2: Redirect - Make all requests redirect to secure HTTPS access. Choose this for
+new sites, or if you're confident your site works on HTTPS. You can undo this
+change by editing your web server's configuration.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Select the appropriate number [1-2] then [enter] (press 'c' to cancel): 2
+Traffic on port 80 already redirecting to ssl in /etc/nginx/sites-enabled/nighthawk_society
+Traffic on port 80 already redirecting to ssl in /etc/nginx/sites-enabled/nighthawk_csa
+Traffic on port 80 already redirecting to ssl in /etc/nginx/sites-enabled/nighthawk_csp
+Traffic on port 80 already redirecting to ssl in /etc/nginx/sites-enabled/nighthawk_flm
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Your existing certificate has been successfully renewed, and the new certificate
+has been installed.
+
+The new certificate covers the following domains:
+https://nighthawkcodingsociety.com, 
+https://csa.nighthawkcodingsociety.com, 
+https://csp.nighthawkcodingsociety.com, and
+https://flm.nighthawkcodingsociety.com,
+
+You should test your configuration at:
+https://www.ssllabs.com/ssltest/analyze.html?d=nighthawkcodingsociety.com
+https://www.ssllabs.com/ssltest/analyze.html?d=csa.nighthawkcodingsociety.com
+https://www.ssllabs.com/ssltest/analyze.html?d=csp.nighthawkcodingsociety.com
+https://www.ssllabs.com/ssltest/analyze.html?d=flm.nighthawkcodingsociety.com
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/nighthawkcodingsociety.com-0001/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/nighthawkcodingsociety.com-0001/privkey.pem
+   Your cert will expire on 2022-03-06. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot again
+   with the "certonly" option. To non-interactively renew *all* of
+   your certificates, run "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le
+</code></pre></div></div>
+
+<h2 id="update-deployment-this-process-is-after-you-change-code">
+<a class="anchor" href="#update-deployment-this-process-is-after-you-change-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>Update Deployment, this process is after you change code</h2>
+<blockquote>
+  <p>This procedure is a very short, as much of the deployment performed is persistent on your EC2/Ubuntu.</p>
+</blockquote>
+
+<h3 id="goto-project-directory">
+<a class="anchor" href="#goto-project-directory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goto Project directory</h3>
+
+<blockquote>
+  <p>Check your docker processes.  Make sure git has nothing to commit.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~/flask_portfolio
+<span class="nv">$ </span><span class="nb">sudo </span>docker-compose ps
+       Name                 Command        State                    Ports                  
+<span class="nt">--------------------------------------------------------------------------------------------</span>
+flask_portfolio_web_1   gunicorn main:app   Up      0.0.0.0:8086-&gt;8080/tcp,:::8086-&gt;8080/tcp
+
+<span class="nv">$ </span><span class="nb">sudo </span>docker ps
+CONTAINER ID   IMAGE           COMMAND                  CREATED        STATUS        PORTS                                       NAMES
+ee3fd0edfdcd   flask_port_v1   <span class="s2">"gunicorn main:app"</span>      6 weeks ago    Up 6 weeks    0.0.0.0:8086-&gt;8080/tcp, :::8086-&gt;8080/tcp   flask_portfolio_web_1
+
+<span class="nv">$ </span>git status
+On branch main
+Your branch is up to <span class="nb">date </span>with <span class="s1">'origin/main'</span><span class="nb">.</span>
+
+nothing to commit, working tree clean
+</code></pre></div></div>
+
+<h3 id="shutdown-process-and-update-source">
+<a class="anchor" href="#shutdown-process-and-update-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shutdown process and update source</h3>
+
+<blockquote>
+  <p>Stop docker processes and git pull</p>
+  <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker-compose <span class="nb">kill</span>  <span class="c"># run ps on docker-compose and docker and you should observe changes</span>
+Killing flask_portfolio_web_1 ... <span class="k">done</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<blockquote>
+  <p>At this point your server is down, look at it from browser</p>
+  <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>502 Bad Gateway
+</code></pre></div>  </div>
+</blockquote>
+
+<blockquote>
+  <p>Update code</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git pull    <span class="c"># dialog will look as follows</span>
+remote: Enumerating objects: 42, <span class="k">done</span><span class="nb">.</span>
+remote: Counting objects: 100% <span class="o">(</span>42/42<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+remote: Compressing objects: 100% <span class="o">(</span>23/23<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+remote: Total 33 <span class="o">(</span>delta 17<span class="o">)</span>, reused 24 <span class="o">(</span>delta 9<span class="o">)</span>, pack-reused 0
+Unpacking objects: 100% <span class="o">(</span>33/33<span class="o">)</span>, 7.42 KiB | 474.00 KiB/s, <span class="k">done</span><span class="nb">.</span>
+From https://github.com/nighthawkcoders/flask_portfolio
+   f0b6ba1..def0da9  main       -&gt; origin/main
+
+... These are the files you changed ...
+
+model_jokes.py                                 |   4 ++--
+requirements.txt                               |   8 ++++----
+</code></pre></div></div>
+
+<h3 id="rebuild-and-restart-web-application">
+<a class="anchor" href="#rebuild-and-restart-web-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rebuild and Restart Web Application</h3>
+
+<blockquote>
+  <p>Force rebuild of docker container.  This can take a couple of minutes.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker-compose build <span class="nt">--no-cache</span>
+Building web
+Step 1/9 : FROM docker.io/python:3.9
+ <span class="nt">---</span><span class="o">&gt;</span> d0ce03c9330c
+Step 2/9 : WORKDIR /app
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>3f705fefc681
+Removing intermediate container 3f705fefc681
+ <span class="nt">---</span><span class="o">&gt;</span> 9c6ebd23dcb1
+
+... Build steps 1 through 9 ...
+
+Step 9/9 : CMD <span class="o">[</span> <span class="s2">"gunicorn"</span>, <span class="s2">"main:app"</span> <span class="o">]</span>
+ <span class="nt">---</span><span class="o">&gt;</span> Running <span class="k">in </span>9ca595a79669
+Removing intermediate container 9ca595a79669
+ <span class="nt">---</span><span class="o">&gt;</span> 54ca7ab064b4
+Successfully built 54ca7ab064b4
+Successfully tagged flask_port_v1:latest
+</code></pre></div></div>
+
+<blockquote>
+  <p>Run docker-compose</p>
+  <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>docker-compose up <span class="nt">-d</span>
+Recreating flask_portfolio_web_1 ... <span class="k">done</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<blockquote>
+  <p>Now server is up, test in Browser for recent change</p>
+  <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>Python Home Page
+</code></pre></div>  </div>
+</blockquote>
+
+<h2 id="good-examples">
+<a class="anchor" href="#good-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Good Examples</h2>
+<blockquote>
+  <p>git clone   Plan what your name will be on shared server and this can be different than repo name by using 4th argument.</p>
+  <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>git clone &lt;git_project&gt; avaflaskproject  <span class="c"># identifiable name </span>
+</code></pre></div>  </div>
+</blockquote>
+
+<h3 id="docker-composeyml-sudo-docker-compose-up--d">
+<a class="anchor" href="#docker-composeyml-sudo-docker-compose-up--d" aria-hidden="true"><span class="octicon octicon-link"></span></a>docker-compose.yml (sudo docker-compose up -d)</h3>
+<blockquote>
+  <p>docker-compose.yml  Setup before you clone, this needs to be versioned controlled.  There are 3 edits!</p>
+  <div class="language-yml highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+        <span class="na">web</span><span class="pi">:</span>
+                <span class="na">image</span><span class="pi">:</span> <span class="s">flask_ava_v1</span>  <span class="c1"># identifiable name for shared machine</span>
+                <span class="na">build</span><span class="pi">:</span> <span class="s">.</span>
+                <span class="na">ports</span><span class="pi">:</span>
+                        <span class="pi">-</span> <span class="s2">"</span><span class="s">8089:8080"</span> <span class="c1"># port distinct from others</span>
+                <span class="na">volumes</span><span class="pi">:</span>
+                        <span class="pi">-</span> <span class="s">persistent_volume:/app/volumes</span>
+<span class="na">volumes</span><span class="pi">:</span>
+  <span class="na">persistent_volume</span><span class="pi">:</span>
+    <span class="na">driver</span><span class="pi">:</span> <span class="s">local</span>
+    <span class="na">driver_opts</span><span class="pi">:</span>
+      <span class="na">o</span><span class="pi">:</span> <span class="s">bind</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">none</span>
+      <span class="na">device</span><span class="pi">:</span> <span class="s">/home/ubuntu/avaflaskproject/volumes</span>  <span class="c1"># name consistent with repo</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<h3 id="docker-ps">
+<a class="anchor" href="#docker-ps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Docker PS</h3>
+<blockquote>
+  <p>sudo docker ps  Verification shows practice of easy to identify owners and ports.  At this point it is very clear to see who owns Ports.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CONTAINER ID   IMAGE              COMMAND               CREATED        STATUS        PORTS                                       NAMES
+6f4572c00f22   flask_shruthi_v1   <span class="s2">"gunicorn main:app"</span>   3 hours ago    Up 3 hours    0.0.0.0:8083-&gt;8080/tcp, :::8083-&gt;8080/tcp   flaskpython_web_1
+0dd6254cf662   flask_ava_v1       <span class="s2">"gunicorn main:app"</span>   17 hours ago   Up 17 hours   0.0.0.0:8089-&gt;8080/tcp, :::8089-&gt;8080/tcp   avaflaskproject_web_1
+</code></pre></div></div>
+
+<h3 id="nginx-ip-test-file-sudo-systemctl-nginx-restart">
+<a class="anchor" href="#nginx-ip-test-file-sudo-systemctl-nginx-restart" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nginx IP test file (sudo systemctl nginx restart)</h3>
+<blockquote>
+  <p>nginx IP address test file   There are 2 edits.  Notice the Public IP address on screen.  Identify that with configuration.  Also, what application will run on the IP address?</p>
+</blockquote>
+
+<p><img src="/APCSP/images/nginx_test.png" alt="nginx test"></p>
+
+<h3 id="nginx-sites-available-cd-etcnginxsites-available">
+<a class="anchor" href="#nginx-sites-available-cd-etcnginxsites-available" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nginx sites-available (cd /etc/nginx/sites-available)</h3>
+<blockquote>
+  <p>available directory names   Notice names and how they can be identified.  This is were you work on configurations.</p>
+  <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>ubuntu@ip-172-31-18-94:/etc/nginx/sites-available<span class="nv">$ </span><span class="nb">ls
+</span>ava_nighthawk  default  shruthi_nighthawk  <span class="nb">test</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<h3 id="nginx-file-published-to-work-with-a-domain-nano-ava_nighthawk">
+<a class="anchor" href="#nginx-file-published-to-work-with-a-domain-nano-ava_nighthawk" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nginx file published to work with a domain (nano ava_nighthawk)</h3>
+<blockquote>
+  <p>nginx domain name file  This is identical to test file, but now it is working off of the domain versus the IP address.</p>
+  <div class="language-nginx highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>    <span class="k">server_name</span> <span class="s">ava.nighthawkcodingsociety.com</span><span class="p">;</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<h3 id="nginx-sites-enable-cd-etcnginxsites-enabled">
+<a class="anchor" href="#nginx-sites-enable-cd-etcnginxsites-enabled" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nginx sites-enable (cd /etc/nginx/sites-enabled)</h3>
+<blockquote>
+  <p>enabled directory names   Notice how names point back to sites-available.  This is setup with <code class="language-plaintext highlighter-rouge">ln -s</code> command.  Whose file still needs to be published.</p>
+  <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>ubuntu@ip-172-31-18-94:/etc/nginx/sites-enabled<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span>
+total 0
+lrwxrwxrwx 1 root root 34 Sep 28 21:31 default -&gt; /etc/nginx/sites-available/default
+lrwxrwxrwx 1 root root 44 Oct  2 20:19 shruthi_nighthawk -&gt; /etc/nginx/sites-available/shruthi_nighthawk
+lrwxrwxrwx 1 root root 31 Oct  4 00:48 <span class="nb">test</span> -&gt; /etc/nginx/sites-available/test
+</code></pre></div>  </div>
+</blockquote>
+
+  </div><a class="u-url" href="/APCSP/techtalk/deploy" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/APCSP/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="https://nighthawkcoders.github.io/APCSP/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/APCSP/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>AP Computer Science Principles course materials.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/nighthawkcoders" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/NighthawkCoding" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://www.youtube.com/channel/UClIKOsDS5dsfzFA3zveDT3Q" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

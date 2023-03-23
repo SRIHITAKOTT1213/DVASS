@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Database/Model, Backend, OOP, Python | APCSP</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Database/Model, Backend, OOP, Python" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The project-based learning objective is to create a purposeful backend, something that can’t be done in frontend via JavaScript. A database and storing persistent data is a primary focus of most backend systems. An SQLite Database using the Python SQLAlchemy framework will be the outcome of this lesson. As students learn databases using SQLAlchemy, they will also learn about Object-oriented programming in Python." />
+<meta property="og:description" content="The project-based learning objective is to create a purposeful backend, something that can’t be done in frontend via JavaScript. A database and storing persistent data is a primary focus of most backend systems. An SQLite Database using the Python SQLAlchemy framework will be the outcome of this lesson. As students learn databases using SQLAlchemy, they will also learn about Object-oriented programming in Python." />
+<link rel="canonical" href="https://nighthawkcoders.github.io/APCSP/2023/01/17/PBL-database.html" />
+<meta property="og:url" content="https://nighthawkcoders.github.io/APCSP/2023/01/17/PBL-database.html" />
+<meta property="og:site_name" content="APCSP" />
+<meta property="og:image" content="https://nighthawkcoders.github.io/APCSP/images/python.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-01-17T00:00:00-06:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://nighthawkcoders.github.io/APCSP/images/python.png" />
+<meta property="twitter:title" content="Database/Model, Backend, OOP, Python" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-01-17T00:00:00-06:00","datePublished":"2023-01-17T00:00:00-06:00","description":"The project-based learning objective is to create a purposeful backend, something that can’t be done in frontend via JavaScript. A database and storing persistent data is a primary focus of most backend systems. An SQLite Database using the Python SQLAlchemy framework will be the outcome of this lesson. As students learn databases using SQLAlchemy, they will also learn about Object-oriented programming in Python.","headline":"Database/Model, Backend, OOP, Python","image":"https://nighthawkcoders.github.io/APCSP/images/python.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://nighthawkcoders.github.io/APCSP/2023/01/17/PBL-database.html"},"url":"https://nighthawkcoders.github.io/APCSP/2023/01/17/PBL-database.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/APCSP/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nighthawkcoders.github.io/APCSP/feed.xml" title="APCSP" /><link rel="shortcut icon" type="image/x-icon" href="/APCSP/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/APCSP/">APCSP</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/APCSP/schedule">Schedule</a><a class="page-link" href="/APCSP/frontend/overview">Frontend</a><a class="page-link" href="/APCSP/api/overview">API</a><a class="page-link" href="/APCSP/search/">Search</a><a class="page-link" href="/APCSP/categories/ap">AP Standards</a><a class="page-link" href="/APCSP/categories/cte">CTE Standards</a><a class="page-link" href="/APCSP/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Database/Model, Backend, OOP, Python</h1><p class="page-description">The project-based learning objective is to create a purposeful backend, something that can't be done in frontend via JavaScript.  A database and storing persistent data is a primary focus of most backend systems.  An SQLite Database using the Python SQLAlchemy framework will be the outcome of this lesson.  As students learn databases using SQLAlchemy, they will also learn about Object-oriented programming in Python.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-01-17T00:00:00-06:00" itemprop="datePublished">
+        Jan 17, 2023
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span></p>
+
+    
+
+    
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#Database-and-Table-Terms">Database and Table Terms </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#Reference">Reference </a></li>
+<li class="toc-entry toc-h3"><a href="#Outline-for-Backend-Model-and-Database">Outline for Backend Model and Database </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#User-Table-Schema">User Table Schema </a></li>
+<li class="toc-entry toc-h4"><a href="#User-Table-CRUD-operations">User Table CRUD operations </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Outline-to-understand-Devops-and-Databases">Outline to understand Devops and Databases </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#docker-compose.yml-has-a-volume-mount.">docker-compose.yml has a volume mount. </a></li>
+<li class="toc-entry toc-h4"><a href="#init.py-contains-project-settings.">init.py contains project settings. </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#Outline-of-SQL-Administration-Tools">Outline of SQL Administration Tools </a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#Loading-SQLite3-from-volumes-directory">Loading SQLite3 from volumes directory </a></li>
+<li class="toc-entry toc-h4"><a href="#Review-content-in-users-table">Review content in users table </a></li>
+<li class="toc-entry toc-h4"><a href="#Delete-content-in-users-table,-redisplay">Delete content in users table, redisplay </a></li>
+<li class="toc-entry toc-h4"><a href="#Quit-SQLite3-and-return-to-prompt">Quit SQLite3 and return to prompt </a></li>
+<li class="toc-entry toc-h4"><a href="#SQLite-Explorer">SQLite Explorer </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#Hacks">Hacks </a></li>
+<li class="toc-entry toc-h2"><a href="#Hack-Helper">Hack Helper </a></li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2023-01-17-PBL-database.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Database-and-Table-Terms">
+<a class="anchor" href="#Database-and-Table-Terms" aria-hidden="true"><span class="octicon octicon-link"></span></a>Database and Table Terms<a class="anchor-link" href="#Database-and-Table-Terms"> </a>
+</h2>
+<blockquote>
+<p>The foundations of database is defining one or more <strong><em>Tables</em></strong>.  In Python, a database can be constructed using the foundations we learned in modeling a Class.</p>
+<ul>
+<li>A "Table" is a Model/Schema within a Database.  </li>
+<li>A "Table" definition in Python/SQLAlchemy is manifested by defining a "<strong><em>Class</em></strong>" and "<strong><em>Attributes</em></strong>" in Python.  </li>
+<li>A Python <strong><em>Class can inherit database functionality</em></strong> from SQLAlchemy.  This is a method Python developers use to turn a Class into a Table within a <strong><em>SQL Database</em></strong>.</li>
+<li>Writing methods in the Class for Create, Read, Update, Delete (<strong><em>CRUD</em></strong>) is how a developer initiates database operations.</li>
+</ul>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Reference">
+<a class="anchor" href="#Reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reference<a class="anchor-link" href="#Reference"> </a>
+</h3>
+<ul>
+<li><a href="https://www.sqlalchemy.org/">SQLAlchemy</a></li>
+<li><a href="https://www.ffnext.io/blog/python-backend-with-flask-for-beginners#:~:text=You%20can%20create%20an%20HTTP,command%3A%20python%20app.py.">Python Backend with Flask, SQLite</a></li>
+<li><a href="https://www.ffnext.io/blog/python-backend-with-flask-for-beginners#:~:text=You%20can%20create%20an%20HTTP,command%3A%20python%20app.py.">Python Backend starting Controller</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Outline-for-Backend-Model-and-Database">
+<a class="anchor" href="#Outline-for-Backend-Model-and-Database" aria-hidden="true"><span class="octicon octicon-link"></span></a>Outline for Backend Model and Database<a class="anchor-link" href="#Outline-for-Backend-Model-and-Database"> </a>
+</h3>
+<blockquote>
+<p><strong><em>OOP modeling with SQLAlchemy</em></strong> enables CRUD operations.</p>
+</blockquote>
+<ol>
+<li><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/model/users.py#L72-L80">Users Table Schema</a></li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/model/users.py#L72-L80">Database Properties</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/main.py#L38-L41">Initial Database Setup (call)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/main.py#L38-L41">Initial Database Setup (add records)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/model/users.py#L72-L80">OOP CRUD operations</a></p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="User-Table-Schema">
+<a class="anchor" href="#User-Table-Schema" aria-hidden="true"><span class="octicon octicon-link"></span></a>User Table Schema<a class="anchor-link" href="#User-Table-Schema"> </a>
+</h4>
+<blockquote>
+<p>The db.Model is inherited into the <code>class User(db.model)</code>, Each <code>db.Column</code> is provided properties according to capabilities of SQL.  See <strong>init</strong>.py for db object definition.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="sd">""" database dependencies to support sqliteDB examples """</span>
+
+<span class="kn">from</span> <span class="nn">__init__</span> <span class="kn">import</span> <span class="n">app</span><span class="p">,</span> <span class="n">db</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">IntegrityError</span>
+<span class="kn">from</span> <span class="nn">werkzeug.security</span> <span class="kn">import</span> <span class="n">generate_password_hash</span><span class="p">,</span> <span class="n">check_password_hash</span>
+
+
+<span class="sd">""" Key additions to User Class for Schema definition """</span>
+
+<span class="c1"># Define the User class to manage actions in the 'users' table</span>
+<span class="c1"># -- Object Relational Mapping (ORM) is the key concept of SQLAlchemy</span>
+<span class="c1"># -- a.) db.Model is like an inner layer of the onion in ORM</span>
+<span class="c1"># -- b.) User represents data we want to store, something that is built on db.Model</span>
+<span class="c1"># -- c.) SQLAlchemy ORM is layer on top of SQLAlchemy Core, then SQLAlchemy engine, SQL</span>
+<span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">'users'</span>  <span class="c1"># table name is plural, class name is singular</span>
+
+    <span class="c1"># Define the User schema with "vars" from object</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_uid</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_password</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span> <span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">_dob</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Date</span><span class="p">)</span>
+
+    <span class="c1"># Defines a relationship between User record and Notes table, one-to-many (one user to many notes)</span>
+    <span class="n">posts</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span><span class="s2">"Post"</span><span class="p">,</span> <span class="n">cascade</span><span class="o">=</span><span class="s1">'all, delete'</span><span class="p">,</span> <span class="n">backref</span><span class="o">=</span><span class="s1">'users'</span><span class="p">,</span> <span class="n">lazy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># constructor of a User object, initializes the instance variables within object (self)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">"123qwerty"</span><span class="p">,</span> <span class="n">dob</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>    <span class="c1"># variables with self prefix become part of the object, </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_uid</span> <span class="o">=</span> <span class="n">uid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dob</span> <span class="o">=</span> <span class="n">dob</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="User-Table-CRUD-operations">
+<a class="anchor" href="#User-Table-CRUD-operations" aria-hidden="true"><span class="octicon octicon-link"></span></a>User Table CRUD operations<a class="anchor-link" href="#User-Table-CRUD-operations"> </a>
+</h4>
+<blockquote>
+<p>All these def's are methods of the User Class.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># creates a person object from User(db.Model) class, passes initializers</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># add prepares to persist person object to Users table</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>  <span class="c1"># SqlAlchemy "unit of work pattern" requires a manual commit</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="c1"># CRUD read converts self to dictionary</span>
+<span class="c1"># returns dictionary</span>
+<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">"id"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="s2">"uid"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">uid</span><span class="p">,</span>
+        <span class="s2">"dob"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dob</span><span class="p">,</span>
+        <span class="s2">"age"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">,</span>
+        <span class="s2">"posts"</span><span class="p">:</span> <span class="p">[</span><span class="n">post</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">posts</span><span class="p">]</span>
+    <span class="p">}</span>
+
+<span class="c1"># CRUD update: updates user name, password, phone</span>
+<span class="c1"># returns self</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">uid</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
+    <span class="sd">"""only updates values with length"""</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uid</span> <span class="o">=</span> <span class="n">uid</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">password</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="bp">self</span>
+
+<span class="c1"># CRUD delete: remove self</span>
+<span class="c1"># None</span>
+<span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Outline-to-understand-Devops-and-Databases">
+<a class="anchor" href="#Outline-to-understand-Devops-and-Databases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Outline to understand Devops and Databases<a class="anchor-link" href="#Outline-to-understand-Devops-and-Databases"> </a>
+</h3>
+<blockquote>
+<p><strong><em>DevOps and the SQLite database</em></strong> requires file management and configuring Python to work in local and deployment environment.</p>
+</blockquote>
+<ol>
+<li><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/docker-compose.yml">Volumes in Deployment</a></li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/__init__.py#L15">Database URI (deployment)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/Dockerfile">Review Dockerfile</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/main.py#L46">Database URI (testing)</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/.gitignore#L4">Exclude/Ignore Testing Database</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nighthawkcoders/flask_portfolio/blob/main/main.py#L47">Port and Host (testing)</a></p>
+</li>
+<li>
+<p><strong><em><code>Run</code> locally as you develop</em></strong> Select main.py file in VSCode and press Play button, or press down arrow next to Play button to activate Debug testing.  The below dialog will appear in Terminal.</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span> machine:flask_portfolio user$  <span class="nb">cd</span> /Users/user/vscode/flask_portfolio <span class="p">;</span> /usr/bin/env /Users/user/opt/anaconda3/bin/python /Users/user/.vscode/extensions/ms-python.python-2022.20.2/pythonFiles/lib/python/debugpy/adapter/../../debugpy/launcher <span class="m">61127</span> -- /Users/user/vscode/flask_portfolio/main.py 
+ * Serving Flask app <span class="s2">"__init__"</span> <span class="o">(</span>lazy loading<span class="o">)</span>
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://192.168.1.75:8086/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+ * Restarting with watchdog <span class="o">(</span>fsevents<span class="o">)</span>
+ * Debugger is active!
+ * Debugger PIN: <span class="m">403</span>-552-045
+</pre></div>
+<ol>
+<li>
+<strong><em><code>Run</code> with Docker prior to commit and deployment</em></strong>  It is much simpler to debug Docker issues in VSCode prior to Deployment on AWS.  This will <code>create production database</code> sample, which will show up commits.  Simply delete file after run session, <code>do not commit it</code>.</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span> machine:flask_portfolio user$ <span class="nb">pwd</span> <span class="c1"># verify directory</span>
+/Users/user/vscode/flask_portfolio
+<span class="o">(</span>base<span class="o">)</span> machine:flask_portfolio user$ docker-compose build <span class="c1"># run docker build</span>
+<span class="o">[</span>+<span class="o">]</span> Building <span class="m">16</span>.0s <span class="o">(</span><span class="m">10</span>/10<span class="o">)</span> <span class="nv">FINISHED</span>                                                                                                  
+ <span class="o">=</span>&gt; <span class="o">[</span>internal<span class="o">]</span> load build definition from Dockerfile                                                                            <span class="m">0</span>.0s
+ ...
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">1</span>/6<span class="o">]</span> FROM docker.io/library/python:3.10@sha256:e9f824eec86879b1ffe8da9ef3eb4677dd6e89b63e8bce8cb35c572f550751d8            <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; CACHED <span class="o">[</span><span class="m">2</span>/6<span class="o">]</span> RUN apt-get update <span class="o">&amp;&amp;</span> apt-get upgrade -y <span class="o">&amp;&amp;</span>     apt-get install -y python3 python3-pip git                     <span class="m">0</span>.0s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">3</span>/6<span class="o">]</span> COPY . /                                                                                                              <span class="m">0</span>.2s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">4</span>/6<span class="o">]</span> RUN pip install --no-cache-dir -r requirements.txt                                                                    <span class="m">9</span>.7s
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="m">5</span>/6<span class="o">]</span> RUN pip install
+ ...
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; writing image sha256:47ccd2a3ca839139727dd8c8f57fc1ad6a36e670962059d960d21b3ad0cba292                                    <span class="m">0</span>.0s 
+ <span class="o">=</span>&gt; <span class="o">=</span>&gt; naming to docker.io/library/flask_port_v1                                                                                <span class="m">0</span>.0s 
+
+<span class="o">(</span>base<span class="o">)</span> machine:flask_portfolio user$ docker-compose up  <span class="c1"># enable for browser testing, no -d! This allows ctl-C to stop and all errors will appear in Terminal </span>
+<span class="o">[</span>+<span class="o">]</span> Running <span class="m">1</span>/1
+ ⠿ Container flask_portfolio-web-1  Recreated                                                                                   <span class="m">0</span>.1s
+Attaching to flask_portfolio-web-1
+flask_portfolio-web-1  <span class="p">|</span> <span class="o">[</span><span class="m">2023</span>-01-15 <span class="m">13</span>:08:19 +0000<span class="o">]</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">[</span>INFO<span class="o">]</span> Starting gunicorn <span class="m">20</span>.1.0
+flask_portfolio-web-1  <span class="p">|</span> <span class="o">[</span><span class="m">2023</span>-01-15 <span class="m">13</span>:08:19 +0000<span class="o">]</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">[</span>INFO<span class="o">]</span> Listening at: http://0.0.0.0:8086 <span class="o">(</span><span class="m">1</span><span class="o">)</span>
+flask_portfolio-web-1  <span class="p">|</span> <span class="o">[</span><span class="m">2023</span>-01-15 <span class="m">13</span>:08:19 +0000<span class="o">]</span> <span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">[</span>INFO<span class="o">]</span> Using worker: sync
+flask_portfolio-web-1  <span class="p">|</span> <span class="o">[</span><span class="m">2023</span>-01-15 <span class="m">13</span>:08:19 +0000<span class="o">]</span> <span class="o">[</span><span class="m">7</span><span class="o">]</span> <span class="o">[</span>INFO<span class="o">]</span> Booting worker with pid: <span class="m">7</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="docker-compose.yml-has-a-volume-mount.">
+<a class="anchor" href="#docker-compose.yml-has-a-volume-mount." aria-hidden="true"><span class="octicon octicon-link"></span></a>docker-compose.yml has a volume mount.<a class="anchor-link" href="#docker-compose.yml-has-a-volume-mount."> </a>
+</h4>
+<blockquote>
+<p>Docker run in a container, its own virtual computer.  Outside of the Docker container is where we desire to keep the SQLite database, thus there is <strong><em>a mount to a files accessible by developers</em></strong>.  This ensures data is saved after Docker virtual computer up/down.  The Left side of volume says <code>./volumes</code> is a relative location on computer where docker-compose build/up was run, this is were database can always be seen.  The Right side <code>/volumes</code> is where the Docker container see the volume.</p>
+</blockquote>
+<div class="highlight"><pre><span></span>version:<span class="s1">'3'</span>services:
+        web:
+                image: flask_port_v1
+                build: .
+                ports:
+                        - <span class="s2">"8086:8086"</span>
+                volumes:
+                        - ./volumes:/volumes
+                restart: unless-stopped
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="init.py-contains-project-settings.">
+<a class="anchor" href="#init.py-contains-project-settings." aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>init</strong>.py contains project settings.<a class="anchor-link" href="#init.py-contains-project-settings."> </a>
+</h4>
+<blockquote>
+<p>This file contains <code>app</code> variables that can be referenced anywhere the <code>app</code> elements is imported (<code>from __init__ import app, db</code>).  This is a way of sharing configuration across the many python/flask files in the project.  Review the below file and become familiar with the settings  ...</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_login</span> <span class="kn">import</span> <span class="n">LoginManager</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="kn">from</span> <span class="nn">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+
+<span class="sd">"""</span>
+<span class="sd">These object can be used throughout project.</span>
+<span class="sd">1.) Objects from this file can be included in many blueprints</span>
+<span class="sd">2.) Isolating these object definitions avoids duplication and circular dependencies</span>
+<span class="sd">"""</span>
+
+<span class="c1"># Setup of key Flask object (app)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="c1"># Setup SQLAlchemy object and properties for the database (db)</span>
+<span class="n">dbURI</span> <span class="o">=</span> <span class="s1">'sqlite:////volumes/flask_portfolio.db'</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SQLALCHEMY_TRACK_MODIFICATIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SQLALCHEMY_DATABASE_URI'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dbURI</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'SECRET_KEY'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'SECRET_KEY'</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+
+<span class="c1"># Images storage</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'MAX_CONTENT_LENGTH'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>  <span class="c1"># maximum size of uploaded content</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'UPLOAD_EXTENSIONS'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'.jpg'</span><span class="p">,</span> <span class="s1">'.png'</span><span class="p">,</span> <span class="s1">'.gif'</span><span class="p">]</span>  <span class="c1"># supported file types</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">'UPLOAD_FOLDER'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'volumes/uploads/'</span>  <span class="c1"># location of user uploaded content</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Outline-of-SQL-Administration-Tools">
+<a class="anchor" href="#Outline-of-SQL-Administration-Tools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Outline of SQL Administration Tools<a class="anchor-link" href="#Outline-of-SQL-Administration-Tools"> </a>
+</h3>
+<blockquote>
+<p><strong><em>Learning SQL basics using SQLite tools</em></strong>.</p>
+</blockquote>
+<ol>
+<li>
+<p>Install SQLite Viewer in VSCode marketplace, click on SQL database to review schema and see rows.</p>
+</li>
+<li>
+<p>Install SQLite and review SQLite Explorer.</p>
+</li>
+<li>
+<p><a href="https://www.tutorialspoint.com/sqlite/sqlite_installation.htm">SQLite3 Website</a> describes the command line SQL administration tool.  To install on Mac terminal <code>brew install sqlite3</code>, on WSL terminal <code>sudo apt install sqlite3</code>.</p>
+</li>
+<li>
+<a href="https://www.sqltutorial.org/sql-cheat-sheet/">SQL Cheat Sheet</a>.  These commands can be done using SQLite3 and perhaps in Market Place tooling.</li>
+</ol>
+<h4 id="Loading-SQLite3-from-volumes-directory">
+<a class="anchor" href="#Loading-SQLite3-from-volumes-directory" aria-hidden="true"><span class="octicon octicon-link"></span></a>Loading SQLite3 from volumes directory<a class="anchor-link" href="#Loading-SQLite3-from-volumes-directory"> </a>
+</h4>
+<pre><code>(base) machine:volumes user$ sqlite3 sqlite.db</code></pre>
+<h4 id="Review-content-in-users-table">
+<a class="anchor" href="#Review-content-in-users-table" aria-hidden="true"><span class="octicon octicon-link"></span></a>Review content in users table<a class="anchor-link" href="#Review-content-in-users-table"> </a>
+</h4>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">id</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="n">_uid</span><span class="p">,</span> <span class="n">_dob</span> <span class="k">from</span> <span class="n">users</span><span class="p">;</span>
+<span class="mi">1</span><span class="o">|</span><span class="n">Thomas</span> <span class="n">Edison</span><span class="o">|</span><span class="n">toby</span><span class="o">|</span><span class="mi">1847</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">11</span>
+<span class="mi">2</span><span class="o">|</span><span class="n">Nicholas</span> <span class="n">Tesla</span><span class="o">|</span><span class="n">niko</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">3</span><span class="o">|</span><span class="n">Alexander</span> <span class="n">Graham</span> <span class="n">Bell</span><span class="o">|</span><span class="n">lex</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">4</span><span class="o">|</span><span class="n">Eli</span> <span class="n">Whitney</span><span class="o">|</span><span class="n">whit</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">5</span><span class="o">|</span><span class="n">John</span> <span class="n">Mortensen</span><span class="o">|</span><span class="n">jm1021</span><span class="o">|</span><span class="mi">1959</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">21</span>
+<span class="mi">6</span><span class="o">|</span><span class="n">Hedy</span> <span class="n">Lamar</span><span class="o">|</span><span class="n">hedy</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">7</span><span class="o">|</span><span class="n">Hedy</span> <span class="n">Lamarr</span><span class="o">|</span><span class="n">heddy</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">8</span><span class="o">|</span><span class="n">Marie</span> <span class="n">Currie</span><span class="o">|</span><span class="n">marie</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">9</span><span class="o">|</span><span class="n">Wilma</span> <span class="n">Flintstone</span><span class="o">|</span><span class="n">wilma</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">10</span><span class="o">|</span><span class="n">Fred</span> <span class="n">Flintstone</span><span class="o">|</span><span class="n">fred</span><span class="o">|</span><span class="mi">0010</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>
+</pre></div>
+<h4 id="Delete-content-in-users-table,-redisplay">
+<a class="anchor" href="#Delete-content-in-users-table,-redisplay" aria-hidden="true"><span class="octicon octicon-link"></span></a>Delete content in users table, redisplay<a class="anchor-link" href="#Delete-content-in-users-table,-redisplay"> </a>
+</h4>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">delete</span> <span class="k">from</span> <span class="n">users</span> <span class="k">where</span> <span class="n">id</span><span class="o">=</span><span class="mi">7</span><span class="p">;</span>
+<span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">id</span><span class="p">,</span> <span class="n">_name</span><span class="p">,</span> <span class="n">_uid</span><span class="p">,</span> <span class="n">_dob</span> <span class="k">from</span> <span class="n">users</span><span class="p">;</span>
+<span class="mi">1</span><span class="o">|</span><span class="n">Thomas</span> <span class="n">Edison</span><span class="o">|</span><span class="n">toby</span><span class="o">|</span><span class="mi">1847</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">11</span>
+<span class="mi">2</span><span class="o">|</span><span class="n">Nicholas</span> <span class="n">Tesla</span><span class="o">|</span><span class="n">niko</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">3</span><span class="o">|</span><span class="n">Alexander</span> <span class="n">Graham</span> <span class="n">Bell</span><span class="o">|</span><span class="n">lex</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">4</span><span class="o">|</span><span class="n">Eli</span> <span class="n">Whitney</span><span class="o">|</span><span class="n">whit</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">5</span><span class="o">|</span><span class="n">John</span> <span class="n">Mortensen</span><span class="o">|</span><span class="n">jm1021</span><span class="o">|</span><span class="mi">1959</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">21</span>
+<span class="mi">6</span><span class="o">|</span><span class="n">Hedy</span> <span class="n">Lamar</span><span class="o">|</span><span class="n">hedy</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">8</span><span class="o">|</span><span class="n">Marie</span> <span class="n">Currie</span><span class="o">|</span><span class="n">marie</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">9</span><span class="o">|</span><span class="n">Wilma</span> <span class="n">Flintstone</span><span class="o">|</span><span class="n">wilma</span><span class="o">|</span><span class="mi">2023</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">14</span>
+<span class="mi">10</span><span class="o">|</span><span class="n">Fred</span> <span class="n">Flintstone</span><span class="o">|</span><span class="n">fred</span><span class="o">|</span><span class="mi">0010</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span>
+</pre></div>
+<h4 id="Quit-SQLite3-and-return-to-prompt">
+<a class="anchor" href="#Quit-SQLite3-and-return-to-prompt" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quit SQLite3 and return to prompt<a class="anchor-link" href="#Quit-SQLite3-and-return-to-prompt"> </a>
+</h4>
+<div class="highlight"><pre><span></span><span class="n">sqlite</span><span class="o">&gt;</span> <span class="p">.</span><span class="n">quit</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="SQLite-Explorer">
+<a class="anchor" href="#SQLite-Explorer" aria-hidden="true"><span class="octicon octicon-link"></span></a>SQLite Explorer<a class="anchor-link" href="#SQLite-Explorer"> </a>
+</h4>
+<table>
+<tr>
+    <th>id</th>
+    <th>_name</th>
+    <th>_uid</th>
+    <th>_password</th>
+    <th>_dob</th>
+</tr>
+<tr>
+    <td>1</td>
+    <td>Thomas Edison</td>
+    <td>toby</td>
+    <td>sha256$Yj69CENuKWaRDHw3$dcb731d06dd59b7a316a853944b6603197876aa3a9553a758865d849a2b0a502</td>
+    <td>1847-02-11</td>
+</tr>
+    <tr>
+    <td>2</td>
+    <td>Nicholas Tesla</td>
+    <td>niko</td>
+    <td>sha256$muQZzhqAFgXLERzC$cc7a02c80fc80190cd0b052d0dd010272cc8bc81971a7fe3cad6cee4a13e55e7</td>
+    <td>2023-01-14</td>
+</tr>
+<tr>
+    <td>3</td>
+    <td>Alexander Graham Bell</td>
+    <td>lex</td>
+    <td>sha256$rBKtyle2TI1vY7y9$ace54fb1e44640213f4aa284d6fe05cd27bfbcd1f7ac6d2ba697400d0b78cb7e</td>
+    <td>2023-01-14</td>
+</tr>
+<tr>
+    <td>4</td>
+    <td>Eli Whitney</td>
+    <td>whit</td>
+    <td>sha256$j31DNBdcLtDALA4x$d39828e9e016c675b6c27ce1e6a08e196ffa5b7740978d6b313d039e60756375</td>
+    <td>2023-01-14</td>
+</tr>
+<tr>
+    <td>5</td>
+    <td>John Mortensen</td>
+    <td>jm1021</td>
+    <td>sha256$5gt0IT2TiQm0UWi5$3d74775d35d2e2b0865deefb8f59e22e2b35d8c19ab4b1c26c7e50a27d3bf9fd</td>
+    <td>1959-10-21</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hacks">
+<a class="anchor" href="#Hacks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hacks<a class="anchor-link" href="#Hacks"> </a>
+</h2>
+<blockquote>
+<p>The <strong><em>Big Picture</em></strong> purpose of this hack is to build a database.  Being able to create an SQLite table and populate test data within it is the major goal.  To do this effectively it is imperative to show the following.</p>
+<ol>
+<li>Build Schema for a table, make a new <code>model</code> file and use <code>users.py</code> as an example. Start slow and simple and build up.</li>
+<li>Build an <code>initXXXXX()</code> method and use it to add preliminary/test data to the table.  Once again use users.py as an example.</li>
+<li>Make a 30-60 second video where you show a Debugging session of making new rows in the table. Use <code>sqlite</code> marketplace tools and/or sqlite3 command line tool to show success in creating table and adding data.</li>
+</ol>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hack-Helper">
+<a class="anchor" href="#Hack-Helper" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hack Helper<a class="anchor-link" href="#Hack-Helper"> </a>
+</h2>
+<blockquote>
+<p>Here are some tips.</p>
+</blockquote>
+<ul>
+<li>
+<p>Become familiar with <code>initUsers()</code>.  Observe it is called/activated from <code>main.py</code>.  This function activates after you run the <code>main.py</code> and activate the web application in the browser.  Observe that the <code>sqlite.db</code> file will appear in the volumes directory in conjunction with home screen of site appearing in browser.</p>
+</li>
+<li>
+<p>Delete sqlite.db from volumes directory on your development machine.  Set <code>breakpoint</code> on initUsers() and run <code>main.py using debug</code>.  Use the step into option on the debugger and observe the creation of data.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">before_first_request</span>
+<span class="k">def</span> <span class="nf">activate_job</span><span class="p">():</span><span class="n">initJokes</span><span class="p">()</span>    <span class="n">initUsers</span><span class="p">()</span>
+</pre></div>
+<ul>
+<li>
+<p>Make your own <code>XXXXX.py</code> file under <code>model</code> directory.  Follow <code>users.py</code> and develop your own schema from the OOP code you did in last Hacks.  Follow the pattern in <code>users.py</code> to make a initXXXX() function top populate some test data.</p>
+</li>
+<li>
+<p>In <code>main.py</code>, add your initXXXX() method to <code>def activate_job()</code> function shown above.  Use this as basis of your video debugging session.  Debugging is hugely important at this level to understand your database success prior to building an API.  Building initXXXX() method, adding database records, and debugging will enable you to verify CRUD operations as you develop.</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/APCSP/2023/01/17/PBL-database.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/APCSP/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="https://nighthawkcoders.github.io/APCSP/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/APCSP/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>AP Computer Science Principles course materials.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/nighthawkcoders" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/NighthawkCoding" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://www.youtube.com/channel/UClIKOsDS5dsfzFA3zveDT3Q" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

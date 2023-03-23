@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Intro to Computer Science Ideas | APCSP</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Intro to Computer Science Ideas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Preliminary ideas for a intro course for computer science" />
+<meta property="og:description" content="Preliminary ideas for a intro course for computer science" />
+<link rel="canonical" href="https://nighthawkcoders.github.io/APCSP/csintro" />
+<meta property="og:url" content="https://nighthawkcoders.github.io/APCSP/csintro" />
+<meta property="og:site_name" content="APCSP" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-01T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Intro to Computer Science Ideas" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-06-01T00:00:00-05:00","datePublished":"2022-06-01T00:00:00-05:00","description":"Preliminary ideas for a intro course for computer science","headline":"Intro to Computer Science Ideas","mainEntityOfPage":{"@type":"WebPage","@id":"https://nighthawkcoders.github.io/APCSP/csintro"},"url":"https://nighthawkcoders.github.io/APCSP/csintro"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/APCSP/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://nighthawkcoders.github.io/APCSP/feed.xml" title="APCSP" /><link rel="shortcut icon" type="image/x-icon" href="/APCSP/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/APCSP/">APCSP</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/APCSP/schedule">Schedule</a><a class="page-link" href="/APCSP/frontend/overview">Frontend</a><a class="page-link" href="/APCSP/api/overview">API</a><a class="page-link" href="/APCSP/search/">Search</a><a class="page-link" href="/APCSP/categories/ap">AP Standards</a><a class="page-link" href="/APCSP/categories/cte">CTE Standards</a><a class="page-link" href="/APCSP/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Intro to Computer Science Ideas</h1><p class="page-description">Preliminary ideas for a intro course for computer science</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-06-01T00:00:00-05:00" itemprop="datePublished">
+        Jun 1, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h2"><a href="#intro-class-logistics-del-norte-desires-title-by-end-of-meeting">Intro Class Logistics (Del Norte desires title by end of meeting)</a></li>
+<li class="toc-entry toc-h2"><a href="#pathway">Pathway</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#start-with">Start with:</a></li>
+<li class="toc-entry toc-h3"><a href="#move-on-to-main-focus">Move on to main focus:</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#certificate-programs">Certificate Programs</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#linkedin-certification-programs-for-development-engineering-methodology">LinkedIn Certification Programs for Development Engineering Methodology</a></li>
+<li class="toc-entry toc-h3"><a href="#linkedin-certificates-for-programming">LinkedIn Certificates for Programming</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#accreditation-articulation-and-beyond">Accreditation, Articulation and Beyond</a></li>
+<li class="toc-entry toc-h2"><a href="#del-norte-2022-2023-course-outlines-and-student-projects">Del Norte 2022-2023 Course Outlines and Student Projects</a></li>
+<li class="toc-entry toc-h2"><a href="#please-comment-requires-github-sign-in">Please comment, requires GitHub sign-in</a></li>
+</ul><h2 id="intro-class-logistics-del-norte-desires-title-by-end-of-meeting">
+<a class="anchor" href="#intro-class-logistics-del-norte-desires-title-by-end-of-meeting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Intro Class Logistics (Del Norte desires title by end of meeting)</h2>
+<blockquote>
+  <p>Idea is to have a course to focusses on freshman/sophomore classes. The purpose Computer Science and Software Engineering at Del Norte and PUSD, is to add to the beginning of the pathway that feeds into AP Computer Science Principles (CSP).  <a href="https://docs.google.com/document/d/1XNNVmkB1hV4Vh7V084HifSchucYB8LKiSgJA1CW9nlw/edit">Guide</a></p>
+  <ul>
+    <li>1st trimester course is Game Design</li>
+    <li>2nd trimester course is Game Design with an App Focus</li>
+  </ul>
+</blockquote>
+
+<h2 id="pathway">
+<a class="anchor" href="#pathway" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pathway</h2>
+<blockquote>
+  <p>The Computer Science Pathway, including Trimester modifications required at Del Norte High School.</p>
+</blockquote>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Preferred Grade</td>
+      <td>Course</td>
+      <td>Trimesters</td>
+      <td>Credit</td>
+      <td>Notes/Experience</td>
+    </tr>
+    <tr>
+      <td>9th or 10th</td>
+      <td>Computer Science and Software Engineering (CSSE)</td>
+      <td>2</td>
+      <td>UC G</td>
+      <td>Entry to pathway</td>
+    </tr>
+    <tr>
+      <td>10th or 11th</td>
+      <td>AP Computer Science Principles (CSP)</td>
+      <td>2</td>
+      <td>UC D or G</td>
+      <td>Requires CSSE or equivalent experience</td>
+    </tr>
+    <tr>
+      <td>10th or 11th</td>
+      <td>Data Structures 1 (DS1)</td>
+      <td>1</td>
+      <td>DS1/DS2 articulate</td>
+      <td>Part of CSP year and contract</td>
+    </tr>
+    <tr>
+      <td>11th or 12th</td>
+      <td>AP Computer Science A (CSA)</td>
+      <td>2</td>
+      <td>UC C or G</td>
+      <td>Requires CSP, DS1 or experience in Technologies taught in Del Norte program.</td>
+    </tr>
+    <tr>
+      <td>11th or 12th</td>
+      <td>Data Structures 2 (DS2)</td>
+      <td>1</td>
+      <td>DS1/DS2 articulate</td>
+      <td>Part of CSA year and contract</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="start-with">
+<a class="anchor" href="#start-with" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start with:</h3>
+<ul>
+  <li>Scratch Introduction</li>
+  <li>Course Plans
+    <ul>
+      <li>Introduction to tools (e.g. IDE and Github)</li>
+      <li>Fundamentals in Programming in selected language (C# or Scratch)</li>
+      <li>Agile Development Fundamentals, Pair Programming,</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="move-on-to-main-focus">
+<a class="anchor" href="#move-on-to-main-focus" aria-hidden="true"><span class="octicon octicon-link"></span></a>Move on to main focus:</h3>
+<ul>
+  <li>
+<a href="https://www.apple.com/education/k12/learn-to-code/">Create an Apple App using Xcode and Swift</a>
+  AND/OR</li>
+  <li><a href="https://learn.unity.com/course/teaching-game-design-and-development">Unity Game Development Curriculum</a></li>
+</ul>
+
+<h2 id="certificate-programs">
+<a class="anchor" href="#certificate-programs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Certificate Programs</h2>
+<blockquote>
+  <p>Certificates are available online and at many avenues (Udemy, LinkedIN, Apple, etc).  Teachers could/should learn and then perhaps teach courses that are aligned to certificates by an organization like LinkedIn.  This would enable Teachers and District to confidently state that their Teachers are current to CTE advisors.</p>
+  <h3 id="linkedin-certification-programs-for-development-engineering-methodology">
+<a class="anchor" href="#linkedin-certification-programs-for-development-engineering-methodology" aria-hidden="true"><span class="octicon octicon-link"></span></a>LinkedIn Certification Programs for Development Engineering Methodology</h3>
+  <p>Skills to assist in teaching Project Based Learning.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/github-issues-and-projects-for-teams">Github Issues</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/paths/become-an-agile-software-developer">Agile Development</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/paths/become-a-devops-engineer">Devops Engineer</a></p>
+  </li>
+</ul>
+
+<h3 id="linkedin-certificates-for-programming">
+<a class="anchor" href="#linkedin-certificates-for-programming" aria-hidden="true"><span class="octicon octicon-link"></span></a>LinkedIn Certificates for Programming</h3>
+<blockquote>
+  <p>Certificates to assist in teaching Intro to Programming, Computers Science Principles, Computer Science “A” development.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/learning-scratch">Intro Scratch</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/paths/getting-started-as-a-c-sharp-developer">Intro C# Developer</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/paths/master-swift">Intro Swift Developer</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/paths/become-a-python-developer-8969630">CSP Python Developer</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/paths/become-a-javascript-developer">CSP - JavaScript Developer</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.linkedin.com/learning/learning-java-4">CSA - Java Developer</a></p>
+  </li>
+</ul>
+
+<h2 id="accreditation-articulation-and-beyond">
+<a class="anchor" href="#accreditation-articulation-and-beyond" aria-hidden="true"><span class="octicon octicon-link"></span></a>Accreditation, Articulation and Beyond</h2>
+<blockquote>
+  <p>In discussion on titles, it seems vital to a High School Pathway that it leads beyond.  A key contributor to increasing Del Norte student participation in Computer Science, ~100 tto ~240, is the introduction of Computer Science Principles.</p>
+  <ul>
+    <li>
+<strong><em>Computer Science Principles has AP testing and UC accreditation</em></strong> as a 3rd Science, not just elective.</li>
+    <li>
+<strong><em>Computer Science “A” has AP testing and UC accreditation</em></strong> as a 4th Math, not just elective.</li>
+    <li>
+<strong><em>Data Structure 1&amp;2 with B or above graded will articulate to CS113 Data Structures.</em></strong>  There has been movement by Emily Stephenson, Del Norte and Mira Costa College regarding articulation. This begins with students taking CSP/DS1 in Fall of 2022, it completes with students finishing CSA/DSP2 in Summer of 2024, receiving credit for <a href="https://catalog.miracosta.edu/disciplines/computerscience/#courseinventory">CS113 – Data Structures</a>.</li>
+    <li>
+<strong><em>Beyond College</em></strong>, it seems the other “Big Thing” that High School Computer Science can do is to prepare students for internships and jobs.  Del Norte has been placing people regularly at Northrop Grumman (2 per year), UCSD Supercomputer (2 per year), Code Ninjas (2 per year).  Additionally, I have 2 reports of students Teaching in CompSci Labs on campus (Harvard and Mira Costa College).  Lastly, I have heard of a Purdue freshmen that is currently getting a Government clearance for internship in Summer 2023.  An absolute key is having projects published on GitHub!  The Purdue freshmen said the internship interviewer said “they reviewed projects on GitHub and new that he could code”. These opportunities seem to come because of Agile Methodology, Scrum, Python/Flask, Java/Spring, AWS, SQL, Linux, Anaconda, Docker, Nginx, GitHub.</li>
+  </ul>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CS 113: Basic Data Structures and Algorithms
+
+Units: 3
+Prerequisites: CS 112.
+Acceptable for Credit: CSU, UC
+Lecture 2 hours, laboratory 3 hours.
+Course Typically Offered: Fall, Spring, and Summer
+</code></pre></div></div>
+
+<ul>
+  <li>The course uses topics of personal and social relevance to investigate the impact of computing through efficient algorithms and properly designed data structures. Students explore the software development process by developing effective solutions using industry-standard tools. Topics include searching, sorting, hashing, algorithm analysis, object-oriented design, collections, lists, stacks, queues, trees, sets, dictionaries, and graphs. C-ID COMP-132.</li>
+</ul>
+
+<h2 id="del-norte-2022-2023-course-outlines-and-student-projects">
+<a class="anchor" href="#del-norte-2022-2023-course-outlines-and-student-projects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Del Norte 2022-2023 Course Outlines and Student Projects</h2>
+<blockquote>
+  <p>Del Norte Materials are all online and maintained in GitHub.  Content produced is automatically deployed to a public Website.</p>
+  <ul>
+    <li>
+<a href="https://nighthawkcoders.github.io/APCSA/schedule">Computer Science “A”</a>
+      <ul>
+        <li><a href="https://nighthawkcoders.github.io/APCSA//points/11">Trimester 1 CSA Student Projects/Review Tickets - AT BOTTOM OF LINK</a></li>
+      </ul>
+    </li>
+    <li>
+<a href="https://nighthawkcoders.github.io/APCSP/schedule">Computer Science Principles</a>
+      <ul>
+        <li><a href="https://nighthawkcoders.github.io/APCSP//points/11">Trimester 1 CSP Student Projects/Review Tickets - AT BOTTOM OF LINK</a></li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<h2 id="please-comment-requires-github-sign-in">
+<a class="anchor" href="#please-comment-requires-github-sign-in" aria-hidden="true"><span class="octicon octicon-link"></span></a>Please comment, requires GitHub sign-in</h2>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="nighthawkcoders/APCSP"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/APCSP/csintro" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/APCSP/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="https://nighthawkcoders.github.io/APCSP/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/APCSP/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>AP Computer Science Principles course materials.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/nighthawkcoders" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/NighthawkCoding" target="_blank" title="twitter">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://www.youtube.com/channel/UClIKOsDS5dsfzFA3zveDT3Q" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/APCSP/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
