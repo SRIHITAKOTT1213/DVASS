@@ -441,11 +441,11 @@ a:hover { color: rgba(0, 0, 0, 0.87) !important; }
 
 pre, code { border-color: #dbdbdb; background-color: #f2f2f2; }
 
-.page-description { color: rgba(0, 0, 0, 0.69); }
+.page-description { color: rgba(0, 0, 0, 0.68); }
 
 .post-meta { color: rgba(0, 0, 0, 0.38); }
 
-.post-content p, .post-content li { color: rgba(0, 0, 0, 0.69); }
+.post-content p, .post-content li { color: rgba(0, 0, 0, 0.68); }
 
 .btn { background-color: #f2f2f2 !important; color: rgba(0, 0, 0, 0.87) !important; border-color: #dbdbdb !important; }
 
@@ -453,7 +453,7 @@ pre, code { border-color: #dbdbdb; background-color: #f2f2f2; }
 
 table th { background-color: #f2f2f2; border-color: #dbdbdb; color: rgba(0, 0, 0, 0.87); }
 
-table td { background-color: #ffffff; border-color: #dbdbdb; color: rgba(0, 0, 0, 0.69); }
+table td { background-color: #ffffff; border-color: #dbdbdb; color: rgba(0, 0, 0, 0.68); }
 
 .flash { color: #ffffff !important; filter: brightness(80%); }
 
@@ -461,7 +461,7 @@ canvas { filter: invert(100%); }
 
 .post-list > li > div { box-shadow: none !important; background-color: #f2f2f2; border: none !important; }
 
-li .post-meta-description { color: rgba(0, 0, 0, 0.69) !important; }
+li .post-meta-description { color: rgba(0, 0, 0, 0.68) !important; }
 
 /*-----------------------------------*/
 /*----- ADD YOUR STYLES BELOW -------*/
