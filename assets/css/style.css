@@ -429,13 +429,13 @@ html, body, input, textarea, select, button { color: rgba(216, 249, 221, 0.87) !
 
 * { transition-property: all; transition-duration: 0.2s; transition-timing-function: ease-in-out; }
 
-a { color: #c64949 !important; }
+a { color: white !important; }
 
 a:hover { color: rgba(216, 249, 221, 0.87) !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(216, 249, 221, 0.87) !important; }
 
-.site-nav { background-color: #ffffff; border-color: white; }
+.site-nav { background-color: clear; border-color: white; }
 
 * { scrollbar-color: #ffffff white; }
 
