@@ -4,8 +4,8 @@ $low-emph: rgba(rgb(0, 0, 0), 0.38);
 $dark-grey : #ffffff; 
 $clear: clear;
 
-$overlay: mix($dark-grey, white, 95%);
-$overlay-light: mix($dark-grey, white, 86%);
+$overlay: mix($dark-grey, rgb(0, 0, 0), 95%);
+$overlay-light: mix($dark-grey, rgb(0, 0, 0), 86%);
 
 html, body, input, textarea, select, button {   
   color: $high-emph !important;
