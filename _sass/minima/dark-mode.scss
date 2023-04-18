@@ -1,7 +1,7 @@
 $high-emph: rgba(rgb(216, 249, 221), 0.87);
 $med-emph: rgba(rgb(216, 249, 221), 0.69); //Noicee
 $low-emph: rgba(rgb(216, 249, 221), 0.38);
-$dark-grey : #001e14; 
+$white : #ffffff; 
 // $dark-grey : #1F1B24;
 $overlay: mix($dark-grey, white, 95%);
 $overlay-light: mix($dark-grey, white, 86%);
@@ -9,6 +9,12 @@ $overlay-light: mix($dark-grey, white, 86%);
 html, body, input, textarea, select, button {   
   color: $high-emph !important;
   background-color: $dark-grey !important;
+}
+
+* {
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
 }
 
 a {
