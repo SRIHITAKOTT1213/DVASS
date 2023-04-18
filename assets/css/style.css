@@ -435,11 +435,11 @@ a:hover { color: rgba(0, 0, 0, 0.87) !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(0, 0, 0, 0.87) !important; }
 
-.site-nav { background-color: clear; border-color: white; }
+.site-nav { background-color: clear; border-color: #dbdbdb; }
 
-* { scrollbar-color: #ffffff white; }
+* { scrollbar-color: #ffffff #dbdbdb; }
 
-pre, code { border-color: white; background-color: white; }
+pre, code { border-color: #dbdbdb; background-color: #f2f2f2; }
 
 .page-description { color: rgba(0, 0, 0, 0.69); }
 
@@ -447,19 +447,19 @@ pre, code { border-color: white; background-color: white; }
 
 .post-content p, .post-content li { color: rgba(0, 0, 0, 0.69); }
 
-.btn { background-color: white !important; color: rgba(0, 0, 0, 0.87) !important; border-color: white !important; }
+.btn { background-color: #f2f2f2 !important; color: rgba(0, 0, 0, 0.87) !important; border-color: #dbdbdb !important; }
 
 .btn:hover { background-color: #ffffff !important; }
 
-table th { background-color: white; border-color: white; color: rgba(0, 0, 0, 0.87); }
+table th { background-color: #f2f2f2; border-color: #dbdbdb; color: rgba(0, 0, 0, 0.87); }
 
-table td { background-color: #ffffff; border-color: white; color: rgba(0, 0, 0, 0.69); }
+table td { background-color: #ffffff; border-color: #dbdbdb; color: rgba(0, 0, 0, 0.69); }
 
 .flash { color: #ffffff !important; filter: brightness(80%); }
 
 canvas { filter: invert(100%); }
 
-.post-list > li > div { box-shadow: none !important; background-color: white; border: none !important; }
+.post-list > li > div { box-shadow: none !important; background-color: #f2f2f2; border: none !important; }
 
 li .post-meta-description { color: rgba(0, 0, 0, 0.69) !important; }
 
