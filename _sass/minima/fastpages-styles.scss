@@ -1,5 +1,6 @@
 //Default Overrides For Styles In Minima 
 // If you wish to override any of this CSS, do so in _sass/minima/custom-styles.css
+$med-emph: rgba(rgb(0, 0, 0), 0.68); //Noicee
 
 .post img {
         display: block;
@@ -35,7 +36,7 @@ img.emoji{
 
 .post-link{
     font-weight: normal;
-    color: $med-emph 
+    color: $med-emph; 
 }
 
 // change padding of headings
