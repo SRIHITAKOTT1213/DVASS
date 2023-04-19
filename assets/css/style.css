@@ -425,45 +425,45 @@ pre code { font-size: 15px !important; }
 
 .youtube-iframe-wrapper iframe, .youtube-iframe-wrapper object, .youtube-iframe-wrapper embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-html, body, input, textarea, select, button { color: rgba(254, 254, 254, 0.87) !important; background-color: #000000 !important; }
+html, body, input, textarea, select, button { color: rgba(254, 254, 254, 0.87) !important; background-color: #ffffff !important; }
 
 * { transition-property: all; transition-duration: 0.2s; transition-timing-function: ease-in-out; }
 
 a { color: white !important; }
 
-a:hover { color: #0d0000 !important; }
+a:hover { color: #fff2f2 !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(254, 254, 254, 0.87) !important; }
 
-.page-link { color: rgba(255, 255, 255, 0.68) !important; }
+.post-link { color: rgba(0, 0, 0, 0.68) !important; }
 
-.site-nav { background-color: clear; border-color: #230101; }
+.site-nav { background-color: clear; border-color: #fedcdc; }
 
-* { scrollbar-color: rgba(255, 255, 255, 0.68) #230101; }
+* { scrollbar-color: rgba(0, 0, 0, 0.68) #fedcdc; }
 
-pre, code { border-color: #230101; background-color: #0d0000; }
+pre, code { border-color: #fedcdc; background-color: #fff2f2; }
 
-.page-description { color: rgba(255, 255, 255, 0.68); }
+.page-description { color: rgba(0, 0, 0, 0.68); }
 
-.post-meta { color: rgba(255, 255, 255, 0.68); }
+.post-meta { color: rgba(0, 0, 0, 0.68); }
 
-.post-content p, .post-content li { color: rgba(255, 255, 255, 0.68); }
+.post-content p, .post-content li { color: rgba(0, 0, 0, 0.68); }
 
-.btn { background-color: #0d0000 !important; color: rgba(255, 255, 255, 0.68) !important; border-color: #230101 !important; }
+.btn { background-color: #fff2f2 !important; color: rgba(0, 0, 0, 0.68) !important; border-color: #fedcdc !important; }
 
-.btn:hover { background-color: #000000 !important; }
+.btn:hover { background-color: #ffffff !important; }
 
-table th { background-color: #0d0000; border-color: #230101; color: rgba(254, 254, 254, 0.87); }
+table th { background-color: #fff2f2; border-color: #fedcdc; color: rgba(254, 254, 254, 0.87); }
 
-table td { background-color: #000000; border-color: #230101; color: rgba(255, 255, 255, 0.68); }
+table td { background-color: #ffffff; border-color: #fedcdc; color: rgba(0, 0, 0, 0.68); }
 
-.flash { color: #000000 !important; filter: brightness(80%); }
+.flash { color: #ffffff !important; filter: brightness(80%); }
 
 canvas { filter: invert(100%); }
 
-.post-list > li > div { box-shadow: none !important; background-color: #0d0000; border: none !important; }
+.post-list > li > div { box-shadow: none !important; background-color: #fff2f2; border: none !important; }
 
-li .post-meta-description { color: rgba(255, 255, 255, 0.68) !important; }
+li .post-meta-description { color: rgba(0, 0, 0, 0.68) !important; }
 
 /*-----------------------------------*/
 /*----- ADD YOUR STYLES BELOW -------*/
