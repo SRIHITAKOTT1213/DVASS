@@ -435,7 +435,7 @@ a:hover { color: #fff2f2 !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(254, 254, 254, 0.87) !important; }
 
-.page-link { color: rgba(0, 0, 0, 0.68); }
+.page-link { color: rgba(0, 0, 0, 0.68) !important; }
 
 .site-nav { background-color: clear; border-color: #fedcdc; }
 
