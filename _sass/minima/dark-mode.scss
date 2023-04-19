@@ -1,7 +1,7 @@
 $high-emph: rgba(rgb(254, 254, 254), 0.87);
-$med-emph: rgba(rgb(249, 248, 248), 0.68); //Noicee
+$med-emph: rgba(rgb(0, 0, 0), 0.68); //Noicee
 $low-emph: rgba(rgb(255, 251, 251), 0.38);
-$dark-grey : #fedc54; 
+$dark-grey : #fefefe; 
 $clear: clear;
 //huh
 $overlay: mix($dark-grey, rgb(255, 0, 0), 95%);
@@ -23,7 +23,7 @@ a {
 }
 
 a:hover {
-    color:$high-emph !important;
+    color:$overlay !important;
 }
 
 .site-title, .site-title:visited, .site-nav, .page-link {
@@ -36,7 +36,7 @@ a:hover {
 }
 
 * {
-    scrollbar-color: $dark-grey $overlay-light;
+    scrollbar-color: $med-emph $overlay-light;
 }
 
 pre, code {
@@ -59,7 +59,7 @@ pre, code {
 
 .btn {
     background-color: $overlay !important;
-    color: $high-emph !important;
+    color: $med-emph !important;
     border-color: $overlay-light !important;
 }
 
