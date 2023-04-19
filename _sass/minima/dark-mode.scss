@@ -1,7 +1,7 @@
 $high-emph: rgba(rgb(254, 254, 254), 0.87);
-$med-emph: rgba(rgb(255, 255, 255), 0.68); //Noicee
+$med-emph: rgba(rgb(0, 0, 0), 0.68); //Noicee
 $low-emph: rgba(rgb(255, 251, 251), 0.38);
-$dark-grey : #000000; 
+$dark-grey : #ffffff; 
 $clear: clear;
 //huh
 $overlay: mix($dark-grey, rgb(255, 0, 0), 95%);
@@ -30,7 +30,7 @@ a:hover {
     color: $high-emph !important;
 }
 
-.page-link {
+.post-link {
     color: $med-emph !important;
 }
 
