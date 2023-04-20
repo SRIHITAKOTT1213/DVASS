@@ -93,6 +93,17 @@
   
       ,"page1": {
           "title": "",
+          "content": "Dealer Hand . . Player Hand . . Hit Stay Play Finish and Submit Score",
+          "url": "https://srihitakott1213.github.io/DVASS/bjsim",
+          "relUrl": "/bjsim",
+          "date": ""
+      }
+      
+  
+
+  
+      ,"page2": {
+          "title": "",
           "content": "Welcome to DVASS Lesson Site . .",
           "url": "https://srihitakott1213.github.io/DVASS/",
           "relUrl": "/",
@@ -102,7 +113,7 @@
   
 
   
-      ,"page2": {
+      ,"page3": {
           "title": "Blackjack Python Model",
           "content": "In certain lessons, this code will be referenced as a Python version of the simulation. The code for it is found below. . import random from IPython.display import clear_output as clr class Card: def __init__(self, suit, val): self.suit = suit self.val = val if val == 11: self.kind = &quot;Ace&quot; elif val == 12: self.kind = &quot;Jack&quot; elif val == 13: self.kind = &quot;Queen&quot; elif val == 14: self.kind = &quot;King&quot; else: self.kind = str(self.val) def show(self): return f&quot;{self.kind} of {self.suit}&quot; def ace_adj(self): if self.kind == &quot;Ace&quot;: self.val = 1 class Deck: def __init__(self): self.cards = [] self.build() def build(self): for suit in [&quot;Spades&quot;, &quot;Clubs&quot;, &quot;Diamonds&quot;, &quot;Hearts&quot;]: for val in range(2, 15): self.cards.append(Card(suit, val)) def show(self): card_disp = [card.show() for card in self.cards] return card_disp def shuffle(self): random.shuffle(self.cards) def draw_card(self): return self.cards.pop() deck = Deck() deck.shuffle() player_chips = 100 def game_start(): clr(wait=True) global player_hand #initializing hands and deck global dealer_hand global deck global p_bet deck = Deck() deck.shuffle() player_hand = [] dealer_hand = [] p_bet = bet(player_chips) #getting the player bet print(&quot;Initial draws:&quot;) #giving the initial draws d1 = hit(dealer_hand) print(f&quot;The dealer draws: {d1}&quot;) p1 = hit(player_hand) print(f&quot;You receive: {p1}&quot;) d2 = hit(dealer_hand) print(&quot;The dealer draws a face-down card...&quot;) p2 = hit(player_hand) print(f&quot;You receive: {p2}&quot;) if sum(player_hand) == 21: #instant player win on blackjack potentially if sum(dealer_hand) != 21: print(&quot;WOW! A blackjack! You win!&quot;) win(p_bet) play_again() return else: print(&quot;Both you and the dealer have blackjack, so it&#39;s a bust! Keep your bet.&quot;) play_again() return print(&quot;--&quot;) print(f&quot;Dealer&#39;s hand: {d1}, ???&quot;) player_turn() #once player turn finishes, the dealer turn occurs play_again() def bet(chips): print(f&quot;Current chips: {chips}&quot;) b = input(f&quot;How much would you like to bet? (Input an integer {str(player_chips)} or less.)&quot;) try: if int(b) &lt;= chips: return int(b) else: print(&quot;Invalid bet.&quot;) bet(chips) except: print(&quot;Invalid bet.&quot;) bet(chips) def sum(hand): sm = 0 for card in hand: if card.val &gt; 11: sm += 10 else: sm += card.val if sm &gt; 21: for card in hand: if card.val == 11: card.ace_adj() return sum(hand) return sm def hit(hand): res = deck.draw_card() if (res.val == 11) and (sum(hand) + 11 &gt; 21): #adjusting ace if it would break res.ace_adj() hand.append(res) return res.show() def hand_display(hand): disp_hand = [] for card in hand: disp_hand.append(card.show()) return &quot;, &quot;.join(disp_hand) def player_turn(): print(f&quot;Your hand: {hand_display(player_hand)}&quot;) if sum(player_hand) &gt; 21: print(&quot;You break! You lose.&quot;) lose(p_bet) return rsp = input(&quot;Would you like to hit (h) or stay (s)? (input either option)&quot;) if rsp == &quot;h&quot;: received = hit(player_hand) print(f&quot;You drew a {received}!&quot;) player_turn() elif rsp == &quot;s&quot;: print(&quot;You stand.&quot;) dealer_turn() else: print(&#39;Invalid input. Input &quot;h&quot; to hit or &quot;s&quot; to stand.&#39;) player_turn() def dealer_turn(): print(f&quot;Dealer&#39;s hand: {hand_display(dealer_hand)}&quot;) if sum(dealer_hand) &gt; 16: print(&quot;The dealer stays.&quot;) pass else: print(f&quot;The dealer draws: {hit(dealer_hand)}&quot;) if sum(dealer_hand) &gt; 21: print(&quot;The dealer breaks! You win.&quot;) win(p_bet) return dealer_turn() return if sum(player_hand) &gt; sum(dealer_hand): print(f&quot;Congratulations! You won with a hand worth {sum(player_hand)}!&quot;) win(p_bet) elif sum(dealer_hand) &gt; sum(player_hand): print(f&quot;Too bad! You lost to the dealer&#39;s hand, worth {sum(dealer_hand)}.&quot;) lose(p_bet) else: print(&quot;It&#39;s a push! You keep your bet.&quot;) return def win(bet): global player_chips player_chips += bet return def lose(bet): global player_chips player_chips -= bet return def play_again(): if player_chips != 0: pa = input(&#39;Would you like to play again? (Input &quot;y&quot; for yes and &quot;n&quot; for no.)&#39;) if pa.lower() == &quot;y&quot;: game_start() else: print(f&quot;You finished with {str(player_chips)} chips!&quot;) return else: print(&quot;You lost all of your chips! Better luck next time.&quot;) return game_start() .",
           "url": "https://srihitakott1213.github.io/DVASS/pythonmodel/",
@@ -133,7 +144,7 @@
   
 
   
-      ,"page10": {
+      ,"page11": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://srihitakott1213.github.io/DVASS/robots.txt",
