@@ -1,5 +1,6 @@
 //Default Overrides For Styles In Minima 
 // If you wish to override any of this CSS, do so in _sass/minima/custom-styles.css
+$med-emph: rgba(rgb(0, 0, 0), 0.68); //Noicee
 
 .post img {
         display: block;
@@ -76,7 +77,7 @@ li {
   margin-bottom:.05rem !important;
   }
   .post-meta-description {
-    color: rgb(88, 88, 88);
+    color: rgb(72, 72, 72);
     font-size: 15px;
     margin-top:.05rem !important;
     margin-bottom:.05rem !important;
@@ -153,7 +154,7 @@ h6:hover .anchor-link {
 .page-description {
   margin-top: .5rem !important;
   margin-bottom: .5rem !important;
-  color: #585858;
+  color: #4c4c4c;
   font-size: 115%;
 }
 
