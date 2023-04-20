@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: none
 tite: Blackjack Simulation
-permalink: /bjsim
+permalink: /bjsim/
 ---
 <style>
     .card_table {
