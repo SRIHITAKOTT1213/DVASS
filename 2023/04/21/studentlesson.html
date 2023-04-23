@@ -516,9 +516,77 @@ window.onload = wrap_img;
 <li>The efficiency of an algorithm can be measured in terms of its time complexity and space complexity.<ul>
 <li>Time complexity refers to the amount of time required by an algorithm to complete its task as a function of its input size.</li>
 <li>Space complexity refers to the amount of memory required by an algorithm to complete its task as a function of its input size.</li>
+<li>can be analyzed using Big O notation, which provides an upper bound on the worst-case time and space complexity of the algorithm.</li>
 </ul>
 </li>
-<li>The efficiency of an algorithm can be analyzed using Big O notation, which provides an upper bound on the worst-case time and space complexity of the algorithm.</li>
+</ul>
+<p>What is the time complexity of the following code:</p>
+
+<pre><code>- O(N)
+- O(N*log(N))
+- O(N * Sqrt(N))
+- O(N*N)</code></pre>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">N</span><span class="p">)):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What will be the time complexity of the following code?</p>
+
+<pre><code>- n
+- (n+1)
+- n(n-1)
+- n(n+1)</code></pre>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1">#iterates "n" times, with "i" taking on values from 0 to n-1.</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="c1"># iterates "i" times, with "j" taking on values from 0 to i-1.</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li>Efficiency can be improved by optimizing algorithms or by using more efficient data structures and algorithms.<ul>
 <li>Some common techniques for improving efficiency include reducing the size of input data, caching results, and parallelizing tasks.</li>
 <li>Understanding algorithmic efficiency is important in software development, as it can impact the performance of applications and their ability to scale with larger data sets.</li>
@@ -532,7 +600,12 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>DREW LESSON</p>
+<h1 id="Introduction:-Simulations">
+<a class="anchor" href="#Introduction:-Simulations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction: Simulations<a class="anchor-link" href="#Introduction:-Simulations"> </a>
+</h1>
+<p>Simulations are models of real-world phenomena or systems that use mathematical algorithms and computer programs simulate the real behavior and aspects of the subject being modeled.</p>
+<p>Simulations are most often used to model complex or time-consuming things that would be difficult to test in real life, such as modeling the spread of diseases in certain ecosystems or testing the functionality of a potential product before it is made.</p>
+<p>In this lesson, we will be looking at lists, iteration, and random values through the lens of simulations.</p>
 
 </div>
 </div>
@@ -589,12 +662,6 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Introduction:-Simulations">
-<a class="anchor" href="#Introduction:-Simulations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction: Simulations<a class="anchor-link" href="#Introduction:-Simulations"> </a>
-</h1>
-<p>Simulations are models of real-world phenomena or systems that use mathematical algorithms and computer programs simulate the real behavior and aspects of the subject being modeled.</p>
-<p>Simulations are most often used to model complex or time-consuming things that would be difficult to test in real life, such as modeling the spread of diseases in certain ecosystems or testing the functionality of a potential product before it is made.</p>
-<p>In this lesson, we will be looking at lists, iteration, and random values through the lens of simulations.</p>
 <h1 id="Review:-Lists-and-Iteration">
 <a class="anchor" href="#Review:-Lists-and-Iteration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Review: Lists and Iteration<a class="anchor-link" href="#Review:-Lists-and-Iteration"> </a>
 </h1>

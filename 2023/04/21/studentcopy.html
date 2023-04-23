@@ -79,7 +79,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      9 min read
+      10 min read
     
 </span></p>
 
@@ -527,9 +527,77 @@ window.onload = wrap_img;
 <li>The efficiency of an algorithm can be measured in terms of its <strong><em>__</em></strong> and <strong><em>__</em></strong>.<ul>
 <li>Time complexity refers to the amount of time required by an algorithm to complete its task as a function of its input size.</li>
 <li>Space complexity refers to the <strong><em>__</em></strong> required by an algorithm to complete its task as a function of its input size.</li>
+<li>The efficiency of an algorithm can be analyzed using <strong>_</strong> notation, which provides an upper bound on the <strong>__</strong> time and space complexity of the algorithm.</li>
 </ul>
 </li>
-<li>The efficiency of an algorithm can be analyzed using <strong>_</strong> notation, which provides an upper bound on the <strong>__</strong> time and space complexity of the algorithm.</li>
+</ul>
+<p>What is the time complexity of the following code:</p>
+
+<pre><code>- O(N)
+- O(N*log(N))
+- O(N * Sqrt(N))
+- O(N*N)</code></pre>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">N</span><span class="p">)):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What will be the time complexity of the following code?</p>
+
+<pre><code>- n
+- (n+1)
+- n(n-1)
+- n(n+1)</code></pre>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1">#iterates "n" times, with "i" taking on values from 0 to n-1.</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span> <span class="c1"># iterates "i" times, with "j" taking on values from 0 to i-1.</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
 <li>Efficiency can be improved by using more efficient data structures and algorithms.<ul>
 <li>Some common techniques for improving efficiency include reducing the <strong>___</strong>, caching results, and <strong>___</strong>.</li>
 <li>Understanding algorithmic efficiency is important in software development, as it can impact the performance of applications and their ability to scale with larger data sets.</li>
