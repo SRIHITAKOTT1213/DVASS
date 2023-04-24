@@ -4,39 +4,95 @@ tite: Blackjack Simulation
 permalink: /bjsim/
 ---
 <style>
-    .card_table {
+    .big_ol_cont {
+        justify-content:center;
+        margin:auto;
+        border:20px solid;
+        border-color:black;
+        border-radius:200px;
+        background-color: #5AB067;
+        font-family:serif;
+    }
+
+    .card_table_d {
         width: 1000px;
         height: 300px;
+        border: 10px solid;
+        border-radius: 150px;
+        background-color: #FF5D5D;
+        padding:20px;
+        justify-content:center;
+        text-align:center;
+        font-size:16px;
+    }
+
+    .card_table_p {
+        width: 1000px;
+        height: 300px;
+        border: 10px solid;
+        border-radius: 150px;
+        background-color: white;
+        padding:20px;
+        justify-content:center;
+        text-align:center;
+        font-size:16px;
     }
 
     .select_table {
         margin:auto;
         text-align:center;
         justify-content:center;
+        padding:5px;
+        font-family:serif;
+    }
+
+    .db_input {
+        justify-content:center;
+        margin:auto;
+        border: 5px solid;
+        border-radius: 10px;
+        background-color:white;
+    }
+
+    .select_button {
+        margin:auto;
+        text-align:center;
+        justify-content:center;
+        border: 5px solid;
+        border-radius:5px;
+        width:120px;
+        height:60px;
+        background-color:white;
+        font-size:14px;
+        font-family:serif;
     }
 
     table { margin: auto }
 </style>
 
-<div style="text-align:center;justify-content:center">
-    <h2>Dealer Hand</h2>
-    <table id="dealer_card_table" class="card_table" style="border:1px solid">
-        <tr id="dealer_cards">
-        </tr>
-    </table>
-    <h2>Player Hand</h2>
-    <table id="dealer_card_table" class="card_table" style="border:1px solid">
-        <tr id="player_cards">
-        </tr>
-    </table>
-</div>
-
-<div id="buttons" style="margin:auto;text-align:center;justify-content:center">
+<div class="big_ol_cont">
     <br>
-    <div id="result_text"></div>
-    <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><button id="stay_button" class="select_button" style="display:none" onclick="dealerTurn()">Stay</button>
-    <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
-    <input id="username_input" type="text" style="display:none"><button id="submit_button" style="display:none">Submit</button>
+    <div style="text-align:center;justify-content:center">
+        <h2>Dealer Hand</h2>
+        <table id="dealer_card_table" class="card_table_d">
+            <tr id="dealer_cards">
+            </tr>
+        </table>
+        <h2>Player Hand</h2>
+        <table id="dealer_card_table" class="card_table_p">
+            <tr id="player_cards">
+            </tr>
+        </table>
+    </div>
+    <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
+        <br>
+        <div id="result_text"></div>
+        <br>
+        <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><button id="stay_button" class="select_button" style="display:none" onclick="dealerTurn()">Stay</button>
+        <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
+        <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
+    </div>
+    <br>
 </div>
 
 <script>
