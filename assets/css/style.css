@@ -435,7 +435,7 @@ a:hover { color: #0d0000 !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(254, 254, 254, 0.87) !important; }
 
-.post-link { color: rgba(0, 0, 0, 0.68) !important; }
+.post-link { color: rgba(254, 254, 254, 0.87) !important; }
 
 .site-nav { background-color: clear; border-color: #230101; }
 
@@ -445,9 +445,9 @@ pre, code { border-color: #230101; background-color: #0d0000; }
 
 .page-description { color: rgba(254, 254, 254, 0.87); }
 
-.post-meta { color: rgba(0, 0, 0, 0.68); }
+.post-meta { color: rgba(254, 254, 254, 0.87); }
 
-.post-content p, .post-content li { color: rgba(0, 0, 0, 0.68); }
+.post-content p, .post-content li { color: rgba(254, 254, 254, 0.87); }
 
 .btn { background-color: #0d0000 !important; color: rgba(0, 0, 0, 0.68) !important; border-color: #230101 !important; }
 
@@ -463,7 +463,7 @@ canvas { filter: invert(100%); }
 
 .post-list > li > div { box-shadow: none !important; background-color: #0d0000; border: none !important; }
 
-li .post-meta-description { color: rgba(0, 0, 0, 0.68) !important; }
+li .post-meta-description { color: rgba(254, 254, 254, 0.87) !important; }
 
 /*-----------------------------------*/
 /*----- ADD YOUR STYLES BELOW -------*/
