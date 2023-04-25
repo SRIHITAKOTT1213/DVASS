@@ -451,7 +451,7 @@ pre, code { border-color: #fedcdc; background-color: #fff2f2; }
 
 .btn { background-color: #fff2f2 !important; color: rgba(0, 0, 0, 0.68) !important; border-color: #fedcdc !important; }
 
-.btn:hover { background-color: #ffffff !important; }
+.btn:hover { background-color: rgba(0, 0, 0, 0.68) !important; }
 
 table th { background-color: #fff2f2; border-color: #fedcdc; color: rgba(254, 254, 254, 0.87); }
 
