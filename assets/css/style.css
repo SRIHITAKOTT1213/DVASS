@@ -431,7 +431,7 @@ html, body, input, textarea, select, button { color: rgba(254, 254, 254, 0.87) !
 
 a { color: white !important; }
 
-a:hover { color: #0d0000 !important; }
+a:hover { color: rgba(255, 0, 0, 0.38) !important; }
 
 .site-title, .site-title:visited, .site-nav, .page-link { color: rgba(254, 254, 254, 0.87) !important; }
 
