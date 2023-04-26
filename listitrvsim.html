@@ -321,7 +321,7 @@ The difference between the value and the index is 200.
 <h4 id="Recursive-Loops">
 <a class="anchor" href="#Recursive-Loops" aria-hidden="true"><span class="octicon octicon-link"></span></a>Recursive Loops<a class="anchor-link" href="#Recursive-Loops"> </a>
 </h4>
-<p>Recursive loops have you calling one function inside of another.</p>
+<p>Recursive loops have you calling one function inside of another. If a function must make some change to a certain value multiple times, it is oftem most efficient to have a function call itself with slightly different arguments like the fibonacci sequence below.</p>
 
 </div>
 </div>
@@ -402,7 +402,7 @@ The difference between the value and the index is 200.
 <a class="anchor" href="#While-Loops" aria-hidden="true"><span class="octicon octicon-link"></span></a>While Loops<a class="anchor-link" href="#While-Loops"> </a>
 </h4>
 <p>While loops aren't used in the program, but they offer a different way to repeat a set of instructions in a program. The procedure below the <code>while [condition]</code> line will occur until the condition is made not true.</p>
-<p><mark>**Student Interation**: How could this `build` function be altered to function with a **while loop** within it?</mark></p>
+<p><strong>Student Interation</strong>: How could this <code>build</code> function be altered to function with a <strong>while loop</strong> within it?</p>
 
 </div>
 </div>
@@ -419,8 +419,7 @@ The difference between the value and the index is 200.
             <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
                 <span class="n">deck</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Card</span><span class="p">(</span><span class="n">suit</span><span class="p">,</span> <span class="n">val</span><span class="p">))</span>
 
-<span class="c1">#HINT: you may want to make a variable i to be the numbers in the range</span>
-<span class="c1"># you could increment it each loop</span>
+<span class="c1">#HINT: you may want to make an incrementing i variable</span>
 </pre></div>
 
     </div>
