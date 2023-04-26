@@ -120,8 +120,16 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h3"><a href="#Introduction:-Simulations">Introduction: Simulations </a></li>
 <li class="toc-entry toc-h3"><a href="#Review:-Lists-and-Iteration">Review: Lists and Iteration </a>
 <ul>
-<li class="toc-entry toc-h4"><a href="#Recursive-Loops">Recursive Loops </a></li>
-<li class="toc-entry toc-h4"><a href="#For-Loops">For Loops </a></li>
+<li class="toc-entry toc-h4"><a href="#For-Loops">For Loops </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#List-Comprehension">List Comprehension </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#Recursive-Loops">Recursive Loops </a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#Nesting-Loops">Nesting Loops </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h4"><a href="#While-Loops">While Loops </a></li>
 </ul>
 </li>
@@ -139,7 +147,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>(In your VSCode, run the code cell below. It will be used throughout the lesson.)</p>
+<p>(In your VSCode, run the code cell below. It will be used in the lesson, and you may want to reference it later.)</p>
 
 </div>
 </div>
@@ -151,9 +159,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">player_chips</span> <span class="o">=</span> <span class="mi">100</span>
-
-<span class="k">class</span> <span class="nc">Card</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Card</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">suit</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">suit</span> <span class="o">=</span> <span class="n">suit</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
@@ -197,7 +203,73 @@ window.onload = wrap_img;
 <h3 id="Review:-Lists-and-Iteration">
 <a class="anchor" href="#Review:-Lists-and-Iteration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Review: Lists and Iteration<a class="anchor-link" href="#Review:-Lists-and-Iteration"> </a>
 </h3>
-<p>Lists and iteration work hand-in-hand to efficiently process and/or modify multiple values at once. In the card game, lists and iteration are used together frequently to make the game work correctly. See two examples of how it can work below.</p>
+<p>Lists and iteration work hand-in-hand to efficiently process and/or modify multiple values at once. In a card game, for example, lists and iteration are used together frequently to make the game work correctly.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="For-Loops">
+<a class="anchor" href="#For-Loops" aria-hidden="true"><span class="octicon octicon-link"></span></a>For Loops<a class="anchor-link" href="#For-Loops"> </a>
+</h4>
+<p>For loops are probably the most well-known type of iterative loop used in code. Most of us know about the <code>for variable in list</code> format.</p>
+<p>One helpful tool not a lot of people konw about is the <code>enumerate()</code> function. When used in conjunction with a for loop, you can always have access to the index and value of each selected list entry.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">numlist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">203</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">numlist</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"This entry's index is </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="si">}</span><span class="s2">, but its value is </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The difference between the value and the index is </span><span class="si">{</span><span class="n">num</span> <span class="o">-</span> <span class="n">key</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>This entry's index is 0, but its value is 3.
+The difference between the value and the index is 3.
+This entry's index is 1, but its value is 5.
+The difference between the value and the index is 4.
+This entry's index is 2, but its value is 68.
+The difference between the value and the index is 66.
+This entry's index is 3, but its value is 203.
+The difference between the value and the index is 200.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>QUESTION: How is the <code>key, num in enumerate(list)</code> format similar to the format used when applying a <code>for</code> loop to a dictionary?</p>
+<h5 id="List-Comprehension">
+<a class="anchor" href="#List-Comprehension" aria-hidden="true"><span class="octicon octicon-link"></span></a>List Comprehension<a class="anchor-link" href="#List-Comprehension"> </a>
+</h5>
+<p>You may also see <code>for</code> loops used within a list like below. We went over this in class fairly recently. In this case, it is used to show the cards in the hand of a player.</p>
 
 </div>
 </div>
@@ -249,7 +321,7 @@ window.onload = wrap_img;
 <h4 id="Recursive-Loops">
 <a class="anchor" href="#Recursive-Loops" aria-hidden="true"><span class="octicon octicon-link"></span></a>Recursive Loops<a class="anchor-link" href="#Recursive-Loops"> </a>
 </h4>
-<p>Recursive loops are used throughout the Python blackjack model. This is seen with the interaction between the <code>game_start()</code> function and the <code>play_again()</code> function.</p>
+<p>Recursive loops have you calling one function inside of another.</p>
 
 </div>
 </div>
@@ -261,23 +333,31 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">game_start</span><span class="p">():</span>
-    <span class="c1">#after the game setup and outcome...</span>
-    <span class="n">play_again</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">terms</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">terms</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">terms</span>
+    <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">terms</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">terms</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">play_again</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">player_chips</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">pa</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">'Would you like to play again? (Input "y" for yes and "n" for no.)'</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">pa</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">"y"</span><span class="p">:</span>
-                <span class="n">game_start</span><span class="p">()</span> <span class="c1">#HERE</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span>
-
-<span class="c1"># run to see it in action</span>
-<span class="n">game_start</span><span class="p">()</span>
+<span class="n">fibonacci</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -287,11 +367,10 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="For-Loops">
-<a class="anchor" href="#For-Loops" aria-hidden="true"><span class="octicon octicon-link"></span></a>For Loops<a class="anchor-link" href="#For-Loops"> </a>
-</h4>
-<p>For loops are used quite often throughout the simulation and are helpful to easily be able to repeat a set of conditions to everything inside of a list/collection of data or to repeat a process a certain number of times.</p>
-<p>An example of both of these things are very conveniently seen in the <code>Deck</code> class function <code>build()</code>. It also shows loops being nested.</p>
+<h5 id="Nesting-Loops">
+<a class="anchor" href="#Nesting-Loops" aria-hidden="true"><span class="octicon octicon-link"></span></a>Nesting Loops<a class="anchor-link" href="#Nesting-Loops"> </a>
+</h5>
+<p>Nesting loops increases the time complexity of the program, but it can be used to do things like make a card deck (see below).</p>
 
 </div>
 </div>
@@ -319,13 +398,6 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Going piece by piece:</p>
-
-<pre><code>for suit in ["Spades", "Clubs", "Diamonds", "Hearts"]:</code></pre>
-<p>Whatever is mentioned below this will be repeated four times, once for each of the listed card suits.</p>
-
-<pre><code>for val in range(2, 15)</code></pre>
-<p>Here, the <code>for</code> loop is essentially doing the same thing as before, this time with a list of numbers starting with 2 and ending with 14. As a result, the function runs 13 times, each time with a new integer value that is assigned to the value of a card of a certain suit.</p>
 <h4 id="While-Loops">
 <a class="anchor" href="#While-Loops" aria-hidden="true"><span class="octicon octicon-link"></span></a>While Loops<a class="anchor-link" href="#While-Loops"> </a>
 </h4>
