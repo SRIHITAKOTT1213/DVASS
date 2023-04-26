@@ -79,7 +79,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      3 min read
     
 </span></p>
 
@@ -117,15 +117,19 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#Selection">Selection </a></li>
 <li class="toc-entry toc-h1"><a href="#Conditionals">Conditionals </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#If-statements">If statements </a></li>
-<li class="toc-entry toc-h2"><a href="#If/else-and-if/elif/else-statements">If/else and if/elif/else statements </a></li>
+<li class="toc-entry toc-h2"><a href="#Else">Else </a></li>
+<li class="toc-entry toc-h2"><a href="#Elif">Elif </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Nested-Conditionals">Nested Conditionals </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#Nested-Conditional-Statements">Nested Conditional Statements </a></li>
+<li class="toc-entry toc-h2"><a href="#Indentation">Indentation </a></li>
+<li class="toc-entry toc-h2"><a href="#Write-a-program-using-conditionals-and-nested-conditionals">Write a program using conditionals and nested conditionals </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#Binary-Search">Binary Search </a></li>
@@ -141,6 +145,17 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Selection">
+<a class="anchor" href="#Selection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Selection<a class="anchor-link" href="#Selection"> </a>
+</h1>
+<p>Selection refers to the process of maing decisions in a program based on certain conditions. It is normally done with conditional statements.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Conditionals">
 <a class="anchor" href="#Conditionals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conditionals<a class="anchor-link" href="#Conditionals"> </a>
 </h1>
@@ -152,13 +167,14 @@ window.onload = wrap_img;
 <p>What are the main types of conditional statements?:</p>
 <ul>
 <li>if</li>
-<li>if/else</li>
-<li>if/elif/else</li>
+<li>elif</li>
+<li>else</li>
 </ul>
 <h2 id="If-statements">
 <a class="anchor" href="#If-statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>If statements<a class="anchor-link" href="#If-statements"> </a>
 </h2>
 <ul>
+<li>The if statement is used to check if a certain condition is true. The condition can be any expression that evaulates to a boolean value, True or False. If the condition is True, then it executes a code block. </li>
 <li>If (condition) then (consequence)</li>
 <li>Example:</li>
 </ul>
@@ -182,19 +198,42 @@ window.onload = wrap_img;
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>x is positive
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     
 
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="If/else-and-if/elif/else-statements">
-<a class="anchor" href="#If/else-and-if/elif/else-statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>If/else and if/elif/else statements<a class="anchor-link" href="#If/else-and-if/elif/else-statements"> </a>
+<h2 id="Else">
+<a class="anchor" href="#Else" aria-hidden="true"><span class="octicon octicon-link"></span></a>Else<a class="anchor-link" href="#Else"> </a>
 </h2>
 <ul>
+<li>The else statemnt executes a code block when the if condition is False. </li>
 <li>If (condition) then (consequence A), else (consequence B)</li>
-<li>Adding onto the code from before to take negative numbers and 0 into account</li>
-<li>Example</li>
+</ul>
+<h2 id="Elif">
+<a class="anchor" href="#Elif" aria-hidden="true"><span class="octicon octicon-link"></span></a>Elif<a class="anchor-link" href="#Elif"> </a>
+</h2>
+<ul>
+<li>The elif statement can check ultiple conditions in a sequence, and execute a certain block of code if any of the conditions are true. </li>
+<li>If (condition) then (consequence A), elif (condition) then (consequence B), else (consequence C)</li>
+</ul>
+<ul>
+<li>Example adding onto the code from before to take negative numbers and 0 into account</li>
 </ul>
 
 </div>
@@ -299,6 +338,30 @@ x is divisible by 3
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Indentation">
+<a class="anchor" href="#Indentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Indentation<a class="anchor-link" href="#Indentation"> </a>
+</h2>
+<p>When using conditionals and nested conditioinals in Python, it is important to pay attention to the level of indentation in the code. The code inside the if, elif, and else blocks must be indented so they are nested wihtin the outer statements. This way, Python knows which code belongs to which block.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Write-a-program-using-conditionals-and-nested-conditionals">
+<a class="anchor" href="#Write-a-program-using-conditionals-and-nested-conditionals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Write a program using conditionals and nested conditionals<a class="anchor-link" href="#Write-a-program-using-conditionals-and-nested-conditionals"> </a>
+</h2>
+<ul>
+<li>Ideas: Quiz, game (rock paper scissors, guess number), etc</li>
+</ul>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -367,6 +430,7 @@ x is divisible by 3
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Is your number </span><span class="si">{</span><span class="n">guess</span><span class="si">}</span><span class="s2">?"</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Enter 'higher', 'lower', or 'yes': "</span><span class="p">)</span>
 
+        <span class="c1"># conditional statements to check target number and guess</span>
         <span class="k">if</span> <span class="n">response</span> <span class="o">==</span> <span class="s1">'yes'</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"I guessed your number </span><span class="si">{</span><span class="n">guess</span><span class="si">}</span><span class="s2">!"</span><span class="p">)</span>
             <span class="k">break</span>
