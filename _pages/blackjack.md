@@ -171,11 +171,13 @@ permalink: /bjsim/
 
     function givePlayerCard(card) {
         const newCard = document.createElement("td");
-        newCard.src = "{{ site.baseurl }}/images/" + card.kind + card.suit + ".png";
-        newCard.width = "80";
-        newCard.height = "150";
-        console.log(newCard.src);
+        const newCardImage = document.createElement("img");
+        newCardImage.src = "{{ site.baseurl }}/images/" + card.kind + card.suit + ".png";
+        newCardImage.width = "80";
+        newCardImage.height = "150";
+        console.log(newCardImage.src);
         //newCard.innerHTML = card.kind + card.suit;
+        newCard.appendChild(newCardImage);
         playerRow.appendChild(newCard);
     };
 
