@@ -1,7 +1,7 @@
 ---
 layout: none
 tite: Blackjack Simulation
-permalink: /bjsim/
+permalink: /blackjack/
 ---
 <style>
     .big_ol_cont {
@@ -174,7 +174,7 @@ permalink: /bjsim/
         const newCard = document.createElement("td");
         const newCardImage = document.createElement("img");
         newCardImage.src = "{{ site.baseurl }}/images/cards/" + card.kind + card.suit + ".png";
-        newCardImage.width = "80";
+        newCardImage.width = "100";
         newCardImage.height = "150";
         console.log(newCardImage.src); 
         newCard.appendChild(newCardImage);
@@ -184,12 +184,21 @@ permalink: /bjsim/
     function giveDealerCard(card) {
         if (card != "face_down") {
             const newCard = document.createElement("td");
-            newCard.innerHTML = card.kind + " of " + card.suit;
+            const newCardImage = document.createElement("img");
+            newCardImage.src = "{{ site.baseurl }}/images/cards/" + card.kind + card.suit + ".png";
+            newCardImage.width = "100";
+            newCardImage.height = "150"; 
+            newCard.appendChild(newCardImage);
             dealerRow.appendChild(newCard);
         } else {
             const newCard = document.createElement("td");
-            newCard.innerHTML = "Face-Down Card";
-            newCard.id = "facedown_card";
+            const newCardImage = document.createElement("img");
+            newCardImage.src = "{{ site.baseurl }}/images/cards/facedown_card.png";
+            newCardImage.width = "100";
+            newCardImage.height = "150"; 
+            newCard.appendChild(newCardImage);
+            //newCard.innerHTML = "Face-Down Card";
+            //newCard.id = "facedown_card";
             dealerRow.appendChild(newCard);
         }
     };
