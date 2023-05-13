@@ -10,7 +10,7 @@ permalink: /bjsim/
         border:20px solid;
         border-color:black;
         border-radius:200px;
-        background-color: #5AB067;
+        background-color: #103d1c;
         font-family:serif;
     }
 
@@ -31,7 +31,8 @@ permalink: /bjsim/
         height: 300px;
         border: 10px solid;
         border-radius: 150px;
-        background-color: white;
+        border-color: #699e42;
+        background-color: #103d1c;
         padding:20px;
         justify-content:center;
         text-align:center;
@@ -175,8 +176,7 @@ permalink: /bjsim/
         newCardImage.src = "{{ site.baseurl }}/images/cards/" + card.kind + card.suit + ".png";
         newCardImage.width = "80";
         newCardImage.height = "150";
-        console.log(newCardImage.src);
-        //newCard.innerHTML = card.kind + card.suit;
+        console.log(newCardImage.src); 
         newCard.appendChild(newCardImage);
         playerRow.appendChild(newCard);
     };
