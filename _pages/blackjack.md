@@ -172,7 +172,7 @@ permalink: /bjsim/
     function givePlayerCard(card) {
         const newCard = document.createElement("td");
         const newCardImage = document.createElement("img");
-        newCardImage.src = "{{ site.baseurl }}/images/" + card.kind + card.suit + ".png";
+        newCardImage.src = "{{ site.baseurl }}/images/cards" + card.kind + card.suit + ".png";
         newCardImage.width = "80";
         newCardImage.height = "150";
         console.log(newCardImage.src);
