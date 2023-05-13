@@ -19,7 +19,8 @@ permalink: /blackjack/
         height: 300px;
         border: 10px solid;
         border-radius: 150px;
-        background-color: #FF5D5D;
+        border-color: #699e42;
+        background-color: #274510;
         padding:20px;
         justify-content:center;
         text-align:center;
@@ -32,7 +33,7 @@ permalink: /blackjack/
         border: 10px solid;
         border-radius: 150px;
         border-color: #699e42;
-        background-color: #103d1c;
+        background-color: #274510;
         padding:20px;
         justify-content:center;
         text-align:center;
