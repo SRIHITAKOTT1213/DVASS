@@ -196,10 +196,10 @@ permalink: /blackjack/
             const newCardImage = document.createElement("img");
             newCardImage.src = "{{ site.baseurl }}/images/cards/facedown_card.png";
             newCardImage.width = "100";
-            newCardImage.height = "150"; 
+            newCardImage.height = "150";
             newCard.appendChild(newCardImage);
             //newCard.innerHTML = "Face-Down Card";
-            //newCard.id = "facedown_card";
+            newCard.id = "facedown_card";
             dealerRow.appendChild(newCard);
         }
     };
@@ -326,11 +326,15 @@ permalink: /blackjack/
         stayButton.style = "display:block";
     }
 
+    const faceDownRem = 'placeholder';
+
     function dealerTurn() {
         hitButton.style = "display:none";
         stayButton.style = "display:none";
         console.log("Dealer's hand: " + String(handDisplay(dealerHand)));
-        document.getElementById("facedown_card").innerHTML = d2.kind + " of " + d2.suit;
+        faceDownRem = document.getElementById("facedown_card");
+        faceDownRem.remove();
+        giveDealerCard(dealerHand[1]);
         if (takesum(dealerHand) > 16) {
             console.log("The dealer stays.");
         } else {
