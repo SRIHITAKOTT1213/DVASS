@@ -11,6 +11,7 @@ permalink: /blackjack/
         border-color:black;
         border-radius:200px;
         background-color: #103d1c;
+        color:white;
         font-family:serif;
     }
 
