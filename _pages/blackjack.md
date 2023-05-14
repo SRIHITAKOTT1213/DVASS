@@ -326,7 +326,7 @@ permalink: /blackjack/
         stayButton.style = "display:block";
     }
 
-    const faceDownRem = 'placeholder';
+    var faceDownRem = 'placeholder';
 
     function dealerTurn() {
         hitButton.style = "display:none";
