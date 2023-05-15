@@ -154,7 +154,7 @@ permalink: /uno/
             this.color = color;
             this.value = val;
             if (val == 11) {
-                this.kind = "Draw Two";
+                this.kind = "DrawTwo";
             } else if (val == 12) {
                 this.kind = "Reverse";
             } else if (val == 13) {
@@ -249,7 +249,7 @@ permalink: /uno/
             for (cardID in cardList) {
                 newCard = document.createElement("td");
                 newCardImage = document.createElement("img");
-                newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardID.kind + cardID.color + ".png";
+                newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[cardID].kind + cardList[cardID].color + ".png";
                 newCardImage.width = "100";
                 newCardImage.height = "150"; 
                 newCard.appendChild(newCardImage);
@@ -264,7 +264,7 @@ permalink: /uno/
             for (let i = 0; i < 12; i++) {
                 newCard = document.createElement("td");
                 newCardImage = document.createElement("img");
-                newCardImage.src = "{{ site.baseurl }}/images/uno/" + i.kind + i.color + ".png";
+                newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
                 newCardImage.width = "100";
                 newCardImage.height = "150"; 
                 newCard.appendChild(newCardImage);
@@ -278,7 +278,7 @@ permalink: /uno/
             for (let i = 12; i < cardList.length; i++) {
                 newCard = document.createElement("td");
                 newCardImage = document.createElement("img");
-                newCardImage.src = "{{ site.baseurl }}/images/uno/" + i.kind + i.color + ".png";
+                newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
                 newCardImage.width = "100";
                 newCardImage.height = "150"; 
                 newCard.appendChild(newCardImage);
