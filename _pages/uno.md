@@ -248,7 +248,12 @@ permalink: /uno/
         if (cardList.length <= 12) {
             for (cardID in cardList) {
                 newCard = document.createElement("td");
-                newCard.innerHTML = cardList[cardID];
+                newCardImage = document.createElement("img");
+                newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardID.kind + cardID.color + ".png";
+                newCardImage.width = "100";
+                newCardImage.height = "150"; 
+                newCard.appendChild(newCardImage);
+                //newCard.innerHTML = cardList[cardID];
                 if (player == true) {
                     newCard.setAttribute('onclick', 'playCard(' + String(cardID) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
@@ -258,7 +263,12 @@ permalink: /uno/
         } else {
             for (let i = 0; i < 12; i++) {
                 newCard = document.createElement("td");
-                newCard.innerHTML = cardList[i];
+                newCardImage = document.createElement("img");
+                newCardImage.src = "{{ site.baseurl }}/images/uno/" + i.kind + i.color + ".png";
+                newCardImage.width = "100";
+                newCardImage.height = "150"; 
+                newCard.appendChild(newCardImage);
+                //newCard.innerHTML = cardList[i];
                 if (player) {
                     newCard.setAttribute('onclick', 'playCard(' + String(i) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
@@ -267,7 +277,12 @@ permalink: /uno/
             };
             for (let i = 12; i < cardList.length; i++) {
                 newCard = document.createElement("td");
-                newCard.innerHTML = cardList[i];
+                newCardImage = document.createElement("img");
+                newCardImage.src = "{{ site.baseurl }}/images/uno/" + i.kind + i.color + ".png";
+                newCardImage.width = "100";
+                newCardImage.height = "150"; 
+                newCard.appendChild(newCardImage);
+                //newCard.innerHTML = cardList[i];
                 if (player) {
                     newCard.setAttribute('onclick', 'playCard(' + String(i) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
