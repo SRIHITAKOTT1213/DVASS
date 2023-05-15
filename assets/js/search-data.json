@@ -88,6 +88,14 @@
   
 
   
+      ,"page8": {
+          "title": "Uno Simulation",
+          "content": "Opponent Hand . The opponent&#39;s number of cards will be displayed here. Player Hand . . . Start deck",
+          "url": "https://srihitakott1213.github.io/DVASS/uno/",
+          "relUrl": "/uno/",
+          "date": ""
+      }
+      
   
 
   
@@ -100,7 +108,10 @@
   
 
   
-      ,"page12": {
+  
+
+  
+      ,"page13": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://srihitakott1213.github.io/DVASS/robots.txt",
