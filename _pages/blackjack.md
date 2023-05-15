@@ -175,7 +175,7 @@ permalink: /blackjack/
     function givePlayerCard(card) {
         const newCard = document.createElement("td");
         const newCardImage = document.createElement("img");
-        newCardImage.src = "{{ site.baseurl }}/images/cards/" + card.kind + card.suit + ".png";
+        newCardImage.src = "{{ site.baseurl }}/images/blackjack/" + card.kind + card.suit + ".png";
         newCardImage.width = "100";
         newCardImage.height = "150";
         console.log(newCardImage.src); 
@@ -187,7 +187,7 @@ permalink: /blackjack/
         if (card != "face_down") {
             const newCard = document.createElement("td");
             const newCardImage = document.createElement("img");
-            newCardImage.src = "{{ site.baseurl }}/images/cards/" + card.kind + card.suit + ".png";
+            newCardImage.src = "{{ site.baseurl }}/images/blackjack/" + card.kind + card.suit + ".png";
             newCardImage.width = "100";
             newCardImage.height = "150"; 
             newCard.appendChild(newCardImage);
@@ -195,7 +195,7 @@ permalink: /blackjack/
         } else {
             const newCard = document.createElement("td");
             const newCardImage = document.createElement("img");
-            newCardImage.src = "{{ site.baseurl }}/images/cards/facedown_card.png";
+            newCardImage.src = "{{ site.baseurl }}/images/blackjack/facedown_card.png";
             newCardImage.width = "100";
             newCardImage.height = "150";
             newCard.appendChild(newCardImage);
