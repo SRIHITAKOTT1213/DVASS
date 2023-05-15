@@ -267,6 +267,7 @@ permalink: /uno/
                 newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
                 newCardImage.width = "100";
                 newCardImage.height = "150"; 
+                console.log(newCardImage.src); 
                 newCard.appendChild(newCardImage);
                 //newCard.innerHTML = cardList[i];
                 if (player) {
