@@ -170,7 +170,7 @@
     function givePlayerCard(card) {
         const newCard = document.createElement("td");
         const newCardImage = document.createElement("img");
-        newCardImage.src = "/DVASS/images/cards/" + card.kind + card.suit + ".png";
+        newCardImage.src = "/DVASS/images/blackjack/" + card.kind + card.suit + ".png";
         newCardImage.width = "100";
         newCardImage.height = "150";
         console.log(newCardImage.src); 
@@ -182,7 +182,7 @@
         if (card != "face_down") {
             const newCard = document.createElement("td");
             const newCardImage = document.createElement("img");
-            newCardImage.src = "/DVASS/images/cards/" + card.kind + card.suit + ".png";
+            newCardImage.src = "/DVASS/images/blackjack/" + card.kind + card.suit + ".png";
             newCardImage.width = "100";
             newCardImage.height = "150"; 
             newCard.appendChild(newCardImage);
@@ -190,7 +190,7 @@
         } else {
             const newCard = document.createElement("td");
             const newCardImage = document.createElement("img");
-            newCardImage.src = "/DVASS/images/cards/facedown_card.png";
+            newCardImage.src = "/DVASS/images/blackjack/facedown_card.png";
             newCardImage.width = "100";
             newCardImage.height = "150";
             newCard.appendChild(newCardImage);
