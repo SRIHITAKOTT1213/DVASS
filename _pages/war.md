@@ -77,16 +77,16 @@ permalink: /war/
 <div class="big_ol_cont">
     <br>
     <div style="text-align:center;justify-content:center">
-        <h2>Dealer Hand</h2>
+        <h2>Opponent</h2>
         <table id="dealer_card_table" class="card_table_d">
             <tr id="dealer_cards">
             </tr>
         </table>
-        <h2>Player Hand</h2>
         <table id="dealer_card_table" class="card_table_p">
             <tr id="player_cards">
             </tr>
         </table>
+        <h2>You</h2>
     </div>
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
@@ -100,6 +100,9 @@ permalink: /war/
 </div>
 
 <script>
+
+//function gameStart()
+
 // Card class representing a playing card
 class Card {
   constructor(rank, suit) {
