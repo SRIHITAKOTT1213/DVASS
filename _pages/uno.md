@@ -235,6 +235,18 @@ permalink: /uno/
 
     // function to build tables
     // table is true if it is the player table; false otherwise
+
+     function loadCardImages(card) {
+        const newCard = document.createElement("td");
+        const newCardImage = document.createElement("img");
+        newCardImage.src = "{{ site.baseurl }}/images/uno/" + card.kind + card.color + ".png";
+        newCardImage.width = "100";
+        newCardImage.height = "150";
+        console.log(newCardImage.src); 
+        newCard.appendChild(newCardImage);
+        playerRow.appendChild(newCard);
+    };
+
     function buildTable(cardList, player) {
         if (player) {
             rowList = [pCardRow1, pCardRow2];
@@ -248,13 +260,8 @@ permalink: /uno/
         if (cardList.length <= 12) {
             for (cardID in cardList) {
                 newCard = document.createElement("td");
-                newCardImage = document.createElement("img");
-                newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[cardID].kind + cardList[cardID].color + ".png";
-                console.log(newCardImage.src); 
-                newCardImage.width = "100";
-                newCardImage.height = "150"; 
-                newCard.appendChild(newCardImage);
                 //newCard.innerHTML = cardList[cardID];
+                loadCardImages(cardList.cardID)
                 if (player == true) {
                     newCard.setAttribute('onclick', 'playCard(' + String(cardID) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
@@ -264,12 +271,7 @@ permalink: /uno/
         } else {
             for (let i = 0; i < 12; i++) {
                 newCard = document.createElement("td");
-                newCardImage = document.createElement("img");
-                newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
-                newCardImage.width = "100";
-                newCardImage.height = "150"; 
-                newCard.appendChild(newCardImage);
-                //newCard.innerHTML = cardList[i];
+                newCard.innerHTML = cardList[i];
                 if (player) {
                     newCard.setAttribute('onclick', 'playCard(' + String(i) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
@@ -278,12 +280,7 @@ permalink: /uno/
             };
             for (let i = 12; i < cardList.length; i++) {
                 newCard = document.createElement("td");
-                newCardImage = document.createElement("img");
-                newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
-                newCardImage.width = "100";
-                newCardImage.height = "150"; 
-                newCard.appendChild(newCardImage);
-                //newCard.innerHTML = cardList[i];
+                newCard.innerHTML = cardList[i];
                 if (player) {
                     newCard.setAttribute('onclick', 'playCard(' + String(i) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
