@@ -78,6 +78,7 @@ permalink: /war/
     <br>
     <div style="text-align:center;justify-content:center">
         <h2>Opponent</h2>
+        <h3>Number of Cards</h3>
         <table id="dealer_card_table" class="card_table_d">
             <tr id="dealer_cards">
             </tr>
@@ -87,6 +88,7 @@ permalink: /war/
             </tr>
         </table>
         <h2>You</h2>
+        <h3>Number of Cards</h3>
     </div>
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
