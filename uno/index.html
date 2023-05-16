@@ -225,8 +225,8 @@
             opponentHand.push(thisCard);
             oDispHand.push(thisCard.cshow());
         }
-        buildTable(pDispHand, true);
-        buildTable(oDispHand, false);
+        buildTable(playerHand, true);
+        buildTable(opponentHand, false);
         topCard = theDeck.draw();
         discardPile.push(topCard);
         currentCard.innerHTML = "Top Card: " + topCard.cshow();
@@ -235,18 +235,7 @@
 
     // function to build tables
     // table is true if it is the player table; false otherwise
-
-     function loadCardImages(card) {
-        const newCard = document.createElement("td");
-        const newCardImage = document.createElement("img");
-        newCardImage.src = "/DVASS/images/uno/" + card.kind + card.color + ".png";
-        newCardImage.width = "100";
-        newCardImage.height = "150";
-        console.log(newCardImage.src); 
-        newCard.appendChild(newCardImage);
-        playerRow.appendChild(newCard);
-    };
-
+    
     function buildTable(cardList, player) {
         if (player) {
             rowList = [pCardRow1, pCardRow2];
@@ -260,8 +249,13 @@
         if (cardList.length <= 12) {
             for (cardID in cardList) {
                 newCard = document.createElement("td");
+                newCardImage = document.createElement("img");
+                newCardImage.src = "/DVASS/images/uno/" + cardList[cardID].kind + cardList[cardID].color + ".png";
+                console.log(newCardImage.src); 
+                newCardImage.width = "100";
+                newCardImage.height = "150"; 
+                newCard.appendChild(newCardImage);
                 //newCard.innerHTML = cardList[cardID];
-                loadCardImages(cardList.cardID)
                 if (player == true) {
                     newCard.setAttribute('onclick', 'playCard(' + String(cardID) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
@@ -271,7 +265,12 @@
         } else {
             for (let i = 0; i < 12; i++) {
                 newCard = document.createElement("td");
-                newCard.innerHTML = cardList[i];
+                newCardImage = document.createElement("img");
+                newCardImage.src = "/DVASS/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
+                newCardImage.width = "100";
+                newCardImage.height = "150"; 
+                newCard.appendChild(newCardImage);
+                //newCard.innerHTML = cardList[i];
                 if (player) {
                     newCard.setAttribute('onclick', 'playCard(' + String(i) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
@@ -280,7 +279,12 @@
             };
             for (let i = 12; i < cardList.length; i++) {
                 newCard = document.createElement("td");
-                newCard.innerHTML = cardList[i];
+                newCardImage = document.createElement("img");
+                newCardImage.src = "/DVASS/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
+                newCardImage.width = "100";
+                newCardImage.height = "150"; 
+                newCard.appendChild(newCardImage);
+                //newCard.innerHTML = cardList[i];
                 if (player) {
                     newCard.setAttribute('onclick', 'playCard(' + String(i) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
@@ -314,9 +318,9 @@
             }
         }
         if (player) {
-            buildTable(pDispHand, true);
+            buildTable(playerHand, true);
         } else {
-            buildTable(oDispHand, false);
+            buildTable(opponentHand, false);
         }
     }
 
@@ -329,7 +333,7 @@
             discardPile.push(playedCard)
             topCard = playedCard;
             currentCard.innerHTML = "Top Card: " + topCard.cshow();
-            buildTable(pDispHand, true);
+            buildTable(playerHand, true);
             winCheck();
             if (playedCard.value == 11) {
                 drawCard(opponentHand, false)
@@ -351,7 +355,7 @@
         discardPile.push(playedCard);
         topCard = playedCard;
         currentCard.innerHTML = "Top Card: " + topCard.cshow();
-        buildTable(oDispHand, false);
+        buildTable(playerHand, false);
         winCheck();
         if (playedCard.value == 11) {
             drawCard(playerHand, true)
