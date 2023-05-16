@@ -10,18 +10,18 @@ permalink: /war/
         border:20px solid;
         border-color:#ccac00;
         border-radius:200px;
-        background-color: #103d1c;
+        background-color: #A16414;
         color:white;
         font-family:serif;
     }
 
     .card_table_d {
-        width: 1000px;
+        width: 750px;
         height: 300px;
         border: 10px solid;
         border-radius: 150px;
-        border-color: #699e42;
-        background-color: #274510;
+        border-color: #68410C;
+        background-color: #D1841E;
         padding:20px;
         justify-content:center;
         text-align:center;
@@ -29,12 +29,12 @@ permalink: /war/
     }
 
     .card_table_p {
-        width: 1000px;
+        width: 750px;
         height: 300px;
         border: 10px solid;
         border-radius: 150px;
-        border-color: #699e42;
-        background-color: #274510;
+        border-color: #68410C;
+        background-color: #D1841E;
         padding:20px;
         justify-content:center;
         text-align:center;
@@ -63,7 +63,7 @@ permalink: /war/
         justify-content:center;
         border: 5px solid;
         border-radius:5px;
-        border-color:#9a613b;
+        border-color:#E2C550;
         width:120px;
         height:60px;
         background-color:#ccac00;
@@ -77,22 +77,24 @@ permalink: /war/
 <div class="big_ol_cont">
     <br>
     <div style="text-align:center;justify-content:center">
-        <h2>Dealer Hand</h2>
+        <h2>Opponent</h2>
+        <h3>Number of Cards</h3>
         <table id="dealer_card_table" class="card_table_d">
             <tr id="dealer_cards">
             </tr>
         </table>
-        <h2>Player Hand</h2>
         <table id="dealer_card_table" class="card_table_p">
             <tr id="player_cards">
             </tr>
         </table>
+        <h2>You</h2>
+        <h3>Number of Cards</h3>
     </div>
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
         <div id="result_text"></div>
         <br>
-        <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw()">Draw</button>>
+        <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw()">Draw</button>
         <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
         <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
     </div>
@@ -100,6 +102,9 @@ permalink: /war/
 </div>
 
 <script>
+
+//function gameStart()
+
 // Card class representing a playing card
 class Card {
   constructor(rank, suit) {
