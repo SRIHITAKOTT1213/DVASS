@@ -8,7 +8,7 @@ permalink: /blackjack/
         justify-content:center;
         margin:auto;
         border:20px solid;
-        border-color:black;
+        border-color:#ccac00;
         border-radius:200px;
         background-color: #103d1c;
         color:white;
@@ -63,10 +63,11 @@ permalink: /blackjack/
         justify-content:center;
         border: 5px solid;
         border-radius:5px;
+        border-color:#9a613b;
         width:120px;
         height:60px;
-        background-color:white;
-        font-size:14px;
+        background-color:#ccac00;
+        font-size:17px;
         font-family:serif;
     }
 
