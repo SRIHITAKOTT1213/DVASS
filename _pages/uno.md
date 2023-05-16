@@ -213,6 +213,11 @@ permalink: /uno/
         deckElement.style = "display:block";
         startButton.style = "display:none";
         greenBox.style = "display:inline-block";
+        playerHand = [];
+        pDispHand = [];
+        opponentHand = [];
+        oDispHand = [];
+        topCard = "placeholder";
         theDeck = new Deck();
         for (let i = 0; i < 7; i++) {
             // initial player draws
