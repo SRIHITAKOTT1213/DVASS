@@ -63,10 +63,11 @@ permalink: /blackjack/
         justify-content:center;
         border: 5px solid;
         border-radius:5px;
+        border-color:#9a613b;
         width:120px;
         height:60px;
-        background-color:white;
-        font-size:14px;
+        background-color:#ccac00;
+        font-size:17px;
         font-family:serif;
     }
 
