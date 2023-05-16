@@ -250,6 +250,7 @@ permalink: /uno/
                 newCard = document.createElement("td");
                 newCardImage = document.createElement("img");
                 newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[cardID].kind + cardList[cardID].color + ".png";
+                console.log(newCardImage.src); 
                 newCardImage.width = "100";
                 newCardImage.height = "150"; 
                 newCard.appendChild(newCardImage);
@@ -267,7 +268,6 @@ permalink: /uno/
                 newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
                 newCardImage.width = "100";
                 newCardImage.height = "150"; 
-                console.log(newCardImage.src); 
                 newCard.appendChild(newCardImage);
                 //newCard.innerHTML = cardList[i];
                 if (player) {
