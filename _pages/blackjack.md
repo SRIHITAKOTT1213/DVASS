@@ -8,7 +8,7 @@ permalink: /blackjack/
         justify-content:center;
         margin:auto;
         border:20px solid;
-        border-color:black;
+        border-color:#ccac00;
         border-radius:200px;
         background-color: #103d1c;
         color:white;
