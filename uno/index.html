@@ -329,10 +329,21 @@
             resultBox.innerHTML = "";
             playedCard = playerHand.splice(cardID, 1)[0];
             pDispHand.splice(cardID, 1);
+
             console.log(playedCard);
+
             discardPile.push(playedCard)
             topCard = playedCard;
-            currentCard.innerHTML = "Top Card: " + topCard.cshow();
+
+            const currentCard = document.createElement("td");
+            const newCardImage = document.createElement("img");
+            newCardImage.src = "/DVASS/images/uno/" + playedCard.kind + playedCard.color + ".png";
+            newCardImage.width = "100";
+            newCardImage.height = "150"; 
+            currentCard.appendChild(newCardImage);
+            deckElement.append(currentCard);
+
+            //currentCard.innerHTML = "Top Card: " + topCard.cshow();
             buildTable(playerHand, true);
             winCheck();
             if (playedCard.value == 11) {
