@@ -55,10 +55,10 @@ function shuffCard(){
     matchedCard = 0;
     cardOne = cardTwo = '';
 
-    let array = [1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18,]
+    let array = [1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18]
     array.sort(() => Math.random() > 0.5 ? 1 : -1);
 
-    cards.forEach((card) => {
+    cards.forEach((card, index) => {
         card.classList.remove('flip');
         card.addEventListener('click', flipCard);
 
