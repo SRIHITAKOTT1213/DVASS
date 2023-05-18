@@ -17,8 +17,8 @@ body{
 
 }
 .container{
-    height: 1100px;
-    width: 1500px;
+    height: 1000px;
+    width: 1000px;
     background: linear-gradient(to right, #fc6767, #ec008c);
     border-radius: 10px;
     padding: 25px;
@@ -38,8 +38,8 @@ body{
     justify-content: space-between;
 }
 .cards .card{
-    height: calc(100% / 10 - 10px);
-    width: calc(100% / 10 - 10px);
+    height: calc(100% / 6 - 10px);
+    width: calc(100% / 6 - 10px);
     position: relative;
     perspective: 800px;
     transform-style: preserve-3d;
