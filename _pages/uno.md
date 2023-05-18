@@ -173,7 +173,7 @@ permalink: /uno/
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
         <button id="start_button" class="select_button" onclick="startGame()">Start</button>
-        <div id="the_deck" onclick="drawCard(playerHand, true)">deck</div>
+        <div id="the_deck" onclick="drawCard(playerHand, true)"><img src="{{ site.baseurl }}/images/uno/facedown.png" width="100" height="150"></div>
         <br>
         <div id="green_border" class="green_border">
             <div id="current_card"></div>
