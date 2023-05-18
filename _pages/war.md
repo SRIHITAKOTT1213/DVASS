@@ -79,10 +79,13 @@ permalink: /war/
     <div style="text-align:center;justify-content:center">
         <h2>Opponent</h2>
         <h3>Number of Cards</h3>
+        <br>
         <table id="opp_card_table" class="card_table_d">
             <tr id="opp_cards">
             </tr>
         </table>
+        <br>
+        <br>
         <table id="opp_card_table" class="card_table_p">
             <tr id="you_cards">
             </tr>

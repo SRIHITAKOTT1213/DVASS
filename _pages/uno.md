@@ -89,9 +89,61 @@ permalink: /uno/
         text-align:center;
         justify-content:center;
         display: none;
+        cursor:pointer;
+    }
+
+    #full_of_colors {
+        justify-content:center;
+        text-align:center;
+        width: 400px;
+        font-size:16px;
+        display: none;
+        align-items:center;
+        align-content:;
+        row-gap: 10px;
+        margin:auto;
+    }
+
+    .for_red {
+        margin:auto;
+        text-align:center;
+        justify-content:center;
         width: 50px;
         height: 50px;
-        background-color: white;
+        background-color: #FF5D5D;
+        border: 5px solid;
+        cursor:pointer;
+    }
+
+    .for_blue {
+        margin:auto;
+        text-align:center;
+        justify-content:center;
+        width: 50px;
+        height: 50px;
+        background-color: #00B2FF;
+        border: 5px solid;
+        cursor:pointer;
+    }
+
+    .for_yellow {
+        margin:auto;
+        text-align:center;
+        justify-content:center;
+        width: 50px;
+        height: 50px;
+        background-color: #FFF000;
+        border: 5px solid;
+        cursor:pointer;
+    }
+
+    .for_green {
+        margin:auto;
+        text-align:center;
+        justify-content:center;
+        width: 50px;
+        height: 50px;
+        background-color: #04DE00;
         border: 5px solid;
         cursor:pointer;
     }
@@ -117,12 +169,15 @@ permalink: /uno/
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
         <button id="start_button" class="select_button" onclick="startGame()">Start</button>
-        <div id="the_deck" onclick="drawCard(playerHand, true)">deck</div>
+        <div id="the_deck" onclick="drawCard(playerHand, true)"><img src="{{ site.baseurl }}/images/uno/facedown.png" width="100" height="150" cursor="pointer"></div>
         <br>
         <div id="green_border" class="green_border">
             <div id="current_card"></div>
             <br>
             <div id="result_text"></div>
+        </div>
+        <div id="full_of_colors">
+            <div id="for_red" class="for_red" onclick="wildResponse('Red')"></div><div id="for_blue" class="for_blue" onclick="wildResponse('Blue')"></div><div id="for_yellow" class="for_yellow" onclick="wildResponse('Yellow')"></div><div id="for_green" class="for_green" onclick="wildResponse('Green')"></div>
         </div>
         <br>
     </div>
@@ -147,17 +202,22 @@ permalink: /uno/
     var opponentHand = [];
     var oDispHand = [];
     var topCard = "placeholder";
+    var ableToPlay = true;
+
+    const colorsBox = document.getElementById("full_of_colors");
 
     // card class
     class Uno {
         constructor(color, val) {
             this.color = color;
             this.value = val;
-            if (val == 11) {
-                this.kind = "DrawTwo";
-            } else if (val == 12) {
+            if (val == 10 && color != "Wild") {
+                this.kind = "Draw Two";
+            } else if (val == 10) {
+                this.kind = "Draw Four";
+            } else if (val == 11) {
                 this.kind = "Reverse";
-            } else if (val == 13) {
+            } else if (val == 12) {
                 this.kind = "Skip";
             } else {
                 this.kind = String(val);
@@ -178,10 +238,21 @@ permalink: /uno/
         build() {
             const colors = ["Red", "Yellow", "Green", "Blue"];
             for (let c in colors) {
-                for (let v = 1; v < 14; v++) {
+                for (let v = 1; v < 13; v++) {
                     this.cards.push(new Uno(colors[c], v));
                 }
             }
+            for (let c in colors) {
+                for (let v = 1; v < 10; v++) {
+                    this.cards.push(new Uno(colors[c], v));
+                }
+            }
+            for (let i = 0; i < 4; i++) {
+                this.cards.push(new Uno("Wild", 1));
+            };
+            for (let i = 0; i < 4; i++) {
+                this.cards.push(new Uno("Wild", 10));
+            };
         };
         shuffle() {
             for (var i = this.cards.length - 1; i > 0; i--) {
@@ -201,18 +272,21 @@ permalink: /uno/
     var discardPile = [];
 
     function disShuffle(pile) {
-            for (var i = pile.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                var temp = this.cards[i];
-                this.cards[i] = this.cards[j];
-                this.cards[j] = temp;
-            }
-        }
+        for (var i = pile.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = pile[i];
+            pile[i] = pile[j];
+            pile[j] = temp;
+        };
+        return pile;
+    };
 
     function startGame() {
+        var validDraw = true;
         deckElement.style = "display:block";
         startButton.style = "display:none";
         greenBox.style = "display:inline-block";
+        resultBox.innerHTML = "";
         playerHand = [];
         pDispHand = [];
         opponentHand = [];
@@ -232,21 +306,39 @@ permalink: /uno/
         }
         buildTable(playerHand, true);
         buildTable(opponentHand, false);
-        topCard = theDeck.draw();
+        var tempCheck = theDeck.draw();
+        if (tempCheck.color == "Wild") {
+            validDraw = false;
+            theDeck.cards.push(tempCheck);
+            while (!validDraw) {
+                theDeck.shuffle();
+                tempCheck = theDeck.draw();
+                if (tempCheck.color != "Wild") {
+                    topCard = tempCheck;
+                    validDraw = true;
+                } else {
+                    theDeck.cards.push(tempCheck);
+                };
+            };
+        } else {
+            topCard = tempCheck;
+        };
         discardPile.push(topCard);
-        currentCard.innerHTML = "Top Card: " + topCard.cshow();
+        var firstCardTop = document.createElement("img");
+        firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+        firstCardTop.width = "100";
+        firstCardTop.height = "150";
+        currentCard.appendChild(firstCardTop);
     };
-
 
     // function to build tables
     // table is true if it is the player table; false otherwise
-    
     function buildTable(cardList, player) {
         if (player) {
             rowList = [pCardRow1, pCardRow2];
         } else {
-            oCardRow.innerHTML = "Cards remaining: " + String(cardList.length)
-            return
+            oCardRow.innerHTML = "Cards remaining: " + String(cardList.length);
+            return;
         };
         for (rowID in rowList) {
             rowList[rowID].innerHTML = "";
@@ -261,7 +353,7 @@ permalink: /uno/
                 newCardImage.height = "150"; 
                 newCard.appendChild(newCardImage);
                 //newCard.innerHTML = cardList[cardID];
-                if (player == true) {
+                if (player) {
                     newCard.setAttribute('onclick', 'playCard(' + String(cardID) + ')');
                     newCard.style = 'cursor:pointer;title:"Click to play your ' + cardList[cardID] + '!"';
                 }
@@ -313,8 +405,7 @@ permalink: /uno/
             if (discardPile.length > 4) {
                 resultBox.innerHTML = "The deck was empty! The discard pile was shuffled.";
                 topCard = discardPile.pop();
-                disShuffle(discardPile);
-                theDeck.cards = discardPile;
+                theDeck.cards = disShuffle(discardPile);
                 discardPile = [topCard];
                 drawCard(hand, player);
             } else {
@@ -329,38 +420,68 @@ permalink: /uno/
         }
     }
 
+    var boxes = ["placeholder"];
+
+    function wildSetting() {
+        ableToPlay = false;
+        currentCard.innerHTML = "Select a color for the Wild Card.";
+        colorsBox.style = "display:flex";
+    }
+
+    function wildResponse(color) {
+        topCard = new Uno(color, 13);
+        var firstCardTop = document.createElement("img");
+        firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+        firstCardTop.width = "100";
+        firstCardTop.height = "150";
+        currentCard.appendChild(firstCardTop);
+        colorsBox.style = "display:none";
+        resultBox.innerHTML = "";
+        buildTable(playerHand, true);
+        ableToPlay = true;
+        winCheck();
+        oppTurn();
+    }
+
     function playCard(cardID) {
-        if ((playerHand[cardID].value == topCard.value) || (playerHand[cardID].color == topCard.color)) {
-            resultBox.innerHTML = "";
-            playedCard = playerHand.splice(cardID, 1)[0];
-            pDispHand.splice(cardID, 1);
-
-            console.log(playedCard);
-
-            discardPile.push(playedCard)
-            topCard = playedCard;
-
-            const currentCard = document.createElement("td");
-            const newCardImage = document.createElement("img");
-            newCardImage.src = "{{ site.baseurl }}/images/uno/" + playedCard.kind + playedCard.color + ".png";
-            newCardImage.width = "100";
-            newCardImage.height = "150"; 
-            currentCard.appendChild(newCardImage);
-            deckElement.append(currentCard);
-
-            //currentCard.innerHTML = "Top Card: " + topCard.cshow();
-            buildTable(playerHand, true);
-            winCheck();
-            if (playedCard.value == 11) {
-                drawCard(opponentHand, false)
-                drawCard(opponentHand, false)
-            } else if (playedCard.value > 11) {
-                return;
+        if (ableToPlay) {
+            if ((playerHand[cardID].value == topCard.value) || (playerHand[cardID].color == topCard.color) || (playerHand[cardID].color == "Wild")) {
+                resultBox.innerHTML = "";
+                playedCard = playerHand.splice(cardID, 1)[0];
+                pDispHand.splice(cardID, 1);
+                console.log(playedCard);
+                discardPile.push(playedCard)
+                if (playedCard.color == "Wild") {
+                    if (playedCard.value == 10) {
+                        drawCard(opponentHand, false);
+                        drawCard(opponentHand, false);
+                        drawCard(opponentHand, false);
+                        drawCard(opponentHand, false);
+                    };
+                    wildSetting();
+                    return;
+                };
+                topCard = playedCard;
+                var firstCardTop = document.createElement("img");
+                firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+                firstCardTop.width = "100";
+                firstCardTop.height = "150";
+                currentCard.appendChild(firstCardTop);
+                buildTable(playerHand, true);
+                winCheck();
+                if (playedCard.value == 10) {
+                    drawCard(opponentHand, false)
+                    drawCard(opponentHand, false)
+                } else if (playedCard.value > 10) {
+                    return;
+                };
+                oppTurn();
+            } else {
+                resultBox.innerHTML = playerHand[cardID].cshow() + " cannot be played right now!";
             };
-            oppTurn();
         } else {
-            resultBox.innerHTML = playerHand[cardID].cshow() + " cannot be played right now!";
-        };
+            return;
+        }
     }
 
     function oppCard(cardID) {
@@ -369,17 +490,41 @@ permalink: /uno/
         oDispHand.splice(cardID, 1);
         console.log(playedCard);
         discardPile.push(playedCard);
+        if (playedCard.color == "Wild") {
+            if (playedCard.value == 10) {
+                drawCard(playerHand, true);
+                drawCard(playerHand, true);
+                drawCard(playerHand, true);
+                drawCard(playerHand, true);
+            };
+            topCard = new Uno(favorList[0], 13);
+            var firstCardTop = document.createElement("img");
+            firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+            firstCardTop.width = "100";
+            firstCardTop.height = "150";
+            currentCard.appendChild(firstCardTop);
+            resultBox.innerHTML = "";
+            buildTable(opponentHand, false);
+            winCheck();
+            return;
+        };
         topCard = playedCard;
-        currentCard.innerHTML = "Top Card: " + topCard.cshow();
-        buildTable(playerHand, false);
+        var firstCardTop = document.createElement("img");
+        firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+        firstCardTop.width = "100";
+        firstCardTop.height = "150";
+        currentCard.appendChild(firstCardTop);
+        buildTable(opponentHand, false);
         winCheck();
-        if (playedCard.value == 11) {
+        if (playedCard.value == 10) {
             drawCard(playerHand, true)
             drawCard(playerHand, true)
-        } else if (playedCard.value > 11) {
+        } else if (playedCard.value > 10) {
             oppTurn();
         };
     }
+
+    var favorList = [];
 
     function oppTurn() {
         var colorValues = {
@@ -390,12 +535,15 @@ permalink: /uno/
         };
         var numbers = [];
         for (card of opponentHand) {
-            colorValues[card.color] += 1;
-            numbers.push(card.value);
+            try {
+                colorValues[card.color] += 1;
+                numbers.push(card.value);
+            } catch (err) {
+                continue;
+            }
         };
         // order: [red, blue, yellow, green]
         var sortingList = [colorValues["Red"], colorValues["Blue"], colorValues["Yellow"], colorValues["Green"]].sort();
-        var favorList = [];
         var i = 0;
         while (favorList.length < 4) {
             for (key in colorValues) {
@@ -419,6 +567,12 @@ permalink: /uno/
                     oppCard(cardID);
                     return;
                 };
+            };
+        };
+        for (cardID in opponentHand) {
+            if (opponentHand[cardID].color == "Wild") {
+                oppCard(cardID);
+                return;
             };
         };
         drawCard(opponentHand, false);
