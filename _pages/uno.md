@@ -324,6 +324,7 @@ permalink: /uno/
             topCard = tempCheck;
         };
         discardPile.push(topCard);
+        currentCard.innerHTML = "";
         var firstCardTop = document.createElement("img");
         firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
         firstCardTop.width = "100";
@@ -430,6 +431,7 @@ permalink: /uno/
 
     function wildResponse(color) {
         topCard = new Uno(color, 13);
+        currentCard.innerHTML = "";
         var firstCardTop = document.createElement("img");
         firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
         firstCardTop.width = "100";
@@ -462,6 +464,7 @@ permalink: /uno/
                     return;
                 };
                 topCard = playedCard;
+                currentCard.innerHTML = "";
                 var firstCardTop = document.createElement("img");
                 firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
                 firstCardTop.width = "100";
@@ -498,6 +501,7 @@ permalink: /uno/
                 drawCard(playerHand, true);
             };
             topCard = new Uno(favorList[0], 13);
+            currentCard.innerHTML = "";
             var firstCardTop = document.createElement("img");
             firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
             firstCardTop.width = "100";
@@ -509,6 +513,7 @@ permalink: /uno/
             return;
         };
         topCard = playedCard;
+        currentCard.innerHTML = "";
         var firstCardTop = document.createElement("img");
         firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
         firstCardTop.width = "100";
