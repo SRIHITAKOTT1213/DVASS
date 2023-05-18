@@ -83,6 +83,7 @@ permalink: /war/
             <tr id="opp_cards">
             </tr>
         </table>
+        </br>
         <table id="opp_card_table" class="card_table_p">
             <tr id="you_cards">
             </tr>
