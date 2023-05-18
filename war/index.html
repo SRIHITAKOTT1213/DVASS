@@ -5,7 +5,7 @@
         border:20px solid;
         border-color:#ccac00;
         border-radius:200px;
-        background-color: #A16414;
+        background-color: #103d1c;
         color:white;
         font-family:serif;
     }
@@ -15,8 +15,8 @@
         height: 300px;
         border: 10px solid;
         border-radius: 150px;
-        border-color: #68410C;
-        background-color: #D1841E;
+        border-color: #699e42;
+        background-color: #274510;
         padding:20px;
         justify-content:center;
         text-align:center;
@@ -28,8 +28,8 @@
         height: 300px;
         border: 10px solid;
         border-radius: 150px;
-        border-color: #68410C;
-        background-color: #D1841E;
+        border-color: #699e42;
+        background-color: #274510;
         padding:20px;
         justify-content:center;
         text-align:center;
@@ -196,5 +196,63 @@
             oppRow.appendChild(newCard);
         }
     };
+
+    function gameStart() {
+        oppRow.innerHTML = "";
+        playerRow.innerHTML = "";
+        resultBox.innerHTML = "";
+
+        // create and shuffle new deck
+        var deck = new Deck();
+        deck.shuffle();
+
+        // deal card to you and opp
+        for (let i = 0; i < 26; i++) {
+            givePlayerCard(deck.draw());
+            giveOppCard(deck.draw());
+        }
+
+        // show draw button and hide play button 
+        document.getElementById("draw_button").style.display = "block";
+        playButton.style.display = "none";
+    }
+
+    function buttonDraw() {
+        // draw card from deck for you and opp
+        const playerCard = deck.draw();
+        const oppCard = deck.draw();
+
+        // Display the drawn cards
+        givePlayerCard(playerCard);
+        giveOppCard(oppCard);
+
+        // Compare the values of the drawn cards
+        if (playerCard.value > oppCard.value) {
+            resultBox.innerHTML = "You win!";
+        } else if (playerCard.value < oppCard.value) {
+            resultBox.innerHTML = "Opponent wins!";
+        } else {
+            resultBox.innerHTML = "It's a tie!";
+        }
+
+        // Check if the deck is empty
+        if (deck.cards.length === 0) {
+            // Hide the "Draw" button and show the "Finish and Submit Score" button
+            document.getElementById("draw_button").style.display = "none";
+            finishButton.style.display = "block";
+            usernameInput.style.display = "block";
+            submitButton.style.display = "block";
+        }
+    }
+
+    function record() {
+        // Get the username input
+        const username = usernameInput.value;
+
+        // Here, you can implement the logic to record the score or perform any other actions
+        // For simplicity, let's just log the username and the number of cards remaining in the deck
+        console.log("Username: " + username);
+        console.log("Number of Cards Remaining: " + deck.cards.length);
+    }
 </script>
 
