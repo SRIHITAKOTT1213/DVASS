@@ -328,7 +328,11 @@ permalink: /uno/
             topCard = tempCheck;
         };
         discardPile.push(topCard);
-        currentCard.innerHTML = "Top Card: " + topCard.cshow();
+        var firstCardTop = document.createElement("img");
+        firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+        firstCardTop.width = "100";
+        firstCardTop.height = "150";
+        currentCard.appendChild(firstCardTop);
     };
 
     // function to build tables
@@ -337,8 +341,8 @@ permalink: /uno/
         if (player) {
             rowList = [pCardRow1, pCardRow2];
         } else {
-            oCardRow.innerHTML = "Cards remaining: " + String(cardList.length)
-            return
+            oCardRow.innerHTML = "Cards remaining: " + String(cardList.length);
+            return;
         };
         for (rowID in rowList) {
             rowList[rowID].innerHTML = "";
@@ -430,7 +434,11 @@ permalink: /uno/
 
     function wildResponse(color) {
         topCard = new Uno(color, 13);
-        currentCard.innerHTML = "Top Card: " + color + " Wild";
+        var firstCardTop = document.createElement("img");
+        firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+        firstCardTop.width = "100";
+        firstCardTop.height = "150";
+        currentCard.appendChild(firstCardTop);
         colorsBox.style = "display:none";
         resultBox.innerHTML = "";
         buildTable(playerHand, true);
@@ -458,7 +466,11 @@ permalink: /uno/
                     return;
                 };
                 topCard = playedCard;
-                currentCard.innerHTML = "Top Card: " + topCard.cshow();
+                var firstCardTop = document.createElement("img");
+                firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+                firstCardTop.width = "100";
+                firstCardTop.height = "150";
+                currentCard.appendChild(firstCardTop);
                 buildTable(playerHand, true);
                 winCheck();
                 if (playedCard.value == 10) {
@@ -490,14 +502,22 @@ permalink: /uno/
                 drawCard(playerHand, true);
             };
             topCard = new Uno(favorList[0], 13);
-            currentCard.innerHTML = "Top Card: " + favorList[0] + " Wild";
+            var firstCardTop = document.createElement("img");
+            firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+            firstCardTop.width = "100";
+            firstCardTop.height = "150";
+            currentCard.appendChild(firstCardTop);
             resultBox.innerHTML = "";
             buildTable(opponentHand, false);
             winCheck();
             return;
         };
         topCard = playedCard;
-        currentCard.innerHTML = "Top Card: " + topCard.cshow();
+        var firstCardTop = document.createElement("img");
+        firstCardTop.src = "{{ site.baseurl }}/images/uno/" + topCard.kind + topCard.color + ".png";
+        firstCardTop.width = "100";
+        firstCardTop.height = "150";
+        currentCard.appendChild(firstCardTop);
         buildTable(opponentHand, false);
         winCheck();
         if (playedCard.value == 10) {
