@@ -319,6 +319,7 @@
             topCard = tempCheck;
         };
         discardPile.push(topCard);
+        currentCard.innerHTML = "";
         var firstCardTop = document.createElement("img");
         firstCardTop.src = "/DVASS/images/uno/" + topCard.kind + topCard.color + ".png";
         firstCardTop.width = "100";
@@ -425,6 +426,7 @@
 
     function wildResponse(color) {
         topCard = new Uno(color, 13);
+        currentCard.innerHTML = "";
         var firstCardTop = document.createElement("img");
         firstCardTop.src = "/DVASS/images/uno/" + topCard.kind + topCard.color + ".png";
         firstCardTop.width = "100";
@@ -457,6 +459,7 @@
                     return;
                 };
                 topCard = playedCard;
+                currentCard.innerHTML = "";
                 var firstCardTop = document.createElement("img");
                 firstCardTop.src = "/DVASS/images/uno/" + topCard.kind + topCard.color + ".png";
                 firstCardTop.width = "100";
@@ -493,6 +496,7 @@
                 drawCard(playerHand, true);
             };
             topCard = new Uno(favorList[0], 13);
+            currentCard.innerHTML = "";
             var firstCardTop = document.createElement("img");
             firstCardTop.src = "/DVASS/images/uno/" + topCard.kind + topCard.color + ".png";
             firstCardTop.width = "100";
@@ -504,6 +508,7 @@
             return;
         };
         topCard = playedCard;
+        currentCard.innerHTML = "";
         var firstCardTop = document.createElement("img");
         firstCardTop.src = "/DVASS/images/uno/" + topCard.kind + topCard.color + ".png";
         firstCardTop.width = "100";
