@@ -10,7 +10,7 @@ permalink: /war/
         border:20px solid;
         border-color:#ccac00;
         border-radius:200px;
-        background-color: #A16414;
+        background-color: #103d1c;
         color:white;
         font-family:serif;
     }
@@ -20,8 +20,8 @@ permalink: /war/
         height: 300px;
         border: 10px solid;
         border-radius: 150px;
-        border-color: #68410C;
-        background-color: #D1841E;
+        border-color: #699e42;
+        background-color: #274510;
         padding:20px;
         justify-content:center;
         text-align:center;
@@ -33,8 +33,8 @@ permalink: /war/
         height: 300px;
         border: 10px solid;
         border-radius: 150px;
-        border-color: #68410C;
-        background-color: #D1841E;
+        border-color: #699e42;
+        background-color: #274510;
         padding:20px;
         justify-content:center;
         text-align:center;
@@ -77,16 +77,18 @@ permalink: /war/
 <div class="big_ol_cont">
     <br>
     <div style="text-align:center;justify-content:center">
-        <h2>Dealer Hand</h2>
-        <table id="dealer_card_table" class="card_table_d">
-            <tr id="dealer_cards">
+        <h2>Opponent</h2>
+        <h3>Number of Cards</h3>
+        <table id="opp_card_table" class="card_table_d">
+            <tr id="opp_cards">
             </tr>
         </table>
-        <h2>Player Hand</h2>
-        <table id="dealer_card_table" class="card_table_p">
-            <tr id="player_cards">
+        <table id="opp_card_table" class="card_table_p">
+            <tr id="you_cards">
             </tr>
         </table>
+        <h2>You</h2>
+        <h3>Number of Cards</h3>
     </div>
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
@@ -100,105 +102,161 @@ permalink: /war/
 </div>
 
 <script>
-// Card class representing a playing card
-class Card {
-  constructor(rank, suit) {
-    this.rank = rank;
-    this.suit = suit;
-  }
+    const oppRow = document.getElementById("opp_cards");
+    const playerRow = document.getElementById("you_cards");
+    const stayButton = document.getElementById("stay_button");
+    const playButton = document.getElementById("play_again");
+    const finishButton = document.getElementById("finish_game");
+    const usernameInput = document.getElementById("username_input");
+    const resultBox = document.getElementById("result_text");
+    const submitButton = document.getElementById("submit_button");
 
-  toString() {
-    return `${this.rank} of ${this.suit}`;
-  }
-}
+    // card class
+    class Card {
+        constructor(suit, val) {
+            this.suit = suit;
+            this.value = val;
+            if (val == 1) {
+                this.kind = "Ace";
+            } else if (val == 12) {
+                this.kind = "Jack";
+            } else if (val == 13) {
+                this.kind = "Queen";
+            } else if (val == 14) {
+                this.kind = "King";
+            } else {
+                this.kind = String(val);
+            }
+        };
+        cshow() {
+            return this.kind + " of " + this.suit;
+        };
+    };
 
-// Deck class representing a deck of cards
-class Deck {
-  constructor() {
-    this.cards = [];
-    this.suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
-    this.ranks = [
-      "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"
-    ];
+    // card test
+    var tcard = new Card("Spades", 3);
+    console.log(tcard.cshow());
 
-    // Initialize the deck with all 52 cards
-    for (const suit of this.suits) {
-      for (const rank of this.ranks) {
-        this.cards.push(new Card(rank, suit));
-      }
+    // deck class
+    class Deck {
+        constructor() {
+            this.cards = [];
+            this.build()
+        }
+        build() {
+            const suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
+            for (let s in suits) {
+                for (let v = 1; v < 14; v++) {
+                    this.cards.push(new Card(suits[s], v));
+                }
+            }
+        };
+        shuffle() {
+            for (var i = this.cards.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = this.cards[i];
+                this.cards[i] = this.cards[j];
+                this.cards[j] = temp;
+            }
+        }
+        draw() {
+            return this.cards.pop();
+        }
+    };
+
+    // deck test
+    var tdeck = new Deck();
+    tdeck.shuffle();
+    console.log(tdeck.cards);
+
+    function givePlayerCard(card) {
+        const newCard = document.createElement("td");
+        const newCardImage = document.createElement("img");
+        newCardImage.src = "{{ site.baseurl }}/images/blackjack/" + card.kind + card.suit + ".png";
+        newCardImage.width = "100";
+        newCardImage.height = "150";
+        console.log(newCardImage.src); 
+        newCard.appendChild(newCardImage);
+        playerRow.appendChild(newCard);
+    };
+
+    function giveOppCard(card) {
+        if (card != "face_down") {
+            const newCard = document.createElement("td");
+            const newCardImage = document.createElement("img");
+            newCardImage.src = "{{ site.baseurl }}/images/blackjack/" + card.kind + card.suit + ".png";
+            newCardImage.width = "100";
+            newCardImage.height = "150"; 
+            newCard.appendChild(newCardImage);
+            oppRow.appendChild(newCard);
+        } else {
+            const newCard = document.createElement("td");
+            const newCardImage = document.createElement("img");
+            newCardImage.src = "{{ site.baseurl }}/images/blackjack/facedown_card.png";
+            newCardImage.width = "100";
+            newCardImage.height = "150";
+            newCard.appendChild(newCardImage);
+            //newCard.innerHTML = "Face-Down Card";
+            newCard.id = "facedown_card";
+            oppRow.appendChild(newCard);
+        }
+    };
+
+    function gameStart() {
+        oppRow.innerHTML = "";
+        playerRow.innerHTML = "";
+        resultBox.innerHTML = "";
+
+        // create and shuffle new deck
+        var deck = new Deck();
+        deck.shuffle();
+
+        // deal card to you and opp
+        for (let i = 0; i < 26; i++) {
+            givePlayerCard(deck.draw());
+            giveOppCard(deck.draw());
+        }
+
+        // show draw button and hide play button 
+        document.getElementById("draw_button").style.display = "block";
+        playButton.style.display = "none";
     }
-  }
 
-  shuffle() {
-    // Fisher-Yates shuffle algorithm
-    for (let i = this.cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+    function buttonDraw() {
+        // draw card from deck for you and opp
+        const playerCard = deck.draw();
+        const oppCard = deck.draw();
+
+        // Display the drawn cards
+        givePlayerCard(playerCard);
+        giveOppCard(oppCard);
+
+        // Compare the values of the drawn cards
+        if (playerCard.value > oppCard.value) {
+            resultBox.innerHTML = "You win!";
+        } else if (playerCard.value < oppCard.value) {
+            resultBox.innerHTML = "Opponent wins!";
+        } else {
+            resultBox.innerHTML = "It's a tie!";
+        }
+
+        // Check if the deck is empty
+        if (deck.cards.length === 0) {
+            // Hide the "Draw" button and show the "Finish and Submit Score" button
+            document.getElementById("draw_button").style.display = "none";
+            finishButton.style.display = "block";
+            usernameInput.style.display = "block";
+            submitButton.style.display = "block";
+        }
     }
-  }
 
-  deal() {
-    if (this.cards.length > 0) {
-      return this.cards.pop();
+    function record() {
+        // Get the username input
+        const username = usernameInput.value;
+
+        // Here, you can implement the logic to record the score or perform any other actions
+        // For simplicity, let's just log the username and the number of cards remaining in the deck
+        console.log("Username: " + username);
+        console.log("Number of Cards Remaining: " + deck.cards.length);
     }
-    return null;
-  }
-}
-
-// Player class representing a player in the game
-class Player {
-  constructor(name) {
-    this.name = name;
-    this.cards = [];
-  }
-
-  addCards(cards) {
-    this.cards.push(...cards);
-  }
-
-  playCard() {
-    if (this.cards.length > 0) {
-      return this.cards.shift();
-    }
-    return null;
-  }
-}
-
-// Function to compare ranks of two cards
-function compareRanks(card1, card2) {
-  const ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
-  return ranks.indexOf(card1.rank) - ranks.indexOf(card2.rank);
-}
-
-// Main game function
-function playWarGame() {
-  const deck = new Deck();
-  deck.shuffle();
-
-  const player1 = new Player("Player 1");
-  const player2 = new Player("Player 2");
-
-  // Deal cards to players
-  while (deck.cards.length > 0) {
-    player1.addCards([deck.deal()]);
-    player2.addCards([deck.deal()]);
-  }
-
-  // Play the game until one player runs out of cards
-  let round = 1;
-  while (player1.cards.length > 0 && player2.cards.length > 0) {
-    const card1 = player1.playCard();
-    const card2 = player2.playCard();
-
-    console.log(`Round ${round}:`);
-    console.log(`${player1.name} plays ${card1}`);
-    console.log(`${player2.name} plays ${card2}`);
-
-    const rankComparison = compareRanks(card1, card2);
-    if (rankComparison > 0) {
-      console.log(`${player1.name} wins the round!`);
-      player1.addCards([card1, card2]);
-    } else if (rankComparison < 0) {
-      console.log(`${player2.name} wins the round!`);
-      player2.addCards([card1, card2]);
 </script>

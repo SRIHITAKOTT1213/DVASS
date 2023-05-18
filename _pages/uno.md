@@ -213,6 +213,11 @@ permalink: /uno/
         deckElement.style = "display:block";
         startButton.style = "display:none";
         greenBox.style = "display:inline-block";
+        playerHand = [];
+        pDispHand = [];
+        opponentHand = [];
+        oDispHand = [];
+        topCard = "placeholder";
         theDeck = new Deck();
         for (let i = 0; i < 7; i++) {
             // initial player draws
@@ -225,8 +230,8 @@ permalink: /uno/
             opponentHand.push(thisCard);
             oDispHand.push(thisCard.cshow());
         }
-        buildTable(pDispHand, true);
-        buildTable(oDispHand, false);
+        buildTable(playerHand, true);
+        buildTable(opponentHand, false);
         topCard = theDeck.draw();
         discardPile.push(topCard);
         currentCard.innerHTML = "Top Card: " + topCard.cshow();
@@ -235,6 +240,7 @@ permalink: /uno/
 
     // function to build tables
     // table is true if it is the player table; false otherwise
+    
     function buildTable(cardList, player) {
         if (player) {
             rowList = [pCardRow1, pCardRow2];
@@ -317,9 +323,9 @@ permalink: /uno/
             }
         }
         if (player) {
-            buildTable(pDispHand, true);
+            buildTable(playerHand, true);
         } else {
-            buildTable(oDispHand, false);
+            buildTable(opponentHand, false);
         }
     }
 
@@ -328,11 +334,22 @@ permalink: /uno/
             resultBox.innerHTML = "";
             playedCard = playerHand.splice(cardID, 1)[0];
             pDispHand.splice(cardID, 1);
+
             console.log(playedCard);
+
             discardPile.push(playedCard)
             topCard = playedCard;
-            currentCard.innerHTML = "Top Card: " + topCard.cshow();
-            buildTable(pDispHand, true);
+
+            const currentCard = document.createElement("td");
+            const newCardImage = document.createElement("img");
+            newCardImage.src = "{{ site.baseurl }}/images/uno/" + playedCard.kind + playedCard.color + ".png";
+            newCardImage.width = "100";
+            newCardImage.height = "150"; 
+            currentCard.appendChild(newCardImage);
+            deckElement.append(currentCard);
+
+            //currentCard.innerHTML = "Top Card: " + topCard.cshow();
+            buildTable(playerHand, true);
             winCheck();
             if (playedCard.value == 11) {
                 drawCard(opponentHand, false)
@@ -354,7 +371,7 @@ permalink: /uno/
         discardPile.push(playedCard);
         topCard = playedCard;
         currentCard.innerHTML = "Top Card: " + topCard.cshow();
-        buildTable(oDispHand, false);
+        buildTable(playerHand, false);
         winCheck();
         if (playedCard.value == 11) {
             drawCard(playerHand, true)
