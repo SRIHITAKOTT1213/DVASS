@@ -167,11 +167,6 @@ permalink: /war/
         }
     };
 
-    // deck test
-    var tdeck = new Deck();
-    tdeck.shuffle();
-    console.log(tdeck.cards);
-
     function givePlayerCard(card) {
         const newCard = document.createElement("td");
         const newCardImage = document.createElement("img");
@@ -206,18 +201,21 @@ permalink: /war/
     };
 
     function gameStart() {
+        playerList = []
+        oppList = []
+
         oppRow.innerHTML = "";
         playerRow.innerHTML = "";
         resultBox.innerHTML = "";
 
         // create and shuffle new deck
-        var deck = new Deck();
-        deck.shuffle();
+        var tdeck = new Deck();
+        tdeck.shuffle();
 
         // deal card to you and opp
         for (let i = 0; i < 26; i++) {
-            givePlayerCard(deck.draw());
-            giveOppCard(deck.draw());
+            playerList.append(deck.draw());
+            oppList.append(deck.draw());
         }
 
         // show draw button and hide play button 
@@ -227,10 +225,10 @@ permalink: /war/
 
     function buttonDraw() {
         // draw card from deck for you and opp
-        const playerCard = deck.draw();
-        const oppCard = deck.draw();
+        const playerCard = playerList[0];
+        const oppCard = oppList[0];
 
-        // Display the drawn cards
+        // display drawn cards
         givePlayerCard(playerCard);
         giveOppCard(oppCard);
 
