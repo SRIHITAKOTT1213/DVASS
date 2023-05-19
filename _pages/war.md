@@ -201,7 +201,7 @@ permalink: /war/
     };
 
     function gameStart() {
-        playerList = []
+        playerList = []              
         oppList = []
 
         oppRow.innerHTML = "";
@@ -214,8 +214,8 @@ permalink: /war/
 
         // deal card to you and opp
         for (let i = 0; i < 26; i++) {
-            playerList.append(deck.draw());
-            oppList.append(deck.draw());
+            playerList.push(deck.draw());
+            oppList.push(deck.draw());
         }
 
         // show draw button and hide play button 
@@ -225,8 +225,8 @@ permalink: /war/
 
     function buttonDraw() {
         // draw card from deck for you and opp
-        const playerCard = playerList[0];
-        const oppCard = oppList[0];
+        var playerCard = playerList[0];
+        var oppCard = oppList[0];
 
         // display drawn card
         givePlayerCard(playerCard);
