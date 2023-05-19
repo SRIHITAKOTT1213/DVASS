@@ -209,8 +209,8 @@ permalink: /war/
         resultBox.innerHTML = "";
 
         // create and shuffle new deck
-        var tdeck = new Deck();
-        tdeck.shuffle();
+        var deck = new Deck();
+        deck.shuffle();
 
         // deal card to you and opp
         for (let i = 0; i < 26; i++) {
@@ -228,7 +228,7 @@ permalink: /war/
         const playerCard = playerList[0];
         const oppCard = oppList[0];
 
-        // display drawn cards
+        // display drawn card
         givePlayerCard(playerCard);
         giveOppCard(oppCard);
 
