@@ -441,9 +441,12 @@ permalink: /uno/
         resultBox.innerHTML = "";
         buildTable(playerHand, true);
         ableToPlay = true;
-        winCheck();
-        oppTurn();
-    }
+        if (winCheck()) {
+            return
+        } else {
+            oppTurn();
+        };
+    };
 
     function playCard(cardID) {
         if (ableToPlay) {
@@ -471,7 +474,9 @@ permalink: /uno/
                 firstCardTop.height = "150";
                 currentCard.appendChild(firstCardTop);
                 buildTable(playerHand, true);
-                winCheck();
+                if (winCheck()) {
+                    return;
+                };
                 if (playedCard.value == 10) {
                     drawCard(opponentHand, false)
                     drawCard(opponentHand, false)
@@ -594,11 +599,14 @@ permalink: /uno/
             resultBox.innerHTML = "Congratulations! You win! Your final time is [implemented later]. [create score input]";
             startButton.innerHTML = "Play Again";
             startButton.style = "display:inline-block";
+            return true;
         } else if (opponentHand.length == 0) {
             deckElement.style = "display:none";
             resultBox.innerHTML = "Oh no! You lost.";
             startButton.innerHTML = "Play Again";
             startButton.style = "display:inline-block";
+            return true;
         }
+        return false;
     }
 </script>
