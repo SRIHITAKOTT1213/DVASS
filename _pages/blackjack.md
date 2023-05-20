@@ -74,34 +74,47 @@ permalink: /blackjack/
     table { margin: auto }
 </style>
 
-<div class="big_ol_cont">
-    <div id="instructions">
-        {% include blackjackInstruct.html %}
-        <button class="select_button" style="display:none" action="javascript:" onclick="openInstruct()">View Instructions Here</button>
-    </div>
-    <br>
-    <div style="text-align:center;justify-content:center">
-        <h2>Dealer Hand</h2>
-        <table id="dealer_card_table" class="card_table_d">
-            <tr id="dealer_cards">
-            </tr>
-        </table>
-        <h2>Player Hand</h2>
-        <table id="dealer_card_table" class="card_table_p">
-            <tr id="player_cards">
-            </tr>
-        </table>
-    </div>
-    <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
+<html>
+<body>
+    <div class="big_ol_cont">
         <br>
-        <div id="result_text"></div>
+        <div>
+            <button>Instructions</button>
+            <div class="modal" id="modal">
+                <div class="modal-header">
+                    <div class="title">Black Jack Instructions</div>
+                    <button class="close-button">&times;</button>
+                </div>
+                <div class="modal-body">
+                instructions will go in here
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;justify-content:center">
+            <h2>Dealer Hand</h2>
+            <table id="dealer_card_table" class="card_table_d">
+                <tr id="dealer_cards">
+                </tr>
+            </table>
+            <h2>Player Hand</h2>
+            <table id="dealer_card_table" class="card_table_p">
+                <tr id="player_cards">
+                </tr>
+            </table>
+        </div>
+        <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
+            <br>
+            <div id="result_text"></div>
+            <br>
+            <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><button id="stay_button" class="select_button" style="display:none" onclick="stay()">Stay</button>
+            <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
+            <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
+        </div>
         <br>
-        <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><button id="stay_button" class="select_button" style="display:none" onclick="stay()">Stay</button>
-        <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
-        <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
     </div>
-    <br>
-</div>
+    <div id="overlay"></div>
+</body>
+</html>
 
 <script> 
     const dealerRow = document.getElementById("dealer_cards");
