@@ -70,17 +70,21 @@
 </style>
 
 <div class="big_ol_cont">
-    <br />
-    <div style="text-align:center;justify-content:center">
-        <div id="instructions">
+    <div id="instructions">
         <style>
-	@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
-    .title {
-        font-family: "Kanit", sans-serif;
-        font-size: 25px;
-        color: white;
-        display: grid;
-		justify-content: center;
+	
+    .select_button {
+        margin:auto;
+        text-align:center;
+        justify-content:center;
+        border: 5px solid;
+        border-radius:5px;
+        border-color:#9a613b;
+        width:120px;
+        height:60px;
+        background-color:#ccac00;
+        font-size:17px;
+        font-family:serif;
     }
 
     .cancel {
@@ -99,9 +103,8 @@
 
 <body>
 <form id="bjinstruct">
-    <h3><label class="title">Black Jack Instructions</label></h3>
-    
-     
+    <h3><label class="select_button">Black Jack Instructions</label></h3>
+    <p>test</p>
     <button type="button" class="cancel" onclick="closeInstruct()">x</button>
 </form>
 </body>
@@ -121,8 +124,10 @@
     }
 
 </script>
-            <button class="select_button" style="display:none" action="javascript:" onclick="openInstruct()">View Instructions Here</button>
-        </div>
+        <button class="select_button" style="display:none" action="javascript:" onclick="openInstruct()">View Instructions Here</button>
+    </div>
+    <br />
+    <div style="text-align:center;justify-content:center">
         <h2>Dealer Hand</h2>
         <table id="dealer_card_table" class="card_table_d">
             <tr id="dealer_cards">
