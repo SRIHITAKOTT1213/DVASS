@@ -138,8 +138,7 @@ permalink: /blackjack/
 
 <html>
 <body>
-    <div>
-        <button data-modal-target="#modal"><img src="images/question.png" alt="questionbutton"/></button>
+    <button data-modal-target="#modal"><img src="images/question.png" alt="questionbutton"/></button>
         <div class="modal active" id="modal">
             <div class="modal-header">
                 <div class="title">Black Jack Instructions</div>
@@ -149,8 +148,7 @@ permalink: /blackjack/
                 instructions will go in here
             </div>
         </div>
-    </div>
-    <div class="active" id="overlay"></div>
+        <div id="overlay"></div>
     <div class="big_ol_cont">
         <br>
         <div style="text-align:center;justify-content:center">
@@ -188,6 +186,7 @@ permalink: /blackjack/
     const usernameInput = document.getElementById("username_input");
     const resultBox = document.getElementById("result_text");
     const submitButton = document.getElementById("submit_button");
+   
     const openModalButtons = document.querySelectorAll('[data-modal-target]')
     const closeModalButtons = document.querySelectorAll('[data-close-button]')
     const overlay = document.getElementById('overlay')
