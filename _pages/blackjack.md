@@ -103,7 +103,7 @@ permalink: /blackjack/
         color: black;
     }
 
-    ,modal-header .close-button {
+    .modal-header .close-button {
         cursor: pointer;
         border: none;
         outline: none;
@@ -133,7 +133,7 @@ permalink: /blackjack/
         opacity: 1;
     }
     table { margin: auto }
-    
+
 </style>
 
 <html>
@@ -145,7 +145,7 @@ permalink: /blackjack/
             <div class="modal active" id="modal">
                 <div class="modal-header">
                     <div class="title">Black Jack Instructions</div>
-                    <button class="close-button">&times;</button>
+                    <button data-close-button class="close-button">&times;</button>
                 </div>
                 <div class="modal-body">
                 instructions will go in here
