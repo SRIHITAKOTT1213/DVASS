@@ -93,14 +93,15 @@ permalink: /blackjack/
     }
 
     ..modal-header .title {
-        font-size: 1.25 rem;
+        font-size: 1.25rem;
         font-weight: bold;
+        color: black;
     }
 
     ,modal-header .close-button {
         cursor: pointer;
         border: none;
-        outline: none
+        outline: none;
         background: none;
         font-size: 1.25rem;
         font-weight: bold;
