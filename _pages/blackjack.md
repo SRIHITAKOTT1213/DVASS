@@ -80,7 +80,6 @@ permalink: /blackjack/
         <div id="instructions">
         {% include blackjackInstruct.html %} 
             <button class="select_button" style="display:none" action="javascript:" ONCLICK="openInstruct()">View Instructions Here</button>
-            <div id="Instructions" STYLE="display:none"> </div>
         </div>
         <h2>Dealer Hand</h2>
         <table id="dealer_card_table" class="card_table_d">
