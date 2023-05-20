@@ -78,8 +78,8 @@ permalink: /blackjack/
     <br>
     <div style="text-align:center;justify-content:center">
         <div id="instructions">
-        {% include blackjackInstruct.html %} 
-            <button class="select_button" style="display:none" action="javascript:" ONCLICK="openInstruct()">View Instructions Here</button>
+        {% include blackjackInstruct.html %}
+            <button class="select_button" style="display:none" action="javascript:" onclick="openInstruct()">View Instructions Here</button>
         </div>
         <h2>Dealer Hand</h2>
         <table id="dealer_card_table" class="card_table_d">
@@ -113,15 +113,6 @@ permalink: /blackjack/
     const usernameInput = document.getElementById("username_input");
     const resultBox = document.getElementById("result_text");
     const submitButton = document.getElementById("submit_button");
-
-    function ShowAndHide() {
-        var instruct = document.getElementById('Instructions');
-        if (instruct.style.display == 'none') {
-            instruct.style.display = 'block';
-        } else {
-            instruct.style.display = 'none';
-        }
-    }
 
     // card class
     class Card {
