@@ -199,6 +199,13 @@ permalink: /blackjack/
         })
     })
 
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active')
+        modals.forEach(modal => {
+            closModal(modal)
+        })
+    })
+    
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal')
