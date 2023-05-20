@@ -1,0 +1,48 @@
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+    .title {
+        font-family: "Kanit", sans-serif;
+        font-size: 25px;
+        color: white;
+        display: grid;
+		justify-content: center;
+    }
+
+    .cancel {
+        background-color: white;
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        border: none;
+        font-weight: bold;
+    }
+
+    .cancel:hover {
+        color:rgb(4, 4, 43);
+    }    
+</style>
+
+<body>
+<form id="bjinstruct">
+    <h3><label class="title">Black Jack Instructions</label></h3>
+    
+     
+    <button type="button" class="cancel" onclick="closeInstruct()">x</button>
+</form>
+</body>
+
+<script>
+    function openInstruct() {
+        document.getElementById("bjinstruct").style.display = "block";
+    }
+    function closeInstruct() {
+        document.getElementById("bjinstruct").style.display = "none";
+    }
+    window.onclick = function (event) {
+        let modal = document.getElementById('instructPopup');
+        if (event.target == modal) {
+    closeInstruct();
+        }
+    }
+
+</script>
