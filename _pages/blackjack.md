@@ -139,7 +139,7 @@ permalink: /blackjack/
 <html>
 <body>
     <div>
-        <button data-modal-target="#modal" >Instructions</button>
+        <button data-modal-target="#modal"><img src="images/question.png" alt="questionbutton"/></button>
         <div class="modal active" id="modal">
             <div class="modal-header">
                 <div class="title">Black Jack Instructions</div>
@@ -205,7 +205,7 @@ permalink: /blackjack/
             closModal(modal)
         })
     })
-    
+
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal')
