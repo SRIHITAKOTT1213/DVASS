@@ -75,13 +75,18 @@ permalink: /blackjack/
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%) scale(0);
+        transition: 200ms ease-in-out;
         border: 1px solid black;
         border-radius: 10px;
         z-index: 10;
         background-color: white;
         width: 500px;
         max-width: 80%;
+    }
+
+    .modal.active {
+        transform: translate(-50%, -50%) scale(1);
     }
 
     .modal-header {
@@ -119,6 +124,7 @@ permalink: /blackjack/
         right: 0;
         bottom: 0;
         background-color: rgba(0, 0, 0, ,5);
+        transition: 200ms ease-in-out;
         pointer-events: none;
     }
 
@@ -127,6 +133,7 @@ permalink: /blackjack/
         opacity: 1;
     }
     table { margin: auto }
+    
 </style>
 
 <html>
@@ -135,7 +142,7 @@ permalink: /blackjack/
         <br>
         <div>
             <button>Instructions</button>
-            <div class="modal" id="modal">
+            <div class="modal active" id="modal">
                 <div class="modal-header">
                     <div class="title">Black Jack Instructions</div>
                     <button class="close-button">&times;</button>
