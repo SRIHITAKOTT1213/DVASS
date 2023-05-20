@@ -74,15 +74,14 @@ permalink: /blackjack/
     table { margin: auto }
 </style>
 
-{% include blackjackInstruct.html %} 
 <div class="big_ol_cont">
     <br>
-    <div id="instructions">
-        <button class="select_button" style="display:none" action="javascript:" ONCLICK="openInstruct()">View Instructions Here</button>
-        <div id="Instructions" STYLE="display:none"> </div>
-    </div>
-    <br>
     <div style="text-align:center;justify-content:center">
+        <div id="instructions">
+        {% include blackjackInstruct.html %} 
+            <button class="select_button" style="display:none" action="javascript:" ONCLICK="openInstruct()">View Instructions Here</button>
+            <div id="Instructions" STYLE="display:none"> </div>
+        </div>
         <h2>Dealer Hand</h2>
         <table id="dealer_card_table" class="card_table_d">
             <tr id="dealer_cards">
