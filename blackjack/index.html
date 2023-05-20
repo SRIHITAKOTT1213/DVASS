@@ -69,7 +69,61 @@
     table { margin: auto }
 </style>
 
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+    .title {
+        font-family: "Kanit", sans-serif;
+        font-size: 25px;
+        color: white;
+        display: grid;
+		justify-content: center;
+    }
+
+    .cancel {
+        background-color: white;
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        border: none;
+        font-weight: bold;
+    }
+
+    .cancel:hover {
+        color:rgb(4, 4, 43);
+    }    
+</style>
+
+<body>
+<form id="bjinstruct">
+    <h3><label class="title">Black Jack Instructions</label></h3>
+    
+     
+    <button type="button" class="cancel" onclick="closeInstruct()">x</button>
+</form>
+</body>
+
+<script>
+    function openInstruct() {
+        document.getElementById("bjinstruct").style.display = "block";
+    }
+    function closeInstruct() {
+        document.getElementById("bjinstruct").style.display = "none";
+    }
+    window.onclick = function (event) {
+        let modal = document.getElementById('instructPopup');
+        if (event.target == modal) {
+    closeInstruct();
+        }
+    }
+
+</script>
+
 <div class="big_ol_cont">
+    <br />
+    <div id="instructions">
+        <button class="select_button" style="display:none" action="javascript:" onclick="openInstruct()">View Instructions Here</button>
+        <div id="Instructions" style="display:none"> </div>
+    </div>
     <br />
     <div style="text-align:center;justify-content:center">
         <h2>Dealer Hand</h2>
@@ -94,7 +148,7 @@
     <br />
 </div>
 
-<script>
+<script> 
     const dealerRow = document.getElementById("dealer_cards");
     const playerRow = document.getElementById("player_cards");
     const hitButton = document.getElementById("hit_button");
@@ -104,6 +158,15 @@
     const usernameInput = document.getElementById("username_input");
     const resultBox = document.getElementById("result_text");
     const submitButton = document.getElementById("submit_button");
+
+    function ShowAndHide() {
+        var instruct = document.getElementById('Instructions');
+        if (instruct.style.display == 'none') {
+            instruct.style.display = 'block';
+        } else {
+            instruct.style.display = 'none';
+        }
+    }
 
     // card class
     class Card {
