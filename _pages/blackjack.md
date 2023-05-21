@@ -101,7 +101,7 @@ permalink: /blackjack/
         font-size: 1.25rem;
         font-weight: bold;
         color: black;
-        justify-content: center;
+        text-align: center;
     }
 
     .modal-header .close-button {
@@ -111,6 +111,7 @@ permalink: /blackjack/
         background: none;
         font-size: 1.25rem;
         font-weight: bold;
+        background-image: url('https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png');
     }
 
     .modal-body {
@@ -140,7 +141,7 @@ permalink: /blackjack/
 
 <html>
 <body>
-    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png"></button>
+    <button data-modal-target="#modal"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <div class="title">Black Jack Instructions</div>
@@ -150,14 +151,16 @@ permalink: /blackjack/
                 <ol>
                     <li><bold>Objective:</bold> The objective of blackjack is to have a hand value closer to 21 than the dealer's hand value, without exceeding 21.</li>
                     <li<><bold>Card Values:</bold> In blackjack, numbered cards (2-10) are worth their face value, face cards (J, Q, K) are worth 10, and an Ace can be worth either 1 or 11, depending on what benefits the player the most.</li>
-                    <li>Player's Choices:
-                        <li> Hit: Request an additional card to increase the hand value.</li>
-                        <li>Stay: Decline any more cards and keep the current hand value.</li>
-                    </li>
-                    <li>Determining the Winner: Once the dealer has completed their turn, the hands are compared to determine the winner. The following outcomes are possible:
-                        <li>If the player's hand value exceeds 21, they lose the round.</li>
-                        <li>If the dealer's hand value exceeds 21, the player wins.</li>
-                    </li>
+                    <li><bold>Player's Choices:</bold></li>
+                        <ol>
+                            <li> Hit: Request an additional card to increase the hand value.</li>
+                            <li>Stay: Decline any more cards and keep the current hand value.</li>
+                        </oi>
+                    <li><bold>Determining the Winner:</bold> Once the dealer has completed their turn, the hands are compared to determine the winner. The following outcomes are possible:</li>
+                        <ol>
+                            <li>If the player's hand value exceeds 21, they lose the round.</li>
+                            <li>If the dealer's hand value exceeds 21, the player wins.</li>
+                        </ol>
                 </ol>
             </div>
         </div>
