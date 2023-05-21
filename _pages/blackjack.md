@@ -155,11 +155,12 @@ permalink: /blackjack/
                             <li> Hit: Request an additional card to increase the hand value.</li>
                             <li>Stay: Decline any more cards and keep the current hand value.</li>
                         </oi>
-                    <li><bold>Determining the Winner:</bold> Once the dealer has completed their turn, the hands are compared to determine the winner. The following outcomes are possible:</li>
+                    <li><bold>Determining the Winner:</bold> Once the dealer has completed their turn, the hands are compared to determine the winner. The following outcomes are possible:
                         <ol>
                             <li>If the player's hand value exceeds 21, they lose the round.</li>
                             <li>If the dealer's hand value exceeds 21, the player wins.</li>
                         </ol>
+                    </li>
                 </ol>
             </div>
         </div>
