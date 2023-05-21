@@ -38,7 +38,7 @@
   
       ,"page1": {
           "title": "",
-          "content": "Black Jack Instructions &times; Objective: The objective of blackjack is to have a hand value closer to 21 than the dealer&#39;s hand value, without exceeding 21. | &lt;li&lt;&gt;Card Values: In blackjack, numbered cards (2-10) are worth their face value, face cards (J, Q, K) are worth 10, and an Ace can be worth either 1 or 11, depending on what benefits the player the most.&lt;/li&gt; Dealer Hand . . Player Hand . . HitStay PlayFinish and Submit Score Submit .",
+          "content": "Black Jack Instructions &times; Objective: The objective of blackjack is to have a hand value closer to 21 than the dealer&#39;s hand value, without exceeding 21. | Card Values: In blackjack, numbered cards (2-10) are worth their face value, face cards (J, Q, K) are worth 10, and an Ace can be worth either 1 or 11, depending on what benefits the player the most. | Player&#39;s Choices: | Hit: Request an additional card to increase the hand value. | Stay: Decline any more cards and keep the current hand value. | . Determining the Winner: Once the dealer has completed their turn, the hands are compared to determine the winner. The following outcomes are possible: | If the player&#39;s hand value exceeds 21, they lose the round. | If the dealer&#39;s hand value exceeds 21, the player wins. | . Dealer Hand . . Player Hand . . HitStay PlayFinish and Submit Score Submit .",
           "url": "https://srihitakott1213.github.io/DVASS/blackjack/",
           "relUrl": "/blackjack/",
           "date": ""
