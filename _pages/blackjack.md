@@ -111,7 +111,6 @@ permalink: /blackjack/
         background: none;
         font-size: 1.25rem;
         font-weight: bold;
-        background-image: url('https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png');
     }
 
     .modal-body {
