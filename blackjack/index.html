@@ -96,6 +96,7 @@
         font-size: 1.25rem;
         font-weight: bold;
         color: black;
+        justify-content: center;
     }
 
     .modal-header .close-button {
@@ -141,7 +142,18 @@
                 <button data-close-button="" class="close-button">&times;</button>
             </div>
             <div class="modal-body">
-                instructions will go in here
+                <ol>
+                    <li><bold>Objective:</bold> The objective of blackjack is to have a hand value closer to 21 than the dealer's hand value, without exceeding 21.</li>
+                    &lt;li&lt;&gt;<bold>Card Values:</bold> In blackjack, numbered cards (2-10) are worth their face value, face cards (J, Q, K) are worth 10, and an Ace can be worth either 1 or 11, depending on what benefits the player the most.&lt;/li&gt;
+                    <li>Player's Choices:
+                        <li> Hit: Request an additional card to increase the hand value.</li>
+                        <li>Stay: Decline any more cards and keep the current hand value.</li>
+                    </li>
+                    <li>Determining the Winner: Once the dealer has completed their turn, the hands are compared to determine the winner. The following outcomes are possible:
+                        <li>If the player's hand value exceeds 21, they lose the round.</li>
+                        <li>If the dealer's hand value exceeds 21, the player wins.</li>
+                    </li>
+                </ol>
             </div>
         </div>
         <div id="overlay"></div>
@@ -163,7 +175,7 @@
             <br />
             <div id="result_text"></div>
             <br />
-            <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><button id="stay_button" class="select_button" style="display:none" onclick="stay()">Stay</button>
+            <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><br /><button id="stay_button" class="select_button" style="display:none" onclick="stay()">Stay</button>
             <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
             <input id="username_input" class="db_input" type="text" style="display:none" /><button id="submit_button" class="select_button" style="display:none">Submit</button>
         </div>
