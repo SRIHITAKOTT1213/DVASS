@@ -72,7 +72,7 @@ permalink: /uno/
     .green_border {
         max-width: 200px;
         border: 8px solid;
-        border-radius: 150px;
+        border-radius: 20px;
         background-color: #04DE00;
         padding: 20px;
         padding-top:30px;
@@ -203,7 +203,10 @@ permalink: /uno/
     var oDispHand = [];
     var topCard = "placeholder";
     var ableToPlay = true;
-
+    var timeSet = "placeholder";
+    var constant = 0;
+    var seconds = 0;
+    var minutes = 0;
     const colorsBox = document.getElementById("full_of_colors");
 
     // card class
@@ -267,6 +270,26 @@ permalink: /uno/
         }
     };
 
+    function incrementTime() {
+        constant++; //constant second count separate from seconds
+        seconds++;
+        if (seconds == 60) {
+            minutes++;
+            seconds = 0;
+        }
+        if (constant >= 5999) {
+            clearInterval(timeSet);
+        };
+    };
+
+    function runTimer(boolean) {
+        if (boolean) {
+            timeSet = setInterval(incrementTime, 1000);
+        } else {
+            clearInterval(timeSet);
+        }
+    }
+
     var theDeck = "placeholder";
     var thisCard = "placeholder";
     var discardPile = [];
@@ -282,6 +305,7 @@ permalink: /uno/
     };
 
     function startGame() {
+        runTimer(true);
         var validDraw = true;
         deckElement.style = "display:block";
         startButton.style = "display:none";
@@ -595,12 +619,14 @@ permalink: /uno/
             resultBox.innerHTML = "Uno!"
         }
         if (playerHand.length == 0) {
+            runTimer(false);
             deckElement.style = "display:none";
-            resultBox.innerHTML = "Congratulations! You win! Your final time is [implemented later]. [create score input]";
+            resultBox.innerHTML = "Congratulations! You win! Your final time is " + String(minutes) + ":" + String(seconds) + ". [create score input]"; //variable constant used for leaderboard submission
             startButton.innerHTML = "Play Again";
             startButton.style = "display:inline-block";
             return true;
         } else if (opponentHand.length == 0) {
+            runTimer(false);
             deckElement.style = "display:none";
             resultBox.innerHTML = "Oh no! You lost.";
             startButton.innerHTML = "Play Again";
