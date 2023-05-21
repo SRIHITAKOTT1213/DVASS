@@ -275,6 +275,7 @@ permalink: /uno/
         seconds++;
         if (seconds == 60) {
             minutes++;
+            seconds = 0;
         }
         if (constant >= 5999) {
             clearInterval(timeSet);
