@@ -72,7 +72,7 @@ permalink: /uno/
     .green_border {
         max-width: 200px;
         border: 8px solid;
-        border-radius: 150px;
+        border-radius: 20px;
         background-color: #04DE00;
         padding: 20px;
         padding-top:30px;
