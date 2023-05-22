@@ -265,7 +265,7 @@
         }
 
         // Check if the deck is empty
-        if (deck.cards.length === 0) {
+        if (playercard_num.length == 0 or oppcard_num.length == 0) {
             // Hide the "Draw" button and show the "Finish and Submit Score" button
             document.getElementById("draw_button").style.display = "none";
             finishButton.style.display = "block";
