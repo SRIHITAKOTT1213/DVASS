@@ -238,6 +238,8 @@ permalink: /war/
     function buttonDraw() {
         player_num.innerHTML = playercard_num;
         opp_num.innerHTML = oppcard_num;
+        oppRow.innerHTML = "";
+        playerRow.innerHTML = "";
 
         // draw card from deck for you and opp
         var playerCard = playerList.pop();
