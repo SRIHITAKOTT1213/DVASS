@@ -228,6 +228,9 @@ permalink: /war/
     }
 
     function buttonDraw() {
+        oppRow.innerHTML = "";
+        playerRow.innerHTML = "";
+        
         // draw card from deck for you and opp
         var playerCard = playerList[0];
         var oppCard = oppList[0];
