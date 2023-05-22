@@ -178,6 +178,7 @@ permalink: /war/
     var oppList = [];
     var playerWinPile = [];
     var oppWinPile = [];
+    var deck = "placeholder";
 
     function gameStart() {
         oppRow.innerHTML = "";
@@ -186,7 +187,7 @@ permalink: /war/
         opp_num.innerHTML = oppcard_num;
 
         // create and shuffle new deck
-        var deck = new Deck();
+        deck = new Deck();
         deck.shuffle();
 
         // deal card to you and opp
