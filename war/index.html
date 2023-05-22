@@ -93,10 +93,13 @@
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br />
         <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw()">Draw</button>
+        <div id="win_text"></div>
         <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
         <input id="username_input" class="db_input" type="text" style="display:none" /><button id="submit_button" class="select_button" style="display:none">Submit</button>
     </div>
     <br />
+    <div>
+
 </div>
 
 <script>
@@ -109,6 +112,7 @@
     const playerNum = document.getElementById("player_num");
     const oppNum = document.getElementById("opp_num");
     const submitButton = document.getElementById("submit_button");
+    const winText = document.getElementById("win_text");
 
     // card class
     class Card {
@@ -163,6 +167,34 @@
         }
     };
 
+    var playercard_num = 26;
+    var oppcard_num = 26;
+    var playerList = [];         
+    var oppList = [];
+    var playerWinPile = [];
+    var oppWinPile = [];
+
+    function gameStart() {
+        oppRow.innerHTML = "";
+        playerRow.innerHTML = "";
+        player_num.innerHTML = playercard_num;
+        opp_num.innerHTML = oppcard_num;
+
+        // create and shuffle new deck
+        var deck = new Deck();
+        deck.shuffle();
+
+        // deal card to you and opp
+        for (let i = 0; i < 26; i++) {
+            playerList.push(deck.draw());
+            oppList.push(deck.draw());
+        }
+
+        // show draw button and hide play button 
+        document.getElementById("draw_button").style.display = "block";
+        playButton.style.display = "none";
+    }
+
     function givePlayerCard(card) {
         const newCard = document.createElement("td");
         const newCardImage = document.createElement("img");
@@ -196,39 +228,15 @@
         }
     };
 
-    var playercard_num = 26;
-    var oppcard_num = 26;
-    var playerList = [];         
-    var oppList = [];
-
-    function gameStart() {
-        oppRow.innerHTML = "";
-        playerRow.innerHTML = "";
-        player_num.innerHTML = playercard_num;
-        opp_num.innerHTML = oppcard_num;
-
-        // create and shuffle new deck
-        var deck = new Deck();
-        deck.shuffle();
-
-        // deal card to you and opp
-        for (let i = 0; i < 26; i++) {
-            playerList.push(deck.draw());
-            oppList.push(deck.draw());
-        }
-
-        // show draw button and hide play button 
-        document.getElementById("draw_button").style.display = "block";
-        playButton.style.display = "none";
-    }
+    var inWar = false;
 
     function buttonDraw() {
         oppRow.innerHTML = "";
         playerRow.innerHTML = "";
-        
+
         // draw card from deck for you and opp
-        var playerCard = playerList[0];
-        var oppCard = oppList[0];
+        var playerCard = playerList.pop();
+        var oppCard = oppList.pop();
 
         // display drawn card
         givePlayerCard(playerCard);
@@ -236,13 +244,21 @@
 
         // Compare the values of the drawn cards
         if (playerCard.value > oppCard.value) {
+            winText.innerHTML = "You won! You take the cards on the table."
             playercard_num += 1;
             oppcard_num -= 1;
+            playerWinPile.push(playerCard);
+            playerWinPile.push(oppCard);
         } else if (playerCard.value < oppCard.value) {
+            winText.innerHTML = "The opponent won, so they take the cards on the table."
             oppcard_num += 1;
             playercard_num -= 1;;
+            oppWinPile.push(playerCard);
+            oppWinPile.push(oppCard);
         } else {
-            resultBox.innerHTML = "Tie! Put down 3 cards.";
+            // WAR LATER
+            inWar = true;
+            resultBox.innerHTML = "WAR! Put down 3 cards.";
         }
 
         // Check if the deck is empty
@@ -265,4 +281,4 @@
         console.log("Number of Cards Remaining: " + deck.cards.length);
     }
 </script>
-
+</div>
