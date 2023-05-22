@@ -270,7 +270,7 @@ permalink: /war/
         }
 
         // Check if the deck is empty
-        if (card_num.length == 0 || oppcard_num.length == 0) {
+        if (playercard_num.length == 0 || oppcard_num.length == 0) {
             // Hide the "Draw" button and show the "Finish and Submit Score" button
             document.getElementById("draw_button").style.display = "none";
             finishButton.style.display = "block";
