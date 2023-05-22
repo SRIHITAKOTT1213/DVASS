@@ -236,8 +236,8 @@ permalink: /war/
     var inWar = false;
 
     function buttonDraw() {
-        oppRow.innerHTML = "";
-        playerRow.innerHTML = "";
+        player_num.innerHTML = playercard_num;
+        opp_num.innerHTML = oppcard_num;
 
         // draw card from deck for you and opp
         var playerCard = playerList.pop();
