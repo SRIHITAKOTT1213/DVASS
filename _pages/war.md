@@ -172,8 +172,8 @@ permalink: /war/
         }
     };
 
-    var playercard_num = 26;
-    var oppcard_num = 26;
+    var playercard_num = 25;
+    var oppcard_num = 25;
     var playerList = [];         
     var oppList = [];
     var playerWinPile = [];
@@ -267,6 +267,11 @@ permalink: /war/
             // WAR LATER
             inWar = true;
             resultBox.innerHTML = "WAR! Put down 3 cards.";
+            for (let i = 0; i < 4; i++) {
+                givePlayerCard(playerCard);
+                giveOppCard(oppCard);
+            }
+
         }
 
         // Check if the deck is empty
