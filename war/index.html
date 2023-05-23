@@ -229,10 +229,27 @@
         }
     };
 
+    function disShuffle(pile) {
+        for (var i = pile.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = pile[i];
+            pile[i] = pile[j];
+            pile[j] = temp;
+        };
+        return pile;
+    };
+
     var inWar = false;
     var onTable = [];
 
     function buttonDraw() {
+        if (playerList.length == 0){
+            playerList = disShuffle(playerWinPile);
+            playerWinPile = [];
+        } else if (oppList.length==0){
+            oppList = disShuffle(oppWinPile);
+            oppWinPile = [];
+        }
         if (!(inWar)) {
             player_num.innerHTML = playercard_num;
             opp_num.innerHTML = oppcard_num;
