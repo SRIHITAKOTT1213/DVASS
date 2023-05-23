@@ -276,6 +276,7 @@ permalink: /war/
                 // WAR LATER
                 inWar = true;
                 winText.innerHTML = "WAR! Put down 2 cards.";
+            }
         } else {
             for (let i = 0; i < 2; i++) {
                 var randwarPlayerCard = playerList.pop();
