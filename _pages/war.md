@@ -248,6 +248,9 @@ permalink: /war/
     var onTable = [];
 
     function buttonDraw() {
+        player_num.innerHTML = playercard_num;
+        opp_num.innerHTML = oppcard_num;
+        
         if (playerList.length == 0){
             playerList = disShuffle(playerWinPile);
             playerWinPile = [];
@@ -256,8 +259,6 @@ permalink: /war/
             oppWinPile = [];
         }
         if (!(inWar)) {
-            player_num.innerHTML = playercard_num;
-            opp_num.innerHTML = oppcard_num;
             oppRow.innerHTML = "";
             playerRow.innerHTML = "";
 
