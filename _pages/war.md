@@ -172,12 +172,12 @@ permalink: /war/
         }
     };
 
-    var playercard_num = 25;
-    var oppcard_num = 25;
     var playerList = [];         
     var oppList = [];
     var playerWinPile = [];
     var oppWinPile = [];
+    var playercard_num = playerList.length + playerWinPile.length;
+    var oppcard_num = oppList.length + oppWinPile.length;
     var deck = "placeholder";
 
     function gameStart() {
@@ -275,16 +275,12 @@ permalink: /war/
             // Compare the values of the drawn cards
             if (playerCard.value > oppCard.value) {
                 winText.innerHTML = "You won! You take the cards on the table."
-                playercard_num += 1;
-                oppcard_num -= 1;
                 for (card of onTable) {
                     playerWinPile.push(card);
                 }
                 onTable = [];
             } else if (playerCard.value < oppCard.value) {
                 winText.innerHTML = "The opponent won, so they take the cards on the table."
-                oppcard_num += 1;
-                playercard_num -= 1;;
                 for (card of onTable) {
                     oppWinPile.push(card);
                 }
