@@ -266,10 +266,14 @@ permalink: /war/
         } else {
             // WAR LATER
             inWar = true;
-            resultBox.innerHTML = "WAR! Put down 3 cards.";
+            winText.innerHTML = "WAR! Put down 3 cards.";
             for (let i = 0; i < 4; i++) {
                 givePlayerCard(playerCard);
                 giveOppCard(oppCard);
+                if (i == 3) {
+                    var warPlayerCard = playerCard;
+                    var warOppCard = oppCard;
+                }
             }
 
         }
