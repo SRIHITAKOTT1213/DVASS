@@ -289,9 +289,22 @@ permalink: /war/
                     var warPlayerCard = playerCard;
                     var warOppCard = oppCard;
                 }
-            }
-            if (warPlayerCard.value > warOppCard.value) {
-                winText.innerHTML = "You won the war! Take the cards on the table.";
+            } if (warPlayerCard.value > warOppCard.value) {
+                winText.innerHTML = "You won the war! You take the cards on the table.";
+                for (card of onTable) {
+                    playerWinPile.push(card);
+                }
+                onTable = [];
+                inWar = false;
+            } else if (warPlayerCard.value < warOppCard.value) {
+                winText.innerHTML = "Opponent won the war! They take the cards on the table.";
+                for (card of onTable) {
+                    oppWinPile.push(card);
+                }
+                onTable = [];
+                inWar = false;
+            } else {
+                winText.innerHTML = "Another WAR! Put down 2 more cards.";
             }
         }
 
