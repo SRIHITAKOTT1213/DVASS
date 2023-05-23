@@ -238,7 +238,7 @@ permalink: /war/
     var onTable = [];
 
     function buttonDraw() {
-        if !(inWar) {
+        if (!(inWar)) {
             player_num.innerHTML = playercard_num;
             opp_num.innerHTML = oppcard_num;
             oppRow.innerHTML = "";
