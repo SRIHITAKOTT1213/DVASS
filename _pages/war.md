@@ -268,8 +268,10 @@ permalink: /war/
             inWar = true;
             winText.innerHTML = "WAR! Put down 3 cards.";
             for (let i = 0; i < 4; i++) {
-                givePlayerCard(playerCard);
-                giveOppCard(oppCard);
+                var randwarPlayerCard = playerList.pop();
+                var randwarOppCard = oppList.pop();
+                givePlayerCard(randwarPlayerCard);
+                giveOppCard(randwarOppCard);
                 if (i == 3) {
                     var warPlayerCard = playerCard;
                     var warOppCard = oppCard;
