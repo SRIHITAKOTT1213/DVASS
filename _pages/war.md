@@ -235,49 +235,63 @@ permalink: /war/
     };
 
     var inWar = false;
+    var onTable = [];
 
     function buttonDraw() {
-        player_num.innerHTML = playercard_num;
-        opp_num.innerHTML = oppcard_num;
-        oppRow.innerHTML = "";
-        playerRow.innerHTML = "";
+        if !(inWar) {
+            player_num.innerHTML = playercard_num;
+            opp_num.innerHTML = oppcard_num;
+            oppRow.innerHTML = "";
+            playerRow.innerHTML = "";
 
-        // draw card from deck for you and opp
-        var playerCard = playerList.pop();
-        var oppCard = oppList.pop();
+            // draw card from deck for you and opp
+            var playerCard = playerList.pop();
+            var oppCard = oppList.pop();
+            onTable.push(playerCard)
+            onTable.push(oppCard)
 
-        // display drawn card
-        givePlayerCard(playerCard);
-        giveOppCard(oppCard);
+            // display drawn card
+            
+            givePlayerCard(playerCard);
+            giveOppCard(oppCard);
 
-        // Compare the values of the drawn cards
-        if (playerCard.value > oppCard.value) {
-            winText.innerHTML = "You won! You take the cards on the table."
-            playercard_num += 1;
-            oppcard_num -= 1;
-            playerWinPile.push(playerCard);
-            playerWinPile.push(oppCard);
-        } else if (playerCard.value < oppCard.value) {
-            winText.innerHTML = "The opponent won, so they take the cards on the table."
-            oppcard_num += 1;
-            playercard_num -= 1;;
-            oppWinPile.push(playerCard);
-            oppWinPile.push(oppCard);
+            // Compare the values of the drawn cards
+            if (playerCard.value > oppCard.value) {
+                winText.innerHTML = "You won! You take the cards on the table."
+                playercard_num += 1;
+                oppcard_num -= 1;
+                for (card of onTable) {
+                    playerWinPile.push(card);
+                }
+                onTable = [];
+            } else if (playerCard.value < oppCard.value) {
+                winText.innerHTML = "The opponent won, so they take the cards on the table."
+                oppcard_num += 1;
+                playercard_num -= 1;;
+                for (card of onTable) {
+                    oppWinPile.push(card);
+                }
+                onTable = [];
+            } else {
+                // WAR LATER
+                inWar = true;
+                winText.innerHTML = "WAR! Put down 2 cards.";
         } else {
-            // WAR LATER
-            inWar = true;
-            winText.innerHTML = "WAR! Put down 3 cards.";
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < 2; i++) {
                 var randwarPlayerCard = playerList.pop();
                 var randwarOppCard = oppList.pop();
+                onTable.push(randwarPlayerCard);
+                onTable.push(randwarOppCard);
                 givePlayerCard(randwarPlayerCard);
                 giveOppCard(randwarOppCard);
-                if (i == 3) {
+                if (i == 1) {
                     var warPlayerCard = playerCard;
                     var warOppCard = oppCard;
                 }
             }
-
+            if (warPlayerCard.value > warOppCard.value) {
+                winText.innerHTML = "You won the war! Take the cards on the table.";
+            }
         }
 
         // Check if the deck is empty
