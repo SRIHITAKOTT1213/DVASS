@@ -286,8 +286,8 @@ permalink: /war/
                 givePlayerCard(randwarPlayerCard);
                 giveOppCard(randwarOppCard);
                 if (i == 1) {
-                    var warPlayerCard = playerCard;
-                    var warOppCard = oppCard;
+                    var warPlayerCard = randwarPlayerCard;
+                    var warOppCard = randwarOppCard;
                 }
             } if (warPlayerCard.value > warOppCard.value) {
                 winText.innerHTML = "You won the war! You take the cards on the table.";
