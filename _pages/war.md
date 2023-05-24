@@ -134,6 +134,14 @@ permalink: /war/
         opacity: 1;
     }
 
+    #faceDownCard {
+        position: relative;
+    }
+
+    .move-up {
+        transform: translate (50px, 50px)
+    }
+
     table { margin: auto }
 </style>
 
@@ -178,7 +186,7 @@ permalink: /war/
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br>
-            <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw()">Draw</button>
+            <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
             <div id="win_text"></div>
             <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
             <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
@@ -186,6 +194,7 @@ permalink: /war/
         <br>
         <div>
     </div>
+    <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" alt="eximage" id="faceDownCard" onclick="moveCardUp()">
 </body>
 </html>
 
@@ -215,7 +224,7 @@ permalink: /war/
     overlay.addEventListener('click', () => {
         const modals = document.querySelectorAll('.modal.active')
         modals.forEach(modal => {
-            closModal(modal)
+            closeModal(modal)
         })
     })
 
@@ -237,7 +246,12 @@ permalink: /war/
         modal.classList.remove('active')
         overlay.classList.remove('active')
     }
-    
+
+    function moveCardUp() {
+        var cardimg = document.getElementById("faceDownCard");
+        cardimg.classList.add("moveUp");
+    }
+
     // card class
     class Card {
         constructor(suit, val) {
