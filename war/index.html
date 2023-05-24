@@ -48,8 +48,6 @@
         <div>
     </div>
     <img src="/DVASS/images/blackjack/facedown_card.png" id="faceDownCard" onclick="moveCardUp()" />
-&lt;/body&gt;
-&lt;/html&gt;
 
 <style>
     .big_ol_cont {
@@ -247,7 +245,7 @@
 
     function moveCardUp() {
         var facedown = document.getElementById("faceDownCard");
-        facedown.style.transform = "translate(800px, -400px)";
+        facedown.style.transform = "translate(50%, -30%)";
 
         setTimeout(function() {
             facedown.style.display = "none";
