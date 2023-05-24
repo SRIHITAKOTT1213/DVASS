@@ -27,7 +27,7 @@ header
     z-index: 10000;
 }
 
-header.logo
+header .logo
 {
     color: #fff;
     font-weight: 700;
