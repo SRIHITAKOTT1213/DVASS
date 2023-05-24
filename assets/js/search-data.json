@@ -49,9 +49,9 @@
   
       ,"page2": {
           "title": "",
-          "content": "&lt;!doctype html&gt; . . DVASS Home | Games | About | . . Welcome to DVASS Casino . Explore .",
-          "url": "https://srihitakott1213.github.io/DVASS/",
-          "relUrl": "/",
+          "content": "",
+          "url": "https://srihitakott1213.github.io/DVASS/games/",
+          "relUrl": "/games/",
           "date": ""
       }
       
@@ -59,6 +59,17 @@
 
   
       ,"page3": {
+          "title": "",
+          "content": "&lt;!doctype html&gt; . . DVASS Home | Games | About | . . Welcome to DVASS Casino . Explore .",
+          "url": "https://srihitakott1213.github.io/DVASS/home/",
+          "relUrl": "/home/",
+          "date": ""
+      }
+      
+  
+
+  
+      ,"page4": {
           "title": "",
           "content": "Slot Machine Memory Game . PlayFinish and Submit Score Submit",
           "url": "https://srihitakott1213.github.io/DVASS/memorygame/",
@@ -77,7 +88,7 @@
   
 
   
-      ,"page7": {
+      ,"page8": {
           "title": "Uno Simulation",
           "content": "Opponent Hand . The opponent&#39;s number of cards will be displayed here. Player Hand . . . Start",
           "url": "https://srihitakott1213.github.io/DVASS/uno/",
@@ -88,7 +99,7 @@
   
 
   
-      ,"page8": {
+      ,"page9": {
           "title": "",
           "content": "Opponent . Number of Cards . . . You . Number of Cards . Draw PlayFinish and Submit Score Submit",
           "url": "https://srihitakott1213.github.io/DVASS/war/",
@@ -111,7 +122,7 @@
   
 
   
-      ,"page13": {
+      ,"page14": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://srihitakott1213.github.io/DVASS/robots.txt",
