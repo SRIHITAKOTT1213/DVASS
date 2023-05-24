@@ -71,54 +71,123 @@ permalink: /war/
         font-family:serif;
     }
 
-    .card-image {
-        position: absolute;
-        transition: all 1s ease-in-out;
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 200ms ease-in-out;
+        border: 1px solid black;
+        border-radius: 10px;
+        z-index: 10;
+        background-color: white;
+        width: 500px;
+        max-width: 80%;
     }
 
-    .card-image.move-up {
-        transform: translateY(200px);
+    .modal.active {
+        transform: translate(-50%, -50%) scale(1);
     }
 
-    .card-image.move-down {
-        transform: translateY(-200px);
+    .modal-header {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+    }
+
+    ..modal-header .title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+    }
+
+    .modal-header .close-button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .modal-body {
+        padding: 10px 15px;
+    }
+
+    #overlay {
+        position: fixed;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, ,5);
+        transition: 200ms ease-in-out;
+        pointer-events: none;
+    }
+
+    #overlay.active {
+        pointer-events: all;
+        opacity: 1;
     }
 
     table { margin: auto }
 </style>
 
-<div class="big_ol_cont">
-    <br>
-    <div style="text-align:center;justify-content:center">
-        <h2>Opponent</h2>
-        <h3>Number of Cards</h3>
-        <div id="opp_num"></div>
+<html>
+<body>
+    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png"></button>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div class="title">War Instructions</div>
+                <button data-close-button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li><b>Objective:</b> The objective of war is to win all the cards in the deck. </li>
+                    <li><b>How to play:</b> Each round, hit the "Draw" button so both you and your opponent reveal the top card from your respective decks simulataneously. The plyaer with the higher-ranking card wins the round and collects both cards, adding them to a win pile. This win pile will be shuffled and recycled into your card deck once that deck runs out. </li>
+                    <li><b>WAR:</b> When players place down two cards of the same value, a war happens! Both players place down an additional 2 cards. The last card placed down is compared between the two players, and the player with the higher-ranking card wins all the cards on the table, including those from the war. If there is another war, the process of war is repeated until a winner is determined. </li>
+                    <li><b>Card Values:</b> Ace is worth 1, numbered cards (2-10) are worth their face value, face card J is worth 11, face card Q is worth 12, and face card K is worth 13. </li>
+                </ol>
+            </div>
+        </div>
+        <div id="overlay"></div>
+    <div class="big_ol_cont">
         <br>
-        <table id="opp_card_table" class="card_table_d">
-            <tr id="opp_cards">
-            </tr>
-        </table>
+        <div style="text-align:center;justify-content:center">
+            <h2>Opponent</h2>
+            <h3>Number of Cards</h3>
+            <div id="opp_num"></div>
+            <br>
+            <table id="opp_card_table" class="card_table_d">
+                <tr id="opp_cards">
+                </tr>
+            </table>
+            <br>
+            <br>
+            <table id="opp_card_table" class="card_table_p">
+                <tr id="you_cards">
+                </tr>
+            </table>
+            <h2>You</h2>
+            <h3>Number of Cards</h3>
+            <div id="player_num"></div>
+        </div>
+        <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
+            <br>
+            <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw()">Draw</button>
+            <div id="win_text"></div>
+            <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
+            <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
+        </div>
         <br>
-        <br>
-        <table id="opp_card_table" class="card_table_p">
-            <tr id="you_cards">
-            </tr>
-        </table>
-        <h2>You</h2>
-        <h3>Number of Cards</h3>
-        <div id="player_num"></div>
+        <div>
     </div>
-    <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
-        <br>
-        <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw()">Draw</button>
-        <div id="win_text"></div>
-        <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
-        <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
-    </div>
-    <br>
-    <div>
-
-</div>
+</body>
+</html>
 
 <script>
     const oppRow = document.getElementById("opp_cards");
@@ -132,6 +201,43 @@ permalink: /war/
     const submitButton = document.getElementById("submit_button");
     const winText = document.getElementById("win_text");
 
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+    const closeModalButtons = document.querySelectorAll('[data-close-button]')
+    const overlay = document.getElementById('overlay')
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget)
+            openModal(modal)
+        })
+    })
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active')
+        modals.forEach(modal => {
+            closModal(modal)
+        })
+    })
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        })
+    })
+
+    function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active')
+        overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active')
+        overlay.classList.remove('active')
+    }
+    
     // card class
     class Card {
         constructor(suit, val) {
