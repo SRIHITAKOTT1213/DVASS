@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body 
+{
+    min-height: 100vh;
+    background: linear-gradient(#274510,#699e42);
+}
+
+header 
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10000;
+}
+
+header .logo
+{
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header ul 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li
+{
+    list-style: none;
+    margin-left: 20px;
+}
+
+header ul li a
+{
+   text-decoration: none;
+   padding: 6px 15px;
+   color: #fff;
+   border-radius: 20px; 
+}
+
+header ul li a:hover
+{
+    background: #fff;
+    color: #274510
+}
+
+section 
+{ 
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+section img 
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+section #text
+{
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    white-space: nowrap;
+    font-size: 6.5vw; 
+    z-index: 9; 
+    transform: translateY(-2.75ch);
+}
+
+section .btn
+{ 
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 32px;
+    border-radius: 40px;
+    background: #fff;
+    color: #274510;
+    font-size: 1.7em;
+    z-index: 9; 
+}
+
+section .btn:hover
+{
+    background: #272727;
+    color: #fff
+}
+
+.sec 
+{
+    position: relative;
+    padding: 100px;
+    background-color: #b4d59a;
+}
+
+.sec h2 
+{
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
