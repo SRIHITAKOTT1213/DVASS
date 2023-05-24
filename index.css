@@ -95,18 +95,18 @@ section #text
     white-space: nowrap;
     font-size: 6.5vw; 
     z-index: 9; 
-    transform: translateY(-3.5ch);
+    transform: translateY(-2.75ch);
 }
 
 section .btn
 { 
     text-decoration: none;
     display: inline-block;
-    padding: 8px 30px;
+    padding: 10px 32px;
     border-radius: 40px;
     background: #fff;
     color: #274510;
-    font-size: 1.5em;
+    font-size: 1.7em;
     z-index: 9; 
 }
 
