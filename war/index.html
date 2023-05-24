@@ -129,6 +129,14 @@
         opacity: 1;
     }
 
+    #faceDownCard {
+        position: relative;
+    }
+
+    .move-up {
+        transform: translate (50px, 50px)
+    }
+
     table { margin: auto }
 </style>
 
@@ -173,7 +181,7 @@
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br />
-            <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw()">Draw</button>
+            <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
             <div id="win_text"></div>
             <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
             <input id="username_input" class="db_input" type="text" style="display:none" /><button id="submit_button" class="select_button" style="display:none">Submit</button>
@@ -181,6 +189,7 @@
         <br />
         <div>
     </div>
+    <img src="/DVASS/images/blackjack/facedown_card.png" alt="eximage" id="faceDownCard" onclick="moveCardUp()" />
 &lt;/body&gt;
 &lt;/html&gt;
 
@@ -210,7 +219,7 @@
     overlay.addEventListener('click', () => {
         const modals = document.querySelectorAll('.modal.active')
         modals.forEach(modal => {
-            closModal(modal)
+            closeModal(modal)
         })
     })
 
@@ -232,7 +241,12 @@
         modal.classList.remove('active')
         overlay.classList.remove('active')
     }
-    
+
+    function moveCardUp() {
+        var cardimg = document.getElementById("faceDownCard");
+        cardimg.classList.add("moveUp");
+    }
+
     // card class
     class Card {
         constructor(suit, val) {
