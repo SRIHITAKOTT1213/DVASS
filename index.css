@@ -88,11 +88,11 @@ section #text
     position: absolute;
     color: #fff;
     white-space: nowrap;
-    font-size: 7.5vw; 
+    font-size: 7vw; 
     z-index: 9;
 }
 
-section #btn
+section .btn
 {
     text-decoration: none;
     display: inline-block;
