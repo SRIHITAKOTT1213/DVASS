@@ -53,8 +53,6 @@ permalink: /war/
         <div>
     </div>
     <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="faceDownCard" onclick="moveCardUp()">
-</body>
-</html>
 
 <style>
     .big_ol_cont {
@@ -252,7 +250,7 @@ permalink: /war/
 
     function moveCardUp() {
         var facedown = document.getElementById("faceDownCard");
-        facedown.style.transform = "translate(800px, -400px)";
+        facedown.style.transform = "translate(50%, -30%)";
 
         setTimeout(function() {
             facedown.style.display = "none";
