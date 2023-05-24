@@ -252,7 +252,12 @@ permalink: /war/
 
     function moveCardUp() {
         var facedown = document.getElementById("faceDownCard");
-        facedown.style.transform = "translate(200px, -500px)";
+        facedown.style.transform = "translate(800px, -400px)";
+
+        setTimeout(function() {
+            facedown.style.display = "none";
+        }, 100);
+
         // facedown.classList.add("moveUp");
     }
 
