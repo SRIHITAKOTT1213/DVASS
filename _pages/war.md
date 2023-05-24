@@ -138,7 +138,7 @@ permalink: /war/
         position: relative;
     }
 
-    .move-up {
+    .moveUp {
         transform: translate (50px, 50px)
     }
 
