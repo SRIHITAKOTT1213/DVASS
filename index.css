@@ -79,6 +79,7 @@ section img
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;
 }
 
 #text
@@ -87,5 +88,19 @@ section img
     color: #fff;
     white-space: nowrap;
     font-size: 7.5vw;
+    font-size: 1.5em;
     z-index: 9;
+}
+
+#btn
+{
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 40px;
+    background: #fff;
+    color: #274510;
+    font-size: 1.5em;
+    z-index: 9;
+    transform: translateY(100px);
 }
