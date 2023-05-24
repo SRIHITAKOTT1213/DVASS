@@ -192,7 +192,7 @@ permalink: /war/
     }
 
     .moveUp {
-        transform: translate (50px, 50px);
+        transform: translate(50px, 50px);
     }
 
     table { margin: auto }
