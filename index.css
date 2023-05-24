@@ -94,7 +94,7 @@ section #text
     transform: translateY(60px);
 }
 
-section .btn
+section #btn
 {
     position: absolute;
     text-decoration: none;
