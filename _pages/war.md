@@ -176,9 +176,14 @@ permalink: /war/
     var oppList = [];
     var playerWinPile = [];
     var oppWinPile = [];
-    var playercard_num = playerList.length + playerWinPile.length;
-    var oppcard_num = oppList.length + oppWinPile.length;
+    var playercard_num = 0;
+    var oppcard_num = 0;
     var deck = "placeholder";
+
+    function updateCardCount() {
+        playercard_num = playerList.length + playerWinPile.length;
+        oppcard_num = oppList.length + oppWinPile.length;
+    }
 
     function gameStart() {
         oppRow.innerHTML = "";
@@ -195,6 +200,11 @@ permalink: /war/
             playerList.push(deck.draw());
             oppList.push(deck.draw());
         }
+
+        updateCardCount();
+        
+        player_num.innerHTML = playercard_num;
+        opp_num.innerHTML = oppcard_num;
 
         // show draw button and hide play button 
         document.getElementById("draw_button").style.display = "block";
@@ -317,6 +327,8 @@ permalink: /war/
             } else {
                 winText.innerHTML = "Another WAR! Put down 2 more cards.";
             }
+        updateCardCount();
+
         player_num.innerHTML = playercard_num;
         opp_num.innerHTML = oppcard_num;
         }
