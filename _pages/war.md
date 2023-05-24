@@ -189,6 +189,8 @@ permalink: /war/
 
     #faceDownCard {
         position: relative;
+        width: 100;
+        height: 150;
         transition: transform 0.3s ease;
     }
 /*
@@ -250,7 +252,7 @@ permalink: /war/
 
     function moveCardUp() {
         var facedown = document.getElementById("faceDownCard");
-        facedown.style.transform = "translate(200px, -300px)";
+        facedown.style.transform = "translate(200px, -500px)";
         // facedown.classList.add("moveUp");
     }
 
