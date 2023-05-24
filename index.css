@@ -93,7 +93,7 @@ section img
     z-index: 9;
 }
 
-.btn
+section a .btn
 {
     text-decoration: none;
     display: inline-block;
