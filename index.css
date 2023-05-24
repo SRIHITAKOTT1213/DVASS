@@ -23,6 +23,7 @@ header
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 10000;
 }
 
 header.logo
@@ -80,3 +81,11 @@ section img
     object-fit: cover;
 }
 
+#text
+{
+    position: absolute;
+    color: #fff;
+    white-space: nowrap;
+    font-size: 7.5vw;
+    z-index: 9;
+}
