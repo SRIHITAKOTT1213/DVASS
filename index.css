@@ -86,10 +86,12 @@ section img
 section #text
 {
     position: absolute;
+    text-align: center;
     color: #fff;
     white-space: nowrap;
-    font-size: 7vw; 
+    font-size: 6.75vw; 
     z-index: 9;
+    transform: translateY(50px);
 }
 
 section .btn
