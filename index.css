@@ -83,17 +83,16 @@ section img
     pointer-events: none;
 }
 
-section .text
+section #text
 {
     position: absolute;
     color: #fff;
     white-space: nowrap;
-    font-size: 7.5vw;
-    font-size: 1.5em;
+    font-size: 7.5vw; 
     z-index: 9;
 }
 
-section .btn
+section #btn
 {
     text-decoration: none;
     display: inline-block;
