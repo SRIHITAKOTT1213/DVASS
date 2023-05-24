@@ -250,7 +250,7 @@ permalink: /war/
 
     function moveCardUp() {
         var facedown = document.getElementById("faceDownCard");
-        facedown.style.transform = "translate(100px, -100px)";
+        facedown.style.transform = "translate(200px, -300px)";
         // facedown.classList.add("moveUp");
     }
 
