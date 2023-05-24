@@ -248,9 +248,6 @@ permalink: /war/
     var onTable = [];
 
     function buttonDraw() {
-        player_num.innerHTML = playercard_num;
-        opp_num.innerHTML = oppcard_num;
-        
         if (playerList.length == 0){
             playerList = disShuffle(playerWinPile);
             playerWinPile = [];
@@ -320,6 +317,8 @@ permalink: /war/
             } else {
                 winText.innerHTML = "Another WAR! Put down 2 more cards.";
             }
+        player_num.innerHTML = playercard_num;
+        opp_num.innerHTML = oppcard_num;
         }
 
         // Check if the deck is empty
