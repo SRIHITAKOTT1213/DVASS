@@ -98,10 +98,13 @@ permalink: /war/
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
         <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw()">Draw</button>
+        <div id="win_text"></div>
         <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
         <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
     </div>
     <br>
+    <div>
+
 </div>
 
 <script>
@@ -114,6 +117,7 @@ permalink: /war/
     const playerNum = document.getElementById("player_num");
     const oppNum = document.getElementById("opp_num");
     const submitButton = document.getElementById("submit_button");
+    const winText = document.getElementById("win_text");
 
     // card class
     class Card {
@@ -122,11 +126,11 @@ permalink: /war/
             this.value = val;
             if (val == 1) {
                 this.kind = "Ace";
-            } else if (val == 12) {
+            } else if (val == 11) {
                 this.kind = "Jack";
-            } else if (val == 13) {
+            } else if (val == 12) {
                 this.kind = "Queen";
-            } else if (val == 14) {
+            } else if (val == 13) {
                 this.kind = "King";
             } else {
                 this.kind = String(val);
@@ -168,6 +172,35 @@ permalink: /war/
         }
     };
 
+    var playerList = [];         
+    var oppList = [];
+    var playerWinPile = [];
+    var oppWinPile = [];
+    var playercard_num = playerList.length + playerWinPile.length;
+    var oppcard_num = oppList.length + oppWinPile.length;
+    var deck = "placeholder";
+
+    function gameStart() {
+        oppRow.innerHTML = "";
+        playerRow.innerHTML = "";
+        player_num.innerHTML = playercard_num;
+        opp_num.innerHTML = oppcard_num;
+
+        // create and shuffle new deck
+        deck = new Deck();
+        deck.shuffle();
+
+        // deal card to you and opp
+        for (let i = 0; i < 26; i++) {
+            playerList.push(deck.draw());
+            oppList.push(deck.draw());
+        }
+
+        // show draw button and hide play button 
+        document.getElementById("draw_button").style.display = "block";
+        playButton.style.display = "none";
+    }
+
     function givePlayerCard(card) {
         const newCard = document.createElement("td");
         const newCardImage = document.createElement("img");
@@ -201,54 +234,96 @@ permalink: /war/
         }
     };
 
-    var playercard_num = 26;
-    var oppcard_num = 26;
-    var playerList = [];         
-    var oppList = [];
+    function disShuffle(pile) {
+        for (var i = pile.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = pile[i];
+            pile[i] = pile[j];
+            pile[j] = temp;
+        };
+        return pile;
+    };
 
-    function gameStart() {
-        oppRow.innerHTML = "";
-        playerRow.innerHTML = "";
-        player_num.innerHTML = playercard_num;
-        opp_num.innerHTML = oppcard_num;
-
-        // create and shuffle new deck
-        var deck = new Deck();
-        deck.shuffle();
-
-        // deal card to you and opp
-        for (let i = 0; i < 26; i++) {
-            playerList.push(deck.draw());
-            oppList.push(deck.draw());
-        }
-
-        // show draw button and hide play button 
-        document.getElementById("draw_button").style.display = "block";
-        playButton.style.display = "none";
-    }
+    var inWar = false;
+    var onTable = [];
 
     function buttonDraw() {
-        // draw card from deck for you and opp
-        var playerCard = playerList[0];
-        var oppCard = oppList[0];
+        player_num.innerHTML = playercard_num;
+        opp_num.innerHTML = oppcard_num;
+        
+        if (playerList.length == 0){
+            playerList = disShuffle(playerWinPile);
+            playerWinPile = [];
+        } else if (oppList.length==0){
+            oppList = disShuffle(oppWinPile);
+            oppWinPile = [];
+        }
+        if (!(inWar)) {
+            oppRow.innerHTML = "";
+            playerRow.innerHTML = "";
 
-        // display drawn card
-        givePlayerCard(playerCard);
-        giveOppCard(oppCard);
+            // draw card from deck for you and opp
+            var playerCard = playerList.pop();
+            var oppCard = oppList.pop();
+            onTable.push(playerCard)
+            onTable.push(oppCard)
 
-        // Compare the values of the drawn cards
-        if (playerCard.value > oppCard.value) {
-            playercard_num += 1;
-            oppcard_num -= 1;
-        } else if (playerCard.value < oppCard.value) {
-            oppcard_num += 1;
-            playercard_num -= 1;;
+            // display drawn card
+            
+            givePlayerCard(playerCard);
+            giveOppCard(oppCard);
+
+            // Compare the values of the drawn cards
+            if (playerCard.value > oppCard.value) {
+                winText.innerHTML = "You won! You take the cards on the table."
+                for (card of onTable) {
+                    playerWinPile.push(card);
+                }
+                onTable = [];
+            } else if (playerCard.value < oppCard.value) {
+                winText.innerHTML = "The opponent won, so they take the cards on the table."
+                for (card of onTable) {
+                    oppWinPile.push(card);
+                }
+                onTable = [];
+            } else {
+                // WAR LATER
+                inWar = true;
+                winText.innerHTML = "WAR! Put down 2 cards.";
+            }
         } else {
-            resultBox.innerHTML = "Tie! Put down 3 cards.";
+            for (let i = 0; i < 2; i++) {
+                var randwarPlayerCard = playerList.pop();
+                var randwarOppCard = oppList.pop();
+                onTable.push(randwarPlayerCard);
+                onTable.push(randwarOppCard);
+                givePlayerCard(randwarPlayerCard);
+                giveOppCard(randwarOppCard);
+                if (i == 1) {
+                    var warPlayerCard = randwarPlayerCard;
+                    var warOppCard = randwarOppCard;
+                }
+            } if (warPlayerCard.value > warOppCard.value) {
+                winText.innerHTML = "You won the war! You take the cards on the table.";
+                for (card of onTable) {
+                    playerWinPile.push(card);
+                }
+                onTable = [];
+                inWar = false;
+            } else if (warPlayerCard.value < warOppCard.value) {
+                winText.innerHTML = "Opponent won the war! They take the cards on the table.";
+                for (card of onTable) {
+                    oppWinPile.push(card);
+                }
+                onTable = [];
+                inWar = false;
+            } else {
+                winText.innerHTML = "Another WAR! Put down 2 more cards.";
+            }
         }
 
         // Check if the deck is empty
-        if (deck.cards.length === 0) {
+        if (playercard_num.length == 0 || oppcard_num.length == 0) {
             // Hide the "Draw" button and show the "Finish and Submit Score" button
             document.getElementById("draw_button").style.display = "none";
             finishButton.style.display = "block";
