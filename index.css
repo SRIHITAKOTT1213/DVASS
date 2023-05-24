@@ -64,7 +64,7 @@ header ul li a:hover
     color: #274510
 }
 
-section 
+.btn_center
 { 
     position: relative;
     width: 100%;
@@ -73,6 +73,15 @@ section
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.text_center
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px;
     overflow: hidden;
 }
 
@@ -87,7 +96,7 @@ section img
     pointer-events: none;
 }
 
-section #text
+.text_center #text
 {
     position: absolute;
     text-align: center;
@@ -98,7 +107,7 @@ section #text
     transform: translateY(-0.75ch);
 }
 
-section .btn
+.btn_center .btn
 { 
     text-decoration: none;
     display: inline-block;
