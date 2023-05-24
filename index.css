@@ -116,3 +116,17 @@ section .btn:hover
     background: #272727;
     color: #fff
 }
+
+.sec 
+{
+    position: relative;
+    padding: 100px;
+    background-color: #b4d59a;
+}
+
+.sec h2 
+{
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
