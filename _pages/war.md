@@ -256,7 +256,7 @@ permalink: /war/
 
         setTimeout(function() {
             facedown.style.display = "none";
-        }, 100);
+        }, 250);
 
         // facedown.classList.add("moveUp");
     }
