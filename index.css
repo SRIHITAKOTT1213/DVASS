@@ -64,7 +64,7 @@ header ul li a:hover
     color: #274510
 }
 
-.btn_center
+section 
 { 
     position: relative;
     width: 100%;
@@ -73,15 +73,6 @@ header ul li a:hover
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-}
-
-.text_center
-{
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    padding: 100px;
     overflow: hidden;
 }
 
@@ -96,7 +87,7 @@ section img
     pointer-events: none;
 }
 
-.text_center #text
+section #text
 {
     position: absolute;
     text-align: center;
@@ -104,10 +95,10 @@ section img
     white-space: nowrap;
     font-size: 6.5vw; 
     z-index: 9; 
-    transform: translateY(-0.75ch);
+    transform: translateY(-1.5ch);
 }
 
-.btn_center .btn
+section .btn
 { 
     text-decoration: none;
     display: inline-block;
