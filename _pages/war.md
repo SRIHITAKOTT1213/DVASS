@@ -236,7 +236,7 @@ permalink: /war/
 
         // animation trigger
         setTimeout(function() {
-            newCardImage.classList.add("move-right");
+            newCardImage.classList.add("move-up");
         }, 100);
     };
 
@@ -252,7 +252,7 @@ permalink: /war/
 
             // animation trigger
             setTimeout(function() {
-                newCardImage.classList.add("move-left");
+                newCardImage.classList.add("move-down");
             }, 100);
         } else {
             const newCard = document.createElement("td");
