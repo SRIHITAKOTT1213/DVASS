@@ -95,7 +95,7 @@ section #text
     white-space: nowrap;
     font-size: 6.5vw; 
     z-index: 9; 
-    transform: translateY(-50rem);
+    transform: translateY(-2rem);
 }
 
 section .btn
