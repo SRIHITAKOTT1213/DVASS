@@ -107,3 +107,9 @@ section #btn
     z-index: 9;
     transform: translateY(100px);
 }
+
+section #btn:hover
+{
+    background: #272727;
+    color: #fff
+}
