@@ -91,10 +91,12 @@ section #text
     white-space: nowrap;
     font-size: 6.5vw; 
     z-index: 9; 
+    transform: translateY(60px);
 }
 
 section .btn
 {
+    position: absolute;
     text-decoration: none;
     display: inline-block;
     padding: 8px 30px;
