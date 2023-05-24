@@ -189,12 +189,13 @@ permalink: /war/
 
     #faceDownCard {
         position: relative;
+        transition: transform 0.3s ease;
     }
-
+/*
     .moveUp {
         transform: translate(50px, 50px);
     }
-
+*/
     table { margin: auto }
 </style>
 
@@ -249,7 +250,8 @@ permalink: /war/
 
     function moveCardUp() {
         var facedown = document.getElementById("faceDownCard");
-        facedown.classList.add("moveUp");
+        facedown.style.transform = "translate(50px, 50px)";
+        // facedown.classList.add("moveUp");
     }
 
     // card class
