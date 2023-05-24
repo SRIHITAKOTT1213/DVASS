@@ -94,8 +94,7 @@ section #text
     color: #fff;
     white-space: nowrap;
     font-size: 6.5vw; 
-    z-index: 9; 
-    transform: translateY(-5ch);
+    z-index: 9;  
 }
 
 section .btn
