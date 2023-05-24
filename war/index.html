@@ -1,3 +1,56 @@
+<html>
+<body>
+    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png" /></button>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div class="title">War Instructions</div>
+                <button data-close-button="" class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li><b>Objective:</b> The objective of war is to win all the cards in the deck. </li>
+                    <li><b>How to play:</b> Each round, hit the "Draw" button so both you and your opponent reveal the top card from your respective decks simulataneously. The plyaer with the higher-ranking card wins the round and collects both cards, adding them to a win pile. This win pile will be shuffled and recycled into your card deck once that deck runs out. </li>
+                    <li><b>WAR:</b> When players place down two cards of the same value, a war happens! Both players place down an additional 2 cards. The last card placed down is compared between the two players, and the player with the higher-ranking card wins all the cards on the table, including those from the war. If there is another war, the process of war is repeated until a winner is determined. </li>
+                    <li><b>Card Values:</b> Ace is worth 1, numbered cards (2-10) are worth their face value, face card J is worth 11, face card Q is worth 12, and face card K is worth 13. </li>
+                </ol>
+            </div>
+        </div>
+        <div id="overlay"></div>
+    <div class="big_ol_cont">
+        <br />
+        <div style="text-align:center;justify-content:center">
+            <h2>Opponent</h2>
+            <h3>Number of Cards</h3>
+            <div id="opp_num"></div>
+            <br />
+            <table id="opp_card_table" class="card_table_d">
+                <tr id="opp_cards">
+                </tr>
+            </table>
+            <br />
+            <br />
+            <table id="opp_card_table" class="card_table_p">
+                <tr id="you_cards">
+                </tr>
+            </table>
+            <h2>You</h2>
+            <h3>Number of Cards</h3>
+            <div id="player_num"></div>
+        </div>
+        <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
+            <br />
+            <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
+            <div id="win_text"></div>
+            <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
+            <input id="username_input" class="db_input" type="text" style="display:none" /><button id="submit_button" class="select_button" style="display:none">Submit</button>
+        </div>
+        <br />
+        <div>
+    </div>
+    <img src="/DVASS/images/blackjack/facedown_card.png" id="faceDownCard" onclick="moveCardUp()" />
+&lt;/body&gt;
+&lt;/html&gt;
+
 <style>
     .big_ol_cont {
         justify-content:center;
@@ -140,59 +193,6 @@
     table { margin: auto }
 </style>
 
-<html>
-<body>
-    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png" /></button>
-        <div class="modal" id="modal">
-            <div class="modal-header">
-                <div class="title">War Instructions</div>
-                <button data-close-button="" class="close-button">&times;</button>
-            </div>
-            <div class="modal-body">
-                <ol>
-                    <li><b>Objective:</b> The objective of war is to win all the cards in the deck. </li>
-                    <li><b>How to play:</b> Each round, hit the "Draw" button so both you and your opponent reveal the top card from your respective decks simulataneously. The plyaer with the higher-ranking card wins the round and collects both cards, adding them to a win pile. This win pile will be shuffled and recycled into your card deck once that deck runs out. </li>
-                    <li><b>WAR:</b> When players place down two cards of the same value, a war happens! Both players place down an additional 2 cards. The last card placed down is compared between the two players, and the player with the higher-ranking card wins all the cards on the table, including those from the war. If there is another war, the process of war is repeated until a winner is determined. </li>
-                    <li><b>Card Values:</b> Ace is worth 1, numbered cards (2-10) are worth their face value, face card J is worth 11, face card Q is worth 12, and face card K is worth 13. </li>
-                </ol>
-            </div>
-        </div>
-        <div id="overlay"></div>
-    <div class="big_ol_cont">
-        <br />
-        <div style="text-align:center;justify-content:center">
-            <h2>Opponent</h2>
-            <h3>Number of Cards</h3>
-            <div id="opp_num"></div>
-            <br />
-            <table id="opp_card_table" class="card_table_d">
-                <tr id="opp_cards">
-                </tr>
-            </table>
-            <br />
-            <br />
-            <table id="opp_card_table" class="card_table_p">
-                <tr id="you_cards">
-                </tr>
-            </table>
-            <h2>You</h2>
-            <h3>Number of Cards</h3>
-            <div id="player_num"></div>
-        </div>
-        <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
-            <br />
-            <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
-            <div id="win_text"></div>
-            <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
-            <input id="username_input" class="db_input" type="text" style="display:none" /><button id="submit_button" class="select_button" style="display:none">Submit</button>
-        </div>
-        <br />
-        <div>
-    </div>
-    <img src="/DVASS/images/blackjack/facedown_card.png" alt="eximage" id="faceDownCard" onclick="moveCardUp()" />
-&lt;/body&gt;
-&lt;/html&gt;
-
 <script>
     const oppRow = document.getElementById("opp_cards");
     const playerRow = document.getElementById("you_cards");
@@ -243,8 +243,8 @@
     }
 
     function moveCardUp() {
-        var cardimg = document.getElementById("faceDownCard");
-        cardimg.classList.add("moveUp");
+        var facedown = document.getElementById("faceDownCard");
+        facedown.classList.add("moveUp");
     }
 
     // card class
