@@ -95,7 +95,7 @@ section #text
     white-space: nowrap;
     font-size: 6.5vw; 
     z-index: 9; 
-    transform: translateY(-70px);
+    transform: translateY(-50rem);
 }
 
 section .btn
@@ -108,7 +108,6 @@ section .btn
     color: #274510;
     font-size: 1.5em;
     z-index: 9; 
-    transform: translateY(100px);
 }
 
 section .btn:hover
