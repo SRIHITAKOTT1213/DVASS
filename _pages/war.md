@@ -71,6 +71,19 @@ permalink: /war/
         font-family:serif;
     }
 
+    .card-image {
+        position: absolute;
+        transition: all 1s ease-in-out;
+    }
+
+    .card-image.move-up {
+        transform: translateY(200px);
+    }
+
+    .card-image.move-down {
+        transform: translateY(-200px);
+    }
+
     table { margin: auto }
 </style>
 
@@ -220,6 +233,11 @@ permalink: /war/
         console.log(newCardImage.src); 
         newCard.appendChild(newCardImage);
         playerRow.appendChild(newCard);
+
+        // animation trigger
+        setTimeout(function() {
+            newCardImage.classList.add("move-right");
+        }, 100);
     };
 
     function giveOppCard(card) {
@@ -231,6 +249,11 @@ permalink: /war/
             newCardImage.height = "150"; 
             newCard.appendChild(newCardImage);
             oppRow.appendChild(newCard);
+
+            // animation trigger
+            setTimeout(function() {
+                newCardImage.classList.add("move-left");
+            }, 100);
         } else {
             const newCard = document.createElement("td");
             const newCardImage = document.createElement("img");
