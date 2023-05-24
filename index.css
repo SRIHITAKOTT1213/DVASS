@@ -94,7 +94,7 @@ section #text
     transform: translateY(60px);
 }
 
-section #btn
+section .btn
 {
     position: absolute;
     text-decoration: none;
@@ -105,10 +105,13 @@ section #btn
     color: #274510;
     font-size: 1.5em;
     z-index: 9;
-    transform: translateY(100px);
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
-section #btn:hover
+section .btn:hover
 {
     background: #272727;
     color: #fff
