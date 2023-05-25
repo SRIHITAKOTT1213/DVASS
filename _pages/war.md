@@ -350,7 +350,7 @@ permalink: /war/
         opp_num.innerHTML = oppcard_num;
 
         // show draw button and hide play button 
-        document.getElementById("draw_button").style.display = "block";
+        // document.getElementById("draw_button").style.display = "block";
         document.getElementById("faceDownCard").style.display = "block";
         playButton.style.display = "none";
     }
@@ -490,7 +490,7 @@ permalink: /war/
         // Check if the deck is empty
         if (playerList.length + playerWinPile.length == 0 || oppList.length + oppWinPile.length == 0) {
             // Hide the "Draw" button and show the "Finish and Submit Score" button
-            document.getElementById("draw_button").style.display = "none";
+            document.getElementById("faceDownCard").style.display = "none";
             finishButton.style.display = "block";
             usernameInput.style.display = "block";
             submitButton.style.display = "block";
