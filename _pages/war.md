@@ -44,7 +44,7 @@ permalink: /war/
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br>
-            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="faceDownCard" style="display:none" onclick="moveCardUp()"> 
+            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="faceDownCard" style="display:none" onclick="moveCardUp();buttonDraw()"> 
             <div id="win_text"></div>
             <!-- 
             <button id="draw_button" class="draw_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
@@ -350,7 +350,7 @@ permalink: /war/
         opp_num.innerHTML = oppcard_num;
 
         // show draw button and hide play button 
-        document.getElementById("draw_button").style.display = "block";
+        // document.getElementById("draw_button").style.display = "block";
         document.getElementById("faceDownCard").style.display = "block";
         playButton.style.display = "none";
     }
@@ -490,7 +490,7 @@ permalink: /war/
         // Check if the deck is empty
         if (playerList.length + playerWinPile.length == 0 || oppList.length + oppWinPile.length == 0) {
             // Hide the "Draw" button and show the "Finish and Submit Score" button
-            document.getElementById("draw_button").style.display = "none";
+            document.getElementById("faceDownCard").style.display = "none";
             finishButton.style.display = "block";
             usernameInput.style.display = "block";
             submitButton.style.display = "block";
