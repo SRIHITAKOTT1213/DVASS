@@ -19,6 +19,7 @@ permalink: /games/
                     </div>
                 </div>
         </div>
+        <br>
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
@@ -32,6 +33,7 @@ permalink: /games/
                     </div>
                 </div>
         </div>
+        <br>
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
@@ -45,6 +47,7 @@ permalink: /games/
                     </div>
                 </div>
         </div>
+        <br>
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
@@ -87,7 +90,7 @@ permalink: /games/
 
     .card {
         min-height: 70vh;
-        width: 35rem;
+        width: 32rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
         border-radius: 30px;
         padding: 0rem 5rem;
