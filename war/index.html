@@ -41,7 +41,8 @@
             <br />
             <button id="draw_button" class="draw_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
             <div id="win_text"></div>
-            <img src="/DVASS/images/blackjack/facedown_card.png" id="faceDownCard" style="display:none" onclick="moveCardUp()" />
+            <!-- <img src="/DVASS/images/blackjack/facedown_card.png" id="faceDownCard" style="display:none" onclick="moveCardUp()"> 
+            -->
             <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
             <input id="username_input" class="db_input" type="text" style="display:none" /><button id="submit_button" class="select_button" style="display:none">Submit</button>
         </div>
@@ -104,21 +105,6 @@
     }
 
     .select_button {
-        margin:auto;
-        text-align:center;
-        justify-content:center;
-        border: 5px solid;
-        border-radius:5px;
-        border-color:#E2C550;
-        width:120px;
-        height:60px;
-        background-color:#ccac00;
-        font-size:17px;
-        font-family:serif;
-    }
-
-    .draw_button {
-        position:absolute;
         margin:auto;
         text-align:center;
         justify-content:center;
