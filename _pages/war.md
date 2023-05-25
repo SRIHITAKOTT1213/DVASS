@@ -44,7 +44,7 @@ permalink: /war/
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br>
-            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="faceDownCard" style="display:none" onclick="moveCardUp()"> 
+            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="faceDownCard" style="display:none" onclick="moveCardUp();buttonDraw()"> 
             <div id="win_text"></div>
             <!-- 
             <button id="draw_button" class="draw_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
