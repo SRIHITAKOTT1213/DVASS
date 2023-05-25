@@ -64,6 +64,7 @@ permalink: /games/
 
     .game img {
         width: 20rem;
+        z-index: 2;
     }
 
     .circle {
@@ -71,9 +72,40 @@ permalink: /games/
         height: 15rem;
         background: linear-gradient(
             to right,
-            rgba(245,79,66,0.75)
+            rgba(245,79,66,0.75),
             rgba(8,83,156,0.75)
         );
+        position: absolute;
+        border-radius: 50%;
+        z-index 1;
     }
+
+    .info h1{
+        font-size: 3rem;
+    }
+
+    .info h3{
+        font-size: 1.3rem;
+        padding: 2rem 0rem;
+        color:#585858;
+        font-weight: lighter;
+    }
+
+    .play {
+        margin-top: 5rem;
+    }
+
+    .play button {
+        width: 100%;
+        padding: 1rem 0rem;
+        background: #f54642;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 30px;
+        font-weight: bolder;
+    }
+
+    
 
 </style>
