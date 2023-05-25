@@ -652,5 +652,6 @@ permalink: /uno/
         var unInput = usernameInput.innerHTML;
         var scoreInput = constant;
         console.log(unInput, scoreInput);
+        resultBox.innerHTML = "";//change around based on whether or not it fails to fetch
     }
 </script>
