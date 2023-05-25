@@ -1,0 +1,33 @@
+---
+layout: none
+permalink: /games/
+---
+
+<!doctype html>
+<html>
+<body>
+    <div class="container">
+        <div class="card">
+                <div class="game">
+                    <div class="circle"></div>
+                    <img src="/images/memory/diamond.png" alt="diamond">
+                </div>
+                <div class="info">
+                    <h1 class="title">GAME NAME</h1>
+                    <h3>game description</h3>
+                    <div class="play">
+                        <button>PLAY</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<style>
+
+
+
+
+</style>
