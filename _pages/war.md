@@ -190,6 +190,7 @@ permalink: /war/
         width: 100;
         height: 150;
         transition: transform 0.3s ease;
+        margin: auto;
     }
 /*
     .moveUp {
