@@ -19,6 +19,45 @@ permalink: /games/
                     </div>
                 </div>
         </div>
+        <div class="card">
+                <div class="game">
+                    <div class="circle"></div>
+                    <img src="./images/memory/diamond.png" alt="diamond">
+                </div>
+                <div class="info">
+                    <h1 class="title">GAME NAME</h1>
+                    <h3>game description</h3>
+                    <div class="play">
+                        <button>PLAY</button>
+                    </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="game">
+                    <div class="circle"></div>
+                    <img src="./images/memory/diamond.png" alt="diamond">
+                </div>
+                <div class="info">
+                    <h1 class="title">GAME NAME</h1>
+                    <h3>game description</h3>
+                    <div class="play">
+                        <button>PLAY</button>
+                    </div>
+                </div>
+        </div>
+        <div class="card">
+                <div class="game">
+                    <div class="circle"></div>
+                    <img src="./images/memory/diamond.png" alt="diamond">
+                </div>
+                <div class="info">
+                    <h1 class="title">GAME NAME</h1>
+                    <h3>game description</h3>
+                    <div class="play">
+                        <button>PLAY</button>
+                    </div>
+                </div>
+        </div>
     </div>
 </body>
 </html>
@@ -47,7 +86,7 @@ permalink: /games/
     }
 
     .card {
-        min-height: 80vh;
+        min-height: 70vh;
         width: 35rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
         border-radius: 30px;
@@ -105,7 +144,9 @@ permalink: /games/
         border-radius: 30px;
         font-weight: bolder;
     }
-
-    
-
 </style>
+
+<script>
+
+
+</script>
