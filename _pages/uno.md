@@ -175,7 +175,9 @@ permalink: /uno/
             <div id="current_card"></div>
             <br>
             <div id="result_text"></div>
+            <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none" onclick="submitInfo()">Submit</button>
         </div>
+        <br>
         <div id="full_of_colors">
             <div id="for_red" class="for_red" onclick="wildResponse('Red')"></div><div id="for_blue" class="for_blue" onclick="wildResponse('Blue')"></div><div id="for_yellow" class="for_yellow" onclick="wildResponse('Yellow')"></div><div id="for_green" class="for_green" onclick="wildResponse('Green')"></div>
         </div>
@@ -208,6 +210,8 @@ permalink: /uno/
     var seconds = 0;
     var minutes = 0;
     const colorsBox = document.getElementById("full_of_colors");
+    const usernameInput = document.getElementById("username_input");
+    const submitButton = document.getElementById("submit_button");
 
     // card class
     class Uno {
@@ -308,6 +312,8 @@ permalink: /uno/
 
     function startGame() {
         runTimer(true);
+        usernameInput.style = "display:none;";
+        submitButton.style = "display:none;";
         var validDraw = true;
         deckElement.style = "display:block";
         startButton.style = "display:none";
@@ -623,7 +629,9 @@ permalink: /uno/
         if (playerHand.length == 0) {
             runTimer(false);
             deckElement.style = "display:none";
-            resultBox.innerHTML = "Congratulations! You win! Your final time is " + String(minutes) + ":" + String(seconds) + ". [create score input]"; //variable constant used for leaderboard submission
+            resultBox.innerHTML = "Congratulations! You win! Your final time is " + String(minutes) + ":" + String(seconds) + "."; //variable constant used for leaderboard submission
+            usernameInput.style = "display:inline-block;";
+            submitButton.style = "display:inline-block;";
             startButton.innerHTML = "Play Again";
             startButton.style = "display:inline-block";
             return true;
@@ -636,5 +644,13 @@ permalink: /uno/
             return true;
         }
         return false;
+    }
+
+    function submitInfo() {
+        usernameInput.style = "display:none";
+        submitButton.style = "display:none";
+        var unInput = usernameInput.innerHTML;
+        var scoreInput = constant;
+        console.log(unInput, scoreInput);
     }
 </script>
