@@ -489,7 +489,7 @@ permalink: /war/
         if (playerList.length + playerWinPile.length == 0 || oppList.length + oppWinPile.length == 0) {
             // Hide the "Draw" button and show the "Finish and Submit Score" button
             drawButton.style.display = "none";
-            document.getElementById("faceDownCard").style.display = "none";
+            faceDownCard.style.display = "none";
             oppRow.innerHTML = "";
             playerRow.innerHTML = "";
             if (playerList.length + playerWinPile.length == 0) {
