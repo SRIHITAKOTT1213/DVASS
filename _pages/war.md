@@ -5,7 +5,7 @@ permalink: /war/
 ---
 <html>
 <body>
-    <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30"></button>
+    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <div class="title">War Instructions</div>
@@ -200,16 +200,6 @@ permalink: /war/
     }
 */
     table { margin: auto }
-    
-    .question_btn {
-        background: none;
-        border: none;
-    }
-
-     .question_btn {
-        background: none;
-        border: none;
-    }
 </style>
 
 <script>
@@ -503,10 +493,10 @@ permalink: /war/
             oppRow.innerHTML = "";
             playerRow.innerHTML = "";
             if (playerList.length + playerWinPile.length == 0) {
+                winText.innerHTML = "Your opponent won the game! Better luck next time. You can now play again to increase your score , or finish and submit your current score.";
+            } else if (oppList.length + oppWinPile.length == 0) {
                 winText.innerHTML = "You won the game, Congrats! You can now play again to increase your score (amount of wins), or finish and submit your current score.";
                 currentStreak += 1;
-            } else if (oppList.length + oppWinPile.length == 0) {
-                winText.innerHTML = "Your opponent won the game! Better luck next time. You can now play again to increase your score , or finish and submit your current score.";
             }
             playButton.style.display = "block";
             finishButton.style.display = "block";
