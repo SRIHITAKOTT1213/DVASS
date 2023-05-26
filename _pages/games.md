@@ -9,7 +9,7 @@ permalink: /games/
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
-                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/blackjack.png" alt="diamond">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/blackjack.png?raw=true" alt="bj">
                 </div>
                 <div class="info">
                     <h1 class="title">Black Jack</h1>
@@ -22,7 +22,7 @@ permalink: /games/
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
-                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/war.png" alt="diamond">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/war.png?raw=true" alt="war">
                 </div>
                 <div class="info">
                     <h1 class="title">War</h1>
@@ -35,7 +35,7 @@ permalink: /games/
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
-                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/uno.png" alt="diamond">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/uno.png?raw=true" alt="uno">
                 </div>
                 <div class="info">
                     <h1 class="title">Uno</h1>
@@ -48,7 +48,7 @@ permalink: /games/
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
-                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory.png" alt="diamond">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory.png?raw=true" alt="memory">
                 </div>
                 <div class="info">
                     <h1 class="title">Memory</h1>
