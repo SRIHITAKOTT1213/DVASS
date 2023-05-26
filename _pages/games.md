@@ -154,10 +154,10 @@ permalink: /games/
     const container = document.querySelector('.container');
 
     container.addEventListener('mousemove', (e) => { //everytime there is mouse movement over container, animation will run 
-    
+
         let xAxis = (window.innerWidth / 2 - e.pageX / 25);
         let yAxis = (window.innerHeight / 2 - e.pageY / 25);
-        card.style.transform = 'rotateY(%{xAxis}deg) rotateX(%{yAxis}deg)'
+        card.style.transform = 'rotateY(%{xAxis}deg) rotateX(%{yAxis}deg)';
 
     });
 </script>
