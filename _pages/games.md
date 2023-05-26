@@ -16,7 +16,7 @@ permalink: /games/
                     <h1 class="title">Black Jack</h1>
                     <h3>game description</h3>
                     <div class="play">
-                        <button>PLAY</button>
+                        <button><a href="{{ site.baseurl }}/blackjack">PLAY</a></button>
                     </div>
                 </div>
         </div> 
@@ -29,7 +29,7 @@ permalink: /games/
                     <h1 class="title">War</h1>
                     <h3>game description</h3>
                     <div class="play">
-                        <button>PLAY</button>
+                        <button><a href="{{ site.baseurl }}/war">PLAY</a></button>
                     </div>
                 </div>
         </div> 
@@ -42,7 +42,7 @@ permalink: /games/
                     <h1 class="title">Uno</h1>
                     <h3>game description</h3>
                     <div class="play">
-                        <button>PLAY</button>
+                        <button><a href="{{ site.baseurl }}/uno">PLAY</a></button>
                     </div>
                 </div>
         </div> 
@@ -55,7 +55,7 @@ permalink: /games/
                     <h1 class="title">Memory</h1>
                     <h3>game description</h3>
                     <div class="play">
-                        <button>PLAY</button>
+                        <button><a href="{{ site.baseurl }}/memorygame">PLAY</a></button>
                     </div>
                 </div>
         </div>
