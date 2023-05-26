@@ -140,7 +140,7 @@ permalink: /blackjack/
 
 <html>
 <body>
-    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="5" height="5"></button>
+    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="20" height="20"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <div class="title">Black Jack Instructions</div>
