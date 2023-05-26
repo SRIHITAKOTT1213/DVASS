@@ -18,8 +18,7 @@ permalink: /games/
                         <button>PLAY</button>
                     </div>
                 </div>
-        </div>
-        <br>
+        </div> 
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
@@ -32,8 +31,7 @@ permalink: /games/
                         <button>PLAY</button>
                     </div>
                 </div>
-        </div>
-        <br>
+        </div> 
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
@@ -46,8 +44,7 @@ permalink: /games/
                         <button>PLAY</button>
                     </div>
                 </div>
-        </div>
-        <br>
+        </div> 
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
@@ -86,6 +83,7 @@ permalink: /games/
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 15px;
     }
 
     .card {
