@@ -69,6 +69,7 @@ permalink: /games/
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        background: #274510;
     }
 
     body {
