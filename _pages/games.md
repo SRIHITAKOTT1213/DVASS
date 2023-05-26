@@ -5,6 +5,7 @@ permalink: /games/
  
 <html>
 <body>
+    <h1 class="header">GAME SELECTION</h1>
     <div class="container">
         <div class="card">
                 <div class="game">
@@ -51,7 +52,7 @@ permalink: /games/
                     <img src="/images/memory.png" alt="diamond">
                 </div>
                 <div class="info">
-                    <h1 class="title">Memory Game</h1>
+                    <h1 class="title">Memory</h1>
                     <h3>game description</h3>
                     <div class="play">
                         <button>PLAY</button>
@@ -76,6 +77,14 @@ permalink: /games/
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .header {
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
     }
 
     .container {
