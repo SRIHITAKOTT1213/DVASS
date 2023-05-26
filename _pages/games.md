@@ -76,6 +76,7 @@ permalink: /games/
         display: flex;
         align-items: center;
         justify-content: center;
+        perspective: 1250px;
     }
 
     .container {
@@ -87,6 +88,7 @@ permalink: /games/
     }
 
     .card {
+        transform-style: preserve-3d;
         min-height: 70vh;
         width: 26rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
@@ -148,6 +150,14 @@ permalink: /games/
 </style>
 
 <script>
+    const card = document.querySelector('.card');
+    const container = document.querySelector('.container');
 
+    container.addEventListener('mousemove', (e) => { //everytime there is mouse movement over container, animation will run 
+    
+        let xAxis = (window.innerWidth / 2 - e.pageX / 25);
+        let yAxis = (window.innerHeight / 2 - e.pageY / 25);
+        card.style.transform = 'rotateY(%{xAxis}deg) rotateX(%{yAxis}deg)'
 
+    });
 </script>
