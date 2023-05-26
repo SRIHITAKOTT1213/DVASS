@@ -89,6 +89,7 @@ permalink: /games/
 
     .card {
         transform-style: preserve-3d;
+        transition: all 0.5s ease;
         min-height: 70vh;
         width: 26rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
@@ -107,6 +108,7 @@ permalink: /games/
     .game img {
         width: 20rem;
         z-index: 2;
+        transition: all 0.75s ease-out;
     }
 
     .circle {
@@ -124,6 +126,7 @@ permalink: /games/
 
     .info h1{
         font-size: 2.5rem;
+        transition: all 0.75s ease-out;
     }
 
     .info h3{
@@ -131,10 +134,12 @@ permalink: /games/
         padding: 2rem 0rem;
         color:#585858;
         font-weight: lighter;
+        transition: all 0.75s ease-out;
     }
 
     .play {
-        margin-top: 5rem;
+        margin-top: 5rem;       
+        transition: all 0.75s ease-out;
     }
 
     .play button {
@@ -150,14 +155,30 @@ permalink: /games/
 </style>
 
 <script>
-    const card = document.querySelector('.card');
-    const container = document.querySelector('.container');
+    const card = document.querySelector(".card");
+    const container = document.querySelector(".container");
 
-    container.addEventListener('mousemove', (e) => { //everytime there is mouse movement over container, animation will run 
+    const title = document.querySelector('.title');
+    const game = document.querySelector('.game img');
+    const play = document.querySelector('.play button');
+    const info = document.querySelector('.info h3');
 
+    container.addEventListener("mousemove", (e) => { //everytime there is mouse movement over container, animation will run 
         let xAxis = (window.innerWidth / 2 - e.pageX / 25);
         let yAxis = (window.innerHeight / 2 - e.pageY / 25);
-        card.style.transform = 'rotateY(%{xAxis}deg) rotateX(%{yAxis}deg)';
+        card.style.transform = `rotateY(%{xAxis}deg) rotateX(%{yAxis}deg)`;
+    });
 
+    // animate in
+    container.addEventListener("mouseenter", (e) => {
+        card.style.transition = "none";
+        title.style.transform = "translateZ(150px)";
+    });
+
+    //animate out
+    container.addEventListener('mouseleave', (e) => {
+        card.style.transition = "all 0.5s ease";
+        card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+        title.style.transform = "translateZ(150px)";
     });
 </script>
