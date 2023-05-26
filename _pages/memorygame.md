@@ -323,6 +323,7 @@ permalink: /memorygame/
                         <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/wheel.png?raw=true" alt="card-image">
                     </div>
                 </li>
+            </ul>
         </div>
     </body>
 </html>
