@@ -649,7 +649,7 @@ permalink: /uno/
     function submitInfo() {
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
-        var unInput = usernameInput.innerHTML;
+        var unInput = usernameInput.value;
         var scoreInput = constant;
         console.log(unInput, scoreInput);
         resultBox.innerHTML = "";//change around based on whether or not it fails to fetch
