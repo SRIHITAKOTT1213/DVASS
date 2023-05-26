@@ -3,6 +3,9 @@ let cardOne, cardTwo;
 let dis_Deck = false;
 let matchedCard = 0;
 var firstCard = true;
+var constant = 0;
+var seconds = 0;
+var minutes = 0;
 
 function incrementTime() {
     constant++; //constant second count separate from seconds
