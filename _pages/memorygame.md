@@ -47,8 +47,8 @@ permalink: /memorygame/
     }
 
     .cards .card{
-        height: calc(100% / 6 - 10px);
-        width: calc(100% / 6 - 10px);
+        height: 50px;
+        width: 50px;
         position: relative;
         perspective: 800px;
         transform-style: preserve-3d;
@@ -323,6 +323,7 @@ permalink: /memorygame/
                         <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/wheel.png?raw=true" alt="card-image">
                     </div>
                 </li>
+        </div>
     </body>
 </html>
 
