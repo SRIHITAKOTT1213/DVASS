@@ -9,10 +9,10 @@ permalink: /games/
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
-                    <img src="./images/memory/diamond.png" alt="diamond">
+                    <img src="/images/blackjack.png" alt="diamond">
                 </div>
                 <div class="info">
-                    <h1 class="title">GAME NAME</h1>
+                    <h1 class="title">Black Jack</h1>
                     <h3>game description</h3>
                     <div class="play">
                         <button>PLAY</button>
@@ -23,10 +23,10 @@ permalink: /games/
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
-                    <img src="./images/memory/diamond.png" alt="diamond">
+                    <img src="/images/war.png" alt="diamond">
                 </div>
                 <div class="info">
-                    <h1 class="title">GAME NAME</h1>
+                    <h1 class="title">War</h1>
                     <h3>game description</h3>
                     <div class="play">
                         <button>PLAY</button>
@@ -37,10 +37,10 @@ permalink: /games/
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
-                    <img src="./images/memory/diamond.png" alt="diamond">
+                    <img src="/images/uno.png" alt="diamond">
                 </div>
                 <div class="info">
-                    <h1 class="title">GAME NAME</h1>
+                    <h1 class="title">Uno</h1>
                     <h3>game description</h3>
                     <div class="play">
                         <button>PLAY</button>
@@ -51,10 +51,10 @@ permalink: /games/
         <div class="card">
                 <div class="game">
                     <div class="circle"></div>
-                    <img src="./images/memory/diamond.png" alt="diamond">
+                    <img src="/images/memory.png" alt="diamond">
                 </div>
                 <div class="info">
-                    <h1 class="title">GAME NAME</h1>
+                    <h1 class="title">Memory Game</h1>
                     <h3>game description</h3>
                     <div class="play">
                         <button>PLAY</button>
@@ -90,7 +90,7 @@ permalink: /games/
 
     .card {
         min-height: 70vh;
-        width: 32rem;
+        width: 30rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
         border-radius: 30px;
         padding: 0rem 5rem;
@@ -123,7 +123,7 @@ permalink: /games/
     }
 
     .info h1{
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .info h3{
@@ -144,7 +144,7 @@ permalink: /games/
         border: none;
         color: white;
         cursor: pointer;
-        border-radius: 30px;
+        border-radius: 25px;
         font-weight: bolder;
     }
 </style>
