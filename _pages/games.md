@@ -88,9 +88,9 @@ permalink: /games/
 
     .card {
         min-height: 70vh;
-        width: 30rem;
+        width: 26rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
-        border-radius: 30px;
+        border-radius: 27px;
         padding: 0rem 5rem;
     }
 
@@ -108,8 +108,8 @@ permalink: /games/
     }
 
     .circle {
-        width: 15rem;
-        height: 15rem;
+        width: 14rem;
+        height: 14rem;
         background: linear-gradient(
             to right,
             rgba(245,79,66,0.75),
