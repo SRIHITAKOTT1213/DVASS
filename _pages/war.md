@@ -5,7 +5,7 @@ permalink: /war/
 ---
 <html>
 <body>
-    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="20" height="20"></button>
+    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <div class="title">War Instructions</div>
@@ -44,7 +44,7 @@ permalink: /war/
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br>
-            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="faceDownCard" style="display:none" onclick="moveCardUp();buttonDraw()"> 
+            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="face_down" style="display:none" onclick="moveCardUp();buttonDraw()"> 
             <div id="win_text"></div>
             <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
             <button id="play_button" class="select_button" style="display:block" onclick="gameStart()">Play</button>
@@ -187,7 +187,7 @@ permalink: /war/
         opacity: 1;
     }
 
-    #faceDownCard {
+    #face_down {
         position: relative;
         width: 100;
         height: 150;
@@ -205,7 +205,10 @@ permalink: /war/
 <script>
     const oppRow = document.getElementById("opp_cards");
     const playerRow = document.getElementById("you_cards");
-    const stayButton = document.getElementById("stay_button");
+
+    const faceDownCard = document.getElementById("face_down");
+
+    const drawButton = document.getElementById("draw_button");
     const playButton = document.getElementById("play_button");
     const finishButton = document.getElementById("finish_game");
     const usernameInput = document.getElementById("username_input");
@@ -252,14 +255,13 @@ permalink: /war/
     }
 
     function moveCardUp() {
-        var facedown = document.getElementById("faceDownCard");
-        facedown.style.transform = "translate(50%, -30%)";
+        faceDownCard.style.transform = "translate(50%, -30%)";
 
         setTimeout(function() {
-            facedown.style.display = "none";
+            faceDownCard.style.display = "none";
         }, 250);
 
-        // facedown.classList.add("moveUp");
+        // faceDownCard.classList.add("moveUp");
     }
 
     // card class
@@ -350,8 +352,9 @@ permalink: /war/
         opp_num.innerHTML = oppcard_num;
 
         // show draw button and hide play button 
-        document.getElementById("draw_button").style.display = "block";
-        document.getElementById("faceDownCard").style.display = "block";
+        drawButton.style.display = "block";
+        finishButton.style.display = "block";
+        faceDownCard.style.display = "block";
         playButton.style.display = "none";
     }
 
@@ -365,10 +368,6 @@ permalink: /war/
         newCard.appendChild(newCardImage);
         playerRow.appendChild(newCard);
 
-        // animation trigger
-        setTimeout(function() {
-            newCardImage.classList.add("move-up");
-        }, 100);
     };
 
     function giveOppCard(card) {
@@ -392,8 +391,6 @@ permalink: /war/
             newCardImage.width = "100";
             newCardImage.height = "150";
             newCard.appendChild(newCardImage);
-            //newCard.innerHTML = "Face-Down Card";
-            newCard.id = "facedown_card";
             oppRow.appendChild(newCard);
         }
     };
@@ -491,7 +488,7 @@ permalink: /war/
         // Check if the deck is empty
         if (playerList.length + playerWinPile.length == 0 || oppList.length + oppWinPile.length == 0) {
             // Hide the "Draw" button and show the "Finish and Submit Score" button
-            document.getElementById("draw_button").style.display = "none";
+            drawButton.style.display = "none";
             document.getElementById("faceDownCard").style.display = "none";
             oppRow.innerHTML = "";
             playerRow.innerHTML = "";
@@ -507,11 +504,11 @@ permalink: /war/
     }
 
     function record() {
-        playButton.style = "display:none";
-        finishButton.style = "display:none";
+        playButton.style.display = "none";
+        finishButton.style.display = "none";
 
         usernameInput.style.display = "block";
-        submitButton.style.display = "block";
+        submitButton.styl.display = "block";
 
         winText.innerHTML = "Input a username for the leaderboard. Your current score (amount of wins) is " + String(currentStreak) + ".";
     }
