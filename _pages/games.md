@@ -5,7 +5,6 @@ permalink: /games/
  
 <html>
 <body>
-    <h1 class="header">GAME SELECTION</h1>
     <div class="container">
         <div class="card">
                 <div class="game">
@@ -69,7 +68,6 @@ permalink: /games/
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        background: #274510;
     }
 
     body {
@@ -78,14 +76,6 @@ permalink: /games/
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-
-    .header {
-        font-family: "Poppins", sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 5rem;
     }
 
     .container {
