@@ -215,8 +215,10 @@ permalink: /games/
         border-radius: 22px;
         font-weight: bolder;
         position: absolute;
-        top: 70%;
-        bottom: 25%;
+        top: 85%;
+        bottom: 15%;
+        left: 5%;
+        right: 5%;
     }
 
     .play button a
