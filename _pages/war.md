@@ -5,7 +5,7 @@ permalink: /war/
 ---
 <html>
 <body>
-    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30"></button>
+    <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <div class="title">War Instructions</div>
