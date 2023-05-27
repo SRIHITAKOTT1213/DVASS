@@ -25,8 +25,9 @@ permalink: /games/
                 <div class="info">
                     <h1 class="title">Black Jack</h1>
                     <h3>Blackjack is a popular game played between a player and a dealer. The objective is to accumulate cards with a total value as close to 21 as possible without exceeding it. </h3>
+                    <br><br>
                     <div class="play">
-                        <button><a href="{{ site.baseurl }}/blackjack">PLAY</a></button>
+                        <a href="{{ site.baseurl }}/blackjack"><button>PLAY</button></a>
                     </div>
                 </div>
         </div> 
@@ -38,8 +39,9 @@ permalink: /games/
                 <div class="info">
                     <h1 class="title">War</h1>
                     <h3>War is a game played between two players. Both players reveal the top card from their stacks. The player with the higher-value card wins the round and collects both cards. This repeats until the player has collected all the cards from the opponent.</h3>
+                    <br><br>
                     <div class="play">
-                        <button><a href="{{ site.baseurl }}/war">PLAY</a></button>
+                        <a href="{{ site.baseurl }}/war"><button>PLAY</button></a>
                     </div>
                 </div>
         </div> 
@@ -51,8 +53,9 @@ permalink: /games/
                 <div class="info">
                     <h1 class="title">Uno</h1>
                     <h3>UNO is a popular card game played with a specially designed deck of 108 cards. The objective of the game is to be the first player to get rid of all their cards.</h3>
+                    <br><br>
                     <div class="play">
-                        <button><a href="{{ site.baseurl }}/uno">PLAY</a></button>
+                        <a href="{{ site.baseurl }}/uno"><button>PLAY</button></a>
                     </div>
                 </div>
         </div> 
@@ -64,8 +67,9 @@ permalink: /games/
                 <div class="info">
                     <h1 class="title">Memory</h1>
                     <h3>Memory is a game that challenges players' memory and concentration skills. The game consists of cards with matching pair somewhere in the deck.The objective of the game is to find and match all the pairs of cards.</h3>
+                    <br><br>
                     <div class="play">
-                        <button><a href="{{ site.baseurl }}/memorygame">PLAY</a></button>
+                        <a href="{{ site.baseurl }}/memorygame"><button>PLAY</button></a>
                     </div>
                 </div>
         </div>
@@ -203,11 +207,14 @@ permalink: /games/
         margin-top: 5rem;    
         margin-bottom: 2rem;     
         transition: all 0.75s ease-out;
+        justify-content:center;
+        text-align:center;
     }
 
     .play button {
-        width: 100%;
-        padding: 1rem;
+        width: 50%;
+        height: 8%;
+        padding-bottom: 2px;
         background: #f54642;
         border: none;
         color: white;
@@ -219,12 +226,13 @@ permalink: /games/
         bottom: 15%;
         left: 5%;
         right: 2%;
+        margin:auto;
     }
 
     .play button a
     {
         text-decoration: none;
-        color: #fff;
+        color: #ffffff;
     }
 
 </style>
