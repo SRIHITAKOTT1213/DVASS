@@ -24,7 +24,7 @@ permalink: /games/
                 </div>
                 <div class="info">
                     <h1 class="title">Black Jack</h1>
-                    <h3>Blackjack, also known as twenty-one, is a popular card game played between a player and a dealer. The objective of the game is to accumulate cards with a total value as close to 21 as possible without exceeding it. </h3>
+                    <h3>Blackjack is a popular game played between a player and a dealer. The objective is to accumulate cards with a total value as close to 21 as possible without exceeding it. </h3>
                     <div class="play">
                         <button><a href="{{ site.baseurl }}/blackjack">PLAY</a></button>
                     </div>
@@ -37,7 +37,7 @@ permalink: /games/
                 </div>
                 <div class="info">
                     <h1 class="title">War</h1>
-                    <h3>War is a simple card game played between two players using a standard deck of 52 cards. Both players reveal the top card from their respective stacks. The player with the higher-ranked card wins the round and collects both cards. This repeats until the player has collected all the cards from the opponent.</h3>
+                    <h3>War is a game played between two players. Both players reveal the top card from their stacks. The player with the higher-value card wins the round and collects both cards. This repeats until the player has collected all the cards from the opponent.</h3>
                     <div class="play">
                         <button><a href="{{ site.baseurl }}/war">PLAY</a></button>
                     </div>
@@ -63,7 +63,7 @@ permalink: /games/
                 </div>
                 <div class="info">
                     <h1 class="title">Memory</h1>
-                    <h3>Memory game is a game that challenges players' memory and concentration skills. The game  consists of a set of face-down cards with each card having a matching pair somewhere in the deck.The objective of the game is to find and match all the pairs of cards by flipping them over two at a time.</h3>
+                    <h3>Memory is a game that challenges players' memory and concentration skills. The game consists of cards with matching pair somewhere in the deck.The objective of the game is to find and match all the pairs of cards.</h3>
                     <div class="play">
                         <button><a href="{{ site.baseurl }}/memorygame">PLAY</a></button>
                     </div>
@@ -191,7 +191,7 @@ permalink: /games/
     }
 
     .info h3{
-        font-size: 1.3rem;
+        font-size: 1rem;
         padding: 2rem 0rem;
         color:#585858;
         font-weight: lighter;
