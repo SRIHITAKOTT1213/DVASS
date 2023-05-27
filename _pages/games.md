@@ -95,7 +95,7 @@ permalink: /games/
 
     header .logo
     {
-        color: #fff;
+        color: black;
         font-weight: 700;
         text-decoration: none;
         font-size: 2em;
@@ -120,14 +120,14 @@ permalink: /games/
     {
     text-decoration: none;
     padding: 6px 15px;
-    color: #fff;
+    color: black;
     border-radius: 20px; 
     }
 
     header ul li a:hover
     {
-        background: #fff;
-        color: #f54642
+        background: #f54642;
+        color: #fff;
     }
 
     body {
