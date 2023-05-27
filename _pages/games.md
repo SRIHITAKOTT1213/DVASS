@@ -199,7 +199,8 @@ permalink: /games/
     }
 
     .play {
-        margin-top: 5rem;       
+        margin-top: 5rem;    
+        margin-bottom: 2rem;     
         transition: all 0.75s ease-out;
     }
 
@@ -212,6 +213,7 @@ permalink: /games/
         cursor: pointer;
         border-radius: 25px;
         font-weight: bolder;
+        position: fixed;
     }
 
     .play button a
