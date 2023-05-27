@@ -57,7 +57,7 @@ function matchCards(img1, img2){
     if(img1 == img2){ 
         
         matchedCard++;
-        if(matchedCard == 40){
+        if(matchedCard == 18){
             runTimer(false);
             console.log(constant);
             setTimeout(() => {
