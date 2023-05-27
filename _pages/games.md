@@ -213,6 +213,13 @@ permalink: /games/
         border-radius: 25px;
         font-weight: bolder;
     }
+
+    .header button a
+    {
+        text-decoration: none;
+        color: #fff;
+    }
+
 </style>
 
 <script>
