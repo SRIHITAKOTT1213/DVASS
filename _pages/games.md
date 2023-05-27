@@ -2,8 +2,19 @@
 layout: none
 permalink: /games/
 ---
- 
+
 <html>
+<div>
+    <header>
+        <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
+        <ul>
+            <li><a href="{{ site.baseurl }}/index">Home</a></li>
+            <li><a href="{{ site.baseurl }}/games">Games</a></li>
+            <li><a href="{{ site.baseurl }}/leaderboard">Leaderboard</a></li>
+            <li><a href="{{ site.baseurl }}/about">About</a></li>
+        </ul>
+    </header>
+</div>
 <body>
     <div class="container">
         <div class="card">
@@ -68,6 +79,57 @@ permalink: /games/
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    header 
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10000;
+    }
+
+    header .logo
+    {
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 2em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    header ul 
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header ul li
+    {
+        list-style: none;
+        margin-left: 20px;
+    }
+
+    header ul li a
+    {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    border-radius: 20px; 
+    }
+
+    header ul li a:hover
+    {
+        background: #fff;
+        color: #274510
     }
 
     body {
