@@ -203,10 +203,13 @@ permalink: /games/
         margin-top: 5rem;    
         margin-bottom: 2rem;     
         transition: all 0.75s ease-out;
+        justify-content:center;
+        text-align:center;
     }
 
     .play button {
         width: 50%;
+        height: 8%;
         padding-bottom: 2px;
         background: #f54642;
         border: none;
@@ -219,6 +222,7 @@ permalink: /games/
         bottom: 15%;
         left: 5%;
         right: 2%;
+        margin:auto;
     }
 
     .play button a
