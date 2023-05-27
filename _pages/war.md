@@ -5,7 +5,7 @@ permalink: /war/
 ---
 <html>
 <body>
-    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true"></button>
+    <button data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <div class="title">War Instructions</div>
@@ -200,6 +200,11 @@ permalink: /war/
     }
 */
     table { margin: auto }
+
+     .question_btn {
+        background: none;
+        border: none;
+    }
 </style>
 
 <script>
