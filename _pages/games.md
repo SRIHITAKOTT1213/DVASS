@@ -157,6 +157,7 @@ permalink: /games/
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
         border-radius: 27px;
         padding: 0rem 5rem;
+        position: relative;
     }
 
     .game {
@@ -211,9 +212,11 @@ permalink: /games/
         border: none;
         color: white;
         cursor: pointer;
-        border-radius: 25px;
+        border-radius: 22px;
         font-weight: bolder;
-        position: fixed;
+        position: absolute;
+        top: 70%;
+        bottom: 25%;
     }
 
     .play button a
