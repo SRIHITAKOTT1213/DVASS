@@ -207,7 +207,7 @@ permalink: /games/
 
     .play button {
         width: 100%;
-        padding: 1rem 0rem;
+        padding: 1rem;
         background: #f54642;
         border: none;
         color: white;
@@ -218,7 +218,7 @@ permalink: /games/
         top: 85%;
         bottom: 15%;
         left: 5%;
-        right: 5%;
+        right: 2%;
     }
 
     .play button a
