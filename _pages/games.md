@@ -129,7 +129,7 @@ permalink: /games/
     header ul li a:hover
     {
         background: #fff;
-        color: #274510
+        color: #f54642
     }
 
     body {
