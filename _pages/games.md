@@ -4,7 +4,7 @@ permalink: /games/
 ---
 
 <html>
-<div>
+<body>
     <header>
         <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
         <ul>
@@ -14,8 +14,6 @@ permalink: /games/
             <li><a href="{{ site.baseurl }}/about">About</a></li>
         </ul>
     </header>
-</div>
-<body>
     <div class="container">
         <div class="card">
                 <div class="game">
