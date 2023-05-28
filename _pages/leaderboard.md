@@ -19,7 +19,7 @@ permalink: /leaderboard/
         }
         section { 
             position: relative;
-            width: 120%;
+            width: 100%;
             height: 100vh;
             padding: 30px;
             display: flex;
@@ -73,9 +73,6 @@ permalink: /leaderboard/
             margin: auto;
             text-align: center;
             color:white;
-        }
-        tr.spaceUnder>td {
-            padding-bottom: 1em;
         }
         .form-select {
             border-radius: 5px;
