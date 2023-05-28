@@ -60,6 +60,18 @@ permalink: /leaderboard/
         .dataTables_info {
             margin-top: 1em;
         }
+        label {
+            margin-bottom: 1em;
+        }
+        .table {
+            border-spacing: 0 15px;
+        }
+        #loading_text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 30px;
+            margin: auto;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -72,7 +84,8 @@ permalink: /leaderboard/
         <li><a href="{{ site.baseurl }}/about">About</a></li>
     </ul>
 </header>
-<section style="color:white;">
+<p id="loading_text" >
+<section id="table_content_blackjack" style="color:white;display:none;">
     <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
         <thead id="flaskHead">
             <tr>
@@ -89,6 +102,7 @@ permalink: /leaderboard/
 
 <script>
   $(document).ready(function() {
+
     fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
     .then(response => {
       if (!response.ok) {
@@ -105,6 +119,8 @@ permalink: /leaderboard/
             row.age + '</td></tr>');
       }
       $("#flaskTable").DataTable();
+      document.getElementById('loading_text').style["display"] = "none";
+      document.getElementById('table_content_blackjack').style["display"] = "flex";
     })
     .catch(error => {
       console.error('Error:', error);
