@@ -60,6 +60,9 @@ permalink: /leaderboard/
         .dataTables_info {
             margin-top: 1em;
         }
+        .dataTables_length {
+            display:none;
+        }
         label {
             margin-bottom: 1em;
         }
@@ -83,6 +86,7 @@ permalink: /leaderboard/
         .form-control {
             border-radius: 5px;
             border:0px;
+            margin-left: 10px;
         }
         .table-headers {
             position: relative;
@@ -101,7 +105,7 @@ permalink: /leaderboard/
         <li><a href="{{ site.baseurl }}/about">About</a></li>
     </ul>
 </header>
-<section class="table_headers">
+<section class="table_headers" style="top:10%">
     <ul>
         <li><a href="{{ site.baseurl }}/index">Blackjack</a></li>
         <li><a href="{{ site.baseurl }}/games">Uno</a></li>
@@ -110,7 +114,7 @@ permalink: /leaderboard/
     </ul>
 </section>
 <p id="loading_text">Loading...</p>
-<section id="table_content_blackjack" style="color:white;display:none;height:100vh;">
+<section id="table_content_blackjack" style="color: white; display: flex; max-height: 100vh; overflow:visible;">
     <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
         <thead id="flaskHead">
             <tr>
