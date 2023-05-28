@@ -68,6 +68,7 @@ permalink: /leaderboard/
         }
         #loading_text {
             top:50%;
+            position:relative;
             font-family: 'Poppins', sans-serif;
             font-size: 30px;
             margin: auto;
@@ -94,6 +95,14 @@ permalink: /leaderboard/
         <li><a href="{{ site.baseurl }}/about">About</a></li>
     </ul>
 </header>
+<section>
+    <ul>
+        <li><a href="{{ site.baseurl }}/index">Blackjack</a></li>
+        <li><a href="{{ site.baseurl }}/games">Uno</a></li>
+        <li><a href="{{ site.baseurl }}/leaderboard/">War</a></li>
+        <li><a href="{{ site.baseurl }}/about">Memory</a></li>
+    </ul>
+</section>
 <p id="loading_text">Loading...</p>
 <section id="table_content_blackjack" style="color:white;display:none;">
     <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
