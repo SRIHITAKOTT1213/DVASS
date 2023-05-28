@@ -20,7 +20,8 @@ permalink: /leaderboard/
         section { 
             position: relative;
             width: 100%;
-            max-height: 100vh;
+            height:100%;
+            max-height: 500px;
             padding: 30px;
             display: flex;
             margin:auto;
