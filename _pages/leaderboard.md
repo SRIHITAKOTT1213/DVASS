@@ -3,67 +3,22 @@ layout: none
 permalink: /leaderboard/
 ---
 
-<html>
-    <head>
-    <style>
-        #flaskTable th:first-child {
-            width: 75px;
-        }
-        #flaskTable td:not(:first-child) {
-          width: 150px;
-        }
-    </style>
-    <!-- JQuery -->
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <!-- Bootstrap -->
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="index.css">
-    </head>
-    <body>
-        <header>
-        <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
-        <ul>
-            <li><a href="{{ site.baseurl }}/index">Home</a></li>
-            <li><a href="{{ site.baseurl }}/games">Games</a></li>
-            <li><a href="{{ site.baseurl }}/leaderboard/">Leaderboard</a></li>
-            <li><a href="{{ site.baseurl }}/about">About</a></li>
-        </ul>
-        </header>
-    <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
-        <thead id="flaskHead">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>DOB</th>
-                <th>Age</th>
-            </tr>
-        </thead>
-        <tbody id="flaskBody"></tbody>
-    </table>
-    </body>
-</html>
-<script>
-    $(document).ready(function() {
-        fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
-        .then(response => {
-        if (!response.ok) {
-            throw new Error('API response failed');
-        }
-        return response.json();
-        })
-        .then(data => {
-        for (const row of data) {
-            $('#flaskBody').append('<tr><td>' + 
-                row.id + '</td><td>' + 
-                row.name + '</td><td>' + 
-                row.dob + '</td><td>' + 
-                row.age + '</td></tr>');
-            }
-        $("#flaskTable").DataTable();
-        })
-        .catch(error => {
-        console.error('Error:', error);
-        });
-    });
-</script>
+<head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<header>
+    <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
+    <ul>
+        <li><a href="{{ site.baseurl }}/index">Home</a></li>
+        <li><a href="{{ site.baseurl }}/games">Games</a></li>
+        <li><a href="{{ site.baseurl }}/leaderboard/">Leaderboard</a></li>
+        <li><a href="{{ site.baseurl }}/about">About</a></li>
+    </ul>
+</header>
+<section>
+    <h2 id="text">Welcome to DVASS Casino</h2>
+    <a href="{{ site.baseurl }}/games" class="btn">Explore</a>
+    <img src = "images/cardbackdrop.png" id="cards">
+</section>
+</body>
