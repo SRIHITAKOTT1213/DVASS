@@ -5,13 +5,16 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <!-- Bootstrap -->
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <style>
+    
+  <style>
         #flaskTable th:first-child {
             width: 75px;
         }
+
         #flaskTable td:not(:first-child) {
           width: 150px;
         }
+
         section { 
             position: relative;
             width: 100%;
@@ -21,8 +24,11 @@
             margin:auto;
             text-align:center;
         }
+
         table { border: none; border-collapse: collapse; color:white; }
+
         .row {position:relative; display:flex; justify-content:space-around;}
+
         ul {
             list-style-type: none;
             margin: 0;
@@ -30,9 +36,11 @@
             overflow: hidden;
             background-color: #333333;
         }
+
         li {
             float: left;
         }
+
         li a {
             display: block;
             color: white;
@@ -40,10 +48,62 @@
             padding: 16px;
             text-decoration: none;
         }
+
         li a:hover {
             background-color: #111111;
         }
-    </style>
+
+        header 
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        header .logo
+        {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header ul 
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header ul li
+        {
+            list-style: none;
+            margin-left: 20px;
+        }
+
+        header ul li a
+        {
+            text-decoration: none;
+            padding: 6px 15px;
+            color: #fff;
+            border-radius: 20px; 
+        }
+
+        header ul li a:hover
+        {
+            background: #fff;
+            color: #274510;
+        }
+  </style>
+
 </head>
 <body>
 <header>
