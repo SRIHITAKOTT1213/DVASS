@@ -27,9 +27,27 @@ permalink: /leaderboard/
             text-align:center;
         }
         table { border: none; border-collapse: collapse; color:white; }
-        table td { border-left: 8px solid #FFFFFF; }
-        table td:first-child { border-left: none; }
-        .row {position:relative; display:flex; justify-content:space-between;}
+        .row {position:relative; display:flex; justify-content:space-around;}
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333333;
+        }
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #111111;
+        }
     </style>
 </head>
 <body>
