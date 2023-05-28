@@ -23,9 +23,11 @@ permalink: /leaderboard/
             height: 100vh;
             padding: 30px;
             display: flex;
+            margin:auto;
+            text-align:center;
         }
         table { border: none; border-collapse: collapse; color:white; }
-        table td { border-left: 1px solid #000; }
+        table td { border-left: 8px solid #FFFFFF; }
         table td:first-child { border-left: none; }
         .row {position:relative; display:flex; justify-content:space-between;}
     </style>
