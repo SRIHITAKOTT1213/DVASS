@@ -107,21 +107,20 @@ permalink: /leaderboard/
 </header>
 <section class="table_headers" style="top:10%">
     <ul>
-        <li><a href="{{ site.baseurl }}/index">Blackjack</a></li>
-        <li><a href="{{ site.baseurl }}/games">Uno</a></li>
-        <li><a href="{{ site.baseurl }}/leaderboard/">War</a></li>
-        <li><a href="{{ site.baseurl }}/about">Memory</a></li>
+        <li onclick="tableBuild(blackjack_read, false)"><a>Blackjack</a></li>
+        <li onclick="tableBuild(uno_read, true)"><a>Uno</a></li>
+        <li onclick="tableBuild(war_read, false)"><a>War</a></li>
+        <li onclick="tableBuild(memory_read, true)"><a>Memory</a></li>
     </ul>
 </section>
 <p id="loading_text">Loading...</p>
-<section id="table_content_blackjack" style="color: white; display: none; max-height: 100vh; overflow:visible;">
+<section id="table_content" style="color: white; display: none; max-height: 100vh; overflow:visible;">
     <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
         <thead id="flaskHead">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>DOB</th>
-                <th>Age</th>
+                <th>Username</th>
+                <th id="score_description">Streak</th>
             </tr>
         </thead>
         <tbody id="flaskBody"></tbody>
@@ -130,29 +129,51 @@ permalink: /leaderboard/
 </body>
 
 <script>
-  $(document).ready(function() {
+    const blackjack_read = "http://127.0.0.1:8086/api/blackjack/";
+    const uno_read = "http://127.0.0.1:8086/api/uno/";
+    const war_read = "http://127.0.0.1:8086/api/war/";
+    const memory_read = "http://127.0.0.1:8086/api/memory/";
 
-    fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('API response failed');
-      }
-      return response.json();
-    })
-    .then(data => {
-      for (const row of data) {
-        $('#flaskBody').append('<tr><td>' + 
-            row.id + '</td><td>' + 
-            row.name + '</td><td>' + 
-            row.dob + '</td><td>' + 
-            row.age + '</td></tr>');
-      }
-      $("#flaskTable").DataTable();
-      document.getElementById('loading_text').style["display"] = "none";
-      document.getElementById('table_content_blackjack').style["display"] = "flex";
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  });
+    function tableBuild(readLink, time) {
+        document.getElementById('table_content').style["display"] = "none";
+        document.getElementById('loading_text').innerHTML = "Loading...";
+        document.getElementById('loading_text').style["display"] = "inline-block";
+        fetch(readLink, { mode: 'cors' })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('API response failed');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (time) {
+                document.getElementById("score_description").innerHTML = "Time";
+                for (const row of data) {
+                    var seconds = row.seconds % 60;
+                    var minutes = Math.floor(row.seconds / 60);
+                    $('#flaskBody').append('<tr><td>' + 
+                        row.id + '</td><td>' + 
+                        row.username + '</td><td>' + 
+                        String(minutes) + ":" + String(seconds) + '</td><td>');
+                    };
+            } else {
+                document.getElementById("score_description").innerHTML = "Streak"
+                for (const row of data) {
+                    $('#flaskBody').append('<tr><td>' + 
+                        row.id + '</td><td>' + 
+                        row.username + '</td><td>' + 
+                        row.streak + '</td><td>');
+                    };
+            };
+            $("#flaskTable").DataTable();
+            document.getElementById('loading_text').style["display"] = "none";
+            document.getElementById('table_content').style["display"] = "flex";
+        });
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('loading_text').innerHTML = "Error: Leaderboard couldn't be fetched!<br>Check your internet.";
+        });
+    }
+
+    $(document).ready(tableBuild(blackjack_read, false));
 </script>
