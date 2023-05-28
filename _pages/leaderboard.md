@@ -31,6 +31,7 @@ permalink: /leaderboard/
         section ul {
             list-style-type: none;
             margin: 0;
+            margin-top: 1em;
             padding: 0;
             overflow: hidden;
             background-color: #fff;
@@ -38,8 +39,8 @@ permalink: /leaderboard/
             display: inline-block;
             padding: 10px 32px;
             border-radius: 40px;
-            color: #274510;
-            font-size: 1.7em;
+            color: black;
+            font-size: 14px;
             z-index: 9; 
         }
         section li {
@@ -47,14 +48,17 @@ permalink: /leaderboard/
         }
         section li a {
             display: block;
-            color: white;
+            color: black;
             text-align: center;
             padding: 16px;
             text-decoration: none;
         }
         section li a:hover {
             background-color: #272727;
-            color: #fff
+            color: #fff;
+        }
+        .dataTables_info {
+            margin-top: 1em;
         }
     </style>
 </head>
