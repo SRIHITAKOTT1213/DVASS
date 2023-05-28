@@ -20,7 +20,7 @@ permalink: /leaderboard/
         section { 
             position: relative;
             width: 100%;
-            height: 100vh;
+            max-height: 100vh;
             padding: 30px;
             display: flex;
             margin:auto;
@@ -83,6 +83,11 @@ permalink: /leaderboard/
             border-radius: 5px;
             border:0px;
         }
+        .table-headers {
+            position: relative;
+            max-height: 200px;
+            height: 200px;
+        }
     </style>
 </head>
 <body>
@@ -95,7 +100,7 @@ permalink: /leaderboard/
         <li><a href="{{ site.baseurl }}/about">About</a></li>
     </ul>
 </header>
-<section>
+<section class="table_headers">
     <ul>
         <li><a href="{{ site.baseurl }}/index">Blackjack</a></li>
         <li><a href="{{ site.baseurl }}/games">Uno</a></li>
