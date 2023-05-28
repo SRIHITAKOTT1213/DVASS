@@ -71,6 +71,17 @@
   
       ,"page4": {
           "title": "",
+          "content": "&lt;!doctype html&gt; . DVASS Home | Games | Leaderboard | About | . . &lt;/head&gt; &lt;/head&gt; ID Name DOB Age . &lt;/html&gt; .",
+          "url": "https://srihitakott1213.github.io/DVASS/leaderboard/",
+          "relUrl": "/leaderboard/",
+          "date": ""
+      }
+      
+  
+
+  
+      ,"page5": {
+          "title": "",
           "content": "| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | . .",
           "url": "https://srihitakott1213.github.io/DVASS/memorygame/",
           "relUrl": "/memorygame/",
@@ -88,7 +99,7 @@
   
 
   
-      ,"page8": {
+      ,"page9": {
           "title": "Uno Simulation",
           "content": "Opponent Hand . The opponent&#39;s number of cards will be displayed here. Player Hand . . . Start Submit",
           "url": "https://srihitakott1213.github.io/DVASS/uno/",
@@ -99,7 +110,7 @@
   
 
   
-      ,"page9": {
+      ,"page10": {
           "title": "",
           "content": "War Instructions &times; Objective: The objective of war is to win all the cards in the deck. | How to play: Each round, hit the &quot;Draw&quot; button so both you and your opponent reveal the top card from your respective decks simulataneously. The plyaer with the higher-ranking card wins the round and collects both cards, adding them to a win pile. This win pile will be shuffled and recycled into your card deck once that deck runs out. | WAR: When players place down two cards of the same value, a war happens! Both players place down an additional 2 cards. The last card placed down is compared between the two players, and the player with the higher-ranking card wins all the cards on the table, including those from the war. If there is another war, the process of war is repeated until a winner is determined. | Card Values: Ace is worth 1, numbered cards (2-10) are worth their face value, face card J is worth 11, face card Q is worth 12, and face card K is worth 13. | Opponent . Number of Cards . . . You . Number of Cards . Draw Play Finish and Submit Score Submit .",
           "url": "https://srihitakott1213.github.io/DVASS/war/",
@@ -122,7 +133,7 @@
   
 
   
-      ,"page14": {
+      ,"page15": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://srihitakott1213.github.io/DVASS/robots.txt",
