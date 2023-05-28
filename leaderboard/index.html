@@ -163,7 +163,7 @@
             $("#flaskTable").DataTable();
             document.getElementById('loading_text').style["display"] = "none";
             document.getElementById('table_content').style["display"] = "flex";
-        });
+        })
         .catch(error => {
             console.error('Error:', error);
             document.getElementById('loading_text').innerHTML = "Error: Leaderboard couldn't be fetched!<br>Check your internet.";
