@@ -1,11 +1,191 @@
 ---
-layout: page
+layout: none
 title: About Me
 permalink: /about/
 ---
 
-This website is modeled after **[APCSP]([https://github.com/fastai/fastpages](https://srihitakott1213.github.io/APCSP-Blog-Assignment/))** [^1].
+<html>
+<div>
+    <header>
+        <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
+        <ul>
+            <li><a href="{{ site.baseurl }}/index">Home</a></li>
+            <li><a href="{{ site.baseurl }}/games">Games</a></li>
+            <li><a href="{{ site.baseurl }}/leaderboard">Leaderboard</a></li>
+            <li><a href="{{ site.baseurl }}/about">About</a></li>
+        </ul>
+    </header>
+</div>
+<body>
+    <div class="container">
+        <div class="card">
+                <div class="person">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/drew.png?raw=true" alt="dre">
+                </div>
+                <div class="info">
+                    <h1 class="title">Drew Reed</h1>
+                    <h3>Blackjack is a popular game played between a player and a dealer. The objective is to accumulate cards with a total value as close to 21 as possible without exceeding it. </h3>
+                </div>
+        </div> 
+        <div class="card">
+                <div class="person">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/sreeja.png?raw=true" alt="sre">
+                </div>
+                <div class="info">
+                    <h1 class="title">Sreeja</h1>
+                    <h3>War is played between 2 players. Both reveal the top card and the player with the higher-value card wins and collects both cards. Repeats until the player has collected all  cards from the opponent.</h3>
+                </div>
+        </div> 
+        <div class="card">
+                <div class="person">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/aliya.png?raw=true" alt="ali">
+                </div>
+                <div class="info">
+                    <h1 class="title">Aliya Tang</h1>
+                    <h3>UNO is a popular card game played with a specially designed deck of 108 cards. The objective of the game is to be the first player to get rid of all their cards.</h3>
+                </div>
+        </div> 
+    </div>
+    <div class="container">
+         <div class="card">
+                <div class="person">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/vivian.png?raw=true" alt="viv">
+                </div>
+                <div class="info">
+                    <h1 class="title">Vivian Ni</h1>
+                    <h3>UNO is a popular card game played with a specially designed deck of 108 cards. The objective of the game is to be the first player to get rid of all their cards.</h3>
+                </div>
+        </div> 
+        <div class="card">
+                <div class="person">
+                    <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/sri.png?raw=true" alt="sri">
+                </div>
+                <div class="info">
+                    <h1 class="title">Sri</h1>
+                    <h3>Memory is a game that consists of cards with a matching pair somewhere in the deck.The objective of the game is to find and match all the pairs of cards.</h3>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
 
 
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-[^1]: A blog for computer science principles.
+    * 
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body 
+    {
+        min-height: 100vh;
+        background: linear-gradient(#274510,#699e42);
+        font-family: "Poppins", sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1250px;
+    }
+
+    header 
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 30px 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10000;
+    }
+
+    header .logo
+    {
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 2em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    header ul 
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header ul li
+    {
+        list-style: none;
+        margin-left: 20px;
+    }
+
+    header ul li a
+    {
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    border-radius: 20px; 
+    }
+
+    header ul li a:hover
+    {
+        background: #fff;
+        color: #274510
+    }
+
+    .container {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card {
+        transform-style: preserve-3d;
+        transition: all 0.5s ease;
+        min-height: 70vh;
+        width: 26rem;
+        box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
+        border-radius: 27px;
+        padding: 0rem 5rem;
+        position: relative;
+    }
+
+    .game {
+        min-height: 35vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .game img {
+        width: 20rem;
+        z-index: 2;
+        transition: all 0.75s ease-out;
+    }
+
+    .info h1{
+        font-size: 2.5rem;
+        transition: all 0.75s ease-out;
+    }
+
+    .info h3{
+        font-size: 1rem;
+        padding: 2rem 0rem;
+        color:#585858;
+        font-weight: lighter;
+        transition: all 0.75s ease-out;
+    }
+
+</style>
+
