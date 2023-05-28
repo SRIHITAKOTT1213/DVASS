@@ -154,7 +154,7 @@ permalink: /leaderboard/
                     $('#flaskBody').append('<tr><td>' + 
                         row.id + '</td><td>' + 
                         row.username + '</td><td>' + 
-                        String(minutes) + ":" + String(seconds) + '</td><td>');
+                        String(minutes) + ":" + String(seconds) + '</td>');
                     };
             } else {
                 document.getElementById("score_description").innerHTML = "Streak"
@@ -162,7 +162,7 @@ permalink: /leaderboard/
                     $('#flaskBody').append('<tr><td>' + 
                         row.id + '</td><td>' + 
                         row.username + '</td><td>' + 
-                        row.streak + '</td><td>');
+                        row.streak + '</td>');
                     };
             };
             $("#flaskTable").DataTable();
