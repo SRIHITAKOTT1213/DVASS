@@ -17,6 +17,13 @@ permalink: /leaderboard/
         #flaskTable td:not(:first-child) {
           width: 150px;
         }
+        section { 
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding: 30px;
+            display: flex;
+        }
     </style>
 </head>
 <body>
