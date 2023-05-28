@@ -26,7 +26,7 @@ permalink: /leaderboard/
             margin:auto;
             text-align:center;
         }
-        table { border: none; border-collapse: collapse; color:white; }
+        table { border: none; border-collapse: collapse; color:white; padding:10px;}
         .row {position:relative; display:flex; justify-content:space-around;}
         section ul {
             list-style-type: none;
@@ -65,12 +65,18 @@ permalink: /leaderboard/
         }
         .table {
             border-spacing: 0 15px;
+            margin: 20px;
         }
         #loading_text {
+            top:50%;
             font-family: 'Poppins', sans-serif;
             font-size: 30px;
             margin: auto;
             text-align: center;
+            color:white;
+        }
+        tr.spaceUnder>td {
+            padding-bottom: 1em;
         }
     </style>
 </head>
