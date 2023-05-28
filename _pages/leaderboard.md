@@ -1,0 +1,101 @@
+---
+layout: none
+permalink: /leaderboard/
+---
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
+    <!-- JQuery -->
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <style>
+        #flaskTable th:first-child {
+            width: 75px;
+        }
+        #flaskTable td:not(:first-child) {
+          width: 150px;
+        }
+        section { 
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding: 30px;
+            display: flex;
+            margin:auto;
+            text-align:center;
+        }
+        table { border: none; border-collapse: collapse; color:white; }
+        .row {position:relative; display:flex; justify-content:space-around;}
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333333;
+        }
+        li {
+            float: left;
+        }
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+        li a:hover {
+            background-color: #111111;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
+    <ul>
+        <li><a href="{{ site.baseurl }}/index">Home</a></li>
+        <li><a href="{{ site.baseurl }}/games">Games</a></li>
+        <li><a href="{{ site.baseurl }}/leaderboard/">Leaderboard</a></li>
+        <li><a href="{{ site.baseurl }}/about">About</a></li>
+    </ul>
+</header>
+<section>
+    <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
+        <thead id="flaskHead">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody id="flaskBody"></tbody>
+    </table>
+</section>
+</body>
+
+<script>
+  $(document).ready(function() {
+    fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('API response failed');
+      }
+      return response.json();
+    })
+    .then(data => {
+      for (const row of data) {
+        $('#flaskBody').append('<tr><td>' + 
+            row.id + '</td><td>' + 
+            row.name + '</td><td>' + 
+            row.dob + '</td><td>' + 
+            row.age + '</td></tr>');
+      }
+      $("#flaskTable").DataTable();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+</script>
