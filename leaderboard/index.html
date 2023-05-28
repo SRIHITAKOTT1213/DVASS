@@ -1,23 +1,5 @@
-<p>&lt;!doctype html&gt;</p>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="index.css" />
-    <body>
-    <header>
-        <a href="/DVASS/index" class="logo">DVASS</a>
-        <ul>
-            <li><a href="/DVASS/index">Home</a></li>
-            <li><a href="/DVASS/games">Games</a></li>
-            <li><a href="/DVASS/leaderboard/">Leaderboard</a></li>
-            <li><a href="/DVASS/about">About</a></li>
-        </ul>
-    </header>
-    &lt;/head&gt;
-    <!-- JQuery -->
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <!-- Bootstrap -->
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <style>
         #flaskTable th:first-child {
             width: 75px;
@@ -26,19 +8,36 @@
           width: 150px;
         }
     </style>
-    &lt;/head&gt;
-        <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
-            <thead id="flaskHead">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>DOB</th>
-                    <th>Age</th>
-                </tr>
-            </thead>
-            <tbody id="flaskBody"></tbody>
-        </table>
-&lt;/html&gt;
+    <!-- JQuery -->
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
+    <body>
+        <header>
+        <a href="/DVASS/index" class="logo">DVASS</a>
+        <ul>
+            <li><a href="/DVASS/index">Home</a></li>
+            <li><a href="/DVASS/games">Games</a></li>
+            <li><a href="/DVASS/leaderboard/">Leaderboard</a></li>
+            <li><a href="/DVASS/about">About</a></li>
+        </ul>
+        </header>
+    <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
+        <thead id="flaskHead">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody id="flaskBody"></tbody>
+    </table>
+    </body>
+</html>
 <script>
     $(document).ready(function() {
         fetch('https://flask.nighthawkcodingsociety.com/api/users/', { mode: 'cors' })
@@ -63,4 +62,4 @@
         });
     });
 </script>
-</body></head></html>
+
