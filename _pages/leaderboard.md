@@ -114,7 +114,7 @@ permalink: /leaderboard/
     </ul>
 </section>
 <p id="loading_text">Loading...</p>
-<section id="table_content_blackjack" style="color: white; display: flex; max-height: 100vh; overflow:visible;">
+<section id="table_content_blackjack" style="color: white; display: none; max-height: 100vh; overflow:visible;">
     <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
         <thead id="flaskHead">
             <tr>
