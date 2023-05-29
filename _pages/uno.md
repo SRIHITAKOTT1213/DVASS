@@ -212,9 +212,14 @@ permalink: /uno/
     const colorsBox = document.getElementById("full_of_colors");
     const usernameInput = document.getElementById("username_input");
     const submitButton = document.getElementById("submit_button");
+
     const unoRead = "http://127.0.0.1:8086/api/uno/";
     const unoCreate = "http://127.0.0.1:8086/api/uno/create";
     const unoUpdate = "http://127.0.0.1:8086/api/uno/update";
+
+    const read_options = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
+    const post_options = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+    const put_options = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
 
     // card class
     class Uno {
