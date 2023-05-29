@@ -632,10 +632,9 @@
         if (playerHand.length == 0) {
             runTimer(false);
             deckElement.style = "display:none";
-            if seconds < 10:
-                seconds = "0" + String(seconds)
-            else:
-                seconds = String(seconds)
+            if (seconds < 10) {
+                seconds = "0" + String(seconds);
+            } else {seconds = String(seconds)};
             resultBox.innerHTML = "Congratulations! You win! Your final time is " + String(minutes) + ":" + seconds + "."; //variable constant used for leaderboard submission
             usernameInput.style = "display:inline-block;";
             submitButton.style = "display:inline-block;";
