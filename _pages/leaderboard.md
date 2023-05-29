@@ -179,6 +179,6 @@ permalink: /leaderboard/
         });
     }
 
-    tableBuild(blackjack_read, false);
+    setTimeout(tableBuild, 500, blackjack_read, false);
     tableBuild(blackjack_read, false);
 </script>
