@@ -175,10 +175,10 @@ permalink: /leaderboard/
         })
         .catch(error => {
             console.error('Error:', error);
-            document.getElementById('loading_text').innerHTML = "Error: Leaderboard couldn't be fetched!<br>Check your internet.";
+            document.getElementByIds('loading_text').innerHTML = "Error: Leaderboard couldn't be fetched!<br>Check your internet.";
         });
     }
 
-    setTimeout(tableBuild, 200, blackjack_read, false);
+    setTimeout(tableBuild, 1, blackjack_read, false);
     tableBuild(blackjack_read, false);
 </script>
