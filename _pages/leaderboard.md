@@ -150,12 +150,15 @@ permalink: /leaderboard/
             if (time) {
                 document.getElementById("score_description").innerHTML = "Time";
                 for (const row of data) {
-                    var seconds = row.seconds % 60;
-                    var minutes = Math.floor(row.seconds / 60);
+                    var seconds = String(row.seconds % 60);
+                    if (seconds.length < 2) {
+                        seconds = "0" + seconds;
+                    }
+                    var minutes = String(Math.floor(row.seconds / 60));
                     $('#flaskBody').append('<tr><td>' + 
                         row.id + '</td><td>' + 
                         row.username + '</td><td>' + 
-                        String(minutes) + ":" + String(seconds) + '</td>');
+                        minutes + ":" + seconds + '</td>');
                     };
             } else {
                 document.getElementById("score_description").innerHTML = "Streak"
