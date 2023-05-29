@@ -137,7 +137,7 @@ permalink: /leaderboard/
     function tableBuild(readLink, time) {
         document.getElementById('table_content').style["display"] = "none";
         document.getElementById('loading_text').innerHTML = "Loading...";
-        document.getElementById('loading_text').style["display"] = "inline-block";
+        document.getElementById('loading_text').style["display"] = "relative";
         document.getElementById('flaskBody').innerHTML = "";
         fetch(readLink, { mode: 'cors' })
         .then(response => {
