@@ -212,6 +212,9 @@ permalink: /uno/
     const colorsBox = document.getElementById("full_of_colors");
     const usernameInput = document.getElementById("username_input");
     const submitButton = document.getElementById("submit_button");
+    const unoRead = "http://127.0.0.1:8086/api/uno/";
+    const unoCreate = "http://127.0.0.1:8086/api/uno/create";
+    const unoUpdate = "http://127.0.0.1:8086/api/uno/update";
 
     // card class
     class Uno {
@@ -629,7 +632,11 @@ permalink: /uno/
         if (playerHand.length == 0) {
             runTimer(false);
             deckElement.style = "display:none";
-            resultBox.innerHTML = "Congratulations! You win! Your final time is " + String(minutes) + ":" + String(seconds) + "."; //variable constant used for leaderboard submission
+            if seconds < 10:
+                seconds = "0" + String(seconds)
+            else:
+                seconds = String(seconds)
+            resultBox.innerHTML = "Congratulations! You win! Your final time is " + String(minutes) + ":" + seconds + "."; //variable constant used for leaderboard submission
             usernameInput.style = "display:inline-block;";
             submitButton.style = "display:inline-block;";
             startButton.innerHTML = "Play Again";
@@ -647,9 +654,13 @@ permalink: /uno/
     }
 
     function submitInfo() {
+        var unInput = usernameInput.value;
+        if (unInput.length > 20) {
+            resultBox.innerHTML = "Username is too long. Please keep your username within 20 characters.";
+            return;
+        };
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
-        var unInput = usernameInput.value;
         var scoreInput = constant;
         console.log(unInput, scoreInput);
         resultBox.innerHTML = "";//change around based on whether or not it fails to fetch
