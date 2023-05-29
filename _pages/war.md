@@ -358,7 +358,6 @@ permalink: /war/
 
         // show draw button and hide play button 
         drawButton.style.display = "block";
-        finishButton.style.display = "block";
         faceDownCard.style.display = "block";
         playButton.style.display = "none";
     }
