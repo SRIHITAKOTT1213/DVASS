@@ -16,6 +16,7 @@ permalink: /memorygame/
         align-items: center;
         justify-content: center;
         min-height: 100vh;
+        background: #274510;
     }
 
     .card .back-view img{
@@ -25,7 +26,7 @@ permalink: /memorygame/
     .container{
         height: 720px;
         width: 720px;
-        background: linear-gradient(to right, #fc6767, #ec008c);
+        background: linear-gradient(to right, #FFDB58, #699e42);
         border-radius: 10px;
         padding: 25px;
         box-shadow: 0 0 10px;
