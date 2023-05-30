@@ -199,8 +199,7 @@ permalink: /blackjack/
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br>
-            <div id="result_text"></div>
-            <br>
+            <div id="result_text" style="margin-bottom:1em"></div>
             <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><br><button id="stay_button" class="select_button" style="display:none" onclick="stay()">Stay</button>
             <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
             <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none" onclick="submitInfo()">Submit</button>
