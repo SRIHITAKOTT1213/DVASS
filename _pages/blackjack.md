@@ -565,14 +565,13 @@ permalink: /blackjack/
                 var errorMsg = 'Database response error: ' + response.status;
                 console.log(errorMsg);
                 resultBox.innerHTML = String(errorMsg);
-                return;
+                break;
             }
             response.json().then(data => {
                 var testCopy = [...data];
-                var i = 0;
                 var testEnd = testCopy.length;
-                testCopy.forEach(user => {
-                    i++;
+                for (var i = 0; i < testEnd; i++>) {
+                    var user = testCopy[i];
                     //determining place on the leaderboard based on new score
                     if (user['streak'] >= scoreInput) {
                         place++;
@@ -593,18 +592,19 @@ permalink: /blackjack/
                                     var errorMsg = 'Database response error: ' + response.status;
                                     console.log(errorMsg);
                                     resultBox.innerHTML = String(errorMsg);
+                                    break;
                                 }
                                 response.json().then(data => {
                                     console.log(data);
                                     resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                    break;
                                 });
                             })
-                        return;
                     } else if (user['username'] == unInput) {
                         console.log("User found: " + user['username']);
                         resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
-                        return;
-                    } else if (i == testEnd) {
+                        break;
+                    } else if (i == (testEnd - 1)) {
                         // if the user is submitting for the first time
                         var body = {
                             'username':unInput,
@@ -618,16 +618,16 @@ permalink: /blackjack/
                                     var errorMsg = 'Database response error: ' + response.status;
                                     console.log(errorMsg);
                                     resultBox.innerHTML = String(errorMsg);
-                                    return;
+                                    break;
                                 }
                                 response.json().then(data => {
                                     console.log(data);
                                     resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                    break;
                                 })
                             })
-                        return;
                     }
-                });
+                };
                 return;
             })
         })
