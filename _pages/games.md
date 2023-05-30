@@ -238,7 +238,7 @@ permalink: /games/
 </style>
 
 <script>
-    document.body.style.zoom = "90%" 
+    document.body.style.zoom = "80%" 
 
     const card = document.querySelector(".card");
     const container = document.querySelector(".container");
