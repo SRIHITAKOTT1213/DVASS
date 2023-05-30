@@ -457,11 +457,29 @@ permalink: /war/
                 }
                 onTable = [];
             } else {
-                // WAR LATER
+                // WAR
                 inWar = true;
                 winText.innerHTML = "WAR! Put down 2 cards.";
             }
         } else {
+            if (playerList.length + playerWinPile.length <= 2) {
+                drawButton.style.display = "none";
+                faceDownCard.style.display = "none";
+                oppRow.innerHTML = "";
+                playerRow.innerHTML = "";
+                winText.innerHTML = "Your opponent won the game! Better luck next time. You can now play again to increase your score , or finish and submit your current score.";
+                currentStreak = 0;
+                playButton.style.display = "block";
+            } else if (oppList.length + oppWinPile.length <= 2) {
+                drawButton.style.display = "none";
+                faceDownCard.style.display = "none";
+                oppRow.innerHTML = "";
+                playerRow.innerHTML = "";
+                winText.innerHTML = "You won the game, Congrats! You can now play again to increase your score (amount of wins), or finish and submit your current score.";
+                currentStreak += 1;
+                playButton.style.display = "block";
+                finishButton.style.display = "block";
+            }
             for (let i = 0; i < 2; i++) {
                 var randwarPlayerCard = playerList.pop();
                 var randwarOppCard = oppList.pop();
@@ -496,6 +514,10 @@ permalink: /war/
         player_num.innerHTML = playercard_num;
         opp_num.innerHTML = oppcard_num;
 
+        winCheck();
+    }
+
+    function winCheck() {
         // Check if the deck is empty
         if (playerList.length + playerWinPile.length == 0 || oppList.length + oppWinPile.length == 0) {
             // Hide the "Draw" button and show the "Finish and Submit Score" button
@@ -505,12 +527,13 @@ permalink: /war/
             playerRow.innerHTML = "";
             if (playerList.length + playerWinPile.length == 0) {
                 winText.innerHTML = "Your opponent won the game! Better luck next time. You can now play again to increase your score , or finish and submit your current score.";
+                currentStreak = 0;
             } else if (oppList.length + oppWinPile.length == 0) {
                 winText.innerHTML = "You won the game, Congrats! You can now play again to increase your score (amount of wins), or finish and submit your current score.";
                 currentStreak += 1;
+                finishButton.style.display = "block";
             }
             playButton.style.display = "block";
-            finishButton.style.display = "block";
         }
     }
 
