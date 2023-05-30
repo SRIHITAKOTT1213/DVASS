@@ -358,6 +358,8 @@ permalink: /blackjack/
         stayButton.style = "display:none";
         playButton.style = "display:none";
         finishButton.style = "display:none";
+        usernameInput.style = "display:none";
+        submitButton.style = "display:none";
         resultBox.innerHTML = "";
         playerHand = [];
         dealerHand = [];
@@ -538,7 +540,6 @@ permalink: /blackjack/
     }
 
     function record() {
-        playButton.style = "display:none";
         finishButton.style = "display:none";
         usernameInput.style = "display:block";
         resultBox.innerHTML = "Input a username for the leaderboard. (Current Streak: " + String(currentStreak) + ")";
