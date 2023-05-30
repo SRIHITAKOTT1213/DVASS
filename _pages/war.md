@@ -512,7 +512,7 @@ permalink: /war/
         finishButton.style.display = "none";
 
         usernameInput.style.display = "block";
-        submitButton.styl.display = "block";
+        submitButton.style.display = "block";
 
         winText.innerHTML = "Input a username for the leaderboard. Your current score (amount of wins) is " + String(currentStreak) + ".";
     }
