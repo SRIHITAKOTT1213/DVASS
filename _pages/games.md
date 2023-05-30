@@ -200,7 +200,7 @@ permalink: /games/
     }
 
     .info h3{
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         padding: 2rem 0rem;
         color:#585858;
         font-weight: lighter;
@@ -218,6 +218,7 @@ permalink: /games/
     .play button {
         width: 50%;
         height: 8%;
+        font-size: 1.7rem;
         padding-bottom: 2px;
         background: #f54642;
         border: none;
@@ -226,11 +227,11 @@ permalink: /games/
         border-radius: 22px;
         font-weight: bolder;
         position: absolute;
+        margin:auto;
         top: 85%;
         bottom: 15%;
         left: 5%;
         right: 2%;
-        margin:auto;
     }
 
     .play button a
