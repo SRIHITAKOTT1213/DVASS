@@ -675,12 +675,15 @@
             response.json().then(data => {
                 var testCopy = [...data];
                 testCopy.forEach(user => {
+                    console.log(user.username);
+                    console.log(user['username']);
                     //determining place on the leaderboard based on new score
                     if (user['seconds'] <= scoreInput) {
                         place++;
                     };
                     if ((user['username'] == unInput) && (user['seconds'] > scoreInput)) {
                         // if the user achieved a new record, the user with that username is updated
+                        console.log("User found: " + user['username']);
                         var body = {
                             'id':user['id'],
                             'username':user['username'],
@@ -703,6 +706,7 @@
                                 })
                             })
                     } else if (user['username'] == unInput) {
+                        console.log("User found: " + user['username']);
                         resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
                         return;
                     }
