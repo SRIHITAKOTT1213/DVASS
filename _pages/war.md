@@ -532,7 +532,7 @@ permalink: /war/
         };
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
-        var scoreInput = currentStreak;
+        var scoreInput = streak;
         var place = 1;
         console.log(unInput, scoreInput);
         fetch(warRead, readOptions)
@@ -551,16 +551,16 @@ permalink: /war/
                 for (var i = 0; i < testEnd; i++) {
                     var user = testCopy[i];
                     //determining place on the leaderboard based on new score
-                    if (user['currentStreak'] >= scoreInput) {
+                    if (user['streak'] >= scoreInput) {
                         place++;
                     };
-                    if ((user['username'] == unInput) && (user['currentStreak'] < scoreInput)) {
+                    if ((user['username'] == unInput) && (user['streak'] < scoreInput)) {
                         // if the user achieved a new record, the user with that username is updated
                         console.log("User found: " + user['username']);
                         var body = {
                             'id':user['id'],
                             'username':user['username'],
-                            'currentStreak':scoreInput
+                            'streak':scoreInput
                         };
                         var putOptions = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
                         console.log(body);
@@ -587,7 +587,7 @@ permalink: /war/
                         // if the user is submitting for the first time
                         var body = {
                             'username':unInput,
-                            'currentStreak':scoreInput
+                            'streak':scoreInput
                         };
                         var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
                         console.log(body);
