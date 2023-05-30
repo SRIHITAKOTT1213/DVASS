@@ -189,7 +189,7 @@ permalink: /blackjack/
             <br>
             <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><br><button id="stay_button" class="select_button" style="display:none" onclick="stay()">Stay</button>
             <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
-            <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none">Submit</button>
+            <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none" onclick="submitInfo()">Submit</button>
         </div>
         <br>
     </div>
@@ -207,9 +207,14 @@ permalink: /blackjack/
     const resultBox = document.getElementById("result_text");
     const submitButton = document.getElementById("submit_button");
    
-    const openModalButtons = document.querySelectorAll('[data-modal-target]')
-    const closeModalButtons = document.querySelectorAll('[data-close-button]')
-    const overlay = document.getElementById('overlay')
+    const openModalButtons = document.querySelectorAll('[data-modal-target]');
+    const closeModalButtons = document.querySelectorAll('[data-close-button]');
+    const overlay = document.getElementById('overlay');
+
+    const blackjackRead = "http://127.0.0.1:8086/api/blackjack/";
+    const blackjackCreate = "http://127.0.0.1:8086/api/blackjack/create";
+    const blackjackUpdate = "http://127.0.0.1:8086/api/blackjack/update";
+    const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
 
     openModalButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -539,5 +544,92 @@ permalink: /blackjack/
         resultBox.innerHTML = "Input a username for the leaderboard. (Current Streak: " + String(currentStreak) + ")";
         submitButton.style = "display:block";
         console.log(String(currentStreak));
+    }
+
+    function submitInfo() {
+        var unInput = usernameInput.value;
+        if (unInput.length > 20) {
+            resultBox.innerHTML = "That username is too long! Please keep your username within 20 characters.";
+            return;
+        };
+        usernameInput.style = "display:none";
+        submitButton.style = "display:none";
+        var scoreInput = currentStreak;
+        var place = 1;
+        console.log(unInput, scoreInput);
+        fetch(blackjackRead, readOptions)
+            // new fetch to update
+            .then(response => {
+            // response error handler
+            if (response.status !== 200) {
+                var errorMsg = 'Database response error: ' + response.status;
+                console.log(errorMsg);
+                resultBox.innerHTML = String(errorMsg);
+                return;
+            }
+            response.json().then(data => {
+                var testCopy = [...data];
+                var i = 0;
+                var testEnd = testCopy.length;
+                testCopy.forEach(user => {
+                    i++;
+                    //determining place on the leaderboard based on new score
+                    if (user['streak'] >= scoreInput) {
+                        place++;
+                    };
+                    if ((user['username'] == unInput) && (user['streak'] < scoreInput)) {
+                        // if the user achieved a new record, the user with that username is updated
+                        console.log("User found: " + user['username']);
+                        var body = {
+                            'id':user['id'],
+                            'username':user['username'],
+                            'streak':scoreInput
+                        };
+                        var putOptions = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(blackjackUpdate, putOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                });
+                            })
+                        return;
+                    } else if (user['username'] == unInput) {
+                        console.log("User found: " + user['username']);
+                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        return;
+                    } else if (i == testEnd) {
+                        // if the user is submitting for the first time
+                        var body = {
+                            'username':unInput,
+                            'streak':scoreInput
+                        };
+                        var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(blackjackCreate, postOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                    return;
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                })
+                            })
+                        return;
+                    }
+                });
+                return;
+            })
+        })
     }
 </script>

@@ -711,11 +711,11 @@ permalink: /uno/
                                     resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
                                 });
                             })
-                        break;
+                        return;
                     } else if (user['username'] == unInput) {
                         console.log("User found: " + user['username']);
                         resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
-                        break;
+                        return;
                     } else if (i == testEnd) {
                         // if the user is submitting for the first time
                         var body = {
@@ -735,9 +735,9 @@ permalink: /uno/
                                 response.json().then(data => {
                                     console.log(data);
                                     resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
-                                    return;
                                 })
                             })
+                        return;
                     }
                 });
                 return;
