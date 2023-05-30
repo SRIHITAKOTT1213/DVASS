@@ -176,8 +176,8 @@ permalink: /games/
         width: 20rem;
         z-index: 2;
         transition: all 0.75s ease-out;
-        width: 14rem;
-        height: 14rem;
+        width: 16rem;
+        height: 16rem;
     }
 
     .circle {
@@ -200,7 +200,7 @@ permalink: /games/
     }
 
     .info h3{
-        font-size: 1rem;
+        font-size: 1.5rem;
         padding: 2rem 0rem;
         color:#585858;
         font-weight: lighter;
