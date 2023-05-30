@@ -704,17 +704,18 @@ permalink: /uno/
                                     var errorMsg = 'Database response error: ' + response.status;
                                     console.log(errorMsg);
                                     resultBox.innerHTML = String(errorMsg);
-                                    break;
                                 }
                                 response.json().then(data => {
                                     console.log(data);
                                     resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
-                                    break;
                                 });
                             })
+                        return;
+                        break;
                     } else if (user['username'] == unInput) {
                         console.log("User found: " + user['username']);
                         resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        return;
                         break;
                     } else if (i == (testEnd - 1)) {
                         // if the user is submitting for the first time
@@ -730,14 +731,14 @@ permalink: /uno/
                                     var errorMsg = 'Database response error: ' + response.status;
                                     console.log(errorMsg);
                                     resultBox.innerHTML = String(errorMsg);
-                                    break;
                                 }
                                 response.json().then(data => {
                                     console.log(data);
                                     resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
-                                    break;
                                 })
                             })
+                        return;
+                        break;
                     }
                 };
                 return;
