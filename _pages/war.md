@@ -423,6 +423,7 @@ permalink: /war/
         if (playerList.length <= 1){
             playerList = disShuffle(playerWinPile);
             playerWinPile = [];
+        }
         if (oppList.length <= 1){
             oppList = disShuffle(oppWinPile);
             oppWinPile = [];
