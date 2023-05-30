@@ -23,6 +23,7 @@ function runTimer(boolean) {
     if (boolean) {
         seconds = 0;
         minutes = 0;
+        constant = 0;
         timeSet = setInterval(incrementTime, 1000);
     } else {
         clearInterval(timeSet);
