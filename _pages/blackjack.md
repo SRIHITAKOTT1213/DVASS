@@ -17,7 +17,7 @@ permalink: /blackjack/
 
     .card_table_d {
         width: 1000px;
-        height: 300px;
+        height: 225px;
         border: 10px solid;
         border-radius: 150px;
         border-color: #699e42;
@@ -30,7 +30,7 @@ permalink: /blackjack/
 
     .card_table_p {
         width: 1000px;
-        height: 300px;
+        height: 225px;
         border: 10px solid;
         border-radius: 150px;
         border-color: #699e42;
