@@ -213,6 +213,12 @@ permalink: /uno/
     const usernameInput = document.getElementById("username_input");
     const submitButton = document.getElementById("submit_button");
 
+    const unoRead = "http://127.0.0.1:8086/api/uno/";
+    const unoCreate = "http://127.0.0.1:8086/api/uno/create";
+    const unoUpdate = "http://127.0.0.1:8086/api/uno/update";
+
+    const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
+
     // card class
     class Uno {
         constructor(color, val) {
@@ -290,6 +296,7 @@ permalink: /uno/
         if (boolean) {
             seconds = 0;
             minutes = 0;
+            constant = 0;
             timeSet = setInterval(incrementTime, 1000);
         } else {
             clearInterval(timeSet);
@@ -629,7 +636,10 @@ permalink: /uno/
         if (playerHand.length == 0) {
             runTimer(false);
             deckElement.style = "display:none";
-            resultBox.innerHTML = "Congratulations! You win! Your final time is " + String(minutes) + ":" + String(seconds) + "."; //variable constant used for leaderboard submission
+            if (seconds < 10) {
+                seconds = "0" + String(seconds);
+            } else {seconds = String(seconds)};
+            resultBox.innerHTML = "Congratulations! You win! Your final time is " + String(minutes) + ":" + seconds + "."; //variable constant used for leaderboard submission
             usernameInput.style = "display:inline-block;";
             submitButton.style = "display:inline-block;";
             startButton.innerHTML = "Play Again";
@@ -637,6 +647,8 @@ permalink: /uno/
             return true;
         } else if (opponentHand.length == 0) {
             runTimer(false);
+            pCardRow1.innerHTML = "";
+            pCardRow2.innerHTML = "";
             deckElement.style = "display:none";
             resultBox.innerHTML = "Oh no! You lost.";
             startButton.innerHTML = "Play Again";
@@ -647,11 +659,90 @@ permalink: /uno/
     }
 
     function submitInfo() {
+        var unInput = usernameInput.value;
+        if (unInput.length > 20) {
+            resultBox.innerHTML = "That username is too long! Please keep your username within 20 characters.";
+            return;
+        };
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
-        var unInput = usernameInput.value;
         var scoreInput = constant;
+        var place = 1;
         console.log(unInput, scoreInput);
-        resultBox.innerHTML = "";//change around based on whether or not it fails to fetch
+        fetch(unoRead, readOptions)
+            // new fetch to update
+            .then(response => {
+            // response error handler
+            if (response.status !== 200) {
+                var errorMsg = 'Database response error: ' + response.status;
+                console.log(errorMsg);
+                resultBox.innerHTML = String(errorMsg);
+                return;
+            }
+            response.json().then(data => {
+                var testCopy = [...data];
+                var testEnd = testCopy.length;
+                for (var i = 0; i < testEnd; i++) {
+                    var user = testCopy[i];
+                    //determining place on the leaderboard based on new score
+                    if (user['seconds'] <= scoreInput) {
+                        place++;
+                    };
+                    if ((user['username'] == unInput) && (user['seconds'] > scoreInput)) {
+                        // if the user achieved a new record, the user with that username is updated
+                        console.log("User found: " + user['username']);
+                        var body = {
+                            'id':user['id'],
+                            'username':user['username'],
+                            'seconds':scoreInput
+                        };
+                        var putOptions = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(unoUpdate, putOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                });
+                            })
+                        return;
+                        break;
+                    } else if (user['username'] == unInput) {
+                        console.log("User found: " + user['username']);
+                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        return;
+                        break;
+                    } else if (i == (testEnd - 1)) {
+                        // if the user is submitting for the first time
+                        var body = {
+                            'username':unInput,
+                            'seconds':scoreInput
+                        };
+                        var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(unoCreate, postOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                })
+                            })
+                        return;
+                        break;
+                    }
+                };
+                return;
+            })
+        })
     }
 </script>
