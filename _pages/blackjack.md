@@ -565,7 +565,7 @@ permalink: /blackjack/
                 var errorMsg = 'Database response error: ' + response.status;
                 console.log(errorMsg);
                 resultBox.innerHTML = String(errorMsg);
-                break;
+                return;
             }
             response.json().then(data => {
                 var testCopy = [...data];
