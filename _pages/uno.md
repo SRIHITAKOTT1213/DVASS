@@ -705,14 +705,13 @@ permalink: /uno/
                                     var errorMsg = 'Database response error: ' + response.status;
                                     console.log(errorMsg);
                                     resultBox.innerHTML = String(errorMsg);
-                                    break;
                                 }
                                 response.json().then(data => {
                                     console.log(data);
                                     resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
-                                    break;
-                                })
+                                });
                             })
+                        break;
                     } else if (user['username'] == unInput) {
                         console.log("User found: " + user['username']);
                         resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
@@ -732,17 +731,16 @@ permalink: /uno/
                                     console.log(errorMsg);
                                     resultBox.innerHTML = String(errorMsg);
                                     return;
-                                    break;
                                 }
                                 response.json().then(data => {
                                     console.log(data);
                                     resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
                                     return;
-                                    break;
                                 })
                             })
                     }
                 });
+                return;
             })
         })
     }
