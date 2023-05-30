@@ -144,6 +144,18 @@ permalink: /blackjack/
 </style>
 
 <html>
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
+<div>
+    <header>
+        <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
+        <ul>
+            <li><a href="{{ site.baseurl }}/index">Home</a></li>
+            <li><a href="{{ site.baseurl }}/games">Games</a></li>
+            <li><a href="{{ site.baseurl }}/leaderboard">Leaderboard</a></li>
+            <li><a href="{{ site.baseurl }}/about">About</a></li>
+        </ul>
+    </header>
+</div>
 <body>
     <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30"></button>
         <div class="modal" id="modal">
