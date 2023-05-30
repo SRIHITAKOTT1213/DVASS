@@ -212,9 +212,7 @@
     const unoCreate = "http://127.0.0.1:8086/api/uno/create";
     const unoUpdate = "http://127.0.0.1:8086/api/uno/update";
 
-    const read_options = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
-    const post_options = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
-    const put_options = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+    const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
 
     // card class
     class Uno {
@@ -655,14 +653,77 @@
     function submitInfo() {
         var unInput = usernameInput.value;
         if (unInput.length > 20) {
-            resultBox.innerHTML = "Username is too long. Please keep your username within 20 characters.";
+            resultBox.innerHTML = "That username is too long! Please keep your username within 20 characters.";
             return;
         };
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
         var scoreInput = constant;
         console.log(unInput, scoreInput);
-        resultBox.innerHTML = "";//change around based on whether or not it fails to fetch
+        fetch(unoRead, readOptions)
+            // new fetch to update
+            .then(response => {
+            // response error handler
+            if (response.status !== 200) {
+                var errorMsg = 'Database response error: ' + response.status;
+                console.log(errorMsg);
+                resultBox.innerHTML = String(errorMsg);
+                return;
+            }
+            response.json().then(data => {
+                var testCopy = [...data];
+                testCopy.forEach(user => {
+                    if ((user['username'] == unInput) && (user['seconds'] > scoreInput)) {
+                        // if the user achieved a new record, the user with that username is updated
+                        var body = {
+                            'id':user['id'],
+                            'username':user['username'],
+                            'seconds':scoreInput
+                        };
+                        var putOptions = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(unoUpdate, putOptions)
+                            .then(response =>
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                    return;
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard.";
+                                    return;
+                                })
+                            )
+                    } else if ((user['username'] == unInput) && (user['seconds'] < scoreInput)) {
+                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        return;
+                    }
+                });
+                // if the user is submitting for the first time
+                var body = {
+                    'username':unInput,
+                    'seconds':scoreInput
+                };
+                var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                console.log(body);
+                fetch(unoCreate, postOptions)
+                    .then(response =>
+                        if (response.status !== 200) {
+                            var errorMsg = 'Database response error: ' + response.status;
+                            console.log(errorMsg);
+                            resultBox.innerHTML = String(errorMsg);
+                            return;
+                        }
+                        response.json().then(data => {
+                            console.log(data);
+                            resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard.";
+                            return;
+                        })
+                    )
+            })
+        })
     }
 </script>
 
