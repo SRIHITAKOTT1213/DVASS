@@ -158,7 +158,7 @@ permalink: /games/
         transition: all 0.5s ease;
         min-height: 70vh;
         width: 26rem;
-        height: 42rem;
+        height: 45rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
         border-radius: 27px;
         padding: 0rem 5rem;
@@ -187,6 +187,7 @@ permalink: /games/
             rgba(8,83,156,0.75)
         );
         position: fixed;
+        padding: 10% 0;
         border-radius: 50%;
         z-index 1;
     }
