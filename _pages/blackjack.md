@@ -7,7 +7,8 @@ permalink: /blackjack/
     .big_ol_cont {
         justify-content:center;
         width: 75%;
-        top: 15%;
+        max-height: 700px;
+        top: 35%;
         margin:auto;
         border:20px solid;
         border-color:#ccac00;
