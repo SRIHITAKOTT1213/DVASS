@@ -44,7 +44,7 @@ permalink: /war/
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br>
-            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="face_down" style="display:none" onclick="moveCardUp();buttonDraw()"> 
+            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="face_down" style="display:none"> 
             <div id="win_text"></div>
             <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
             <button id="play_button" class="select_button" style="display:block" onclick="gameStart()">Play</button>
@@ -221,6 +221,12 @@ permalink: /war/
     const oppNum = document.getElementById("opp_num");
     const submitButton = document.getElementById("submit_button");
     const winText = document.getElementById("win_text");
+
+    const warRead = "http://127.0.0.1:8086/api/war/";
+    const warCreate = "http://127.0.0.1:8086/api/war/create";
+    const warUpdate = "http://127.0.0.1:8086/api/war/update";
+    const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
+
 
     const openModalButtons = document.querySelectorAll('[data-modal-target]')
     const closeModalButtons = document.querySelectorAll('[data-close-button]')
@@ -414,10 +420,11 @@ permalink: /war/
     var currentStreak = 0;
 
     function buttonDraw() {
-        if (playerList.length == 0){
+        if (playerList.length <= 1){
             playerList = disShuffle(playerWinPile);
             playerWinPile = [];
-        } else if (oppList.length==0){
+        }
+        if (oppList.length <= 1){
             oppList = disShuffle(oppWinPile);
             oppWinPile = [];
         }
@@ -512,8 +519,97 @@ permalink: /war/
         finishButton.style.display = "none";
 
         usernameInput.style.display = "block";
-        submitButton.styl.display = "block";
+        submitButton.style.display = "block";
 
         winText.innerHTML = "Input a username for the leaderboard. Your current score (amount of wins) is " + String(currentStreak) + ".";
+    }
+
+
+    function submitInfo() {
+        var unInput = usernameInput.value;
+        if (unInput.length > 20) {
+            resultBox.innerHTML = "That username is too long! Please keep your username within 20 characters.";
+            return;
+        };
+        usernameInput.style = "display:none";
+        submitButton.style = "display:none";
+        var scoreInput = streak;
+        var place = 1;
+        console.log(unInput, scoreInput);
+        fetch(warRead, readOptions)
+            // new fetch to update
+            .then(response => {
+            // response error handler
+            if (response.status !== 200) {
+                var errorMsg = 'Database response error: ' + response.status;
+                console.log(errorMsg);
+                resultBox.innerHTML = String(errorMsg);
+                return;
+            }
+            response.json().then(data => {
+                var testCopy = [...data];
+                var testEnd = testCopy.length;
+                for (var i = 0; i < testEnd; i++) {
+                    var user = testCopy[i];
+                    //determining place on the leaderboard based on new score
+                    if (user['streak'] >= scoreInput) {
+                        place++;
+                    };
+                    if ((user['username'] == unInput) && (user['streak'] < scoreInput)) {
+                        // if the user achieved a new record, the user with that username is updated
+                        console.log("User found: " + user['username']);
+                        var body = {
+                            'id':user['id'],
+                            'username':user['username'],
+                            'streak':scoreInput
+                        };
+                        var putOptions = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(warUpdate, putOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                });
+                            })
+                        return;
+                        break;
+                    } else if (user['username'] == unInput) {
+                        console.log("User found: " + user['username']);
+                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        return;
+                        break;
+                    } else if (i == (testEnd - 1)) {
+                        // if the user is submitting for the first time
+                        var body = {
+                            'username':unInput,
+                            'streak':scoreInput
+                        };
+                        var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(warCreate, postOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                })
+                            })
+                        return;
+                        break;
+                    }
+                };
+                return;
+            })
+        })
     }
 </script>
