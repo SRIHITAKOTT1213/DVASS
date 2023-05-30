@@ -570,7 +570,7 @@ permalink: /blackjack/
             response.json().then(data => {
                 var testCopy = [...data];
                 var testEnd = testCopy.length;
-                for (var i = 0; i < testEnd; i++>) {
+                for (var i = 0; i < testEnd; i++) {
                     var user = testCopy[i];
                     //determining place on the leaderboard based on new score
                     if (user['streak'] >= scoreInput) {
