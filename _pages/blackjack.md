@@ -7,8 +7,7 @@ permalink: /blackjack/
     .big_ol_cont {
         justify-content:center;
         width: 75%;
-        max-height: 700px;
-        top: 35%;
+        transform:translateY(10%);
         margin:auto;
         border:20px solid;
         border-color:#ccac00;
@@ -160,7 +159,7 @@ permalink: /blackjack/
     </header>
 </div>
 <body>
-    <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30"></button>
+    <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30" style="transform:translate(300%, 300%);"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <div class="title">Black Jack Instructions</div>
