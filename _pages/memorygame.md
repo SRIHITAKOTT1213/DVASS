@@ -58,7 +58,7 @@ permalink: /memorygame/
         width: 100%;
         height: 100%;
         background-color: #fff;
-        border-radius: 25px 0;
+        border-radius: 25px;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.616);
         position: absolute;
         transition: transform .25s linear;
@@ -335,8 +335,40 @@ permalink: /memorygame/
     let cardOne, cardTwo;
     let dis_Deck = false;
     let matchedCard = 0;
+    var firstCard = true;
+    var constant = 0;
+    var seconds = 0;
+    var minutes = 0;
+
+    function incrementTime() {
+        constant++; //constant second count separate from seconds
+        seconds++;
+        if (seconds == 60) {
+            minutes++;
+            seconds = 0;
+        }
+        if (constant >= 5999) {
+            clearInterval(timeSet);
+        };
+    };
+
+    function runTimer(boolean) {
+        if (boolean) {
+            seconds = 0;
+            minutes = 0;
+            constant = 0;
+            timeSet = setInterval(incrementTime, 1000);
+        } else {
+            clearInterval(timeSet);
+        }
+    }
 
     function flipCard(e){
+        if (firstCard) {
+            runTimer(true);
+            firstCard = false;
+        };
+
         let clickedCard = e.target;
         
         if(clickedCard !== cardOne && !dis_Deck) {
@@ -359,7 +391,9 @@ permalink: /memorygame/
         if(img1 == img2){ 
             
             matchedCard++;
-            if(matchedCard == 40){
+            if (matchedCard === 18){
+                runTimer(false);
+                console.log(constant);
                 setTimeout(() => {
                     return shuffCard();
                 }, 1200);
@@ -368,7 +402,7 @@ permalink: /memorygame/
             cardOne.removeEventListener('click', flipCard);
             cardTwo.removeEventListener('click', flipCard);
             cardOne = cardTwo = '';
-            return dis_Deck = false;
+            dis_Deck = false;
         }
         else{
             setTimeout(() => {
