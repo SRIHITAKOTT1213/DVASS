@@ -674,9 +674,10 @@
             }
             response.json().then(data => {
                 var testCopy = [...data];
+                var i = 0;
+                var testEnd = testCopy.length;
                 testCopy.forEach(user => {
-                    console.log(user.username);
-                    console.log(user['username']);
+                    i++;
                     //determining place on the leaderboard based on new score
                     if (user['seconds'] <= scoreInput) {
                         place++;
@@ -709,29 +710,30 @@
                         console.log("User found: " + user['username']);
                         resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
                         return;
+                    } else if (i == testEnd) {
+                        // if the user is submitting for the first time
+                        var body = {
+                            'username':unInput,
+                            'seconds':scoreInput
+                        };
+                        var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(unoCreate, postOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                    return;
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                    return;
+                                })
+                            })
                     }
                 });
-                // if the user is submitting for the first time
-                var body = {
-                    'username':unInput,
-                    'seconds':scoreInput
-                };
-                var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
-                console.log(body);
-                fetch(unoCreate, postOptions)
-                    .then(response => {
-                        if (response.status !== 200) {
-                            var errorMsg = 'Database response error: ' + response.status;
-                            console.log(errorMsg);
-                            resultBox.innerHTML = String(errorMsg);
-                            return;
-                        }
-                        response.json().then(data => {
-                            console.log(data);
-                            resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
-                            return;
-                        })
-                    })
             })
         })
     }
