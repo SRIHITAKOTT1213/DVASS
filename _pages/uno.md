@@ -296,6 +296,7 @@ permalink: /uno/
         if (boolean) {
             seconds = 0;
             minutes = 0;
+            constant = 0;
             timeSet = setInterval(incrementTime, 1000);
         } else {
             clearInterval(timeSet);
@@ -706,7 +707,7 @@ permalink: /uno/
                                     return;
                                 })
                             })
-                    } else if ((user['username'] == unInput) && (user['seconds'] < scoreInput)) {
+                    } else if (user['username'] == unInput) {
                         resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
                         return;
                     }
