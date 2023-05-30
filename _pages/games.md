@@ -176,6 +176,8 @@ permalink: /games/
         width: 20rem;
         z-index: 2;
         transition: all 0.75s ease-out;
+        width: 14rem;
+        height: 14rem;
     }
 
     .circle {
@@ -186,7 +188,7 @@ permalink: /games/
             rgba(245,79,66,0.75),
             rgba(8,83,156,0.75)
         );
-        position: fixed;
+        position: absolute;
         padding: 10% 0;
         border-radius: 50%;
         z-index 1;
