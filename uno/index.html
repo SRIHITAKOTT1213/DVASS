@@ -659,6 +659,7 @@
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
         var scoreInput = constant;
+        var place = 1;
         console.log(unInput, scoreInput);
         fetch(unoRead, readOptions)
             // new fetch to update
@@ -673,6 +674,10 @@
             response.json().then(data => {
                 var testCopy = [...data];
                 testCopy.forEach(user => {
+                    //determining place on the leaderboard based on new score
+                    if (user['seconds'] <= scoreInput) {
+                        place++;
+                    };
                     if ((user['username'] == unInput) && (user['seconds'] > scoreInput)) {
                         // if the user achieved a new record, the user with that username is updated
                         var body = {
@@ -683,7 +688,7 @@
                         var putOptions = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
                         console.log(body);
                         fetch(unoUpdate, putOptions)
-                            .then(response =>
+                            .then(response => {
                                 if (response.status !== 200) {
                                     var errorMsg = 'Database response error: ' + response.status;
                                     console.log(errorMsg);
@@ -692,10 +697,10 @@
                                 }
                                 response.json().then(data => {
                                     console.log(data);
-                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard.";
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
                                     return;
                                 })
-                            )
+                            })
                     } else if ((user['username'] == unInput) && (user['seconds'] < scoreInput)) {
                         resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
                         return;
@@ -709,7 +714,7 @@
                 var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
                 console.log(body);
                 fetch(unoCreate, postOptions)
-                    .then(response =>
+                    .then(response => {
                         if (response.status !== 200) {
                             var errorMsg = 'Database response error: ' + response.status;
                             console.log(errorMsg);
@@ -718,10 +723,10 @@
                         }
                         response.json().then(data => {
                             console.log(data);
-                            resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard.";
+                            resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
                             return;
                         })
-                    )
+                    })
             })
         })
     }
