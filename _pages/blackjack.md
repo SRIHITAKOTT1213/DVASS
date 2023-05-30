@@ -225,9 +225,9 @@ permalink: /blackjack/
     const closeModalButtons = document.querySelectorAll('[data-close-button]');
     const overlay = document.getElementById('overlay');
 
-    const blackjackRead = "http://127.0.0.1:8086/api/blackjack/";
-    const blackjackCreate = "http://127.0.0.1:8086/api/blackjack/create";
-    const blackjackUpdate = "http://127.0.0.1:8086/api/blackjack/update";
+    const blackjackRead = "https://dvasscasino.duckdns.org/api/blackjack/";
+    const blackjackCreate = "https://dvasscasino.duckdns.org/api/blackjack/create";
+    const blackjackUpdate = "https://dvasscasino.duckdns.org/api/blackjack/update";
     const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
 
     openModalButtons.forEach(button => {

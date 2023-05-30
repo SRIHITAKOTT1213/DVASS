@@ -129,10 +129,10 @@ permalink: /leaderboard/
 </body>
 
 <script>
-    const blackjack_read = "http://127.0.0.1:8086/api/blackjack/";
-    const uno_read = "http://127.0.0.1:8086/api/uno/";
-    const war_read = "http://127.0.0.1:8086/api/war/";
-    const memory_read = "http://127.0.0.1:8086/api/memory/";
+    const blackjack_read = "https://dvasscasino.duckdns.org/api/blackjack/";
+    const uno_read = "https://dvasscasino.duckdns.org/api/uno/";
+    const war_read = "https://dvasscasino.duckdns.org/api/war/";
+    const memory_read = "https://dvasscasino.duckdns.org/api/memory/";
 
     function tableBuild(readLink, time) {
         document.getElementById('table_content').style["display"] = "none";
