@@ -280,9 +280,7 @@ permalink: /memorygame/
     };
 
     function startProgram() {
-        while((var lis = container.getElementsByTagName("li")).length > 0) {
-            container.removeChild(lis[0]);
-        }
+        container.innerHTML = "";
         shuffle();
     }
 
