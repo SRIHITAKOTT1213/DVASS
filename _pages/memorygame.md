@@ -280,15 +280,14 @@ permalink: /memorygame/
 
     function startProgram() {
         container.innerHTML = "";
-        shuffle();
         const cards = document.querySelectorAll('.card');
         cards.forEach(card => {
             card.addEventListener('click', flipCard)
 
             // card.classList.add('flip')
         });
+        shuffle();
     }
 
-    
     window.onload = startProgram;
 </script>
