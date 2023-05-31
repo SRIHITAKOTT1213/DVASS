@@ -115,7 +115,7 @@ permalink: /memorygame/
 </li>
 -->
 
-<html style="height:1000px;">
+<html style="height:1100px;">
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
     <div>
         <header>
@@ -133,9 +133,12 @@ permalink: /memorygame/
             <ul id="cards" class="cards">
                 <!--CARDS WILL BE ADDED HERE-->
             </ul>
-            <div id="results_container" style="background-color:#FFDB58;border-radius:8px;display:none;">
-                <div id="result_box" style="margin:auto;margin-top:1em;font-family:'Trebuchet MS',sans-serif;color:white;display:none;"></div>
-                <input id="username_input" class="db_input" type="text" style="display:none;border:none;background-color:white;color:black;border-radius:8px;"><button id="submit_button" style="display:none;border:none;background-color:white;color:black;border-radius:8px;" onclick="submitInfo()">Submit</button>
+            <div id="results_container" style="background-color:#FFDB58;border-radius:8px;display:none;padding:1%;font-size:20px;">
+                <div id="result_box" style="margin:auto;font-family:'Trebuchet MS',sans-serif;color:white;display:none;"></div>
+                <div style="display:flex;">
+                    <input id="username_input" class="db_input" type="text" style="display:none;border:none;background-color:white;color:black;border-radius:8px;height:30px;margin-top:1%;margin-bottom:1%;">
+                    <button id="submit_button" style="display:none;border:none;background-color:white;color:black;border-radius:8px;font-size:20px;" onclick="submitInfo()">Submit</button>
+                </div>
             </div>
         </div>
     </body>
