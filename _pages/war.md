@@ -1,7 +1,7 @@
 ---
 layout: none
 tite: War Simulation
-permalink: /war2/
+permalink: /war/
 ---
 <html>
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
@@ -16,7 +16,7 @@ permalink: /war2/
         </ul>
     </header>
 </div>
-<body>
+<body style="height:900px;">
     <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
@@ -56,13 +56,12 @@ permalink: /war2/
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br>
-            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="face_down" style="display:none"> 
-            <div id="win_text"></div>
-            <button id="draw_button" class="select_button" style="display:none" onclick="buttonDraw();moveCardUp()">Draw</button>
+            <img src="{{ site.baseurl }}/images/blackjack/facedown_card.png" id="face_down" style="display:none; cursor: pointer;" onclick="buttonDraw()"> 
             <button id="play_button" class="select_button" style="display:block" onclick="gameStart()">Play</button>
             <button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
+            <div id="win_text"></div>
             <input id="username_input" class="db_input" type="text" style="display:none">
-            <button id="submit_button" class="select_button" style="display:none">Submit</button>
+            <button id="submit_button" class="select_button" style="display:none" onclick="submitInfo()">Submit</button>
         </div>
         <br>
         <div>
@@ -203,17 +202,12 @@ permalink: /war2/
         position: relative;
         width: 100;
         height: 150;
-        transition: transform 0.3s ease;
         margin: auto;
     }
-/*
-    .moveUp {
-        transform: translate(50px, 50px);
-    }
-*/
+
     table { margin: auto }
 
-     .question_btn {
+    .question_btn {
         background: none;
         border: none;
     }
@@ -225,7 +219,6 @@ permalink: /war2/
 
     const faceDownCard = document.getElementById("face_down");
 
-    const drawButton = document.getElementById("draw_button");
     const playButton = document.getElementById("play_button");
     const finishButton = document.getElementById("finish_game");
     const usernameInput = document.getElementById("username_input");
@@ -234,58 +227,10 @@ permalink: /war2/
     const submitButton = document.getElementById("submit_button");
     const winText = document.getElementById("win_text");
 
-    const warRead = "http://127.0.0.1:8086/api/war/";
-    const warCreate = "http://127.0.0.1:8086/api/war/create";
-    const warUpdate = "http://127.0.0.1:8086/api/war/update";
+    const warRead = "https://dvasscasino.duckdns.org/api/war/";
+    const warCreate = "https://dvasscasino.duckdns.org/api/war/create";
+    const warUpdate = "https://dvasscasino.duckdns.org/api/war/update";
     const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
-
-
-    const openModalButtons = document.querySelectorAll('[data-modal-target]')
-    const closeModalButtons = document.querySelectorAll('[data-close-button]')
-    const overlay = document.getElementById('overlay')
-
-    openModalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const modal = document.querySelector(button.dataset.modalTarget)
-            openModal(modal)
-        })
-    })
-
-    overlay.addEventListener('click', () => {
-        const modals = document.querySelectorAll('.modal.active')
-        modals.forEach(modal => {
-            closeModal(modal)
-        })
-    })
-
-    closeModalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const modal = button.closest('.modal')
-            closeModal(modal)
-        })
-    })
-
-    function openModal(modal) {
-        if (modal == null) return
-        modal.classList.add('active')
-        overlay.classList.add('active')
-    }
-
-    function closeModal(modal) {
-        if (modal == null) return
-        modal.classList.remove('active')
-        overlay.classList.remove('active')
-    }
-
-    function moveCardUp() {
-        faceDownCard.style.transform = "translate(50%, -30%)";
-
-        setTimeout(function() {
-            faceDownCard.style.display = "none";
-        }, 250);
-
-        // faceDownCard.classList.add("moveUp");
-    }
 
     // card class
     class Card {
@@ -340,84 +285,17 @@ permalink: /war2/
         }
     };
 
-    var playerList = [];         
-    var oppList = [];
+    var playerHand = [];         
+    var oppHand = [];
     var playerWinPile = [];
     var oppWinPile = [];
-    var playercard_num = 0;
-    var oppcard_num = 0;
+    var currentStreak = 0;
     var deck = "placeholder";
+    var onTable = [];
+    var drawing = false;
+    var drawn = 0;
 
-    function updateCardCount() {
-        playercard_num = playerList.length + playerWinPile.length;
-        oppcard_num = oppList.length + oppWinPile.length;
-    }
-
-    function gameStart() {
-        oppRow.innerHTML = "";
-        playerRow.innerHTML = "";
-        player_num.innerHTML = playercard_num;
-        opp_num.innerHTML = oppcard_num;
-
-        // create and shuffle new deck
-        deck = new Deck();
-        deck.shuffle();
-
-        // deal card to you and opp
-        for (let i = 0; i < 26; i++) {
-            playerList.push(deck.draw());
-            oppList.push(deck.draw());
-        }
-
-        updateCardCount();
-        
-        player_num.innerHTML = playercard_num;
-        opp_num.innerHTML = oppcard_num;
-
-        // show draw button and hide play button 
-        drawButton.style.display = "block";
-        faceDownCard.style.display = "block";
-        playButton.style.display = "none";
-    }
-
-    function givePlayerCard(card) {
-        const newCard = document.createElement("td");
-        const newCardImage = document.createElement("img");
-        newCardImage.src = "{{ site.baseurl }}/images/blackjack/" + card.kind + card.suit + ".png";
-        newCardImage.width = "100";
-        newCardImage.height = "150";
-        console.log(newCardImage.src); 
-        newCard.appendChild(newCardImage);
-        playerRow.appendChild(newCard);
-
-    };
-
-    function giveOppCard(card) {
-        if (card != "face_down") {
-            const newCard = document.createElement("td");
-            const newCardImage = document.createElement("img");
-            newCardImage.src = "{{ site.baseurl }}/images/blackjack/" + card.kind + card.suit + ".png";
-            newCardImage.width = "100";
-            newCardImage.height = "150"; 
-            newCard.appendChild(newCardImage);
-            oppRow.appendChild(newCard);
-
-            // animation trigger
-            setTimeout(function() {
-                newCardImage.classList.add("move-down");
-            }, 100);
-        } else {
-            const newCard = document.createElement("td");
-            const newCardImage = document.createElement("img");
-            newCardImage.src = "{{ site.baseurl }}/images/blackjack/facedown_card.png";
-            newCardImage.width = "100";
-            newCardImage.height = "150";
-            newCard.appendChild(newCardImage);
-            oppRow.appendChild(newCard);
-        }
-    };
-
-    function disShuffle(pile) {
+    function listShuffle(pile) {
         for (var i = pile.length - 1; i > 0; i--) {
             var j = Math.floor(Math.random() * (i + 1));
             var temp = pile[i];
@@ -427,148 +305,212 @@ permalink: /war2/
         return pile;
     };
 
-    var inWar = false;
-    var onTable = [];
-    var currentStreak = 0;
+    function gameStart() {
+        // show draw card and hide play button
+        faceDownCard.style.display = "block";
+        playButton.style.display = "none";
+        finishButton.style["display"] = "none";
+        oppRow.innerHTML = "";
+        playerRow.innerHTML = "";
+
+        // reset decks and piles
+        playerHand = [];
+        oppHand = [];
+        playerWinPile = [];
+        oppWinPile = [];
+        onTable = [];
+
+        // create and shuffle new deck
+        deck = new Deck();
+        deck.shuffle();
+
+        // deal card to you and opp
+        for (let i = 0; i < 25; i++) {
+            playerHand.push(deck.draw());
+            oppHand.push(deck.draw());
+        }
+        
+        playerNum.innerHTML = String(playerHand.length);
+        oppNum.innerHTML = String(oppHand.length);
+    }
+
+    function updateCounts() {
+        playerNum.innerHTML = String(playerHand.length + playerWinPile.length);
+        oppNum.innerHTML = String(oppHand.length + oppWinPile.length);
+    }
+
+    function checkDecks() {
+        if (playerHand.length == 0) {
+            if (playerWinPile.length == 0) {
+                lose();
+                return true;
+            }
+            playerHand = listShuffle(playerWinPile);
+            playerWinPile = [];
+        };
+        if (oppHand.length == 0) {
+            if (oppWinPile.length == 0) {
+                win();
+                return true;
+            }
+            oppHand = listShuffle(oppWinPile);
+            oppWinPile = [];
+        };
+        updateCounts();
+        return false
+    }
+
+    function giveCard(card, row) {
+        const newCard = document.createElement("td");
+        const newCardImage = document.createElement("img");
+        if (card != "facedown") {
+            newCardImage.src = "{{ site.baseurl }}/images/blackjack/" + card.kind + card.suit + ".png";
+        } else {
+            newCardImage.src = "{{ site.baseurl }}/images/blackjack/facedown_card.png";
+        }
+            newCardImage.width = "100";
+            newCardImage.height = "150"; 
+            newCard.appendChild(newCardImage);
+            row.appendChild(newCard); //playerRow or oppRow
+    }
 
     function buttonDraw() {
-        if (playerList.length <= 1){
-            playerList = disShuffle(playerWinPile);
-            playerWinPile = [];
-        }
-        if (oppList.length <= 1){
-            oppList = disShuffle(oppWinPile);
-            oppWinPile = [];
-        }
-        if (!(inWar)) {
-            oppRow.innerHTML = "";
-            playerRow.innerHTML = "";
+        // clear the card table first
+        playerRow.innerHTML = "";
+        oppRow.innerHTML = "";
 
-            // draw card from deck for you and opp
-            var playerCard = playerList.pop();
-            var oppCard = oppList.pop();
-            onTable.push(playerCard)
-            onTable.push(oppCard)
+        // each player drawing cards
+        if (checkDecks()) {return};
+        var playerSel = playerHand.pop();
+        giveCard(playerSel, playerRow);
+        onTable.push(playerSel);
+        var oppSel = oppHand.pop();
+        giveCard(oppSel, oppRow);
+        onTable.push(oppSel);
 
-            // display drawn card
-            
-            givePlayerCard(playerCard);
-            giveOppCard(oppCard);
-
-            // Compare the values of the drawn cards
-            if (playerCard.value > oppCard.value) {
-                winText.innerHTML = "You won! You take the cards on the table."
-                for (card of onTable) {
-                    playerWinPile.push(card);
-                }
-                onTable = [];
-            } else if (playerCard.value < oppCard.value) {
-                winText.innerHTML = "The opponent won, so they take the cards on the table."
-                for (card of onTable) {
-                    oppWinPile.push(card);
-                }
-                onTable = [];
-            } else {
-                // WAR
-                inWar = true;
-                winText.innerHTML = "WAR! Put down 2 cards.";
+        //compare the cards
+        if (playerSel.value > oppSel.value) {
+            for (card of onTable) {
+                playerWinPile.push(card);
             }
+            onTable = [];
+            updateCounts();
+            winText.innerHTML = "Your card beats the opponent's, so you take both from the table.";
+            checkDecks();
+            return;
+        } else if (oppSel.value > playerSel.value) {
+            for (card of onTable) {
+                oppWinPile.push(card);
+            }
+            onTable = [];
+            updateCounts();
+            winText.innerHTML = "The opponent's card beats yours, so you lose your card.";
+            checkDecks();
+            return;
         } else {
-            if (playerList.length + playerWinPile.length <= 2) {
-                drawButton.style.display = "none";
-                faceDownCard.style.display = "none";
-                oppRow.innerHTML = "";
-                playerRow.innerHTML = "";
-                winText.innerHTML = "Your opponent won the game! Better luck next time. You can now play again to increase your score , or finish and submit your current score.";
-                currentStreak = 0;
-                playButton.style.display = "block";
-            } else if (oppList.length + oppWinPile.length <= 2) {
-                drawButton.style.display = "none";
-                faceDownCard.style.display = "none";
-                oppRow.innerHTML = "";
-                playerRow.innerHTML = "";
-                winText.innerHTML = "You won the game, Congrats! You can now play again to increase your score (amount of wins), or finish and submit your current score.";
-                currentStreak += 1;
-                playButton.style.display = "block";
-                finishButton.style.display = "block";
+            winText.innerHTML = "WAR! Draw three face-down cards and battle with the fourth face-up.";
+            drawing = true;
+            updateCounts();
+            faceDownCard.setAttribute("onclick", "war()");
+            return;
+        }
+    }
+
+    function war() {
+        if (drawing) {
+            //give three face-down cards
+            if (checkDecks()) {return};
+            onTable.push(playerHand.pop());
+            giveCard("facedown", playerRow);
+            onTable.push(oppHand.pop());
+            giveCard("facedown", oppRow);
+            drawn++;
+            if (drawn >= 3) {
+                drawing = false;
+                drawn = 0;
             }
-            for (let i = 0; i < 2; i++) {
-                var randwarPlayerCard = playerList.pop();
-                var randwarOppCard = oppList.pop();
-                onTable.push(randwarPlayerCard);
-                onTable.push(randwarOppCard);
-                givePlayerCard(randwarPlayerCard);
-                giveOppCard(randwarOppCard);
-                if (i == 1) {
-                    var warPlayerCard = randwarPlayerCard;
-                    var warOppCard = randwarOppCard;
-                }
-            } if (warPlayerCard.value > warOppCard.value) {
-                winText.innerHTML = "You won the war! You take the cards on the table.";
+            updateCounts();
+            return;
+        } else {
+            if (checkDecks()) {return};
+            var playerSel = playerHand.pop();
+            onTable.push(playerSel);
+            giveCard(playerSel, playerRow);
+            var oppSel = oppHand.pop();
+            onTable.push(oppSel);
+            giveCard(oppSel, oppRow);
+
+            //compare the cards
+            if (playerSel.value > oppSel.value) {
+                faceDownCard.setAttribute("onclick", "buttonDraw()");
                 for (card of onTable) {
                     playerWinPile.push(card);
                 }
                 onTable = [];
-                inWar = false;
-            } else if (warPlayerCard.value < warOppCard.value) {
-                winText.innerHTML = "Opponent won the war! They take the cards on the table.";
+                updateCounts();
+                winText.innerHTML = "Your card wins, so you take all of the cards on the table!";
+                checkDecks();
+                return;
+            } else if (oppSel.value > playerSel.value) {
+                faceDownCard.setAttribute("onclick", "buttonDraw()");
                 for (card of onTable) {
                     oppWinPile.push(card);
                 }
                 onTable = [];
-                inWar = false;
+                updateCounts();
+                winText.innerHTML = "The opponent's card beats yours, so the opponent takes the cards on the table.";
+                checkDecks();
+                return;
             } else {
-                winText.innerHTML = "Another WAR! Put down 2 more cards.";
+                winText.innerHTML = "WAR CONTINUES! Draw three face-down cards and battle with the fourth face-up.";
+                drawing = true;
+                updateCounts();
+                return;
             }
         }
-
-        updateCardCount();
-        player_num.innerHTML = playercard_num;
-        opp_num.innerHTML = oppcard_num;
-
-        winCheck();
     }
 
-    function winCheck() {
-        // Check if the deck is empty
-        if (playerList.length + playerWinPile.length == 0 || oppList.length + oppWinPile.length == 0) {
-            // Hide the "Draw" button and show the "Finish and Submit Score" button
-            drawButton.style.display = "none";
-            faceDownCard.style.display = "none";
-            oppRow.innerHTML = "";
-            playerRow.innerHTML = "";
-            if (playerList.length + playerWinPile.length == 0) {
-                winText.innerHTML = "Your opponent won the game! Better luck next time. You can now play again to increase your score , or finish and submit your current score.";
-                currentStreak = 0;
-            } else if (oppList.length + oppWinPile.length == 0) {
-                winText.innerHTML = "You won the game, Congrats! You can now play again to increase your score (amount of wins), or finish and submit your current score.";
-                currentStreak += 1;
-                finishButton.style.display = "block";
-            }
-            playButton.style.display = "block";
-        }
+    function lose() {
+        currentStreak = 0;
+        faceDownCard.style["display"] = "none";
+        playerNum.innerHTML = "0";
+        oppNum.innerHTML = "50";
+        winText.innerHTML = "Uh oh! You lost. Your streak has been reset to 0.";
+        playButton.innerHTML = "Play Again";
+        playButton.style["display"] = "block";
     }
+
+    function win() {
+        currentStreak++;
+        faceDownCard.style["display"] = "none";
+        playerNum.innerHTML = "50";
+        oppNum.innerHTML = "0";
+        winText.innerHTML = "Yay, you won! You can play again to continue your streak or finish to record your streak on the leaderboard.";
+        playButton.innerHTML = "Play Again";
+        playButton.style["display"] = "block";
+        finishButton.style["display"] = "block";
+    }
+
+    var storedStreak = 0;
 
     function record() {
-        playButton.style.display = "none";
-        finishButton.style.display = "none";
-
-        usernameInput.style.display = "block";
-        submitButton.style.display = "block";
-
-        winText.innerHTML = "Input a username for the leaderboard. Your current score (amount of wins) is " + String(currentStreak) + ".";
+        finishButton.style["display"] = "none";
+        usernameInput.style["display"] = "block";
+        submitButton.style["display"] = "block";
+        winText.innerHTML = "You finished with a streak of " + String(currentStreak) + "! Input a username to submit to the leaderboard.";
+        storedStreak = currentStreak;
+        currentStreak = 0;
     }
-
 
     function submitInfo() {
         var unInput = usernameInput.value;
         if (unInput.length > 20) {
-            resultBox.innerHTML = "That username is too long! Please keep your username within 20 characters.";
+            winText.innerHTML = "That username is too long! Please keep your username within 20 characters.";
             return;
         };
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
-        var scoreInput = streak;
+        var scoreInput = storedStreak;
         var place = 1;
         console.log(unInput, scoreInput);
         fetch(warRead, readOptions)
@@ -578,7 +520,7 @@ permalink: /war2/
             if (response.status !== 200) {
                 var errorMsg = 'Database response error: ' + response.status;
                 console.log(errorMsg);
-                resultBox.innerHTML = String(errorMsg);
+                winText.innerHTML = String(errorMsg);
                 return;
             }
             response.json().then(data => {
@@ -600,23 +542,23 @@ permalink: /war2/
                         };
                         var putOptions = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
                         console.log(body);
-                        fetch(warUpdate, putOptions)
+                        fetch(warkUpdate, putOptions)
                             .then(response => {
                                 if (response.status !== 200) {
                                     var errorMsg = 'Database response error: ' + response.status;
                                     console.log(errorMsg);
-                                    resultBox.innerHTML = String(errorMsg);
+                                    winText.innerHTML = String(errorMsg);
                                 }
                                 response.json().then(data => {
                                     console.log(data);
-                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                    winText.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
                                 });
                             })
                         return;
                         break;
                     } else if (user['username'] == unInput) {
                         console.log("User found: " + user['username']);
-                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        winText.innerHTML = 'The user "' + user['username'] + '" already has a longer streak!';
                         return;
                         break;
                     } else if (i == (testEnd - 1)) {
@@ -632,11 +574,11 @@ permalink: /war2/
                                 if (response.status !== 200) {
                                     var errorMsg = 'Database response error: ' + response.status;
                                     console.log(errorMsg);
-                                    resultBox.innerHTML = String(errorMsg);
+                                    winText.innerHTML = String(errorMsg);
                                 }
                                 response.json().then(data => {
                                     console.log(data);
-                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                    winText.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
                                 })
                             })
                         return;
@@ -646,5 +588,42 @@ permalink: /war2/
                 return;
             })
         })
+    }
+
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+    const closeModalButtons = document.querySelectorAll('[data-close-button]')
+    const overlay = document.getElementById('overlay')
+
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget)
+            openModal(modal)
+        })
+    })
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active')
+        modals.forEach(modal => {
+            closeModal(modal)
+        })
+    })
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        })
+    })
+
+    function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active')
+        overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active')
+        overlay.classList.remove('active')
     }
 </script>
