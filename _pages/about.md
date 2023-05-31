@@ -138,7 +138,7 @@ permalink: /about/
     }
 
     .container {
-        width: 50%;
+        width: 40%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -149,7 +149,7 @@ permalink: /about/
         transform-style: preserve-3d;
         transition: all 0.5s ease;
         min-height: 70vh;
-        width: 18rem;
+        width: 21rem;
         height: 35rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
         border-radius: 27px;
@@ -199,32 +199,7 @@ permalink: /about/
         transition: all 0.75s ease-out;
     }
 
-    .play {
-        margin-top: 5rem;    
-        margin-bottom: 2rem;     
-        transition: all 0.75s ease-out;
-        justify-content:center;
-        text-align:center;
-    }
-
-    .play button {
-        width: 50%;
-        height: 8%;
-        font-size: 1.7rem;
-        padding-bottom: 2px;
-        background: #f54642;
-        border: none;
-        color: white;
-        cursor: pointer;
-        border-radius: 22px;
-        font-weight: bolder;
-        position: absolute;
-        margin:auto;
-        top: 85%;
-        bottom: 15%;
-        left: 5%;
-        right: 2%;
-    }
+    
 
 
 </style>
