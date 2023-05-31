@@ -316,8 +316,8 @@ permalink: /war2/
     }
 
     function updateCounts() {
-        playerNum.innerHTML = String(playerHand.length);
-        oppNum.innerHTML = String(oppHand.length);
+        playerNum.innerHTML = String(playerHand.length + playerWinPile.length);
+        oppNum.innerHTML = String(oppHand.length + oppWinPile.length);
     }
 
     function checkDecks() {
