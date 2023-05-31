@@ -7,7 +7,7 @@ permalink: /uno/
     .big_ol_cont {
         justify-content:center;
         width: 75%;
-        transform:translateY(13%);
+        transform:translateY(100px);
         margin:auto;
         border:20px solid;
         border-color:black;
