@@ -212,10 +212,11 @@ permalink: /memorygame2/
         var image = document.createElement('img');
         image.src = imageLink;
         card.classList.add("card");
+        outer_div.classList.add("view");
+        inner_div.classList.add("view");
         outer_div.classList.add("front-view");
         inner_div.classList.add("back-view"); 
-        outer_div.classList.add("view");
-        inner_div.classList.add("view"); 
+         
 
         inner_div.appendChild(image);
         outer_div.appendChild(inner_div);
@@ -272,7 +273,7 @@ permalink: /memorygame2/
         // loop through the array
         for (i in array) {
         //array.forEach(index => {
-            ele = createCardElement(image_array[index])
+            ele = createCardElement(image_array[i])
             container.appendChild(ele)
         }
 
