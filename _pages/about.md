@@ -148,7 +148,7 @@ permalink: /about/
     .card {
         transform-style: preserve-3d;
         transition: all 0.5s ease;
-        min-height: 70vh;
+        min-height: 50vh;
         width: 26rem;
         height: 45rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
