@@ -106,7 +106,7 @@ permalink: /memorygame/
 
 
 <html>
-    <body>
+    <body onload="shuffle()">
         <div class="container">
             <ul id="container" class="cards">
             </ul>
