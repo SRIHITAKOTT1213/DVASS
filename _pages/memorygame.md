@@ -106,232 +106,15 @@ permalink: /memorygame/
 
 
 <html>
-    <body onload = "shuffle()">
+    <body>
         <div class="container">
             <ul id="container" class="cards">
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/777.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cards.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/chance.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cherry.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/coins.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/darts.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/dealer.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/diamond.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/dice.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/goldcard.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/heart.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/jackpot.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/lemon.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/luck.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/poker.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/slot.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/spades.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/wheel.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/777.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cards.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/chance.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cherry.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/coins.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/darts.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/dealer.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/diamond.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/dice.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/goldcard.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/heart.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/jackpot.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/lemon.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/luck.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/poker.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/slot.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/spades.png?raw=true" alt="card-image">
-                    </div>
-                </li>
-                <li class="card">
-                    <div class="view front-view"></div>
-                    <div class="view back-view">
-                        <img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/wheel.png?raw=true" alt="card-image">
-                    </div>
-                </li>
             </ul>
         </div>
     </body>
 </html>
 
 <script>
-
     //memory game js
     const cards = document.querySelectorAll('.card');
     let cardOne, cardTwo;
@@ -420,6 +203,20 @@ permalink: /memorygame/
         }
     }
 
+    function shuffCard(){
+        matchedCard = 0;
+        cardOne = cardTwo = '';
+
+        let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+        array.sort(() => Math.random() > 0.5 ? 1 : -1);
+
+        cards.forEach((card) => {
+            card.classList.remove('flip');
+            card.addEventListener('click', flipCard);
+        
+        });
+    } 
+
     cards.forEach(card => {
         card.addEventListener('click', flipCard)
 
@@ -434,6 +231,9 @@ permalink: /memorygame/
         var outer_div = document.createElement('div');
         var inner_div = document.createElement('div');
         var image = document.createElement('img');
+        image.src = imagelink;
+        image.width = "100";
+        image.height = "100";
 
         inner_div.appendChild(image);
         outer_div.appendChild(inner_div);
@@ -443,7 +243,7 @@ permalink: /memorygame/
 
     function shuffle() {
         // array of cards to be shuffled
-        let array = [
+        let image_array = [
             "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/777.png?raw=true",
             "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/777.png?raw=true",
             "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cards.png?raw=true",
@@ -482,30 +282,18 @@ permalink: /memorygame/
             "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/wheel.png?raw=true"
         ]
 
-        // randomize array
-        let currentIndex = array.length,  randomIndex;
-
         // While there remain elements to shuffle.
-        while (currentIndex != 0) {
-
-            // Pick a remaining element.
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
-
-            // And swap it with the current element.
-            [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-        }
+        let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
+        array.sort(() => Math.random() > 0.5 ? 1 : -1);
 
         return array;
 
         // loop through the array
-        array.foreach(image => {
-            ele = createCardElement(image)
+        array.foreach(index => {
+            ele = createCardElement(image_array[index])
             container.appendChild(ele)
         }
 
         );
     };
-
 </script>
