@@ -13,6 +13,69 @@
         background: #274510;
     }
 
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 200ms ease-in-out;
+        border: 1px solid black;
+        border-radius: 10px;
+        z-index: 10;
+        background-color: white;
+        width: 500px;
+        max-width: 80%;
+    }
+
+    .modal.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .modal-header {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+    }
+
+    ..modal-header .title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+    }
+
+    .modal-header .close-button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .modal-body {
+        padding: 10px 15px;
+    }
+
+    #overlay {
+        position: fixed;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, ,5);
+        transition: 200ms ease-in-out;
+        pointer-events: none;
+    }
+
+    #overlay.active {
+        pointer-events: all;
+        opacity: 1;
+    }
+
     .card .back-view img{
         max-width: 60px;
     }
@@ -21,7 +84,7 @@
         height: 720px;
         max-height:900px;
         width: 720px;
-        transform:translateY(10px);
+        transform:translateY(8.5px);
         background: linear-gradient(to right, #FFDB58, #699e42);
         border-radius: 10px;
         padding: 25px;
@@ -98,6 +161,11 @@
         }
     }
 
+    .question_btn {
+        background: none;
+        border: none;
+    }
+
 </style>
 
 <!--
@@ -109,7 +177,7 @@
 </li>
 -->
 
-<html style="height:1100px;">
+<html>
     <link rel="stylesheet" type="text/css" href="/DVASS/index.css" />
     <div>
         <header>
@@ -122,7 +190,20 @@
             </ul>
         </header>
     </div>
-    <body>
+    <body style="height:900px;">
+        <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30" style="transform:translate(300%, 300%);" /></button>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div class="title">Memory Instructions</div>
+                <button data-close-button="" class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li><b>Objective:</b> The objective of Memory is match all 18 pairs of cards as fast as possible.</li>
+                </ol>
+            </div>
+        </div>
+        <div id="overlay"></div>
         <div class="container">
             <ul id="cards" class="cards">
                 <!--CARDS WILL BE ADDED HERE-->
@@ -139,6 +220,44 @@
 </html>
 
 <script>
+    //modal js
+    const openModalButtons = document.querySelectorAll('[data-modal-target]');
+    const closeModalButtons = document.querySelectorAll('[data-close-button]');
+    const overlay = document.getElementById('overlay');
+    
+    openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget)
+            openModal(modal)
+        })
+    })
+
+    overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active')
+        modals.forEach(modal => {
+            closModal(modal)
+        })
+    })
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        })
+    })
+
+    function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active')
+        overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active')
+        overlay.classList.remove('active')
+    }
+
     // shuffling the cards
     const imageList = ["777", "cards", "chance", "cherry", "coins", "darts", "dealer", "diamond", "dice", "goldcard", "heart", "jackpot", "lemon", "luck", "poker", "slot", "spades", "wheel"];
     const fullImageList = [].concat(imageList, imageList);

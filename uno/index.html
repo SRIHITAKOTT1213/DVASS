@@ -11,6 +11,69 @@
         font-family:serif;
     }
 
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 200ms ease-in-out;
+        border: 1px solid black;
+        border-radius: 10px;
+        z-index: 10;
+        background-color: white;
+        width: 500px;
+        max-width: 80%;
+    }
+
+    .modal.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .modal-header {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+    }
+
+    ..modal-header .title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: black;
+        text-align: center;
+    }
+
+    .modal-header .close-button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .modal-body {
+        padding: 10px 15px;
+    }
+
+    #overlay {
+        position: fixed;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, ,5);
+        transition: 200ms ease-in-out;
+        pointer-events: none;
+    }
+
+    #overlay.active {
+        pointer-events: all;
+        opacity: 1;
+    }
+
     .card_table_o {
         width:50%;
         padding-top:1%;
@@ -146,9 +209,14 @@
     }
 
     table { margin: auto }
+
+    .question_btn {
+        background: none;
+        border: none;
+    }
 </style>
 
-<html style="height:900px;">
+<html>
 <link rel="stylesheet" type="text/css" href="/DVASS/index.css" />
 <div>
     <header>
@@ -161,6 +229,21 @@
         </ul>
     </header>
 </div>
+<body style="height:900px;">
+        <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30" style="transform:translate(300%, 300%);" /></button>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div class="title">Uno Instructions</div>
+                <button data-close-button="" class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li><b>Objective:</b> </li>
+                </ol>
+            </div>
+        </div>
+        <div id="overlay"></div>
+</body>
 <div class="big_ol_cont">
     <br />
     <div style="text-align:center;justify-content:center">
@@ -198,6 +281,7 @@
 </div>
 <br />
 </html>
+
 <script>
     const startButton = document.getElementById("start_button");
     const greenBox = document.getElementById("green_border");
