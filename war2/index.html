@@ -387,7 +387,7 @@
             winText.innerHTML = "WAR! Draw three face-down cards and battle with the fourth face-up.";
             drawing = true;
             updateCounts();
-            faceDownCard.onclick = "war()";
+            faceDownCard.setAttribute("onclick", "war()");
             return;
         }
     }
@@ -418,7 +418,7 @@
 
             //compare the cards
             if (playerSel.value > oppSel.value) {
-                faceDownCard.onclick = "buttonDraw()";
+                faceDownCard.setAttribute("onclick", "buttonDraw()");
                 for (card of onTable) {
                     playerWinPile.push(card);
                 }
@@ -428,7 +428,7 @@
                 checkDecks();
                 return;
             } else if (oppSel.value > playerSel.value) {
-                faceDownCard.onclick = "buttonDraw()";
+                faceDownCard.setAttribute("onclick", "buttonDraw()");
                 for (card of onTable) {
                     oppWinPile.push(card);
                 }
@@ -441,7 +441,6 @@
                 winText.innerHTML = "WAR CONTINUES! Draw three face-down cards and battle with the fourth face-up.";
                 drawing = true;
                 updateCounts();
-                faceDownCard.onclick = "war()";
                 return;
             }
         }
