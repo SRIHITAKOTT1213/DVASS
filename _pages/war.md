@@ -1,7 +1,7 @@
 ---
 layout: none
 tite: War Simulation
-permalink: /war/
+permalink: /war2/
 ---
 <html>
 <body>
