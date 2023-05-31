@@ -17,7 +17,7 @@ permalink: /war/
     </header>
 </div>
 <body style="height:900px;">
-    <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30"></button>
+    <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30" style="transform:translate(300%, 300%);"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
                 <div class="title">War Instructions</div>
@@ -66,13 +66,11 @@ permalink: /war/
         <br>
         <div>
     </div>
-</body>
-</html>
 
 <style>
     .big_ol_cont {
         justify-content:center;
-        width: 75%;
+        width: 80%;
         transform:translateY(10%);
         margin:auto;
         border:20px solid;
