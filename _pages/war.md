@@ -72,6 +72,8 @@ permalink: /war/
 <style>
     .big_ol_cont {
         justify-content:center;
+        width: 75%;
+        transform:translateY(10%);
         margin:auto;
         border:20px solid;
         border-color:#ccac00;
@@ -82,8 +84,8 @@ permalink: /war/
     }
 
     .card_table_d {
-        width: 750px;
-        height: 300px;
+        width: 1000px;
+        height: 225px;
         border: 10px solid;
         border-radius: 150px;
         border-color: #699e42;
@@ -95,8 +97,8 @@ permalink: /war/
     }
 
     .card_table_p {
-        width: 750px;
-        height: 300px;
+        width: 1000px;
+        height: 225px;
         border: 10px solid;
         border-radius: 150px;
         border-color: #699e42;
