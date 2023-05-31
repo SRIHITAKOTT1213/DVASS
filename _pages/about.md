@@ -134,7 +134,7 @@ permalink: /about/
         display: flex;
         align-items: center;
         justify-content: center;
-        perspective: 1250px;
+        perspective: 1000px;
     }
 
     .container {
