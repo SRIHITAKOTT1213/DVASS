@@ -114,16 +114,31 @@ permalink: /memorygame2/
 -->
 
 <html>
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
+    <div>
+        <header>
+            <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
+            <ul>
+                <li><a href="{{ site.baseurl }}/index">Home</a></li>
+                <li><a href="{{ site.baseurl }}/games">Games</a></li>
+                <li><a href="{{ site.baseurl }}/leaderboard">Leaderboard</a></li>
+                <li><a href="{{ site.baseurl }}/about">About</a></li>
+            </ul>
+        </header>
+    </div>
     <body>
         <div class="container">
             <ul id="cards" class="cards">
                 <!--CARDS WILL BE ADDED HERE-->
             </ul>
+            <div id="result_box" style="margin:auto;margin-top:1em;font-family:'Trebuchet MS',sans-serif;color:white;display:none;"></div>
+            <input id="username_input" class="db_input" type="text" style="display:none;border:none;background-color:white;color:black;border-radius:8px;"><button id="submit_button" style="display:none;border:none;background-color:white;color:black;border-radius:8px;" onclick="submitInfo()">Submit</button>
         </div>
     </body>
 </html>
 
 <script>
+    // shuffling the cards
     const imageList = ["777", "cards", "chance", "cherry", "coins", "darts", "dealer", "diamond", "dice", "goldcard", "heart", "jackpot", "lemon", "luck", "poker", "slot", "spades", "wheel"];
     const fullImageList = [].concat(imageList, imageList);
     for (let i = 36; i > 0; i--) {
@@ -134,6 +149,9 @@ permalink: /memorygame2/
 
     //memory game js
     const cards = document.querySelectorAll('.card');
+    const resultBox = document.getElementById('result_box');
+    const usernameInput = document.getElementById('username_input');
+    const submitButton = document.getElementById('submitButton');
     let cardOne, cardTwo;
     let dis_Deck = false;
     let matchedCard = 0;
@@ -141,6 +159,11 @@ permalink: /memorygame2/
     var constant = 0;
     var seconds = 0;
     var minutes = 0;
+
+    const memoryRead = "https://dvasscasino.duckdns.org/api/memory/";
+    const memoryCreate = "https://dvasscasino.duckdns.org/api/memory/create";
+    const memoryUpdate = "https://dvasscasino.duckdns.org/api/memory/update";
+    const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
 
     function incrementTime() {
         constant++; //constant second count separate from seconds
@@ -193,12 +216,12 @@ permalink: /memorygame2/
         if(img1 == img2){ 
             
             matchedCard++;
-            if (matchedCard === 18){
+            if (matchedCard == 18){
                 runTimer(false);
                 console.log(constant);
-                setTimeout(() => {
-                    return shuffCard();
-                }, 1200);
+                matchedCard = 0;
+                firstCard = true;
+                return record();
             }
             
             cardOne.removeEventListener('click', flipCard);
@@ -220,8 +243,107 @@ permalink: /memorygame2/
         }
     }
 
+    function record() {
+        if (seconds < 10) {
+            seconds = "0" + String(seconds);
+        } else {seconds = String(seconds)};
+        resultBox.style['display'] = "block";
+        resultBox.innerHTML = "Congratulations! You've matched all of the tiles in " + String(minutes) + ":" + seconds + ". You can submit your time using the box below or play again by reloading the page.<br>";
+        usernameInput.style['display'] = "block";
+        submitButton.style['display'] = "block";
+    }
+
     cards.forEach(card => {
         card.addEventListener('click', flipCard)
 
     // card.classList.add('flip')
     });
+
+    function submitInfo() {
+        var unInput = usernameInput.value;
+        if (unInput.length > 20) {
+            resultBox.innerHTML = "That username is too long! Please keep your username within 20 characters.";
+            return;
+        };
+        usernameInput.style = "display:none";
+        submitButton.style = "display:none";
+        var scoreInput = constant;
+        var place = 1;
+        console.log(unInput, scoreInput);
+        fetch(memoryRead, readOptions)
+            // new fetch to update
+            .then(response => {
+            // response error handler
+            if (response.status !== 200) {
+                var errorMsg = 'Database response error: ' + response.status;
+                console.log(errorMsg);
+                resultBox.innerHTML = String(errorMsg);
+                return;
+            }
+            response.json().then(data => {
+                var testCopy = [...data];
+                var testEnd = testCopy.length;
+                for (var i = 0; i < testEnd; i++) {
+                    var user = testCopy[i];
+                    //determining place on the leaderboard based on new score
+                    if (user['seconds'] <= scoreInput) {
+                        place++;
+                    };
+                    if ((user['username'] == unInput) && (user['seconds'] > scoreInput)) {
+                        // if the user achieved a new record, the user with that username is updated
+                        console.log("User found: " + user['username']);
+                        var body = {
+                            'id':user['id'],
+                            'username':user['username'],
+                            'seconds':scoreInput
+                        };
+                        var putOptions = {method: 'PUT', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(memoryUpdate, putOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                });
+                            })
+                        return;
+                        break;
+                    } else if (user['username'] == unInput) {
+                        console.log("User found: " + user['username']);
+                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        return;
+                        break;
+                    } else if (i == (testEnd - 1)) {
+                        // if the user is submitting for the first time
+                        var body = {
+                            'username':unInput,
+                            'seconds':scoreInput
+                        };
+                        var postOptions = {method: 'POST', body: JSON.stringify(body), headers: {'Content-Type':'application/json', 'Authorization': 'Bearer my-token'}};
+                        console.log(body);
+                        fetch(memoryCreate, postOptions)
+                            .then(response => {
+                                if (response.status !== 200) {
+                                    var errorMsg = 'Database response error: ' + response.status;
+                                    console.log(errorMsg);
+                                    resultBox.innerHTML = String(errorMsg);
+                                }
+                                response.json().then(data => {
+                                    console.log(data);
+                                    resultBox.innerHTML = "Congratulations! You've submitted a new record to the leaderboard. You're now #" + String(place) + " on the leaderboard!";
+                                })
+                            })
+                        return;
+                        break;
+                    }
+                };
+                return;
+            })
+        })
+    }
+</script>
