@@ -162,7 +162,7 @@ permalink: /blackjack/
     <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30" style="transform:translate(300%, 300%);"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
-                <div class="title">Black Jack Instructions</div>
+                <div class="title">Blackjack Instructions</div>
                 <button data-close-button class="close-button">&times;</button>
             </div>
             <div class="modal-body">
@@ -219,16 +219,16 @@ permalink: /blackjack/
     const usernameInput = document.getElementById("username_input");
     const resultBox = document.getElementById("result_text");
     const submitButton = document.getElementById("submit_button");
-   
-    const openModalButtons = document.querySelectorAll('[data-modal-target]');
-    const closeModalButtons = document.querySelectorAll('[data-close-button]');
-    const overlay = document.getElementById('overlay');
 
     const blackjackRead = "https://dvasscasino.duckdns.org/api/blackjack/";
     const blackjackCreate = "https://dvasscasino.duckdns.org/api/blackjack/create";
     const blackjackUpdate = "https://dvasscasino.duckdns.org/api/blackjack/update";
     const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
 
+    const openModalButtons = document.querySelectorAll('[data-modal-target]');
+    const closeModalButtons = document.querySelectorAll('[data-close-button]');
+    const overlay = document.getElementById('overlay');
+    
     openModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = document.querySelector(button.dataset.modalTarget)
