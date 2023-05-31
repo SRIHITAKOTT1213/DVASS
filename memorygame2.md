@@ -1,7 +1,7 @@
 ---
 layout: none
 tite: Memory Game Simulation
-permalink: /memorygame2/
+permalink: /memorygame/
 ---
 
 <style>
@@ -27,7 +27,7 @@ permalink: /memorygame2/
         height: 720px;
         max-height:900px;
         width: 720px;
-        transform:translateY(100px);
+        transform:translateY(10px);
         background: linear-gradient(to right, #FFDB58, #699e42);
         border-radius: 10px;
         padding: 25px;
@@ -115,7 +115,7 @@ permalink: /memorygame2/
 </li>
 -->
 
-<html style="height:900px;">
+<html style="height:1000px;">
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
     <div>
         <header>
@@ -133,8 +133,10 @@ permalink: /memorygame2/
             <ul id="cards" class="cards">
                 <!--CARDS WILL BE ADDED HERE-->
             </ul>
-            <div id="result_box" style="margin:auto;margin-top:1em;font-family:'Trebuchet MS',sans-serif;color:white;display:none;"></div>
-            <input id="username_input" class="db_input" type="text" style="display:none;border:none;background-color:white;color:black;border-radius:8px;"><button id="submit_button" style="display:none;border:none;background-color:white;color:black;border-radius:8px;" onclick="submitInfo()">Submit</button>
+            <div id="results_container" style="background-color:#FFDB58;border-radius:8px;display:none;">
+                <div id="result_box" style="margin:auto;margin-top:1em;font-family:'Trebuchet MS',sans-serif;color:white;display:none;"></div>
+                <input id="username_input" class="db_input" type="text" style="display:none;border:none;background-color:white;color:black;border-radius:8px;"><button id="submit_button" style="display:none;border:none;background-color:white;color:black;border-radius:8px;" onclick="submitInfo()">Submit</button>
+            </div>
         </div>
     </body>
 </html>
@@ -151,6 +153,7 @@ permalink: /memorygame2/
 
     //memory game js
     const cards = document.querySelectorAll('.card');
+    const resultsContainer = document.getElementById('results_container');
     const resultBox = document.getElementById('result_box');
     const usernameInput = document.getElementById('username_input');
     const submitButton = document.getElementById('submit_button');
@@ -251,6 +254,7 @@ permalink: /memorygame2/
         } else {seconds = String(seconds)};
         resultBox.style['display'] = "block";
         resultBox.innerHTML = "Congratulations! You've matched all of the tiles in " + String(minutes) + ":" + seconds + ". You can submit your time using the box below or play again by reloading the page.<br>";
+        resultsContainer.style['display'] = "block";
         usernameInput.style['display'] = "block";
         submitButton.style['display'] = "block";
     }
