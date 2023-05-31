@@ -1,7 +1,7 @@
 ---
 layout: none
 tite: Memory Game Simulation
-permalink: /memorygame/
+permalink: /memorygame2/
 ---
 
 <style>
