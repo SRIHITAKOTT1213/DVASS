@@ -316,8 +316,8 @@ permalink: /war2/
     }
 
     function updateCounts() {
-        playerNum.innerHTML = String(playerHand.length);
-        oppNum.innerHTML = String(oppHand.length);
+        playerNum.innerHTML = String(playerHand.length + playerWinPile.length);
+        oppNum.innerHTML = String(oppHand.length + oppWinPile.length);
     }
 
     function checkDecks() {
@@ -392,7 +392,7 @@ permalink: /war2/
             winText.innerHTML = "WAR! Draw three face-down cards and battle with the fourth face-up.";
             drawing = true;
             updateCounts();
-            faceDownCard.onclick = "war()";
+            faceDownCard.setAttribute("onclick", "war()");
             return;
         }
     }
@@ -423,7 +423,7 @@ permalink: /war2/
 
             //compare the cards
             if (playerSel.value > oppSel.value) {
-                faceDownCard.onclick = "buttonDraw()";
+                faceDownCard.setAttribute("onclick", "buttonDraw()");
                 for (card of onTable) {
                     playerWinPile.push(card);
                 }
@@ -433,7 +433,7 @@ permalink: /war2/
                 checkDecks();
                 return;
             } else if (oppSel.value > playerSel.value) {
-                faceDownCard.onclick = "buttonDraw()";
+                faceDownCard.setAttribute("onclick", "buttonDraw()");
                 for (card of onTable) {
                     oppWinPile.push(card);
                 }
@@ -446,7 +446,6 @@ permalink: /war2/
                 winText.innerHTML = "WAR CONTINUES! Draw three face-down cards and battle with the fourth face-up.";
                 drawing = true;
                 updateCounts();
-                faceDownCard.onclick = "war()";
                 return;
             }
         }
