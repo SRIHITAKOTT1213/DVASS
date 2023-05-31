@@ -147,7 +147,7 @@ permalink: /war/
         border-radius: 10px;
         z-index: 10;
         background-color: white;
-        width: 500px;
+        width: 700px;
         max-width: 80%;
     }
 
