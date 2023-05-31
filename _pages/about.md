@@ -71,25 +71,11 @@ permalink: /about/
 
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
-
-    * 
-    {
+     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: 'Poppins', sans-serif;
-    }
-
-    body 
-    {
-        min-height: 100vh;
-        background: linear-gradient(#274510,#699e42);
-        font-family: "Poppins", sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        perspective: 1250px;
     }
 
     header 
@@ -107,7 +93,7 @@ permalink: /about/
 
     header .logo
     {
-        color: #fff;
+        color: black;
         font-weight: 700;
         text-decoration: none;
         font-size: 2em;
@@ -130,16 +116,25 @@ permalink: /about/
 
     header ul li a
     {
-    text-decoration: none;
-    padding: 6px 15px;
-    color: #fff;
-    border-radius: 20px; 
+        text-decoration: none;
+        padding: 6px 15px;
+        color: black;
+        border-radius: 20px; 
     }
 
     header ul li a:hover
     {
-        background: #fff;
-        color: #274510
+        background: #f54642;
+        color: #fff;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        perspective: 1250px;
     }
 
     .container {
@@ -155,6 +150,7 @@ permalink: /about/
         transition: all 0.5s ease;
         min-height: 70vh;
         width: 26rem;
+        height: 45rem;
         box-shadow: 0 20px 20px rgba(0,0,0,0.2), 0px 0px 50px rgba(0,0,0,0.2);
         border-radius: 27px;
         padding: 0rem 5rem;
@@ -172,6 +168,22 @@ permalink: /about/
         width: 20rem;
         z-index: 2;
         transition: all 0.75s ease-out;
+        width: 16rem;
+        height: 16rem;
+    }
+
+    .circle {
+        width: 14rem;
+        height: 14rem;
+        background: linear-gradient(
+            to right,
+            rgba(245,79,66,0.75),
+            rgba(8,83,156,0.75)
+        );
+        position: absolute;
+        padding: 10% 0;
+        border-radius: 50%;
+        z-index 1;
     }
 
     .info h1{
@@ -180,12 +192,40 @@ permalink: /about/
     }
 
     .info h3{
-        font-size: 1rem;
+        font-size: 1.25rem;
         padding: 2rem 0rem;
         color:#585858;
         font-weight: lighter;
         transition: all 0.75s ease-out;
     }
+
+    .play {
+        margin-top: 5rem;    
+        margin-bottom: 2rem;     
+        transition: all 0.75s ease-out;
+        justify-content:center;
+        text-align:center;
+    }
+
+    .play button {
+        width: 50%;
+        height: 8%;
+        font-size: 1.7rem;
+        padding-bottom: 2px;
+        background: #f54642;
+        border: none;
+        color: white;
+        cursor: pointer;
+        border-radius: 22px;
+        font-weight: bolder;
+        position: absolute;
+        margin:auto;
+        top: 85%;
+        bottom: 15%;
+        left: 5%;
+        right: 2%;
+    }
+
 
 </style>
 
