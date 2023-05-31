@@ -179,7 +179,7 @@ permalink: /memorygame/
                 runTimer(false);
                 console.log(constant);
                 setTimeout(() => {
-                    return shuffCard();
+                    return shuffle();
                 }, 1200);
             }
             
