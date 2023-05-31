@@ -231,7 +231,7 @@ permalink: /memorygame/
         var outer_div = document.createElement('div');
         var inner_div = document.createElement('div');
         var image = document.createElement('img');
-        image.src = imagelink;
+        image.src = imageLink;
         image.width = "100";
         image.height = "100";
 
