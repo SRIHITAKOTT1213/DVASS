@@ -616,7 +616,7 @@ permalink: /blackjack/
                         break;
                     } else if (user['username'] == unInput) {
                         console.log("User found: " + user['username']);
-                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a longer streak!';
                         return;
                         break;
                     } else if (i == (testEnd - 1)) {
