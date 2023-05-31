@@ -296,4 +296,6 @@ permalink: /memorygame/
 
         );
     };
+
+    shuffle();
 </script>
