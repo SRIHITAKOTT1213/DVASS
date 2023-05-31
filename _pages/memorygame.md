@@ -106,7 +106,7 @@ permalink: /memorygame/
 
 
 <html>
-    <body onload="shuffle()">
+    <body>
         <div class="container">
             <ul id="container" class="cards">
             </ul>
@@ -242,6 +242,7 @@ permalink: /memorygame/
     };
 
     function shuffle() {
+        console.log("i have been called");
         // array of cards to be shuffled
         let image_array = [
             "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/777.png?raw=true",
@@ -286,8 +287,6 @@ permalink: /memorygame/
         let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35]
         array.sort(() => Math.random() > 0.5 ? 1 : -1);
 
-        return array;
-
         // loop through the array
         array.foreach(index => {
             ele = createCardElement(image_array[index])
@@ -297,5 +296,6 @@ permalink: /memorygame/
         );
     };
 
-    shuffle();
+    window.onload = shuffle;
+
 </script>
