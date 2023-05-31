@@ -138,11 +138,11 @@ permalink: /about/
     }
 
     .container {
-        width: 40%;
+        width: 45%;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 15px;
+        gap: 20px;
     }
 
     .card {
