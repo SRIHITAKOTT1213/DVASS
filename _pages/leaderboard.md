@@ -118,7 +118,7 @@ permalink: /leaderboard/
     <table id="flaskTable" class="table table-striped nowrap" style="width:100%">
         <thead id="flaskHead">
             <tr>
-                <th>ID</th>
+                <th>Place</th>
                 <th>Username</th>
                 <th id="score_description">Streak</th>
             </tr>
@@ -135,6 +135,7 @@ permalink: /leaderboard/
     const memory_read = "https://dvasscasino.duckdns.org/api/memory/";
 
     function tableBuild(readLink, time) {
+        var i = 0;
         document.getElementById('table_content').style["display"] = "none";
         document.getElementById('loading_text').innerHTML = "Loading...";
         document.getElementById('loading_text').style["display"] = "relative";
@@ -150,21 +151,23 @@ permalink: /leaderboard/
             if (time) {
                 document.getElementById("score_description").innerHTML = "Time";
                 for (const row of data) {
+                    i++;
                     var seconds = String(row.seconds % 60);
                     if (seconds.length < 2) {
                         seconds = "0" + seconds;
                     }
                     var minutes = String(Math.floor(row.seconds / 60));
                     $('#flaskBody').append('<tr><td>' + 
-                        row.id + '</td><td>' + 
+                        String(i) + '</td><td>' + 
                         row.username + '</td><td>' + 
                         minutes + ":" + seconds + '</td>');
                     };
             } else {
                 document.getElementById("score_description").innerHTML = "Streak"
                 for (const row of data) {
+                    i++;
                     $('#flaskBody').append('<tr><td>' + 
-                        row.id + '</td><td>' + 
+                        String(i) + '</td><td>' + 
                         row.username + '</td><td>' + 
                         row.streak + '</td>');
                     };
