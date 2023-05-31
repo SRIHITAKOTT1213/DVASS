@@ -6,6 +6,8 @@ permalink: /uno/
 <style>
     .big_ol_cont {
         justify-content:center;
+        width: 75%;
+        transform:translateY(10%);
         margin:auto;
         border:20px solid;
         border-color:black;
@@ -150,7 +152,19 @@ permalink: /uno/
 
     table { margin: auto }
 </style>
-
+<html>
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
+<div>
+    <header>
+        <a href="{{ site.baseurl }}/index" class="logo">DVASS</a>
+        <ul>
+            <li><a href="{{ site.baseurl }}/index">Home</a></li>
+            <li><a href="{{ site.baseurl }}/games">Games</a></li>
+            <li><a href="{{ site.baseurl }}/leaderboard">Leaderboard</a></li>
+            <li><a href="{{ site.baseurl }}/about">About</a></li>
+        </ul>
+    </header>
+</div>
 <div class="big_ol_cont">
     <br>
     <div style="text-align:center;justify-content:center">
@@ -185,7 +199,7 @@ permalink: /uno/
     </div>
     <br>
 </div>
-
+</html>
 <script>
     const startButton = document.getElementById("start_button");
     const greenBox = document.getElementById("green_border");
