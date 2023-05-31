@@ -552,10 +552,14 @@ permalink: /blackjack/
         return
     }
 
+    var storedStreak = 0;
+
     function record() {
         finishButton.style = "display:none";
         usernameInput.style = "display:block";
         resultBox.innerHTML = "Input a username for the leaderboard. (Current Streak: " + String(currentStreak) + ")";
+        storedStreak = currentStreak;
+        currentStreak = 0;
         submitButton.style = "display:block";
         console.log(String(currentStreak));
     }
@@ -568,7 +572,7 @@ permalink: /blackjack/
         };
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
-        var scoreInput = currentStreak;
+        var scoreInput = storedStreak;
         var place = 1;
         console.log(unInput, scoreInput);
         fetch(blackjackRead, readOptions)
