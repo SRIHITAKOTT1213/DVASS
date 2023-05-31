@@ -301,6 +301,13 @@ permalink: /war/
         oppRow.innerHTML = "";
         playerRow.innerHTML = "";
 
+        // reset decks and piles
+        playerHand = [];
+        oppHand = [];
+        playerWinPile = [];
+        oppWinPile = [];
+        onTable = [];
+
         // create and shuffle new deck
         deck = new Deck();
         deck.shuffle();

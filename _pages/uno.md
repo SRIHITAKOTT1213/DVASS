@@ -21,7 +21,7 @@ permalink: /uno/
         padding-top:1%;
         padding-bottom:1%;
         border: 10px solid;
-        border-radius: 150px;
+        border-radius: 100px;
         background-color: #FF5D5D;
         margin:auto;
         justify-content:center;
@@ -30,10 +30,10 @@ permalink: /uno/
     }
 
     .card_table_p {
-        width: 1000px;
-        height: 300px;
+        max-width: 100%;
+        max-height: 20%;
         border: 10px solid;
-        border-radius: 150px;
+        border-radius: 100px;
         background-color: #00B2FF;
         padding:20px;
         justify-content:center;
@@ -182,7 +182,7 @@ permalink: /uno/
     </div>
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
-        <div style="display:flex;justify-content:space-around;">
+        <div style="display:flex;justify-content:space-around;margin:auto;width:50%;">
             <button id="start_button" class="select_button" onclick="startGame()">Start</button>
             <div id="the_deck" onclick="drawCard(playerHand, true)"><img src="{{ site.baseurl }}/images/uno/facedown.png" width="100" height="150" cursor="pointer"></div>
             <br>
@@ -192,13 +192,15 @@ permalink: /uno/
                 <div id="result_text"></div>
                 <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none" onclick="submitInfo()">Submit</button>
             </div>
+            </div>
             <br>
             <div id="full_of_colors">
                 <div id="for_red" class="for_red" onclick="wildResponse('Red')"></div><div id="for_blue" class="for_blue" onclick="wildResponse('Blue')"></div><div id="for_yellow" class="for_yellow" onclick="wildResponse('Yellow')"></div><div id="for_green" class="for_green" onclick="wildResponse('Green')"></div>
-            </div>
         </div>
     </div>
+    <br>
 </div>
+<br>
 </html>
 <script>
     const startButton = document.getElementById("start_button");
@@ -397,7 +399,7 @@ permalink: /uno/
         for (rowID in rowList) {
             rowList[rowID].innerHTML = "";
         };
-        if (cardList.length <= 12) {
+        if (cardList.length <= 10) {
             for (cardID in cardList) {
                 newCard = document.createElement("td");
                 newCardImage = document.createElement("img");
@@ -414,7 +416,7 @@ permalink: /uno/
                 rowList[0].appendChild(newCard);
             };
         } else {
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 10; i++) {
                 newCard = document.createElement("td");
                 newCardImage = document.createElement("img");
                 newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
@@ -428,7 +430,7 @@ permalink: /uno/
                 }
                 rowList[0].appendChild(newCard);
             };
-            for (let i = 12; i < cardList.length; i++) {
+            for (let i = 10; i < cardList.length; i++) {
                 newCard = document.createElement("td");
                 newCardImage = document.createElement("img");
                 newCardImage.src = "{{ site.baseurl }}/images/uno/" + cardList[i].kind + cardList[i].color + ".png";
