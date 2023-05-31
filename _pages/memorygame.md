@@ -277,6 +277,11 @@ permalink: /memorygame/
         );
     };
 
-    window.onload = shuffle;
+    window.onload = startProgram;
+
+    function startProgram() {
+        removeAll(container);
+        shuffle();
+    }
 
 </script>
