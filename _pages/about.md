@@ -117,7 +117,7 @@ permalink: /about/
     header ul li a
     {
         text-decoration: none;
-        padding: 6px 15px;
+        padding: 6px 10px;
         color: black;
         border-radius: 20px; 
     }
