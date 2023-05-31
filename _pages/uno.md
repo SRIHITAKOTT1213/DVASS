@@ -7,7 +7,7 @@ permalink: /uno/
     .big_ol_cont {
         justify-content:center;
         width: 75%;
-        transform:translateY(10%);
+        transform:translateY(13%);
         margin:auto;
         border:20px solid;
         border-color:black;
@@ -17,13 +17,13 @@ permalink: /uno/
     }
 
     .card_table_o {
-        width: 300px;
-        height: 50px;
+        width:50%;
+        padding-top:1%;
+        padding-bottom:4%;
         border: 10px solid;
         border-radius: 150px;
         background-color: #FF5D5D;
         margin:auto;
-        padding:30px 20px 20px 20px;
         justify-content:center;
         text-align:center;
         font-size:16px;
