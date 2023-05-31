@@ -99,9 +99,9 @@
 </style>
 
 <html>
-    <body>
+    <body onload="shuffle()">
         <div class="container">
-            <ul class="cards">
+            <ul id="container" class="cards">
                 <li class="card">
                     <div class="view front-view"></div>
                     <div class="view back-view">
@@ -324,6 +324,7 @@
 </html>
 
 <script>
+
     //memory game js
     const cards = document.querySelectorAll('.card');
     let cardOne, cardTwo;
@@ -412,26 +413,92 @@
         }
     }
 
-    function shuffCard(){
-        matchedCard = 0;
-        cardOne = cardTwo = '';
-
-        let array = [1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9 , 10, 11, 12, 13, 14, 15, 16, 17, 18]
-        array.sort(() => Math.random() > 0.5 ? 1 : -1);
-
-        cards.forEach((card) => {
-            card.classList.remove('flip');
-            card.addEventListener('click', flipCard);
-        
-        });
-    }
-    shuffCard();
-
-
     cards.forEach(card => {
         card.addEventListener('click', flipCard)
 
     // card.classList.add('flip')
     });
+
+
+    const container = document.getElementById("container");
+
+    function createCardElement(imageLink) {
+        var card = document.createElement('li');
+        var outer_div = document.createElement('div');
+        var inner_div = document.createElement('div');
+        var image = document.createElement('img');
+
+        inner_div.appendChild(image);
+        outer_div.appendChild(inner_div);
+        card.appendChild(outer_div);
+    };
+
+    function shuffle() {
+        // array of cards to be shuffled
+        let array = [
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/777.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/777.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cards.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cards.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/chance.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/chance.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cherry.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/cherry.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/coins.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/coins.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/darts.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/darts.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/dealer.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/dealer.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/diamond.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/diamond.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/dice.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/dice.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/goldcard.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/goldcard.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/heart.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/heart.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/jackpot.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/jackpot.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/lemon.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/lemon.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/luck.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/luck.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/poker.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/poker.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/slot.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/slot.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/spades.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/spades.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/wheel.png?raw=true",
+            "https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/memory/wheel.png?raw=true"
+        ]
+
+        // randomize array
+        let currentIndex = array.length,  randomIndex;
+
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+
+        return array;
+
+        // loop through the array
+        array.foreach(image => {
+            ele = createCardElement(image)
+            container.appendChild(ele)
+        }
+
+        );
+    };
+
 </script>
 
