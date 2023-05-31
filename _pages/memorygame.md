@@ -279,11 +279,12 @@ permalink: /memorygame/
         );
     };
 
-    window.onload = startProgram;
-
     function startProgram() {
-        removeAll(container);
+        while((var lis = container.getElementsByTagName("li")).length > 0) {
+            container.removeChild(lis[0]);
+        }
         shuffle();
     }
 
+    window.onload = startProgram;
 </script>
