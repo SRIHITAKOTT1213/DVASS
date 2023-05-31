@@ -247,7 +247,6 @@ permalink: /uno/
             </div>
         </div>
         <div id="overlay"></div>
-</body>
 <div class="big_ol_cont">
     <br>
     <div style="text-align:center;justify-content:center">
@@ -284,6 +283,7 @@ permalink: /uno/
     <br>
 </div>
 <br>
+</body>
 </html>
 
 <script>
