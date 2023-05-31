@@ -68,7 +68,7 @@ permalink: /uno/
         height:60px;
         background-color:#04DE00;
         font-size:18px;
-        font-family:serif;
+        font-family:"trebuchet ms", sans-serif;
     }
 
     .green_border {
@@ -152,7 +152,7 @@ permalink: /uno/
 
     table { margin: auto }
 </style>
-<html>
+<html style="height:900px;">
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
 <div>
     <header>
