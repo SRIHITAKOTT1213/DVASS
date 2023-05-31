@@ -213,9 +213,9 @@ permalink: /uno/
     const usernameInput = document.getElementById("username_input");
     const submitButton = document.getElementById("submit_button");
 
-    const unoRead = "http://127.0.0.1:8086/api/uno/";
-    const unoCreate = "http://127.0.0.1:8086/api/uno/create";
-    const unoUpdate = "http://127.0.0.1:8086/api/uno/update";
+    const unoRead = "https://dvasscasino.duckdns.org/api/uno/";
+    const unoCreate = "https://dvasscasino.duckdns.org/api/uno/create";
+    const unoUpdate = "https://dvasscasino.duckdns.org/api/uno/update";
 
     const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
 

@@ -158,7 +158,7 @@ permalink: /blackjack/
         </ul>
     </header>
 </div>
-<body>
+<body style="height:900px;">
     <button class="question_btn" data-modal-target="#modal"><img src="https://github.com/SRIHITAKOTT1213/DVASS/blob/master/images/question.png?raw=true" width="30" height="30" style="transform:translate(300%, 300%);"></button>
         <div class="modal" id="modal">
             <div class="modal-header">
@@ -199,9 +199,8 @@ permalink: /blackjack/
         </div>
         <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
             <br>
-            <div id="result_text"></div>
-            <br>
-            <button id="hit_button" class="select_button" style="display:none" onclick="buttonHit()">Hit</button><br><button id="stay_button" class="select_button" style="display:none" onclick="stay()">Stay</button>
+            <div id="result_text" style="margin-bottom:1em"></div>
+            <button id="hit_button" class="select_button" style="display:none;margin-bottom:1em;" onclick="buttonHit()">Hit</button><button id="stay_button" class="select_button" style="display:none" onclick="stay()">Stay</button>
             <button id="play_again" class="select_button" style="display:block" onclick="gameStart()">Play</button><button id="finish_game" class="select_button" style="display:none" onclick="record()">Finish and Submit Score</button>
             <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none" onclick="submitInfo()">Submit</button>
         </div>
@@ -225,9 +224,9 @@ permalink: /blackjack/
     const closeModalButtons = document.querySelectorAll('[data-close-button]');
     const overlay = document.getElementById('overlay');
 
-    const blackjackRead = "http://127.0.0.1:8086/api/blackjack/";
-    const blackjackCreate = "http://127.0.0.1:8086/api/blackjack/create";
-    const blackjackUpdate = "http://127.0.0.1:8086/api/blackjack/update";
+    const blackjackRead = "https://dvasscasino.duckdns.org/api/blackjack/";
+    const blackjackCreate = "https://dvasscasino.duckdns.org/api/blackjack/create";
+    const blackjackUpdate = "https://dvasscasino.duckdns.org/api/blackjack/update";
     const readOptions = {method: 'GET', mode: 'cors', cache: 'default', credentials: 'omit', headers: {'Content-Type': 'application/json'}};
 
     openModalButtons.forEach(button => {
@@ -553,10 +552,14 @@ permalink: /blackjack/
         return
     }
 
+    var storedStreak = 0;
+
     function record() {
         finishButton.style = "display:none";
         usernameInput.style = "display:block";
         resultBox.innerHTML = "Input a username for the leaderboard. (Current Streak: " + String(currentStreak) + ")";
+        storedStreak = currentStreak;
+        currentStreak = 0;
         submitButton.style = "display:block";
         console.log(String(currentStreak));
     }
@@ -569,7 +572,7 @@ permalink: /blackjack/
         };
         usernameInput.style = "display:none";
         submitButton.style = "display:none";
-        var scoreInput = currentStreak;
+        var scoreInput = storedStreak;
         var place = 1;
         console.log(unInput, scoreInput);
         fetch(blackjackRead, readOptions)
@@ -617,7 +620,7 @@ permalink: /blackjack/
                         break;
                     } else if (user['username'] == unInput) {
                         console.log("User found: " + user['username']);
-                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a faster record!';
+                        resultBox.innerHTML = 'The user "' + user['username'] + '" already has a longer streak!';
                         return;
                         break;
                     } else if (i == (testEnd - 1)) {
