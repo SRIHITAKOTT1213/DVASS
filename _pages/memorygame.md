@@ -282,6 +282,11 @@ permalink: /memorygame/
         container.innerHTML = "";
         shuffle();
         const cards = document.querySelectorAll('.card');
+        cards.forEach((card) => {
+            card.classList.remove('flip');
+            card.addEventListener('click', flipCard);
+
+        });
     }
 
     window.onload = startProgram;
