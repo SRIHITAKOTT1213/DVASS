@@ -124,7 +124,7 @@ permalink: /memorygame2/
 </html>
 
 <script>
-    const imageList = ["777", "cards", "chance", "cherry", "coins", "darts", "dealer", "diamond", "dice", "goldcard", "heart", "jackpot", "lemon", "luck", "poker", "slots", "spades", "wheel"];
+    const imageList = ["777", "cards", "chance", "cherry", "coins", "darts", "dealer", "diamond", "dice", "goldcard", "heart", "jackpot", "lemon", "luck", "poker", "slot", "spades", "wheel"];
     const fullImageList = [].concat(imageList, imageList);
     for (let i = 36; i > 0; i--) {
         randIndex = Math.floor(Math.random() * i);
