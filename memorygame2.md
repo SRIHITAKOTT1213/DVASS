@@ -25,7 +25,9 @@ permalink: /memorygame2/
 
     .container{
         height: 720px;
+        max-height:900px;
         width: 720px;
+        transform:translateY(100px);
         background: linear-gradient(to right, #FFDB58, #699e42);
         border-radius: 10px;
         padding: 25px;
@@ -113,7 +115,7 @@ permalink: /memorygame2/
 </li>
 -->
 
-<html>
+<html style="height:900px;">
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/index.css">
     <div>
         <header>
@@ -151,7 +153,7 @@ permalink: /memorygame2/
     const cards = document.querySelectorAll('.card');
     const resultBox = document.getElementById('result_box');
     const usernameInput = document.getElementById('username_input');
-    const submitButton = document.getElementById('submitButton');
+    const submitButton = document.getElementById('submit_button');
     let cardOne, cardTwo;
     let dis_Deck = false;
     let matchedCard = 0;
