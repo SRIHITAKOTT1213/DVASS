@@ -288,7 +288,7 @@ permalink: /memorygame/
         array.sort(() => Math.random() > 0.5 ? 1 : -1);
 
         // loop through the array
-        array.foreach(index => {
+        array.forEach(index => {
             ele = createCardElement(image_array[index])
             container.appendChild(ele)
         }
