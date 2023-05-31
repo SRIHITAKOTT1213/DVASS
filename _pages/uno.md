@@ -7,7 +7,7 @@ permalink: /uno/
     .big_ol_cont {
         justify-content:center;
         width: 75%;
-        transform:translateY(10%);
+        transform:translateY(13%);
         margin:auto;
         border:20px solid;
         border-color:black;
@@ -17,13 +17,13 @@ permalink: /uno/
     }
 
     .card_table_o {
-        width: 300px;
-        height: 50px;
+        width:50%;
+        padding-top:1%;
+        padding-bottom:1%;
         border: 10px solid;
         border-radius: 150px;
         background-color: #FF5D5D;
         margin:auto;
-        padding:30px 20px 20px 20px;
         justify-content:center;
         text-align:center;
         font-size:16px;
@@ -182,22 +182,22 @@ permalink: /uno/
     </div>
     <div id="buttons" style="margin:auto;text-align:center;justify-content:center">
         <br>
-        <button id="start_button" class="select_button" onclick="startGame()">Start</button>
-        <div id="the_deck" onclick="drawCard(playerHand, true)"><img src="{{ site.baseurl }}/images/uno/facedown.png" width="100" height="150" cursor="pointer"></div>
-        <br>
-        <div id="green_border" class="green_border">
-            <div id="current_card"></div>
+        <div style="display:flex;justify-content:space-around;">
+            <button id="start_button" class="select_button" onclick="startGame()">Start</button>
+            <div id="the_deck" onclick="drawCard(playerHand, true)"><img src="{{ site.baseurl }}/images/uno/facedown.png" width="100" height="150" cursor="pointer"></div>
             <br>
-            <div id="result_text"></div>
-            <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none" onclick="submitInfo()">Submit</button>
+            <div id="green_border" class="green_border">
+                <div id="current_card"></div>
+                <br>
+                <div id="result_text"></div>
+                <input id="username_input" class="db_input" type="text" style="display:none"><button id="submit_button" class="select_button" style="display:none" onclick="submitInfo()">Submit</button>
+            </div>
+            <br>
+            <div id="full_of_colors">
+                <div id="for_red" class="for_red" onclick="wildResponse('Red')"></div><div id="for_blue" class="for_blue" onclick="wildResponse('Blue')"></div><div id="for_yellow" class="for_yellow" onclick="wildResponse('Yellow')"></div><div id="for_green" class="for_green" onclick="wildResponse('Green')"></div>
+            </div>
         </div>
-        <br>
-        <div id="full_of_colors">
-            <div id="for_red" class="for_red" onclick="wildResponse('Red')"></div><div id="for_blue" class="for_blue" onclick="wildResponse('Blue')"></div><div id="for_yellow" class="for_yellow" onclick="wildResponse('Yellow')"></div><div id="for_green" class="for_green" onclick="wildResponse('Green')"></div>
-        </div>
-        <br>
     </div>
-    <br>
 </div>
 </html>
 <script>
