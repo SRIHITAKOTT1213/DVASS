@@ -438,6 +438,7 @@ permalink: /memorygame/
         inner_div.appendChild(image);
         outer_div.appendChild(inner_div);
         card.appendChild(outer_div);
+        container.appendChild(card);
     };
 
     function shuffle() {
