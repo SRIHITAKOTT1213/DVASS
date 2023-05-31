@@ -212,10 +212,10 @@ permalink: /memorygame/
         var image = document.createElement('img');
         image.src = imageLink;
         card.classList.add("card");
-        outer_div.classList.add("view");
-        inner_div.classList.add("view"); 
         outer_div.classList.add("front-view");
         inner_div.classList.add("back-view"); 
+        outer_div.classList.add("view");
+        inner_div.classList.add("view"); 
 
         inner_div.appendChild(image);
         outer_div.appendChild(inner_div);
@@ -282,12 +282,13 @@ permalink: /memorygame/
         container.innerHTML = "";
         shuffle();
         const cards = document.querySelectorAll('.card');
-        cards.forEach((card) => {
-            card.classList.remove('flip');
-            card.addEventListener('click', flipCard);
+        cards.forEach(card => {
+            card.addEventListener('click', flipCard)
 
+            // card.classList.add('flip')
         });
     }
 
+    
     window.onload = startProgram;
 </script>
