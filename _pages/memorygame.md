@@ -213,8 +213,10 @@ permalink: /memorygame/
         var image = document.createElement('img');
         image.src = imageLink;
         card.classList.add("card");
-        outer_div.classList.add("view front-view");
-        inner_div.classList.add("view back-view"); 
+        outer_div.classList.add("front-view");
+        inner_div.classList.add("back-view"); 
+        outer_div.classList.add("view");
+        inner_div.classList.add("view"); 
 
         inner_div.appendChild(image);
         outer_div.appendChild(inner_div);
