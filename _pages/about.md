@@ -84,7 +84,7 @@ permalink: /about/
         top: 0;
         left: 0;
         width: 90%;
-        padding: 30px 100px;
+        padding: 10px 100px;
         display: flex;
         justify-content: space-between;
         align-items: center;
