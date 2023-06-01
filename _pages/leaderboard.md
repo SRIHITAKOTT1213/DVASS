@@ -178,7 +178,7 @@ permalink: /leaderboard/
         })
         .catch(error => {
             console.error('Error:', error);
-            document.getElementByIds('loading_text').innerHTML = "Error: Leaderboard couldn't be fetched!<br>Check your internet.";
+            document.getElementById('loading_text').innerHTML = "Error: Leaderboard couldn't be fetched!<br>Check your internet.";
         });
     }
 
