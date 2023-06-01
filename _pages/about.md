@@ -24,7 +24,7 @@ permalink: /about/
                 </div>
                 <div class="info">
                     <h1 class="title">Drew Reed</h1>
-                    <h3>Blackjack is a popular game played between a player and a dealer. The objective is to accumulate cards with a total value as close to 21 as possible without exceeding it. </h3>
+                    <h3>Drew worked on creating both Blackjack and Uno.</h3>
                 </div>
         </div> 
         <div class="card">
@@ -33,7 +33,7 @@ permalink: /about/
                 </div>
                 <div class="info">
                     <h1 class="title">Sreeja</h1>
-                    <h3>War is played between 2 players. Both reveal the top card and the player with the higher-value card wins and collects both cards. Repeats until the player has collected all  cards from the opponent.</h3>
+                    <h3>Sreeja worked on the backend end that was needed for the leaderboard that is connected to all the games (Uno, War, Blackjack, and Memory Game)</h3>
                 </div>
         </div> 
         <div class="card">
@@ -42,7 +42,7 @@ permalink: /about/
                 </div>
                 <div class="info">
                     <h1 class="title">Aliya Tang</h1>
-                    <h3>UNO is a popular card game played with a specially designed deck of 108 cards. The objective of the game is to be the first player to get rid of all their cards.</h3>
+                    <h3>Aliya worked on creating War</h3>
                 </div>
         </div> 
     </div>
@@ -53,7 +53,7 @@ permalink: /about/
                 </div>
                 <div class="info">
                     <h1 class="title">Vivian Ni</h1>
-                    <h3>UNO is a popular card game played with a specially designed deck of 108 cards. The objective of the game is to be the first player to get rid of all their cards.</h3>
+                    <h3>Vivian worked on the frontend for our website as well as deployed the backend that was needed for the leaderboard to work. She also worked on the frontend for all the games.</h3>
                 </div>
         </div> 
         <div class="card">
@@ -62,7 +62,7 @@ permalink: /about/
                 </div>
                 <div class="info">
                     <h1 class="title">Sri</h1>
-                    <h3>Memory is a game that consists of cards with a matching pair somewhere in the deck.The objective of the game is to find and match all the pairs of cards.</h3>
+                    <h3>Sri worked on creating the Memory Game</h3>
                 </div>
         </div>
     </div>
