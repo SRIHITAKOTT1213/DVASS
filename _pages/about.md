@@ -94,7 +94,7 @@ permalink: /about/
     header .logo
     {
         color: black;
-        font-weight: 700;
+        font-weight: 500;
         text-decoration: none;
         font-size: 2em;
         text-transform: uppercase;
