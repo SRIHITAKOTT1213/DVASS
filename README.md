@@ -1,6 +1,7 @@
 ## [DVASS Repository](https://github.com/SRIHITAKOTT1213/DVASS)
 
 Runtime link: [https://srihitakott1213.github.io/DVASS/index](https://srihitakott1213.github.io/DVASS/index)
+Scrum Board: [https://github.com/users/drewreed2005/projects/3/views/1](https://github.com/users/drewreed2005/projects/3/views/1)
 
 ### Basis
 
